@@ -10,4 +10,8 @@ public class SNSController {
     public String shorts(Model model) {
         return "shorts";
     }
+    @GetMapping(value = "/login")
+    public String login() {return "loginForm";}
+    @GetMapping(value = "/join")
+    public String join() {return "joinForm";}
 }

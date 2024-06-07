@@ -1,0 +1,34 @@
+spring:
+  mail:
+    # Google smtp server 사용
+    host: smtp.gmail.com
+    port: 587
+    username: kjy76882@gmail.com
+    password: gtqzopfxmteqtnwn
+    properties:
+      mail:
+        smtp:
+          starttls:
+            enable: true
+          auth: true
+
+  datasource:
+    driver-class-name: org.mariadb.jdbc.Driver
+    username: SWteam
+    url: jdbc:mariadb://192.168.0.57:3308/TripSNS?characterEncoding=UTF-8&serverTimezone=Asia/Seoul
+    password: '0987654321'
+
+  thymeleaf:
+    enabled: 'true'
+    prefix: classpath:/templates/
+    cache: 'false'
+    suffix: .html
+  application:
+    name: TripSNS
+mybatis:
+  mapper-locations: mapper/*.xml
+server:
+  servlet:
+    encoding:
+      enabled: 'true'
+
