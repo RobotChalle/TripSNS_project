@@ -1,8 +1,19 @@
 package com.smartwave.tripsns.controller;
 
+import com.smartwave.tripsns.service.IF_SNSService;
+import com.smartwave.tripsns.util.FileDataUtil;
+import com.smartwave.tripsns.vo.PostCommentVO;
+import com.smartwave.tripsns.vo.PostVO;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
+
+import java.util.List;
 
 @Controller
 public class SNSController {
