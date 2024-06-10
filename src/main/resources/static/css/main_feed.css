@@ -1,0 +1,100 @@
+.roundImg {
+    border-radius: 50%;
+}
+
+.id {
+    font-weight: bold;
+}
+
+div.feedBoard {
+    flex: 6.5;
+    width: 60%;
+    float: right;
+    padding-top: 80px;
+    padding-right: 200px;
+    margin-bottom: -50px;
+}
+
+.feed {
+    background: #fff;
+    border: 1px solid #e8e8e8;
+    border-radius: 10px;
+}
+
+.newPost {
+    display: flex;
+    align-items: center;
+    padding: 10px 20px;
+}
+
+.newPost .postImage img {
+    width: 45px;
+    height: 45px;
+}
+
+.newPost .postId {
+    flex: 18;
+    margin-left: 10px;
+}
+
+.newPost button {
+    flex: 1;
+    font-size: 0;
+    text-align: right;
+}
+
+.feedImg img {
+    width: 100%;
+}
+
+.interactions {
+    display: flex;
+    float: left;
+    height: 30px;
+    width: 100%;
+    padding: 0 10px;
+    padding-top: 10px;
+}
+
+.interactions .like {
+    margin: 0 10px;
+    color: #676767;
+}
+
+.interactions .like:hover {
+    margin: 0 10px;
+    color: red;
+}
+
+.likeUser img {
+    width: 25px;
+    height: 25px;
+}
+
+.feedImg p {
+    display: flex;
+    align-items: center;
+    padding: 10px 20px;
+}
+
+.feedImg p .likeUser {
+    display: flex;
+    align-items: center;
+}
+
+.feedImg p .id {
+    margin-left: 10px;
+}
+
+.feedText {
+    padding: 0 20px;
+    padding-bottom: 20px;
+}
+
+.feedText id {
+    margin-right: 5px;
+}
+
+.interactions .detail {
+    color: #999;
+}

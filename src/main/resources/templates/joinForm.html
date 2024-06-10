@@ -119,7 +119,6 @@
         $.ajax({
             url: "/idchk",//컨트롤러에서 요청받을 주소
             type: "post",//post 방식으로 전달
-            // dataType: "json",
             data: {"originid": sendid},
             success: function (cnt){// 컨트롤러에서 넘어온 cnt 값 받는다
                 if(cnt == 0){// cnt 가 0 이면 DB에 없음 -> 사용 가능 아이디
@@ -143,7 +142,7 @@
         let nowmail = $('#nowmail').val();
         let inputmail = $('#domain-txt').val();
         let fullmail = nowmail + "@" + inputmail;
-        console.log(fullmail)
+
         $.ajax({
             url: "/mail",
             type: "post",
