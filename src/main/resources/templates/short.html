@@ -14,7 +14,7 @@
         height: 700px;
         margin-left: 50px;
         margin-right: 50px;
-        background-color: cornflowerblue;
+        background-color: antiquewhite;
     }
     .vid{
         display: flex;
@@ -22,26 +22,115 @@
         height: 100%;
         background-color: black;
     }
-    .comment{
+    .details{
         display: flex;
+        flex-wrap: wrap;
         width: 50%;
         height: 100%;
-        background-color: orchid;
+    }
+    .writer{
+        display: flex;
+        flex-wrap: wrap;
+        width: 100%;
+        height: 12%;
+    }
+    .comment{
+        display: flex;
+        flex-wrap: wrap;
+        width: 100%;
+        height: 70%;
+    }
+    .liking{
+        display: flex;
+        flex-wrap: wrap;
+        width: 100%;
+        height: 5%;
+    }
+    .commentInsert{
+        display: flex;
+        flex-wrap: wrap;
+        width: 100%;
+        height: 13%;
+        margin-left: 2%;
+    }
+
+    .profileImg{
+        display: flex;
+        width: 30px;
+        height: 30px;
+        margin-left: 5px;
+        margin-top: 5px;
+    }
+    .profile{
+        display: flex;
+        width: 40%;
+        height: 80%;
+        margin-left: 10%;
+        margin-top: 2%;
+        background-color: white;
+        text-align: center;
+    }
+    .likeImg{
+        display: inline-block;
+        width: 35px;
+        height: 35px;
+    }
+    .liketext{
+        display: inline-block;
+        margin-left: 20px;
+        text-align: center;
     }
     video{
         flex: auto;
+        width: 100%;
+        height: 100%;
     }
+    .commentArea{
+        border-color: white;
+        font-family: AppleSDGothicNeoB00,serif;
+        font-size: 17px;
+    }
+    .commentArea:hover{
+        border-color: white;
+    }
+    .heart{
+        border: none;
+    }
+    .heart:hover{
+    }
+
 
 </style>
 <body>
     <div class="d-flex justify-content-center short">
         <div class="vid" >
-            <video loop controls autoplay muted oncontextmenu="return false;">
-                <source src="Taylor%20Swift%20-%20The%20Eras%20Tour.mp4" type="video/mp4">
+            <video width="720" height="1280" loop controls autoplay muted oncontextmenu="return false;">
+                <source src="/video/Taylor%20Swift%20-%20The%20Eras%20Tour.mp4" type="video/mp4">
             </video>
         </div>
-        <div class="comment">
-
+        <div class="details">
+            <div class = "writer">
+                <div class="profileImg">
+                    <a href="http://localhost:8080"> <img src="/img/userPic.png" alt="유저사진"></a>
+                </div>
+                <div class="profile">
+                    <label>username</label>
+                </div>
+            </div>
+            <hr>
+            <div class="comment">
+                <label><h2>댓글영역 (반복문으로 가져온 값 출력)</h2></label>
+            </div>
+            <div class="liking">
+                <div><button class="heart"><img src="/img/heart.svg" class="likeImg" alt="하트"></button><label class="liketext">좋아요 ?만개</label></div>
+            </div>
+            <hr>
+            <div class="commentInsert">
+                <form action="/short/commentInsert" method="post">
+                <textarea class="commentArea" name="comment" cols="50" rows="2"></textarea>
+                <input type="submit" value="게시" class="commentSubmit">
+            </form>
+            </div>
         </div>
     </div>
 
