@@ -6,10 +6,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public class JoinDAOImpl implements IF_JoinDAO {
-    private static String  mapperQuery = "com.smartwave.tripsns.dao.IF_JoinDAO";
+public class UserDAOImpl implements IF_UserDAO {
+    private static String  mapperQuery = "com.smartwave.tripsns.dao.IF_UserDAO";
     @Autowired
     private SqlSession sqlSession;
+    //회원가입
     @Override
     public void userinsert(UserVO uservo) throws Exception {
         sqlSession.insert(mapperQuery+".userinsert", uservo);
@@ -18,5 +19,10 @@ public class JoinDAOImpl implements IF_JoinDAO {
     @Override
     public int idchk(String id) throws Exception {
          return sqlSession.selectOne(mapperQuery+".idchk",id);
+    }
+    //로그인
+    @Override
+    public UserVO login(String id) throws Exception {
+        return sqlSession.selectOne(mapperQuery+".selectid",id);
     }
 }
