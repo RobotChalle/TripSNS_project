@@ -1,24 +1,24 @@
 plugins {
-    id 'java'
-    id 'org.springframework.boot' version '3.2.6'
-    id 'io.spring.dependency-management' version '1.1.5'
+	id 'java'
+	id 'org.springframework.boot' version '3.2.6'
+	id 'io.spring.dependency-management' version '1.1.5'
 }
 
 group = 'com.smartwave'
 version = '0.0.1-SNAPSHOT'
 
 java {
-    sourceCompatibility = '17'
+	sourceCompatibility = '17'
 }
 
 configurations {
-    compileOnly {
-        extendsFrom annotationProcessor
-    }
+	compileOnly {
+		extendsFrom annotationProcessor
+	}
 }
 
 repositories {
-    mavenCentral()
+	mavenCentral()
 }
 
 dependencies {
@@ -36,8 +36,13 @@ dependencies {
     implementation 'commons-io:commons-io:2.11.0'    /* Apache commons-io */
     implementation 'commons-fileupload:commons-fileupload:1.4'
     implementation 'org.apache.tika:tika-core:2.4.1'
+	developmentOnly 'org.springframework.boot:spring-boot-devtools'
+	//email api 추가
+	implementation 'org.springframework.boot:spring-boot-starter-mail'
+	implementation 'nz.net.ultraq.thymeleaf:thymeleaf-layout-dialect'
+
 }
 
 tasks.named('test') {
-    useJUnitPlatform()
+	useJUnitPlatform()
 }

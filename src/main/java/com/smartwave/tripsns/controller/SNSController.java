@@ -1,23 +1,8 @@
 package com.smartwave.tripsns.controller;
 
-import com.smartwave.tripsns.service.IF_SNSService;
-import com.smartwave.tripsns.util.FileDataUtil;
-import com.smartwave.tripsns.vo.PostCommentVO;
-import com.smartwave.tripsns.vo.PostVO;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.multipart.MultipartFile;
-import org.springframework.web.multipart.MultipartHttpServletRequest;
-
-import java.io.File;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.UUID;
 
 @Controller
 public class SNSController {
@@ -65,4 +50,8 @@ public class SNSController {
         model.addAttribute("p_no", pcvo.getPc_no());
         return "redirect:main";
     }
+    @GetMapping(value = {"/shorts","/"})
+    public String shorts() {return "shorts";}
+    @GetMapping(value="/short")
+    public String shortOne() {return "short";}
 }

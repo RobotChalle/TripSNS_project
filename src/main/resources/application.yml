@@ -5,6 +5,19 @@ spring:
       location: d:/postImg
       max-file-size: 5000KB
       max-request-size: 5000KB
+  mail:
+    # Google smtp server 사용
+    host: smtp.gmail.com
+    port: 587
+    username: kjy76882@gmail.com
+    password: gtqzopfxmteqtnwn
+    properties:
+      mail:
+        smtp:
+          starttls:
+            enable: true
+          auth: true
+
   datasource:
     driver-class-name: org.mariadb.jdbc.Driver
     username: SWteam

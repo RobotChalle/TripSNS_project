@@ -1,0 +1,95 @@
+body{
+    /* background-image: url(backimg.png); */
+    background-color: rgb(123, 147, 226);
+} 
+#Loginbox {
+    display: block;
+    width: 450px;
+    height: 430px;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    margin-left: -225px;
+    margin-top: -215px;
+    background-color: rgb(233,233,233,0.4);
+    border-radius: 30px;
+}
+
+input[type="text"] {
+    width: 300px;
+    height: 40px;
+    font-size: 15px;
+    border: 0.1px;
+    border-color: rgb(233,233,233,0.1);
+    border-radius: 15px;
+    outline: none;
+    padding-left: 10px;
+    background-color: rgb(233,233,233);
+    margin-top: 50px;
+    margin-left: 70px;
+    font-family: apple Black;
+}
+input[type="text"]:hover{
+    border-color: rgb(56, 100, 178,0.7);
+    transition: 0.7s;
+}
+input[type="password"]{
+    width: 300px;
+    height: 40px;
+    font-size: 15px;
+    border: 0.1px;
+    border-color: rgb(233,233,233,0.1);
+    border-radius: 15px;
+    outline: none;
+    padding-left: 10px;
+    background-color: rgb(233,233,233);
+    margin-top: 20px;
+    margin-left: 70px;
+    font-family: apple Black;
+}
+input[type="password"]:hover{
+    border-color: rgb(56, 100, 178,0.7);
+    transition: 0.7s;
+    
+
+}
+.btn {
+    width: 260px;
+    height: 32px;
+    font-size: 18px;
+    border: 0;
+    border-radius: 15px;
+    outline: none;
+    padding-left: 10px;
+    background-color: rgb(56, 100, 178);
+    color: rgb(221, 210, 210);
+    margin-top: 60px;
+    margin-left: 95px;
+    font-family: apple Black;
+    /* font-family: 'YeongdeokSea'; */
+}
+h1{
+    text-align: center;
+    
+}
+.join{
+    width: 260px;
+    height: 32px;
+    font-size: 18px;
+    border: 0;
+    border-radius: 15px;
+    outline: none;
+    padding-left: 10px;
+    color:rgb(56, 100, 178);
+    background-color:white;
+    margin-top: 10px;
+    margin-left: 95px;
+    font-family: apple Black;
+    /* font-family: 'YeongdeokSea'; */
+    
+}
+
+@font-face {
+    font-family: apple black;
+    src: url(AppleSDGothicNeoB.ttf);
+}
