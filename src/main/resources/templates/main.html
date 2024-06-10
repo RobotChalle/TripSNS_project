@@ -125,8 +125,10 @@
 </div>
 <div class="mypic">
     <div class="dropdown-content">
-        <a href="#">프로필</a>
-        <a href="#">로그아웃</a>
+        <th:block th:if="${session.userid!=null}">
+        <a href="#">프로필<span th:text = "${session.userid}">아이디</span></a>
+        </th:block>
+        <a href="logout">로그아웃</a>
     </div>
     <a href="#">
         <img src="/images/메인_2.jpg" alt="myPic">

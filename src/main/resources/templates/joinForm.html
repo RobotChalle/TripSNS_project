@@ -24,12 +24,12 @@
         </div>
         <div class="field">
             <label class="infor">비밀번호<span style="color:rgb(160, 49, 49);" class="star">*</span></label><br>
-            <input type="password" id="newpw" class="te" name="pw" placeholder="비밀번호" pattern="[A-Za-z0-9]{8,16}"
+            <input type="password" id="newpw" class="te" name="pw" placeholder="비밀번호" minlength="8" maxlength="16" pattern="[A-Za-z0-9]"
                    title="8~16자의 비밀번호를 입력해주세요(특수문자,한글x)" required>
         </div>
         <div class="field">
             <label class="infor">비밀번호 확인<span id="errmsg"></span></label> <br>
-            <input type="password" id="conpw" class="te" placeholder="비밀번호 확인" maxlength="16" required>
+            <input type="password" id="conpw" class="te" placeholder="비밀번호 확인" minlength="8" maxlength="16" required>
         </div>
         <div class="field">
             <label class="infor">이름<span style="color:rgb(160, 49, 49);" class="star">*</span></label><br>
