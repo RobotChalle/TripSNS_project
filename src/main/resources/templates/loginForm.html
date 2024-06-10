@@ -9,18 +9,45 @@
 <link rel="stylesheet" href="/css/snslogin.css">
 
 <body>
-<form>
+
     <div id="Loginbox">
         <h1>로고</h1>
-        <div><input type="text" placeholder="ID"></div>
-        <div><input type="password" placeholder=Password></div>
-        <div><input type="submit" value="Log in" class="btn"></div>
+        <form action="loginsave" method="post">
+         <div><input type="text" placeholder="ID" name="id" id="newid"></div>
+         <div><input type="password" placeholder=Password name="pw" id="newpw"></div>
+         <div><input type="submit" value="Log in" class="btn"></div>
+                <input type="hidden" name="msge" th:value ="${mesg}">
         <div><a href="join"><input type="button" value="Join" class="join"></a></div>
-
+        </form>
     </div>
-</form>
+
 
 </div>
 </body>
 
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script >
+ $(document).ready(function (){
+     var errmsg = $('input[name=msge]').val();
+     console.log(errmsg);
+     // var errmsg = "${param.mesg}";
+    if(errmsg !=""){
+        alert(errmsg);
+        // errmsg=null;
+    }else{
+        console.log(errmsg);
+
+    }
+
+
+
+     // if(msga!=""){
+     //     alert(msga);
+     // }else{
+     //
+     // }
+ });
+
+
+</script>
 </html>

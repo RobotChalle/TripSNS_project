@@ -12,15 +12,15 @@
 <link rel="stylesheet" href="/css/snsjoin.css">
 
 <body>
-<form action="joinsave" method="post" onsubmit="return chk()">
+<form action="joinsave" method="post" >
     <div id="Joinbox">
         <div id="logo">
             <h1>로고</h1>
         </div>
         <div class="field">
-            <label class="infor">아이디<span style="color:rgb(160, 49, 49);" class="star">*</span></label>
+            <label class="infor">아이디<span style="color:rgb(160, 49, 49);" class="star">*</span><span id="idmsg"></span></label>
             <input type="text" id="newid" class="teid" name="id" placeholder="아이디" required>
-            <button id="idbtn" >중복확인</button>
+            <button id="idbtn" onclick="chkid()">중복확인</button>
         </div>
         <div class="field">
             <label class="infor">비밀번호<span style="color:rgb(160, 49, 49);" class="star">*</span></label><br>
@@ -37,6 +37,7 @@
         </div>
         <div class="info" id="info__birth">
             <label class="infor">생년월일<span style="color:rgb(160, 49, 49);" class="star">*</span></label><br>
+            <input type="hidden" name="birth" value="" id="orginbirth">
             <div class="bibox">
                 <select class="box" id="birth-year" name="year">
                     <option disabled selected>출생 연도</option>
@@ -51,7 +52,8 @@
         </div>
 
         <label class="infor">이메일<span style="color:rgb(160, 49, 49);" class="star">*</span></label><br>
-        <div id="email">
+        <div id="emailform">
+            <input type="hidden" name="email" value="" id="orginmail">
             <input type="text" id="nowmail" placeholder="이메일 입력" class="emailbox" required>@
             <input type="text" id="domain-txt" class="emailbox" required>
             <select class="emailbox" id="domain-list">
@@ -65,55 +67,107 @@
         </div>
 
         <div id="cernumber">
-            <input type="text" placeholder="인증번호입력 " class="emailbox3" name="number" id="number">
-            <input type="button" value="인증번호 전송" class="emailbox2"  id="sendBtn" name="sendBtn" onclick="sendNumber()">
-            <input type="button" value="인증번호 확인" class="emailbox2"  id="confirmBtn" name="confirmBtn" onclick="confirmNumber()">
+            <input type="text" placeholder="인증번호입력 " class="emailbox3" name="number" id="number" >
+            <input type="button" value="인증번호 전송" class="emailbox2" id="sendBtn" name="sendBtn" onclick="sendNumber()">
+            <input type="button" value="인증번호 확인" class="emailbox2" id="confirmBtn" name="confirmBtn"
+                   onclick="confirmNumber()">
         </div>
         <input type="text" id="Confirm" name="Confirm" style="display: none" value="">
-        <div><input type="submit" value="Join" class="join"></div>
+        <div><input type="submit" value="Join" class="join" onclick="return sum()"></div>
 
 
         <div id="loglink">
             <span>계정이 있으신가요? <a href="login" id="links">로그인하러가기</a></span>
-
         </div>
 
     </div>
-
 </form>
 
 </body>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <script>
+    function sum() {
+        let firstmail = $('#nowmail').val();
+        let secondemail = $('#domain-txt').val();
+        $("#orginmail").val(firstmail + "@" + secondemail);// hidden 값을 입력한 이메일값으로변경
+        let year = $("select[name=year] option:selected").val();
+        let month = $("select[name=month] option:selected").val();
+        let day = $("select[name=day] option:selected").val();
+        $("#orginbirth").val(year + "/" + month + "/" + day);
+
+        var number1 = $("#number").val();//인증번호입력
+        var number2 = $("#Confirm").val();//전송된 인증번호
+
+        if($("#number").val()==""){//인증번호가 빈칸일떄
+            alert("모든사항을 기입해주세요")
+            return false;
+        }else{//빈칸아닐때
+            if (number1 == number2) {// 인증번호 입력란이랑 이메일론 발송된 이메일 번호가 동일할때
+                return true;
+            } else {
+                alert("인증번호가 일치하지 않습니다");
+                return false;
+            }
+        }
+        return chkid()//
+    }
+
+    function chkid(){// 유효성 아이디 중복체크
+        let sendid = $('#newid').val();// 입력한 id 값 저장
+        var iderrmsg = document.getElementById('idmsg');// 아이디 중복체크후 가능 여부 확인 메세지 출력용
+        console.log(sendid);
+        $.ajax({
+            url: "/idchk",//컨트롤러에서 요청받을 주소
+            type: "post",//post 방식으로 전달
+            // dataType: "json",
+            data: {"originid": sendid},
+            success: function (cnt){// 컨트롤러에서 넘어온 cnt 값 받는다
+                if(cnt == 0){// cnt 가 0 이면 DB에 없음 -> 사용 가능 아이디
+                    iderrmsg.style.color = "green";
+                    iderrmsg.textContent = "사용 가능한 아이디 입니다";
+                    return true;
+                }else{
+                    $('#newid').val("");
+                    $('#newid').focus();
+                    iderrmsg.style.color = "red";
+                    iderrmsg.textContent = "존재하는 아이디입니다";
+                    return false;
+                }
+            }
+        })
+
+    }
 
 
-    function sendNumber(){
-        let inputmail = $('#domain-txt').val();
+    function sendNumber() {
         let nowmail = $('#nowmail').val();
-        let fullmail = nowmail+"@"+inputmail;
+        let inputmail = $('#domain-txt').val();
+        let fullmail = nowmail + "@" + inputmail;
         console.log(fullmail)
         $.ajax({
-            url:"/mail",
-            type:"post",
-            dataType:"json",
-            data:{"mail":fullmail},
-            success: function (data){
+            url: "/mail",
+            type: "post",
+            dataType: "json",
+            data: {"mail": fullmail},
+            success: function (data) {
                 alert("인증번호가 발송되었습니다");
-                $("#Confirm").attr("value",data);
+                $("#Confirm").attr("value", data);
             }
         });
     }
 
-    function confirmNumber(){
+    function confirmNumber() {
         var number1 = $("#number").val();
         var number2 = $("#Confirm").val();
-
-        if(number1 == number2){
+        if (number1 == number2) {
             alert("인증되었습니다.");
-        }else{
+            return true;
+        } else {
             alert("인증번호가 다릅니다 다시입력해주세요.");
+            return false;
         }
     }
+
     const domainListEl = document.querySelector('#domain-list');//id 선택자 이용해서 변수에 저장
     const domainInputEl = document.querySelector('#domain-txt');
     domainListEl.addEventListener('change', (event) => {
@@ -126,7 +180,6 @@
             domainInputEl.disabled = false
         }
     })
-
 
 
     // 출생 연도 셀렉트 박스 option 목록 동적 생성
@@ -205,7 +258,6 @@
             errmsg.textContent = "비밀번호가 일치하지 않습니다";
         }
     })
-
 
 
 </script>
