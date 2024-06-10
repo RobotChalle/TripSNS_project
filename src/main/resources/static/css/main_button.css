@@ -1,0 +1,18 @@
+#floatingButton {
+    position: fixed;
+    display: flex;
+    align-items: center;
+    left: 90%;
+    bottom: 30px;
+    transform: translateX(-50%);
+    cursor: pointer;
+    transition: 0.50s;
+}
+
+#floatingButton a{
+    color: cornflowerblue;
+}
+
+#floatingButton:hover {
+    transform: translateX(-50%) scale(1.2);
+}
