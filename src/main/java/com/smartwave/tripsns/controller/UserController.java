@@ -72,17 +72,17 @@ public class UserController {
             rt.addFlashAttribute("mesg","존재하지않는 아이디 입니다");
             return "redirect:/login";
         }
-        return "test";
+        return "redirect:/main";
     }
-    @GetMapping(value = "test")
-    public String test(HttpSession session , Model model) throws Exception {
-        return "test";
-    }
+//    @GetMapping(value = "test")
+//    public String test(HttpSession session , Model model) throws Exception {
+//        return "test";
+//    }
 
     @GetMapping(value = "logout")
     public String logout(HttpSession session) {
         session.invalidate();
-        return "redirect:/test";
+        return "redirect:/login";
     }
 
 }
