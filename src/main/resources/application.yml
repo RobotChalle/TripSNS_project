@@ -1,0 +1,25 @@
+spring:
+  servlet:
+    multipart:
+      enabled: true
+      location: d:/postImg
+      max-file-size: 5000KB
+      max-request-size: 5000KB
+  datasource:
+    driver-class-name: org.mariadb.jdbc.Driver
+    username: SWteam
+    url: jdbc:mariadb://192.168.0.57:3308/TripSNS?characterEncoding=UTF-8&serverTimezone=Asia/Seoul
+    password: '0987654321'
+  thymeleaf:
+    enabled: 'true'
+    prefix: classpath:/templates/
+    cache: 'false'
+    suffix: .html
+  application:
+    name: TripSNS
+mybatis:
+  mapper-locations: mapper/*.xml
+server:
+  servlet:
+    encoding:
+      enabled: 'true'
