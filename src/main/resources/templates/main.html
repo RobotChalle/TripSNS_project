@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="/css/main_navSide.css">
     <link rel="stylesheet" href="/css/main_feed.css">
     <link rel="stylesheet" href="/css/main_button.css">
+    <script src="/js/post_like.js"></script>
 </head>
 <style>
     * {
@@ -98,14 +99,14 @@
             </div>
             <section class="feedImg">
                 <div class="interactions">
-                    <a href="#" class="like">
+                    <a href="postLike" class="like" onclick="likeBtn(${session.userid})">
                         <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor"
                              class="bi bi-heart" viewBox="0 0 16 16">
                             <path
                                     d="m8 2.748-.717-.737C5.6.281 2.514.878 1.4 3.053c-.523 1.023-.641 2.5.314 4.385.92 1.815 2.834 3.989 6.286 6.357 3.452-2.368 5.365-4.542 6.286-6.357.955-1.886.838-3.362.314-4.385C13.486.878 10.4.28 8.717 2.01zM8 15C-7.333 4.868 3.279-3.04 7.824 1.143q.09.083.176.171a3 3 0 0 1 .176-.17C12.72-3.042 23.333 4.867 8 15"/>
                         </svg>
                     </a>
-                    <a th:href="@{/detail(p_no=${postList.p_no})}" class="detail">자세히 보기</a>
+                    <a th:href="@{/detail(p_no=${postList.p_no}, p_id=${session.userid})}" class="detail">자세히 보기</a>
                 </div>
             </section>
             <section class="feedText">
@@ -115,7 +116,7 @@
     </div>
 </main>
 <div id="floatingButton">
-    <a href="post">
+    <a th:href="@{/post(p_id=${session.userid})}">
         <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" fill="currentColor"
              class="bi bi-plus-circle-fill" viewBox="0 0 16 16">
             <path
@@ -125,8 +126,10 @@
 </div>
 <div class="mypic">
     <div class="dropdown-content">
-        <a href="#">프로필</a>
-        <a href="#">로그아웃</a>
+        <th:block th:if="${session.userid!=null}">
+            <a href="#">프로필(<span th:text="${session.userid}">)</span></a>
+        </th:block>
+        <a href="logout">로그아웃</a>
     </div>
     <a href="#">
         <img src="/images/메인_2.jpg" alt="myPic">

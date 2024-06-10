@@ -24,7 +24,7 @@
 <div id="Loginbox">
     <h1>회원정보</h1>
     <th:block th:if="${session.userid!=null}">
-    <span th:text = "${session.userid}">아이디</span>
+    <span>아이디:</span><span th:text = "${session.userid}"></span>
     </th:block>
     <span><a href="logout"> 로그아웃</a></span>
 </div>

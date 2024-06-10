@@ -50,4 +50,24 @@ public class SNSDAOImpl implements IF_SNSDAO {
     public List<PostCommentVO> commentList(String p_no) throws Exception {
         return sqlSession.selectList(mapperQuery + ".commentList", p_no);
     }
+
+    @Override
+    public void postLike(PostVO pvo) throws Exception {
+        sqlSession.insert(mapperQuery + ".postLike", pvo);
+    }
+
+    @Override
+    public void postLikeDel(PostVO pvo) throws Exception {
+        sqlSession.delete(mapperQuery + ".postLikeDel", pvo);
+    }
+
+    @Override
+    public int postLikeCnt(PostVO pvo) throws Exception {
+        return sqlSession.selectOne(mapperQuery + ".postLikeCnt", pvo);
+    }
+
+    @Override
+    public int postLikeMyCnt(PostVO pvo) throws Exception {
+        return sqlSession.selectOne(mapperQuery + ".postLikeMyCnt", pvo);
+    }
 }
