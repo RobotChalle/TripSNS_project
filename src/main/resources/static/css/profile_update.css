@@ -1,0 +1,173 @@
+#profilebox {
+    display: block;
+    width: 350px;
+    height: 460px;
+    position: absolute;
+    left: 23%;
+    bottom: 30%;
+    background-color: rgb(255, 255, 255, 0.4);
+    border-radius: 30px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+    transition: all 0.3s cubic-bezier(.25, .8, .25, 1);
+}
+
+#profilebox:hover {
+    box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
+}
+
+.field {
+
+    margin-top: 20px;
+}
+
+#newid {
+    width: 300px;
+    height: 40px;
+    font-size: 15px;
+    border: 0.1px;
+    border-color: rgb(233, 233, 233, 0.1);
+    border-radius: 15px;
+    outline: none;
+    padding-left: 10px;
+    background-color: rgb(233, 233, 233);
+    margin-top: 50px;
+    margin-left: 70px;
+    font-family: apple Black;
+}
+
+@font-face {
+    font-family: apple black;
+    src: url(AppleSDGothicNeoB.ttf);
+}
+
+#userbox {
+    display: block;
+    width: 450px;
+    height: 460px;
+    position: absolute;
+    left: 52%;
+    bottom: 30%;
+    background-color: rgb(255, 255, 255, 0.5);
+    border-radius: 30px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+    transition: all 0.3s cubic-bezier(.25, .8, .25, 1);
+}
+
+#userbox:hover {
+    box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
+}
+
+.infor {
+    margin-left: 50px;
+    font-family: apple Black;
+}
+
+h3 {
+    margin-left: 20px;
+}
+
+.te {
+    width: 350px;
+    height: 40px;
+    font-size: 15px;
+    border: 0.1px;
+    border-color: rgb(233, 233, 233, 0.7);
+    border-radius: 15px;
+    outline: none;
+    padding-left: 10px;
+    background-color: rgb(255, 255, 255);
+    margin-left: 40px;
+    margin-top: 5px;
+    font-family: apple Black;
+}
+
+.te:hover {
+    border: 0.2px solid;
+}
+
+.tex {
+    width: 230px;
+    height: 40px;
+    font-size: 15px;
+    border: 0.1px;
+    /* border-color: rgba(20, 19, 19, 0.1); */
+    border-radius: 15px;
+    outline: none;
+    padding-left: 10px;
+    background-color: rgb(255, 255, 255);
+    margin-left: 40px;
+    margin-top: 10px;
+    font-family: apple Black;
+    display: flex;
+}
+
+.tex:hover {
+    border: 0.2px solid;
+}
+
+
+.pro_pic {
+    margin: 0 auto;
+    margin-left: 70px;
+    border: 0.5px solid;
+    border-radius: 50%;
+}
+
+#pro_id {
+    margin-left: 120px;
+
+    font-family: apple Black;
+
+}
+
+#picbtn {
+
+    border: 0.1px;
+    border-color: rgb(233, 233, 233, 0.1);
+    border-radius: 15px;
+    outline: none;
+    background-color: rgb(56, 100, 178, 0.5);
+    font-family: apple Black;
+    margin-left: 250px;
+
+
+}
+
+#probtn {
+    width: 50px;
+    height: 45px;
+    font-size: 15px;
+    border: 0.1px;
+    border-color: rgb(233, 233, 233, 0.1);
+    border-radius: 15px;
+    outline: none;
+    background-color: rgb(56, 100, 178, 0.5);
+    margin-top: 10px;
+    margin-left: 5px;
+    font-family: apple Black;
+
+}
+
+#fled {
+    display: flex;
+}
+
+#userbtn {
+
+    width: 70px;
+    height: 45px;
+    font-size: 15px;
+    border: 0.1px;
+    border-color: rgb(233, 233, 233, 0.1);
+    border-radius: 15px;
+    outline: none;
+    background-color: rgb(56, 100, 178, 0.5);
+    margin-top: 20px;
+    margin-left: 45px;
+    font-family: apple Black;
+
+}
+
+#errmsg {
+    margin-left: 15px;
+}

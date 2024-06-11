@@ -8,4 +8,6 @@ public interface IF_UserService {
     public int idchk(String id) throws Exception;
     //로그인
     public UserVO login(String id) throws Exception;
+    // 프로필 개인정보 수정
+    public void userupdate(UserVO uservo) throws Exception;
 }
