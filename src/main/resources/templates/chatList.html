@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="kor">
+<head>
+    <meta charset="UTF-8">
+    <title>채팅</title>
+    <link rel="stylesheet" href="/css/Chat.css">
+    <link rel="stylesheet" href="/css/main_navTop.css">
+    <link rel="stylesheet" href="/css/main_navSide.css">
+</head>
+<style>
+    @font-face {
+        font-family: 'font';
+        src: url(/font/AppleSDGothicNeoL.ttf);
+    }
+
+    .font {
+        font-family: 'font';
+    }
+
+    @font-face {
+        font-family: 'fontB';
+        src: url(/font/AppleSDGothicNeoB.ttf);
+    }
+
+    .fontB {
+        font-family: 'fontB';
+        /* display: flex;
+        text-align: center;
+        align-items: center;
+        justify-content: center; */
+    }
+</style>
+<body>
+    <section>
+        <div id="chatpan" class="divF"> <!-- 전체 큰 div -->
+            <div id="userLpan">
+                <div> <!-- 유저 채팅 리스트 -->
+                    <span class="fontB Chattxt">Chat</span>
+                    <hr id="chatLHr">
+                </div>
+                <div>
+                    <div class="divF chatOne" onclick="location.href='http://www.naver.com'"> <!--n번째 유저-->
+                        <div class="divF chatchat">
+                            <div class="divF"><!--유저와 채팅창 구분-->
+                                <div class="divF"><!--유저 프로필 사진-->
+                                    <div class="divF">
+                                            <span class="divF">
+                                                <img src="/img/userPic.png" width="50" height="50">
+                                            </span>
+                                    </div>
+                                </div>
+                                <div class="divF"><!--채팅 정보-->
+                                    <div>
+                                        <div class="fontB nicName"><!--채팅방 이름(유저이름)-->
+                                            홍길동
+                                        </div>
+                                        <div style="height: 1px"></div><!--공간-->
+                                        <div class="font chatCon">
+                                            여긴 채팅 자리
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div><!--채팅방 하나 끝-->
+                    <div class="divF chatOne" onclick="location.href='http://www.naver.com'"> <!--n번째 유저-->
+                        <div class="divF chatchat">
+                            <div class="divF"><!--유저와 채팅창 구분-->
+                                <div class="divF"><!--유저 프로필 사진-->
+                                    <div class="divF">
+                                            <span class="divF">
+                                                <img src="/img/userPic.png" width="50" height="50">
+                                            </span>
+                                    </div>
+                                </div>
+                                <div class="divF"><!--채팅 정보-->
+                                    <div>
+                                        <div class="fontB nicName"><!--채팅방 이름(유저이름)-->
+                                            김길동
+                                        </div>
+                                        <div style="height: 1px"></div><!--공간-->
+                                        <div class="font chatCon">
+                                            아 배고프다 저녁 뭐 먹지
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div><!--채팅방 하나 끝-->
+                    <div class="divF chatOne" onclick="location.href='http://www.naver.com'"> <!--n번째 유저-->
+                        <div class="divF chatchat">
+                            <div class="divF"><!--유저와 채팅창 구분-->
+                                <div class="divF"><!--유저 프로필 사진-->
+                                    <div class="divF">
+                                            <span class="divF">
+                                                <img src="/img/userPic.png" width="50" height="50">
+                                            </span>
+                                    </div>
+                                </div>
+                                <div class="divF"><!--채팅 정보-->
+                                    <div>
+                                        <div class="fontB nicName"><!--채팅방 이름(유저이름)-->
+                                            김길동
+                                        </div>
+                                        <div style="height: 1px"></div><!--공간-->
+                                        <div class="font chatCon">
+                                            삼겹살 먹으러 가고 싶다 그 김볶밥도 ㅋㅋ
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div><!--채팅방 하나 끝-->
+                    <div class="divF chatOne" onclick="location.href='http://www.naver.com'"> <!--n번째 유저-->
+                        <div class="divF chatchat">
+                            <div class="divF"><!--유저와 채팅창 구분-->
+                                <div class="divF"><!--유저 프로필 사진-->
+                                    <div class="divF">
+                                            <span class="divF">
+                                                <img src="/img/userPic.png" width="50" height="50">
+                                            </span>
+                                    </div>
+                                </div>
+                                <div class="divF"><!--채팅 정보-->
+                                    <div>
+                                        <div class="fontB nicName"><!--채팅방 이름(유저이름)-->
+                                            김길동
+                                        </div>
+                                        <div style="height: 1px"></div><!--공간-->
+                                        <div class="font chatCon">
+                                            아 배고프다 저녁 뭐 먹지
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div><!--채팅방 하나 끝-->
+                    <div class="divF chatOne" onclick="location.href='http://www.naver.com'"> <!--n번째 유저-->
+                        <div class="divF chatchat">
+                            <div class="divF"><!--유저와 채팅창 구분-->
+                                <div class="divF"><!--유저 프로필 사진-->
+                                    <div class="divF">
+                                            <span class="divF">
+                                                <img src="/img/userPic.png" width="50" height="50">
+                                            </span>
+                                    </div>
+                                </div>
+                                <div class="divF"><!--채팅 정보-->
+                                    <div>
+                                        <div class="fontB nicName"><!--채팅방 이름(유저이름)-->
+                                            김길동
+                                        </div>
+                                        <div style="height: 1px"></div><!--공간-->
+                                        <div class="font chatCon">
+                                            아 배고프다 저녁 뭐 먹지
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div><!--채팅방 하나 끝-->
+                    <div class="divF chatOne" onclick="location.href='http://www.naver.com'"> <!--n번째 유저-->
+                        <div class="divF chatchat">
+                            <div class="divF"><!--유저와 채팅창 구분-->
+                                <div class="divF"><!--유저 프로필 사진-->
+                                    <div class="divF">
+                                            <span class="divF">
+                                                <img src="/img/userPic.png" width="50" height="50">
+                                            </span>
+                                    </div>
+                                </div>
+                                <div class="divF"><!--채팅 정보-->
+                                    <div>
+                                        <div class="fontB nicName"><!--채팅방 이름(유저이름)-->
+                                            김길동
+                                        </div>
+                                        <div style="height: 1px"></div><!--공간-->
+                                        <div class="font chatCon">
+                                            아 배고프다 저녁 뭐 먹지
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div><!--채팅방 하나 끝-->
+                    <div class="divF chatOne" onclick="location.href='http://www.naver.com'"> <!--n번째 유저-->
+                        <div class="divF chatchat">
+                            <div class="divF"><!--유저와 채팅창 구분-->
+                                <div class="divF"><!--유저 프로필 사진-->
+                                    <div class="divF">
+                                            <span class="divF">
+                                                <img src="/img/userPic.png" width="50" height="50">
+                                            </span>
+                                    </div>
+                                </div>
+                                <div class="divF"><!--채팅 정보-->
+                                    <div>
+                                        <div class="fontB nicName"><!--채팅방 이름(유저이름)-->
+                                            김길동
+                                        </div>
+                                        <div style="height: 1px"></div><!--공간-->
+                                        <div class="font chatCon">
+                                            아 배고프다 저녁 뭐 먹지ㅇㄻㄴㅇㄻㄴㅇㅁㄴㅇㅁ
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div><!--채팅방 하나 끝-->
+                    <div class="divF chatOne" onclick="location.href='http://www.naver.com'"> <!--n번째 유저-->
+                        <div class="divF chatchat">
+                            <div class="divF"><!--유저와 채팅창 구분-->
+                                <div class="divF"><!--유저 프로필 사진-->
+                                    <div class="divF">
+                                            <span class="divF">
+                                                <img src="/img/userPic.png" width="50" height="50">
+                                            </span>
+                                    </div>
+                                </div>
+                                <div class="divF"><!--채팅 정보-->
+                                    <div>
+                                        <div class="fontB nicName"><!--채팅방 이름(유저이름)-->
+                                            김길동
+                                        </div>
+                                        <div style="height: 1px"></div><!--공간-->
+                                        <div class="font chatCon">
+                                            아 배고프다 저녁 뭐 먹지ㅇㄻㄴㅇㄻㄴㅇㅁㄴㅇㅁ
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div><!--채팅방 하나 끝-->
+                </div>
+            </div>
+            <div id="chatting"><!--채팅창-->
+                <div>
+                    <div id="chatText">
+                        <div> <!-- 채팅방 이름(유저이름) -->
+                            <div id="chatBox" class="divF"><!--유저와 메시지창 구분-->
+                                <div class="divF"><!--유저 프로필 사진-->
+                                    <div class="divF">
+                                    <span class="divF">
+                                        <img src="/img/userPic.png" width="50" height="50">
+                                    </span>
+                                    </div>
+                                </div>
+                                <div class="divF"><!--채팅 정보-->
+                                    <div class="divF">
+                                        <div id="userWho" class="fontB divF"><!--채팅방 이름(유저이름)-->
+                                            홍길동
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div id="hrp"><!--구분선-->
+                            <hr id="chatWhoHr">
+                        </div>
+                        <div id="chatAlllist">
+                            <div>
+                                <div id="cchhaatt"><!--채팅창(내용+입력창)-->
+                                    <div class="divF">
+                                        <!-- 상대 채팅 시작 -->
+                                        <div class="divF"> <!--상대채팅창(내용)-->
+                                            <div class="divF wwwn">
+                                                <img src="/img/userPic.png" width="35" height="35">
+                                            </div>
+                                            <div class="chatU"><!-- 상대채팅창모양 -->
+                                                <div class="chatUCon"><!--상대 채팅 내용-->
+                                                    안녕하세요 만나서 반갑습니다. 이건 글자수 넘어가는 테스트입니다. 채팅 글자수를 말하는 겁니다 하하하 아 div짜는 게 젤
+                                                    어렵긴
+                                                    하네요
+                                                    어렵다 어려워~ 이제 거의 다 찰 때 됐는데 걍
+                                                    복붙해야겟따!ㄴㅇㄹㄴㅇㄻㄴㅇㄹㄻㅇㄴㅁㄴㅇㄻㄴㅇㄹㅇㄹㄴㅇㄹㄴㅇ랴ㅕ뫄어롸놀ㄴㅇ랴ㅐㅁ래ㅗ라ㅓ노아ㅓㅁㄴ오러ㅏ몬야ㅕㄻ냥로나멍롬노올ㄴㅇㄹㄴㅇㄻㄴㅇㄹㄻㅇㄴㅁㄴㅇㄻㄴㅇㄹㅇㄹㄴㅇㄹㄴㅇ랴ㅕ뫄어롸놀ㄴㅇ랴ㅐㅁ래ㅗ라ㅓ노아ㅓㅁㄴ
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!-- 상대 채팅 끝 -->
+                                    </div>
+                                    <div class="whatright"><!--내 채팅 시작-->
+                                        <div class="divF">
+                                            <div class="divF"> <!--내 채팅창(내용)-->
+                                                <div class="chatI"><!-- 내 채팅창모양 -->
+                                                    <div class="chatICon"><!--내 채팅 내용-->
+                                                        안뇽?
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div><!--내 채팅 끝-->
+                                    <!-- 상대 채팅 시작-->
+                                    <div class="divF"> <!--상대채팅창(내용)-->
+                                        <div class="divF wwwn">
+                                            <img src="/img/userPic.png" width="35" height="35">
+                                        </div>
+                                        <div class="chatU"><!-- 상대채팅창모양 -->
+                                            <div class="chatUCon"><!--상대 채팅 내용-->
+                                                안녕하세요 만나서 반갑습니다. 이건 글자수 넘어가는 테스트입니다. 채팅 글자수를 말하는 겁니다 하하하 아 div짜는 게 젤
+                                                어렵긴
+                                                하네요
+                                                어렵다 어려워~ 이제 거의 다 찰 때 됐는데 걍
+                                                복붙해야겟따!ㄴㅇㄹㄴㅇㄻㄴㅇㄹㄻㅇㄴㅁㄴㅇㄻㄴㅇㄹㅇㄹㄴㅇㄹㄴㅇ랴ㅕ뫄어롸놀ㄴㅇ랴ㅐㅁ래ㅗ라ㅓ노아ㅓㅁㄴ오러ㅏ몬야ㅕㄻ냥로나멍롬노올ㄴㅇㄹㄴㅇㄻㄴㅇㄹㄻㅇㄴㅁㄴㅇㄻㄴㅇㄹㅇㄹㄴㅇㄹㄴㅇ랴ㅕ뫄어롸놀ㄴㅇ랴ㅐㅁ래ㅗ라ㅓ노아ㅓㅁㄴ
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- 상대 채팅 끝 -->
+                                    <div class="whatright"> <!-- 내 채팅 시작 -->
+                                        <div class="divF">
+                                            <div class="divF"> <!--내 채팅창(내용)-->
+                                                <div class="chatI"><!-- 내 채팅창모양 -->
+                                                    <div class="chatICon"><!--내 채팅 내용-->
+                                                        여긴 채팅 자리
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div><!--내 채팅 끝-->
+                                </div>
+                            </div>
+                            <div class="inputext"><!-- 입력창 -->
+                                <div><!--입력창-->
+                                    <textarea id="chat" placeholder="채팅 내용"></textarea>
+                                </div>
+                                <div><!--버튼-->
+                                    <button id="chatbtn" type="submit">입력</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div><!--채팅창 끝-->
+        </div>
+    </section>
+</div>
+</body>
+</html>
