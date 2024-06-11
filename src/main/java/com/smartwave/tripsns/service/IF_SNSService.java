@@ -19,4 +19,10 @@ public interface IF_SNSService {
 
     public List<PostCommentVO> commentList(String p_no) throws Exception; //댓글 가져오기
 
+    public void postToggleLike(PostVO pvo) throws Exception;
+
+    public boolean likeChk(PostVO pvo) throws Exception;
+
+    public int postLikeCnt(PostVO pvo) throws Exception;
+
 }

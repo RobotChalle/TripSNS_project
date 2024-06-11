@@ -20,4 +20,12 @@ public interface IF_SNSDAO {
     public void commentSave(PostCommentVO pcvo) throws Exception; //댓글 저장하기
 
     public List<PostCommentVO> commentList(String p_no) throws Exception; //댓글 가져오기
+
+    public void postLike(PostVO pvo) throws Exception; //좋아요 정보 저장하기
+    
+    public void postLikeDel(PostVO pvo) throws Exception; //좋아요 삭제하기
+    
+    public int postLikeCnt(PostVO pvo) throws Exception; //좋아요 갯수
+
+    public int postLikeMyCnt(PostVO pvo) throws Exception; //나의 좋아요 유무
 }
