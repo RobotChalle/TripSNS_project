@@ -69,8 +69,10 @@
 </nav>
 <div class="mypic">
     <div class="dropdown-content">
-        <a href="#">프로필</a>
-        <a href="#">로그아웃</a>
+        <th:block th:if="${session.userid!=null}">
+            <a href="#">프로필(<span th:text="${session.userid}">)</span></a>
+        </th:block>
+        <a href="logout">로그아웃</a>
     </div>
     <a href="#">
         <img src="/images/메인_2.jpg" alt="myPic">
@@ -128,7 +130,7 @@
                     </select>
                     -->
                     <label>사진첨부</label>
-                    <input type="file" accept="jpeg, jpg, png" name="file" required>
+                    <input type="file" accept="jpeg, jpg, png" name="file">
                 </div>
                 <div class="textArea">
                     <label style="padding-right: 800px;">내용</label><br>
@@ -136,6 +138,7 @@
                               maxlength="100"></textarea>
                 </div>
                 <div class="submitBtn">
+                    <input type="hidden" th:value="${p_id}" name="p_id">
                     <input type="submit" value="작성" id="textSubmit">
                 </div>
             </form>

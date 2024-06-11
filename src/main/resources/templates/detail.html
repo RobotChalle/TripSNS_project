@@ -68,8 +68,10 @@
 </nav>
 <div class="mypic">
     <div class="dropdown-content">
-        <a href="#">프로필</a>
-        <a href="#">로그아웃</a>
+        <th:block th:if="${session.userid!=null}">
+            <a href="#">프로필(<span th:text="${session.userid}">)</span></a>
+        </th:block>
+        <a href="logout">로그아웃</a>
     </div>
     <a href="#">
         <img src="/images/메인_2.jpg" alt="myPic">
@@ -129,8 +131,10 @@
                 </table>
                 <form action="commentSave" method="post">
                     <input type="hidden" th:value="${postDetail.p_no}" name="pc_no">
-                    <input type="hidden" th:value="${p_no}" name="p_no">
+                    <input type="hidden" th:value="${postDetail.p_no}" name="p_no">
                     <input type="text" class="commentBox" placeholder="댓글 입력" name="pc_text" required>
+                    <input type="hidden" th:value="${p_id}" name="pc_id">
+                    <input type="hidden" th:value="${p_id}" name="p_id">
                     <input type="submit" value="작성" class="commentSubmit">
                 </form>
             </section>
