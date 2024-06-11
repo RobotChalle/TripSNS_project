@@ -74,10 +74,10 @@ public class UserController {
         }
         return "redirect:main";
     }
-    @GetMapping(value = "test")
-    public String test(HttpSession session , Model model) throws Exception {
-        return "test";
-    }
+//    @GetMapping(value = "test")
+//    public String test(HttpSession session , Model model) throws Exception {
+//        return "test";
+//    }
 
     @GetMapping(value = "logout")
     public String logout(HttpSession session) {
