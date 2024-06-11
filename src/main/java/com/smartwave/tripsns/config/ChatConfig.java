@@ -8,7 +8,7 @@ import org.springframework.web.socket.config.annotation.WebSocketMessageBrokerCo
 
 @Configuration
 @EnableWebSocketMessageBroker
-public class SpringConfig implements WebSocketMessageBrokerConfigurer {
+public class ChatConfig implements WebSocketMessageBrokerConfigurer {
     // Stomp 엔드포인트 설정 ; sub/pub 엔드포인트 설정...
     // 특정한 통신이 어떠한 엔드포인트에 도착했을 때 어떤 행위를 하게 할지 설정하는 곳...
     // Stomp은 Pub(발행) - Sub(구독) 형태로 이루어짐
