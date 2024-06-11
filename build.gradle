@@ -22,6 +22,21 @@ repositories {
 }
 
 dependencies {
+	implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
+	implementation 'org.springframework.boot:spring-boot-starter-web'
+	implementation 'org.mybatis.spring.boot:mybatis-spring-boot-starter:3.0.3'
+	implementation 'org.springframework.boot:spring-boot-starter-websocket' // 웹소켓
+	implementation 'org.webjars:sockjs-client:1.5.1' // sockjs ; 웹소켓 지원하지 않는 환경에서 사용할 수 있도록...
+	implementation 'org.webjars:stomp-websocket:2.3.4'
+	// STOMP; 해당 메시지가 어떤 요청인지 처리하기 위해 메시지 브로커를 이용하여 쉽게 메시지를 주고받을 수 있는 프로토콜
+	// 발신자가 메시지를 발행(pub)하면 수신자가 그것을 수신(sub)
+	implementation 'com.google.code.gson:gson:2.9.0' // gson
+	compileOnly 'org.projectlombok:lombok'
+	runtimeOnly 'org.mariadb.jdbc:mariadb-java-client'
+	annotationProcessor 'org.projectlombok:lombok'
+	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+	testImplementation 'org.mybatis.spring.boot:mybatis-spring-boot-starter-test:3.0.3'
+	testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
     implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
     implementation 'org.springframework.boot:spring-boot-starter-web'
     implementation 'org.mybatis.spring.boot:mybatis-spring-boot-starter:3.0.3'
