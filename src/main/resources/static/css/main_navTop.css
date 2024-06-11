@@ -3,7 +3,7 @@
     width: 100%;
     overflow: hidden;
     height: 60px;
-    background-color: cornflowerblue;
+    background-color: rgba(100, 149, 237, 0.4);
     margin: auto;
     position: fixed;
 }
@@ -25,6 +25,7 @@
     line-height: 60px;
     padding: 0 20px;
     padding-top: 10px;
+    margin-left: -13px;
     color: #eee;
 }
 

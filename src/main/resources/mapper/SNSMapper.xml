@@ -30,4 +30,20 @@
         from postComment
         where pc_no = #{p_no}
     </select>
+    <insert id="postLike" parameterType="com.smartwave.tripsns.vo.PostVO"><!--좋아요 정보 저장-->
+        insert into postLike values(#{p_no}, #{p_id})
+    </insert>
+    <delete id="postLikeDel" parameterType="com.smartwave.tripsns.vo.PostVO"><!--좋아요 삭제-->
+        delete from postLike where lp_id=#{p_id}
+    </delete>
+    <select id="postLikeCnt" resultType="int"><!--게시글 좋아요 갯수-->
+        select count(*)
+        from postLike
+        where lp_no = #{p_no}
+    </select>
+    <select id="postLikeMyCnt" resultType="int"><!--나의 좋아요 유무-->
+        select count(*)
+        from postLike
+        where lp_id = #{p_id}
+    </select>
 </mapper>

@@ -47,4 +47,23 @@ public class SNSServiceImpl implements IF_SNSService {
     public List<PostCommentVO> commentList(String p_no) throws Exception {
         return sdao.commentList(p_no);
     }
+
+    @Override
+    public void postToggleLike(PostVO pvo) throws Exception {
+        if (sdao.postLikeMyCnt(pvo) > 0) {
+            sdao.postLikeDel(pvo);
+        } else {
+            sdao.postLike(pvo);
+        }
+    }
+
+    @Override
+    public boolean likeChk(PostVO pvo) throws Exception {
+        return sdao.postLikeMyCnt(pvo) > 0;
+    }
+
+    @Override
+    public int postLikeCnt(PostVO pvo) throws Exception {
+        return sdao.postLikeCnt(pvo);
+    }
 }
