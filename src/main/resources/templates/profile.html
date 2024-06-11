@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="stylesheet" href="/css/main_navTop.css">
+  <link rel="stylesheet" href="/css/main_navSide.css">
+  <link rel="stylesheet" href="/css/profile_update.css">
+</head>
+
+<style>
+  * {
+    padding: 0;
+    margin: 0;
+    font-family: apple black;
+    text-decoration-line: none;
+  }
+  body {
+    background-image: url("/images/background.jpg");
+  }
+</style>
+
+<body>
+<nav id="navSide">
+  <ul>
+    <li>
+      <a href="main">
+        <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor"
+             class="bi bi-house-fill" viewBox="0 0 16 16">
+          <path
+                  d="M8.707 1.5a1 1 0 0 0-1.414 0L.646 8.146a.5.5 0 0 0 .708.708L8 2.207l6.646 6.647a.5.5 0 0 0 .708-.708L13 5.793V2.5a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5v1.293z"/>
+          <path d="m8 3.293 6 6V13.5a1.5 1.5 0 0 1-1.5 1.5h-9A1.5 1.5 0 0 1 2 13.5V9.293z"/>
+        </svg>
+      </a>
+    </li>
+    <li>
+      <a href="#">
+        <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor"
+             class="bi bi-map-fill" viewBox="0 0 16 16">
+          <path fill-rule="evenodd"
+                d="M16 .5a.5.5 0 0 0-.598-.49L10.5.99 5.598.01a.5.5 0 0 0-.196 0l-5 1A.5.5 0 0 0 0 1.5v14a.5.5 0 0 0 .598.49l4.902-.98 4.902.98a.5.5 0 0 0 .196 0l5-1A.5.5 0 0 0 16 14.5zM5 14.09V1.11l.5-.1.5.1v12.98l-.402-.08a.5.5 0 0 0-.196 0zm5 .8V1.91l.402.08a.5.5 0 0 0 .196 0L11 1.91v12.98l-.5.1z"/>
+        </svg>
+      </a>
+    </li>
+    <li>
+      <a href="#">
+        <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor"
+             class="bi bi-chat-left-text-fill" viewBox="0 0 16 16">
+          <path
+                  d="M0 2a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H4.414a1 1 0 0 0-.707.293L.854 15.146A.5.5 0 0 1 0 14.793zm3.5 1a.5.5 0 0 0 0 1h9a.5.5 0 0 0 0-1zm0 2.5a.5.5 0 0 0 0 1h9a.5.5 0 0 0 0-1zm0 2.5a.5.5 0 0 0 0 1h5a.5.5 0 0 0 0-1z"/>
+        </svg>
+      </a>
+    </li>
+    <li>
+      <a href="#">
+        <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor"
+             class="bi bi-file-play-fill" viewBox="0 0 16 16">
+          <path
+                  d="M12 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2M6 5.883a.5.5 0 0 1 .757-.429l3.528 2.117a.5.5 0 0 1 0 .858l-3.528 2.117a.5.5 0 0 1-.757-.43V5.884z"/>
+        </svg>
+      </a>
+    </li>
+  </ul>
+</nav>
+<div class="mypic">
+  <div class="dropdown-content">
+    <th:block th:if="${session.userid!=null}">
+      <a href="#">프로필(<span th:text="${session.userid}">)</span></a>
+    </th:block>
+    <a href="logout">로그아웃</a>
+  </div>
+  <a href="#">
+    <img src="/images/메인_2.jpg" alt="myPic">
+  </a>
+</div>
+<!--상단 네비-->
+<nav id="navTop">
+  <a href="main">
+    <svg xmlns="http://www.w3.org/2000/svg" width="35" height="35" fill="currentColor"
+         class="bi bi-bootstrap-fill" viewBox="0 0 16 16">
+      <path
+              d="M6.375 7.125V4.658h1.78c.973 0 1.542.457 1.542 1.237 0 .802-.604 1.23-1.764 1.23zm0 3.762h1.898c1.184 0 1.81-.48 1.81-1.377 0-.885-.65-1.348-1.886-1.348H6.375z"/>
+      <path
+              d="M4.002 0a4 4 0 0 0-4 4v8a4 4 0 0 0 4 4h8a4 4 0 0 0 4-4V4a4 4 0 0 0-4-4zm1.06 12V3.545h3.399c1.587 0 2.543.809 2.543 2.11 0 .884-.65 1.675-1.483 1.816v.1c1.143.117 1.904.931 1.904 2.033 0 1.488-1.084 2.396-2.888 2.396z"/>
+    </svg>
+  </a>
+  <ul>
+    <form>
+      <li><input type="search" placeholder="검색" class="search"></li>
+      <li><input type="submit" value="검색" class="submit"></li>
+    </form>
+  </ul>
+</nav>
+
+<div id="profilebox">
+  <h3>my profile</h3>
+  <div> <img src="/images/파닥몬.png" class="pro_pic">
+    <button id="picbtn">파일선택</button>
+    <label id="pro_id">@아이디 나올곳</label>
+  </div>
+  <label class="infor">소개</label><br>
+  <div id="fled">
+    <input type="text" class="tex" id="newintro" name="u_intro" placeholder="내용" required>
+    <a th:href="@{/proupdate(id=${session.userid})}"> <button id="probtn">수정</button><a>
+  </div>
+</div>
+
+
+</form>
+</body>
+
+
+</html>
+</body>
+</html>

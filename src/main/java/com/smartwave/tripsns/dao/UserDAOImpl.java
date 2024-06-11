@@ -25,4 +25,11 @@ public class UserDAOImpl implements IF_UserDAO {
     public UserVO login(String id) throws Exception {
         return sqlSession.selectOne(mapperQuery+".selectid",id);
     }
+    //프로필 개인정보 업데이트
+    @Override
+    public void userupdate(UserVO uservo) throws Exception {
+        sqlSession.update(mapperQuery+".proupdate",uservo);
+    }
+
+
 }

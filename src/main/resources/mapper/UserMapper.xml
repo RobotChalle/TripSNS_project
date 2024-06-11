@@ -3,15 +3,20 @@
 <mapper namespace= "com.smartwave.tripsns.dao.IF_UserDAO">
     <!--회원가입-->
     <insert id="userinsert" parameterType="com.smartwave.tripsns.vo.UserVO">
-        insert into testuser values (#{id},#{pw},#{name},#{birth},#{email})
+        insert into user values (#{id},#{pw},#{name},#{birth},#{email})
     </insert>
     <select id="idchk" parameterType="String" resultType="int">
-        select count(id) from testuser where id =#{id}
+        select count(id) from user where id =#{id}
     </select>
-    <!--회원가입-->
+
     <!--로그인-->
     <select id="selectid" parameterType="String" resultType="com.smartwave.tripsns.vo.UserVO">
-        select * from testuser where id = #{id}
+        select * from user where id = #{id}
     </select>
-    <!--로그인-->
+  <!--프로필-->
+    <update id="proupdate" parameterType="com.smartwave.tripsns.vo.UserVO">
+        update user set name=#{name},pw=#{pw},email=#{email} where id = #{id}
+    </update>
+
+
 </mapper>
