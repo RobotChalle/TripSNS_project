@@ -27,4 +27,9 @@ public class UserServiceImpl implements IF_UserService {
 
         return sdao.login(id);
     }
+    //프로필 개인정보 수정
+    @Override
+    public void userupdate(UserVO uservo) throws Exception {
+        sdao.userupdate(uservo);
+    }
 }

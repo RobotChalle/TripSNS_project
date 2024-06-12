@@ -1,16 +1,15 @@
 <!DOCTYPE html>
-<html lang="kor">
+<html lang="en">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>여행여행</title>
+    <title>Document</title>
     <link rel="stylesheet" href="/css/main_navTop.css">
     <link rel="stylesheet" href="/css/main_navSide.css">
-    <link rel="stylesheet" href="/css/main_feed.css">
-    <link rel="stylesheet" href="/css/main_button.css">
-    <script src="/js/post_like.js"></script>
+    <link rel="stylesheet" href="/css/profile_update.css">
 </head>
+
 <style>
     * {
         padding: 0;
@@ -18,22 +17,12 @@
         font-family: apple black;
         text-decoration-line: none;
     }
-
-    @font-face {
-        font-family: apple;
-        src: url(/font/AppleSDGothicNeoL.ttf);
-    }
-
     body {
-        background-image: url("/img/5528913.jpg");
-        background-position: center;
-        background-size: cover;
-        background-attachment: fixed;
+        background-image: url("/images/background.jpg");
     }
 </style>
 
 <body>
-<!--좌측 네비-->
 <nav id="navSide">
     <ul>
         <li>
@@ -75,6 +64,17 @@
         </li>
     </ul>
 </nav>
+<div class="mypic">
+    <div class="dropdown-content">
+        <th:block th:if="${session.userid!=null}">
+            <a href="#">프로필(<span th:text="${session.userid}">)</span></a>
+        </th:block>
+        <a href="logout">로그아웃</a>
+    </div>
+    <a href="#">
+        <img src="/images/메인_2.jpg" alt="myPic">
+    </a>
+</div>
 <!--상단 네비-->
 <nav id="navTop">
     <a href="main">
@@ -93,59 +93,62 @@
         </form>
     </ul>
 </nav>
-<!--메인 피드-->
-<main>
-    <div class="feedBoard" th:each="postList:${allListPost}">
-        <article class="feed">
-            <div class="newPost">
-                <div class="postImage">
-                    <img alt="profile image" class="roundImg" src="/images/img4.png">
-                </div>
-                <a href="#" class="postId" th:text="${postList.p_id}">p_id</a>
-                <a href="#" class="place" th:text="${postList.p_place}">p_place</a>
-            </div>
-            <section class="feedImg">
-                <th:block th:if="${postList.pp_pic!=null}">
-                    <img th:src="@{/download(filename=${postList.pp_pic})}">
-                </th:block>
-                <div class="interactions">
-                    <a th:href="@{/postLike(p_no=${postList.p_no}, p_id=${session.userid})}" class="like">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor"
-                             class="bi bi-heart" viewBox="0 0 16 16">
-                            <path
-                                    d="m8 2.748-.717-.737C5.6.281 2.514.878 1.4 3.053c-.523 1.023-.641 2.5.314 4.385.92 1.815 2.834 3.989 6.286 6.357 3.452-2.368 5.365-4.542 6.286-6.357.955-1.886.838-3.362.314-4.385C13.486.878 10.4.28 8.717 2.01zM8 15C-7.333 4.868 3.279-3.04 7.824 1.143q.09.083.176.171a3 3 0 0 1 .176-.17C12.72-3.042 23.333 4.867 8 15"/>
-                        </svg>
-                    </a>
-                    <a th:href="@{/detail(p_no=${postList.p_no}, p_id=${session.userid})}" class="detail">자세히 보기</a>
-                </div>
-            </section>
-            <section class="feedText">
-                <span><br th:text="${postList.p_text}"></span>
-                <span th:text="${postList.p_indate}" class="indate"></span>
-            </section>
-        </article>
+
+<div id="profilebox">
+    <h3>my profile</h3>
+    <div> <img src="/images/파닥몬.png" class="pro_pic">
+        <button id="picbtn">파일선택</button>
+        <label id="pro_id">@아이디 나올곳</label>
     </div>
-</main>
-<div id="floatingButton">
-    <a th:href="@{/post(p_id=${session.userid})}">
-        <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" fill="currentColor"
-             class="bi bi-plus-circle-fill" viewBox="0 0 16 16">
-            <path
-                    d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0M8.5 4.5a.5.5 0 0 0-1 0v3h-3a.5.5 0 0 0 0 1h3v3a.5.5 0 0 0 1 0v-3h3a.5.5 0 0 0 0-1h-3z"/>
-        </svg>
-    </a>
-</div>
-<div class="mypic">
-    <div class="dropdown-content">
-        <th:block th:if="${session.userid!=null}">
-            <a href="profile">프로필(<span th:text="${session.userid}">)</span></a>
-        </th:block>
-        <a href="logout">로그아웃</a>
+    <label class="infor">소개</label><br>
+    <div id="fled">
+        <input type="text" class="tex" id="newintro" name="u_intro" placeholder="내용" required>
+        <button id="probtn">수정</button>
     </div>
-    <a href="#">
-        <img src="/images/메인_2.jpg" alt="myPic">
-    </a>
 </div>
+
+<form action="userupdate" method="post">
+    <div id="userbox">
+        <h3>내 정보수정</h3>
+        <div class="field">
+            <label class="infor">이름</label><br>
+            <input type="text" class="te" id="newname" name="name" placeholder="이름" required>
+        </div>
+        <div class="field">
+            <label class="infor">Email</label><br>
+            <input type="text" class="te" id="newemail" name="email" placeholder="이메일" required>
+        </div>
+        <div class="field">
+            <label class="infor">새 비밀번호</label><br>
+            <input type="password" id="newpw" class="te" name="pw" placeholder="비밀번호"
+                   minlength="4" maxlength="16" pattern="^[a-zA-Z\d]+$" title="4~16자의 비밀번호를 입력해주세요(특수문자,한글x)" required>
+        </div>
+        <div class="field">
+            <label class="infor">새 비밀번호 확인<span id="errmsg"></span></label> <br>
+            <input type="password" id="conpw" class="te" placeholder="비밀번호 확인" minlength="4" maxlength="16"
+                   required>
+            <input type="hidden" th:value="${id}" name="id">
+        </div>
+        <button id="userbtn" type="submit">수정</button>
+    </div>
+</form>
 </body>
+<script>
+    // 비밀번호 확인 유효성
+    var newpw = document.getElementById('newpw');
+    var conpw = document.getElementById('conpw');
+    var errmsg = document.getElementById('errmsg');
+    conpw.addEventListener('change', () => {
+        if (newpw.value === conpw.value) {
+            errmsg.style.color = "green";
+            errmsg.textContent = "비밀번호가 일치합니다";
+        } else {
+            conpw.value = "";
+            conpw.focus();
+            errmsg.style.color = "red";
+            errmsg.textContent = "비밀번호가 일치하지 않습니다";
+        }
+    })
+</script>
 
 </html>

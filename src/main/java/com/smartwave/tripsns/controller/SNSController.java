@@ -64,6 +64,7 @@ public class SNSController {
     @PostMapping("/commentSave") //댓글 저장
     public String commentSave(@ModelAttribute PostCommentVO pcvo) throws Exception {
         sService.CommentSave(pcvo);
+
         return "redirect:main";
     }
 
