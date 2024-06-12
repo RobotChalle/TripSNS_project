@@ -7,8 +7,15 @@ public class PostVO {
     private String p_place = null;
     private String p_text = null;
     private String p_indate = null;
-    private String pp_pic = null;
     private String[] filename = null;
+
+    public String[] getFilename() {
+        return filename;
+    }
+
+    public void setFilename(String[] filename) {
+        this.filename = filename;
+    }
 
     public int getP_no() {
         return p_no;
@@ -48,21 +55,5 @@ public class PostVO {
 
     public void setP_indate(String p_indate) {
         this.p_indate = p_indate;
-    }
-
-    public String getPp_pic() {
-        return pp_pic;
-    }
-
-    public void setPp_pic(String pp_pic) {
-        this.pp_pic = pp_pic;
-    }
-
-    public String[] getFilename() {
-        return filename;
-    }
-
-    public void setFilename(String[] filename) {
-        this.filename = filename;
     }
 }

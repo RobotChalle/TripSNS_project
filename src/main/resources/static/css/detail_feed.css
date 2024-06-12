@@ -19,12 +19,6 @@ div.feedBoard {
     background: #fff;
     border: 1px solid #e8e8e8;
     border-radius: 1%;
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
-    transition: all 0.3s cubic-bezier(.25, .8, .25, 1);
-}
-
-.feed:hover {
-    box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
 }
 
 .newPost {
@@ -107,22 +101,16 @@ div.feedBoard {
 
 .comments {
     padding: 0 20px;
+    padding-bottom: 20px;
+    border: 1px solid #e8e8e8;
+    border-radius: 3%;
     width: 95%;
-    margin-left: auto;
-    margin-right: auto;
-    margin-bottom: 10px;
-    border: rgba(100, 149, 237, 0.4) solid 1px;
-    border-radius: 10px;
+    margin: 0 auto;
 }
 
 .comment {
     height: 40px;
     gap: 10px;
-}
-
-.comment th, td {
-    border-bottom: 1px solid rgba(100, 149, 237, 0.4);
-    padding: 5px;
 }
 
 .commentBox {
@@ -133,8 +121,6 @@ div.feedBoard {
     text-decoration: none;
     font-weight: 600;
     background-color: rgb(197, 197, 197);
-    margin-bottom: 10px;
-    margin-top: 10px;
 }
 
 .commentSubmit {
@@ -159,11 +145,6 @@ div.feedBoard {
     font-size: 50%;
 }
 
-.indate {
-    color: gray;
-    font-size: 50%;
-}
-
 .comment td {
     width: 100px;
 }
@@ -174,53 +155,4 @@ div.feedBoard {
 
 .comment .commentText {
     width: 500px;
-}
-
-.delete {
-    border: none;
-    padding: 5px 25px;
-    border-radius: 10px;
-    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
-    text-decoration: none;
-    font-weight: 600;
-    background-color: cornflowerblue;
-    color: white;
-}
-
-.delete:hover {
-    cursor: pointer;
-}
-
-.modify {
-    border: none;
-    padding: 5px 25px;
-    border-radius: 10px;
-    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
-    text-decoration: none;
-    font-weight: 600;
-    background-color: cornflowerblue;
-    color: white;
-}
-
-.modify:hover {
-    cursor: pointer;
-}
-
-.deleteComment {
-    border: none;
-    padding: 5px 25px;
-    border-radius: 10px;
-    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
-    text-decoration: none;
-    font-weight: 600;
-    background-color: cornflowerblue;
-    color: white;
-}
-
-.deleteComment:hover {
-    cursor: pointer;
-}
-
-.interactions .delmod {
-    padding-left: 700px;
 }

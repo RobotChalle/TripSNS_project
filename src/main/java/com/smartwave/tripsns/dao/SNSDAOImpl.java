@@ -37,8 +37,8 @@ public class SNSDAOImpl implements IF_SNSDAO {
     }
 
     @Override
-    public List<String> getFile(String pp_no) throws Exception {
-        return sqlSession.selectList(mapperQuery + ".getFile", pp_no);
+    public String getFile(String pp_no) throws Exception {
+        return sqlSession.selectOne(mapperQuery + ".getFile", pp_no);
     }
 
     @Override
@@ -62,43 +62,12 @@ public class SNSDAOImpl implements IF_SNSDAO {
     }
 
     @Override
-    public int postLikeCnt(String p_no) throws Exception {
-        return sqlSession.selectOne(mapperQuery + ".postLikeCnt", p_no);
+    public int postLikeCnt(PostVO pvo) throws Exception {
+        return sqlSession.selectOne(mapperQuery + ".postLikeCnt", pvo);
     }
 
     @Override
-    public int postLikeChk(PostVO pvo) throws Exception {
-        return sqlSession.selectOne(mapperQuery + ".postLikeChk", pvo);
+    public int postLikeMyCnt(PostVO pvo) throws Exception {
+        return sqlSession.selectOne(mapperQuery + ".postLikeMyCnt", pvo);
     }
-
-    @Override
-    public void postDelete(PostVO pvo) throws Exception {
-        sqlSession.delete(mapperQuery + ".postDelete", pvo);
-    }
-
-    @Override
-    public void postModify(PostVO pvo) throws Exception {
-        sqlSession.update(mapperQuery + ".postModify", pvo);
-    }
-
-    @Override
-    public void postCommentDelete(PostCommentVO pvo) throws Exception {
-        sqlSession.delete(mapperQuery + ".postCommentDelete", pvo);
-    }
-
-    @Override
-    public List<String> postSelectNo() throws Exception {
-        return sqlSession.selectList(mapperQuery + ".postSelectNo");
-    }
-
-    @Override
-    public int postCommentCnt(String p_no) throws Exception {
-        return sqlSession.selectOne(mapperQuery + ".postCommentCnt", p_no);
-    }
-
-    @Override
-    public List<PostVO> postSelectPost() throws Exception {
-        return sqlSession.selectList(mapperQuery + ".postSelectPost");
-    }
-
 }
