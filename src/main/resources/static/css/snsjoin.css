@@ -1,0 +1,216 @@
+#Joinbox {
+    display: block;
+    width: 600px;
+    height: 780px;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    margin-left: -300px;
+    margin-top: -390px;
+    background-color: rgb(255, 255, 255, 0.4);
+    border-radius: 30px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+    transition: all 0.3s cubic-bezier(.25,.8,.25,1);
+}
+#Joinbox:hover{
+    box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
+}
+
+body {
+    /* background-image: url(backimg.png); */
+    /*background-color: rgb(123, 147, 226);*/
+    background-image: url("../images/background.jpg");
+}
+
+#logo {
+    text-align: center;
+}
+
+.te {
+    width: 389px;
+    height: 40px;
+    font-size: 15px;
+    border: 0.1px;
+    border-color: rgb(233, 233, 233, 0.7);
+    border-radius: 15px;
+    outline: none;
+    padding-left: 10px;
+    background-color: rgb(255, 255, 255);
+    margin-left: 105px;
+    margin-top: 5px;
+    font-family: apple Black;
+}
+.te:hover {
+    border: 0.2px solid;
+}
+.teid{
+    position: relative;
+    width: 318px;
+    height: 40px;
+    font-size: 15px;
+    border: 0.1px;
+    border-color: rgb(233, 233, 233, 0.7);
+    border-radius: 15px;
+    outline: none;
+    padding-left: 10px;
+    background-color: rgb(255, 255, 255);
+    margin-left: 105px;
+    margin-top: 5px;
+    font-family: apple Black;
+}
+.teid:hover {
+    border: 0.2px solid;
+}
+#idbtn{
+    /* position: absolute; */
+    width: 70px;
+    height: 45px;
+    font-size: 15px;
+    border: 0.1px;
+    border-color: rgb(233, 233, 233, 0.1);
+    border-radius: 15px;
+    outline: none;
+    padding-left: 10px;
+    background-color: rgb(56, 100, 178,0.5);
+    margin-left: 1px;
+    margin-top: 5px;
+    font-family: apple Black;
+}
+#idbtn:hover{
+    border: 0.2px solid;
+}
+
+.box {
+    width: 130px;
+    height: 40px;
+    font-size: 15px;
+    border: 0.1px;
+    border-color: rgb(233, 233, 233, 0.1);
+    border-radius: 15px;
+    outline: none;
+    padding-left: 10px;
+    background-color: rgb(255, 255, 255);
+    margin-top: 5px;
+    font-family: apple Black;
+}
+.box:hover{
+    border: 0.2px solid;
+}
+#sendBtn{
+    background-color:rgb(56, 100, 178,0.7);
+    color: white;
+}
+#sendBtn:hover{
+    border: 0.2px solid;
+}
+#confirmBtn{
+    color: rgb(56, 100, 178);
+    background-color: white;
+}
+#confirmBtn:hover{
+    border: 0.2px solid;
+}
+.emailbox {
+    width: 117px;
+    height: 35px;
+    font-size: 15px;
+    border: 0.1px;
+    border-color: rgb(233, 233, 233, 0.1);
+    border-radius: 15px;
+    outline: none;
+    padding-left: 10px;
+    background-color: rgb(255, 255, 255);
+
+    font-family: apple Black;
+}
+.emailbox:hover{
+    border: 0.2px solid;
+}
+
+.emailbox2 {
+    width: 122px;
+    height: 35px;
+    font-size: 15px;
+    border: 0.1px;
+    border-color: rgb(233, 233, 233, 0.1);
+    border-radius: 15px;
+    outline: none;
+    padding-left: 4px;
+    background-color: rgb(255, 255, 255);
+    margin-top: 15px;
+    font-family: apple Black;
+
+}
+
+.join {
+    width: 400px;
+    height: 50px;
+    font-size: 30px;
+    border: 0.1px;
+    border-radius: 15px;
+    outline: none;
+    padding-left: 10px;
+    color: rgb(56, 100, 178);
+    background-color: white;
+    margin-top: 50px;
+    margin-left: 105px;
+    font-family: apple Black;
+}
+.join:hover{
+    border: 0.2px solid;
+}
+
+.emailbox3 {
+    width: 136px;
+    height: 35px;
+    font-size: 15px;
+    border: 0.1px;
+    border-color: rgb(233, 233, 233, 0.1);
+    border-radius: 15px;
+    outline: none;
+    padding-left: 10px;
+    background-color: rgb(255, 255, 255);
+    margin-top: 10px;
+    font-family: apple Black;
+}
+.emailbox3:hover{
+    border: 0.2px solid;
+}
+
+.infor {
+    margin-left: 110px;
+    font-family: apple Black;
+}
+
+#emailform,
+#cernumber,
+.bibox {
+    margin-left: 105px;
+}
+
+a {
+    text-decoration-line: none;
+    margin-left: 10px;
+    color: black;
+    font-weight: bolder;
+}
+
+#loglink {
+    display: inline-block;
+    margin-left: 180px;
+    margin-top: 40px;
+    font-family: apple Black;
+
+}
+
+.star{
+    margin-left: 2px;
+}
+#errmsg{
+    margin-left: 15px;
+}
+
+@font-face {
+    font-family: apple black;
+    src: url(AppleSDGothicNeoB.ttf);
+}
