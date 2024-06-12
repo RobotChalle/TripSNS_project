@@ -2,6 +2,8 @@ package com.smartwave.tripsns.service;
 
 import com.smartwave.tripsns.vo.PostCommentVO;
 import com.smartwave.tripsns.vo.PostVO;
+import com.smartwave.tripsns.vo.ShortVO;
+import com.smartwave.tripsns.vo.VideoVO;
 
 import java.util.List;
 
@@ -33,9 +35,14 @@ public interface IF_SNSService {
 
     public void postCommentDelete(PostCommentVO pvo) throws Exception; //댓글 삭제
 
+    public void videoInsert(VideoVO vvo) throws Exception;
+
+    public int videoSelect()throws Exception;
     public List<String> postSelectNo() throws Exception; //게시글 번호
 
     public int postCommentCnt(String p_no) throws Exception; //댓글 갯수
 
     public List<PostVO> postSelectPost() throws Exception; //게시물 관련 모든 정보 조회
+
+    public void InsertShort(ShortVO svo) throws Exception;
 }
