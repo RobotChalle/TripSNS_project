@@ -23,6 +23,13 @@
         font-family: apple;
         src: url(/font/AppleSDGothicNeoL.ttf);
     }
+
+    body {
+        background-image: url("/img/5528913.jpg");
+        background-position: center;
+        background-size: cover;
+        background-attachment: fixed;
+    }
 </style>
 
 <body>
@@ -98,8 +105,11 @@
                 <a href="#" class="place" th:text="${postList.p_place}">p_place</a>
             </div>
             <section class="feedImg">
+                <th:block th:if="${postList.pp_pic!=null}">
+                    <img th:src="@{/download(filename=${postList.pp_pic})}">
+                </th:block>
                 <div class="interactions">
-                    <a href="postLike" class="like" onclick="likeBtn(${session.userid})">
+                    <a th:href="@{/postLike(p_no=${postList.p_no}, p_id=${session.userid})}" class="like">
                         <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor"
                              class="bi bi-heart" viewBox="0 0 16 16">
                             <path
@@ -111,6 +121,7 @@
             </section>
             <section class="feedText">
                 <span><br th:text="${postList.p_text}"></span>
+                <span th:text="${postList.p_indate}" class="indate"></span>
             </section>
         </article>
     </div>
@@ -127,7 +138,7 @@
 <div class="mypic">
     <div class="dropdown-content">
         <th:block th:if="${session.userid!=null}">
-            <a href="#">프로필(<span th:text="${session.userid}">)</span></a>
+            <a href="profile">프로필(<span th:text="${session.userid}">)</span></a>
         </th:block>
         <a href="logout">로그아웃</a>
     </div>
