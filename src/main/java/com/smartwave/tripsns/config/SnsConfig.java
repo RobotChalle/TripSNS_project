@@ -18,10 +18,10 @@ public class SnsConfig implements WebMvcConfigurer {
     public void addInterceptors(InterceptorRegistry registry) {
         registry.addInterceptor(idchkInterceptor())//애플리케이션 내에 인터셉터를 등록
                 .addPathPatterns("/main")// 게시판 작성가능한 메인화면 인터셉터 등록
-                .addPathPatterns("/post")// 게시글 등록 인터셉터 등록
-                .addPathPatterns("/posting")// 게시글 저장 인터셉터 등록
-                .addPathPatterns("/detail") // 자세히보기 인터셉터 등록
-                .addPathPatterns("/shorts") // 여기부터 주석 달아주세용
+                .addPathPatterns("/post")
+                .addPathPatterns("/posting")
+                .addPathPatterns("/detail")
+                .addPathPatterns("/shorts")
                 .addPathPatterns("/short")
                 .addPathPatterns("/addShort")
                 .addPathPatterns("/addShortVideo")
@@ -31,7 +31,7 @@ public class SnsConfig implements WebMvcConfigurer {
 //                .excludePathPatterns("/main")
 //                .excludePathPatterns("/idchk")
                 .excludePathPatterns("/login*") //로그인 요청은 예외처리 -> interceptorx
-                .excludePathPatterns("/proupdate")
+
                 .excludePathPatterns("/join*");
 
 
