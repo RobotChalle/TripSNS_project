@@ -7,19 +7,14 @@
     top: 50%;
     margin-left: -300px;
     margin-top: -390px;
-    background-color: rgb(255, 255, 255, 0.4);
+    background-color: rgb(233, 233, 233, 0.4);
     border-radius: 30px;
-    box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
-    transition: all 0.3s cubic-bezier(.25,.8,.25,1);
-}
-#Joinbox:hover{
-    box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
+    /* box-shadow: -5px -5px 7px rgb(233,233,233); */
 }
 
 body {
     /* background-image: url(backimg.png); */
-    /*background-color: rgb(123, 147, 226);*/
-    background-image: url("../images/background.jpg");
+    background-color: rgb(123, 147, 226);
 }
 
 #logo {
@@ -31,17 +26,14 @@ body {
     height: 40px;
     font-size: 15px;
     border: 0.1px;
-    border-color: rgb(233, 233, 233, 0.7);
+    border-color: rgb(233, 233, 233, 0.1);
     border-radius: 15px;
     outline: none;
     padding-left: 10px;
-    background-color: rgb(255, 255, 255);
+    background-color: rgb(233, 233, 233);
     margin-left: 105px;
     margin-top: 5px;
     font-family: apple Black;
-}
-.te:hover {
-    border: 0.2px solid;
 }
 .teid{
     position: relative;
@@ -49,17 +41,14 @@ body {
     height: 40px;
     font-size: 15px;
     border: 0.1px;
-    border-color: rgb(233, 233, 233, 0.7);
+    border-color: rgb(233, 233, 233, 0.1);
     border-radius: 15px;
     outline: none;
     padding-left: 10px;
-    background-color: rgb(255, 255, 255);
+    background-color: rgb(233, 233, 233);
     margin-left: 105px;
     margin-top: 5px;
     font-family: apple Black;
-}
-.teid:hover {
-    border: 0.2px solid;
 }
 #idbtn{
     /* position: absolute; */
@@ -75,9 +64,7 @@ body {
     margin-left: 1px;
     margin-top: 5px;
     font-family: apple Black;
-}
-#idbtn:hover{
-    border: 0.2px solid;
+
 }
 
 .box {
@@ -89,26 +76,17 @@ body {
     border-radius: 15px;
     outline: none;
     padding-left: 10px;
-    background-color: rgb(255, 255, 255);
+    background-color: rgb(233, 233, 233);
     margin-top: 5px;
     font-family: apple Black;
-}
-.box:hover{
-    border: 0.2px solid;
 }
 #sendBtn{
     background-color:rgb(56, 100, 178,0.7);
     color: white;
 }
-#sendBtn:hover{
-    border: 0.2px solid;
-}
 #confirmBtn{
     color: rgb(56, 100, 178);
     background-color: white;
-}
-#confirmBtn:hover{
-    border: 0.2px solid;
 }
 .emailbox {
     width: 117px;
@@ -119,12 +97,9 @@ body {
     border-radius: 15px;
     outline: none;
     padding-left: 10px;
-    background-color: rgb(255, 255, 255);
+    background-color: rgb(233, 233, 233);
 
     font-family: apple Black;
-}
-.emailbox:hover{
-    border: 0.2px solid;
 }
 
 .emailbox2 {
@@ -136,7 +111,7 @@ body {
     border-radius: 15px;
     outline: none;
     padding-left: 4px;
-    background-color: rgb(255, 255, 255);
+    background-color: rgb(233, 233, 233);
     margin-top: 15px;
     font-family: apple Black;
 
@@ -146,7 +121,7 @@ body {
     width: 400px;
     height: 50px;
     font-size: 30px;
-    border: 0.1px;
+    border: 0;
     border-radius: 15px;
     outline: none;
     padding-left: 10px;
@@ -155,9 +130,8 @@ body {
     margin-top: 50px;
     margin-left: 105px;
     font-family: apple Black;
-}
-.join:hover{
-    border: 0.2px solid;
+
+
 }
 
 .emailbox3 {
@@ -169,12 +143,9 @@ body {
     border-radius: 15px;
     outline: none;
     padding-left: 10px;
-    background-color: rgb(255, 255, 255);
+    background-color: rgb(233, 233, 233);
     margin-top: 10px;
     font-family: apple Black;
-}
-.emailbox3:hover{
-    border: 0.2px solid;
 }
 
 .infor {
