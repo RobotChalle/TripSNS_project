@@ -15,7 +15,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
 
-@Controller
+@Controller //체인지지
 public class SNSController {
 
     @Autowired
