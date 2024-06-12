@@ -34,7 +34,7 @@ public class SNSServiceImpl implements IF_SNSService {
     }
 
     @Override
-    public List<String> getFile(String pp_no) throws Exception {
+    public String getFile(String pp_no) throws Exception {
         return sdao.getFile(pp_no);
     }
 
@@ -49,58 +49,21 @@ public class SNSServiceImpl implements IF_SNSService {
     }
 
     @Override
-    public void postLike(PostVO pvo) throws Exception {
-        if (sdao.postLikeChk(pvo) >= 1) {
+    public void postToggleLike(PostVO pvo) throws Exception {
+        if (sdao.postLikeMyCnt(pvo) > 0) {
             sdao.postLikeDel(pvo);
+        } else {
+            sdao.postLike(pvo);
         }
-        sdao.postLike(pvo);
     }
 
     @Override
-    public void postLikeDel(PostVO pvo) throws Exception {
-        sdao.postLikeDel(pvo);
-    }
-
-
-    @Override
-    public int postLikeCnt(String p_no) throws Exception {
-        return sdao.postLikeCnt(p_no);
+    public boolean likeChk(PostVO pvo) throws Exception {
+        return sdao.postLikeMyCnt(pvo) > 0;
     }
 
     @Override
-    public int postLikeChk(PostVO pvo) throws Exception {
-        return sdao.postLikeChk(pvo);
+    public int postLikeCnt(PostVO pvo) throws Exception {
+        return sdao.postLikeCnt(pvo);
     }
-
-    @Override
-    public void postDelete(PostVO pvo) throws Exception {
-        sdao.postDelete(pvo);
-    }
-
-    @Override
-    public void postModify(PostVO pvo) throws Exception {
-        sdao.postModify(pvo);
-    }
-
-    @Override
-    public void postCommentDelete(PostCommentVO pvo) throws Exception {
-        sdao.postCommentDelete(pvo);
-    }
-
-    @Override
-    public List<String> postSelectNo() throws Exception {
-        return sdao.postSelectNo();
-    }
-
-    @Override
-    public int postCommentCnt(String p_no) throws Exception {
-        return sdao.postCommentCnt(p_no);
-    }
-
-    @Override
-    public List<PostVO> postSelectPost() throws Exception {
-        return sdao.postSelectPost();
-    }
-
-
 }

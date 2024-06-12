@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.smartwave.tripsns.dao.IF_SNSDAO">
+<mapper namespace= "com.smartwave.tripsns.dao.IF_SNSDAO">
     <insert id="posting" parameterType="com.smartwave.tripsns.vo.PostVO"> <!-- 게시글 저장 -->
         insert into post values (nextval(p_cnt),#{p_id}, #{p_place}, #{p_text}, default)
     </insert>
@@ -10,7 +10,6 @@
     <select id="postSelectAll" resultType="com.smartwave.tripsns.vo.PostVO"><!-- 게시글 전부 불러오기 -->
         select *
         from post
-        order by p_indate desc;
     </select>
     <select id="postSelectOne" resultType="com.smartwave.tripsns.vo.PostVO"><!-- 게시글 하나 불러오기 -->
         select *
@@ -32,54 +31,19 @@
         where pc_no = #{p_no}
     </select>
     <insert id="postLike" parameterType="com.smartwave.tripsns.vo.PostVO"><!--좋아요 정보 저장-->
-        insert into postLike
-        values (#{p_no}, #{p_id})
+        insert into postLike values(#{p_no}, #{p_id})
     </insert>
     <delete id="postLikeDel" parameterType="com.smartwave.tripsns.vo.PostVO"><!--좋아요 삭제-->
-        delete
-        from postLike
-        where pl_id = #{p_id}
+        delete from postLike where lp_id=#{p_id}
     </delete>
     <select id="postLikeCnt" resultType="int"><!--게시글 좋아요 갯수-->
         select count(*)
         from postLike
-        where pl_no = #{p_no}
+        where lp_no = #{p_no}
     </select>
-    <select id="postLikeChk" resultType="int"><!--좋아요 체크-->
+    <select id="postLikeMyCnt" resultType="int"><!--나의 좋아요 유무-->
         select count(*)
         from postLike
-        where pl_id = #{p_id}
-          and pl_no = #{p_no}
-    </select>
-    <delete id="postDelete" parameterType="com.smartwave.tripsns.vo.PostVO"><!--게시글 삭제-->
-        delete
-        from post
-        where p_no = #{p_no}
-    </delete>
-    <update id="postModify" parameterType="com.smartwave.tripsns.vo.PostVO"><!--게시글 수정-->
-        update post
-        set p_place = #{p_place},
-            p_text  = #{p_text}
-        where p_no = #{p_no}
-    </update>
-    <delete id="postCommentDelete" parameterType="com.smartwave.tripsns.vo.PostCommentVO"><!--댓글 삭제-->
-        delete
-        from postComment
-        where pc_text = #{pc_text}
-    </delete>
-    <select id="postSelectNo" resultType="String">
-        select p_no
-        from post;
-    </select>
-    <select id="postCommentCnt" resultType="int">
-        select count(*)
-        from postComment
-        where pc_no = #{p_no}
-    </select>
-    <select id="postSelectPost" resultType="com.smartwave.tripsns.vo.PostVO">
-        select *
-        from post p
-                 inner join postpic pp on p.p_no = pp.pp_no
-        order by p_indate desc;
+        where lp_id = #{p_id}
     </select>
 </mapper>
