@@ -1,15 +1,15 @@
 <!DOCTYPE html>
-<html lang="kor">
+<html lang="en">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>여행여행</title>
+    <title>Document</title>
     <link rel="stylesheet" href="/css/main_navTop.css">
     <link rel="stylesheet" href="/css/main_navSide.css">
-    <link rel="stylesheet" href="/css/post_feed.css">
-    <script src="/js/post_place.js"></script>
+    <link rel="stylesheet" href="/css/profile_update.css">
 </head>
+
 <style>
     * {
         padding: 0;
@@ -17,22 +17,12 @@
         font-family: apple black;
         text-decoration-line: none;
     }
-
-    @font-face {
-        font-family: apple;
-        src: url(/font/AppleSDGothicNeoL.ttf);
-    }
-
     body {
-        background-image: url("/img/5528913.jpg");
-        background-position: center;
-        background-size: cover;
-        background-attachment: fixed;
+        background-image: url("/images/background.jpg");
     }
 </style>
 
 <body>
-<!--좌측 네비-->
 <nav id="navSide">
     <ul>
         <li>
@@ -103,55 +93,62 @@
         </form>
     </ul>
 </nav>
-<!--글작성-->
-<main>
-    <div class="feedBoard">
-        <article class="feed">
-            <form action="posting" method="post" enctype="multipart/form-data">
-                <h1 style="text-align: center;">글작성</h1>
-                <div class="option">
-                    <label>지역</label>
-                    <input type="text" name="p_place" placeholder="시는 빼고 입력바랍니다. ex)수원시 => 수원" required>
-                    <!--
-                    <select name="h_area1" onChange="cat1_change(this.value,h_area2)" class="h_area1" required>
-                        <option></option>
-                        <option value='1'>서울</option>
-                        <option value='2'>부산</option>
-                        <option value='3'>대구</option>
-                        <option value='4'>인천</option>
-                        <option value='5'>광주</option>
-                        <option value='6'>대전</option>
-                        <option value='7'>울산</option>
-                        <option value='8'>강원</option>
-                        <option value='9'>경기</option>
-                        <option value='10'>경남</option>
-                        <option value='11'>경북</option>
-                        <option value='12'>전남</option>
-                        <option value='13'>전북</option>
-                        <option value='14'>제주</option>
-                        <option value='15'>충남</option>
-                        <option value='16'>충북</option>
-                    </select>
-                    <select name="h_area2" onChange="cat2_change(this.value)" required>
-                        <option></option>
-                    </select>
-                    -->
-                    <label>사진첨부</label>
-                    <input type="file" accept="jpeg, jpg, png" name="file">
-                </div>
-                <div class="textArea">
-                    <label style="padding-right: 800px;">내용</label><br>
-                    <textarea placeholder="비방, 욕설은 금지입니다.(최대 100자 입력가능)" name="p_text" required
-                              maxlength="100"></textarea>
-                </div>
-                <div class="submitBtn">
-                    <input type="hidden" th:value="${p_id}" name="p_id">
-                    <input type="submit" value="작성" id="textSubmit">
-                </div>
-            </form>
-        </article>
+
+<div id="profilebox">
+    <h3>my profile</h3>
+    <div> <img src="/images/파닥몬.png" class="pro_pic">
+        <button id="picbtn">파일선택</button>
+        <label id="pro_id">@아이디 나올곳</label>
     </div>
-</main>
+    <label class="infor">소개</label><br>
+    <div id="fled">
+        <input type="text" class="tex" id="newintro" name="u_intro" placeholder="내용" required>
+        <button id="probtn">수정</button>
+    </div>
+</div>
+
+<form action="userupdate" method="post">
+    <div id="userbox">
+        <h3>내 정보수정</h3>
+        <div class="field">
+            <label class="infor">이름</label><br>
+            <input type="text" class="te" id="newname" name="name" placeholder="이름" required>
+        </div>
+        <div class="field">
+            <label class="infor">Email</label><br>
+            <input type="text" class="te" id="newemail" name="email" placeholder="이메일" required>
+        </div>
+        <div class="field">
+            <label class="infor">새 비밀번호</label><br>
+            <input type="password" id="newpw" class="te" name="pw" placeholder="비밀번호"
+                   minlength="4" maxlength="16" pattern="^[a-zA-Z\d]+$" title="4~16자의 비밀번호를 입력해주세요(특수문자,한글x)" required>
+        </div>
+        <div class="field">
+            <label class="infor">새 비밀번호 확인<span id="errmsg"></span></label> <br>
+            <input type="password" id="conpw" class="te" placeholder="비밀번호 확인" minlength="4" maxlength="16"
+                   required>
+            <input type="hidden" th:value="${id}" name="id">
+        </div>
+        <button id="userbtn" type="submit">수정</button>
+    </div>
+</form>
 </body>
+<script>
+    // 비밀번호 확인 유효성
+    var newpw = document.getElementById('newpw');
+    var conpw = document.getElementById('conpw');
+    var errmsg = document.getElementById('errmsg');
+    conpw.addEventListener('change', () => {
+        if (newpw.value === conpw.value) {
+            errmsg.style.color = "green";
+            errmsg.textContent = "비밀번호가 일치합니다";
+        } else {
+            conpw.value = "";
+            conpw.focus();
+            errmsg.style.color = "red";
+            errmsg.textContent = "비밀번호가 일치하지 않습니다";
+        }
+    })
+</script>
 
 </html>
