@@ -23,10 +23,23 @@
     }
 
     body {
-        background-image: url("/img/5528913.jpg");
+        background: linear-gradient(300deg, deepskyblue, #b8f4f9, #0060ff);
+        animation: gradient-animation 5s ease infinite;
         background-position: center;
-        background-size: cover;
+        background-size: 180% 180%;
         background-attachment: fixed;
+    }
+
+    @keyframes gradient-animation {
+        0% {
+            background-position: 0% 50%;
+        }
+        50% {
+            background-position: 100% 50%;
+        }
+        100% {
+            background-position: 0% 50%;
+        }
     }
 </style>
 
@@ -63,7 +76,7 @@
             </a>
         </li>
         <li>
-            <a href="#">
+            <a href="shorts">
                 <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor"
                      class="bi bi-file-play-fill" viewBox="0 0 16 16">
                     <path
@@ -97,7 +110,7 @@
     </a>
     <ul>
         <form>
-            <li><input type="search" placeholder="검색" class="search"></li>
+            <li><input type="search" placeholder="검색" class="search" name="searchWord"></li>
             <li><input type="submit" value="검색" class="submit"></li>
         </form>
     </ul>
@@ -128,7 +141,6 @@
                                     d="m8 2.748-.717-.737C5.6.281 2.514.878 1.4 3.053c-.523 1.023-.641 2.5.314 4.385.92 1.815 2.834 3.989 6.286 6.357 3.452-2.368 5.365-4.542 6.286-6.357.955-1.886.838-3.362.314-4.385C13.486.878 10.4.28 8.717 2.01zM8 15C-7.333 4.868 3.279-3.04 7.824 1.143q.09.083.176.171a3 3 0 0 1 .176-.17C12.72-3.042 23.333 4.867 8 15"/>
                         </svg>
                     </a>
-                    <span th:text="${postLikeCnt}"></span>
                     <th:block th:if="${session.userid==postDetail.p_id}">
                         <section class="delmod">
                             <a th:href="@{/postDelete(p_no=${postDetail.p_no})}"><input type="button" value="삭제"
@@ -157,9 +169,12 @@
                         <td class="commentText" th:text="${comment.pc_text}"></td>
                         <th:block th:if="${session.userid==comment.pc_id}" class="del">
                             <td>
-                                <a th:href="@{/postCommentDelete(pc_text=${comment.pc_text})}">
-                                    <input type="button" value="삭제" class="deleteComment">
-                                </a>
+                                <form action="postCommentDelete" method="get">
+                                    <input type="hidden" th:value="${comment.pc_text}" name="pc_text">
+                                    <input type="hidden" th:value="${postDetail.p_no}" name="p_no">
+                                    <input type="hidden" th:value="${p_id}" name="p_id">
+                                    <input type="submit" value="삭제" class="deleteComment">
+                                </form>
                             </td>
                         </th:block>
                     </tr>

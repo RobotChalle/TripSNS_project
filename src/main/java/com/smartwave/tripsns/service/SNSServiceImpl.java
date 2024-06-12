@@ -49,30 +49,6 @@ public class SNSServiceImpl implements IF_SNSService {
     }
 
     @Override
-    public void postLike(PostVO pvo) throws Exception {
-        if (sdao.postLikeChk(pvo) >= 1) {
-            sdao.postLikeDel(pvo);
-        }
-        sdao.postLike(pvo);
-    }
-
-    @Override
-    public void postLikeDel(PostVO pvo) throws Exception {
-        sdao.postLikeDel(pvo);
-    }
-
-
-    @Override
-    public int postLikeCnt(String p_no) throws Exception {
-        return sdao.postLikeCnt(p_no);
-    }
-
-    @Override
-    public int postLikeChk(PostVO pvo) throws Exception {
-        return sdao.postLikeChk(pvo);
-    }
-
-    @Override
     public void postDelete(PostVO pvo) throws Exception {
         sdao.postDelete(pvo);
     }
@@ -88,11 +64,6 @@ public class SNSServiceImpl implements IF_SNSService {
     }
 
     @Override
-    public List<String> postSelectNo() throws Exception {
-        return sdao.postSelectNo();
-    }
-
-    @Override
     public int postCommentCnt(String p_no) throws Exception {
         return sdao.postCommentCnt(p_no);
     }
@@ -100,6 +71,16 @@ public class SNSServiceImpl implements IF_SNSService {
     @Override
     public List<PostVO> postSelectPost() throws Exception {
         return sdao.postSelectPost();
+    }
+
+    @Override
+    public List<PostVO> postSearch(String searchWord) throws Exception {
+        return sdao.postSearch(searchWord);
+    }
+
+    @Override
+    public void postLike(PostVO pvo) throws Exception {
+
     }
 
 

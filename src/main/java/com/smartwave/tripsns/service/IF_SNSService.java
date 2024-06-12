@@ -19,23 +19,18 @@ public interface IF_SNSService {
 
     public List<PostCommentVO> commentList(String p_no) throws Exception; //댓글 가져오기
 
-    public void postLike(PostVO pvo) throws Exception; //좋아요
-
-    public void postLikeDel(PostVO pvo) throws Exception; //좋아요 삭제
-
-    public int postLikeCnt(String p_no) throws Exception; //좋아요 갯수
-
-    public int postLikeChk(PostVO pvo) throws Exception; //좋아요 체크
-
     public void postDelete(PostVO pvo) throws Exception; //게시글 삭제
 
     public void postModify(PostVO pvo) throws Exception; //게시글 수정
 
     public void postCommentDelete(PostCommentVO pvo) throws Exception; //댓글 삭제
 
-    public List<String> postSelectNo() throws Exception; //게시글 번호
-
     public int postCommentCnt(String p_no) throws Exception; //댓글 갯수
 
     public List<PostVO> postSelectPost() throws Exception; //게시물 관련 모든 정보 조회
+
+    public List<PostVO> postSearch(String searchWord) throws Exception; //게시글 검색
+
+    public void postLike(PostVO pvo) throws Exception; //게시글 좋아요
+
 }

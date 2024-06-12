@@ -42,13 +42,11 @@ public class SNSController {
         PostVO postDetail = sService.postSelectOne(p_no);
         List<String> attachNameList = sService.getFile(p_no);
         List<PostCommentVO> commentList = sService.commentList(p_no);
-        int postLikeCnt = sService.postLikeCnt(p_no);
         int postCommentCnt = sService.postCommentCnt(p_no);
         model.addAttribute("postDetail", postDetail);
         model.addAttribute("attachNameList", attachNameList);
         model.addAttribute("commentList", commentList);
         model.addAttribute("p_id", p_id);
-        model.addAttribute("postLikeCnt", postLikeCnt);
         model.addAttribute("postCommentCnt", postCommentCnt);
         return "detail";
     }
@@ -62,10 +60,9 @@ public class SNSController {
     }
 
     @PostMapping("/commentSave") //댓글 저장
-    public String commentSave(@ModelAttribute PostCommentVO pcvo) throws Exception {
+    public String commentSave(@ModelAttribute PostCommentVO pcvo, @ModelAttribute PostVO pvo) throws Exception {
         sService.CommentSave(pcvo);
-
-        return "redirect:main";
+        return "redirect:detail?p_no=" + pvo.getP_no() + "&p_id=" + pvo.getP_id();
     }
 
     @GetMapping(value = {"/shorts", "/"})
@@ -78,18 +75,6 @@ public class SNSController {
         return "short";
     }
 
-    @GetMapping(value = "postLike")
-    public String postLike(@ModelAttribute PostVO pvo) throws Exception {
-        sService.postLike(pvo);
-        return "redirect:main";
-    }
-
-    @GetMapping(value = "postDelete") //게시글 삭제
-    public String postDelete(@ModelAttribute PostVO pvo) throws Exception {
-        sService.postDelete(pvo);
-        return "redirect:main";
-    }
-
     @GetMapping(value = "postModifyForm") //게시글 수정페이지
     public String postModifyForm(Model model, @RequestParam("p_no") String p_no) throws Exception {
         model.addAttribute("p_no", p_no);
@@ -99,12 +84,22 @@ public class SNSController {
     @PostMapping(value = "postModify") //게시글 수정
     public String postModify(@ModelAttribute PostVO pvo) throws Exception {
         sService.postModify(pvo);
-        return "redirect:main";
+        return "redirect:detail?p_no=" + pvo.getP_no() + "&p_id=" + pvo.getP_id();
     }
 
     @GetMapping(value = "postCommentDelete") //댓글 삭제
-    public String postCommentDelete(@ModelAttribute PostCommentVO pcvo) throws Exception {
+    public String postCommentDelete(@ModelAttribute PostCommentVO pcvo, @ModelAttribute PostVO pvo) throws Exception {
         sService.postCommentDelete(pcvo);
-        return "redirect:main";
+        return "redirect:detail?p_no=" + pvo.getP_no() + "&p_id=" + pvo.getP_id();
     }
+
+    @GetMapping(value = "postSearchById") //게시글 검색
+    public String postSearchById(@RequestParam("searchWord") String searchWord, Model model) throws Exception {
+        List<PostVO> pvo = sService.postSearch(searchWord);
+        model.addAttribute("searchWord", searchWord);
+        model.addAttribute("pvo", pvo);
+        return "searchResult";
+    }
+
+
 }

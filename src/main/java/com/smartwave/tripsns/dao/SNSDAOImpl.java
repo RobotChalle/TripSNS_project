@@ -52,26 +52,6 @@ public class SNSDAOImpl implements IF_SNSDAO {
     }
 
     @Override
-    public void postLike(PostVO pvo) throws Exception {
-        sqlSession.insert(mapperQuery + ".postLike", pvo);
-    }
-
-    @Override
-    public void postLikeDel(PostVO pvo) throws Exception {
-        sqlSession.delete(mapperQuery + ".postLikeDel", pvo);
-    }
-
-    @Override
-    public int postLikeCnt(String p_no) throws Exception {
-        return sqlSession.selectOne(mapperQuery + ".postLikeCnt", p_no);
-    }
-
-    @Override
-    public int postLikeChk(PostVO pvo) throws Exception {
-        return sqlSession.selectOne(mapperQuery + ".postLikeChk", pvo);
-    }
-
-    @Override
     public void postDelete(PostVO pvo) throws Exception {
         sqlSession.delete(mapperQuery + ".postDelete", pvo);
     }
@@ -87,11 +67,6 @@ public class SNSDAOImpl implements IF_SNSDAO {
     }
 
     @Override
-    public List<String> postSelectNo() throws Exception {
-        return sqlSession.selectList(mapperQuery + ".postSelectNo");
-    }
-
-    @Override
     public int postCommentCnt(String p_no) throws Exception {
         return sqlSession.selectOne(mapperQuery + ".postCommentCnt", p_no);
     }
@@ -99,6 +74,26 @@ public class SNSDAOImpl implements IF_SNSDAO {
     @Override
     public List<PostVO> postSelectPost() throws Exception {
         return sqlSession.selectList(mapperQuery + ".postSelectPost");
+    }
+
+    @Override
+    public List<PostVO> postSearch(String searchWord) throws Exception {
+        return sqlSession.selectList(mapperQuery + ".postSearch", searchWord);
+    }
+
+    @Override
+    public void postLike(PostVO pvo) throws Exception {
+        sqlSession.insert(mapperQuery + ".postLike", pvo);
+    }
+
+    @Override
+    public void postLikeDelete(PostVO pvo) throws Exception {
+        sqlSession.delete(mapperQuery + ".postLikeDelete", pvo);
+    }
+
+    @Override
+    public PostVO postLikeSelect() throws Exception {
+        return sqlSession.selectOne(mapperQuery + ".postLikeSelect");
     }
 
 }
