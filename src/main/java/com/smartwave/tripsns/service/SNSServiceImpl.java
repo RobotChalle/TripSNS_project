@@ -2,6 +2,7 @@ package com.smartwave.tripsns.service;
 
 import com.smartwave.tripsns.dao.IF_SNSDAO;
 import com.smartwave.tripsns.vo.PostCommentVO;
+import com.smartwave.tripsns.vo.PostLikeVO;
 import com.smartwave.tripsns.vo.PostVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -80,8 +81,21 @@ public class SNSServiceImpl implements IF_SNSService {
 
     @Override
     public void postLike(PostVO pvo) throws Exception {
-
+        if (sdao.postLikeSelect(pvo) == null) {
+            sdao.postLike(pvo);
+        } else {
+            sdao.postLikeDelete(pvo);
+        }
     }
 
+    @Override
+    public PostLikeVO postLikeSelect(PostVO pvo) throws Exception {
+        return sdao.postLikeSelect(pvo);
+    }
+
+    @Override
+    public int postLikeCOunt(PostVO pvo) throws Exception {
+        return sdao.postLikeCount(pvo);
+    }
 
 }

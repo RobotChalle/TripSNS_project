@@ -1,6 +1,7 @@
 package com.smartwave.tripsns.dao;
 
 import com.smartwave.tripsns.vo.PostCommentVO;
+import com.smartwave.tripsns.vo.PostLikeVO;
 import com.smartwave.tripsns.vo.PostVO;
 
 import java.util.List;
@@ -37,6 +38,8 @@ public interface IF_SNSDAO {
 
     public void postLikeDelete(PostVO pvo) throws Exception; //게시글 좋아요 취소
 
-    public PostVO postLikeSelect() throws Exception; //게시글 좋아요 조회
+    public PostLikeVO postLikeSelect(PostVO pvo) throws Exception; //게시글 좋아요 조회
+
+    public int postLikeCount(PostVO pvo) throws Exception; //게시글 좋아요 갯수
 
 }

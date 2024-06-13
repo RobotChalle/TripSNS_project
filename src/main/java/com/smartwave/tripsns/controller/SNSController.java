@@ -7,10 +7,7 @@ import com.smartwave.tripsns.vo.PostVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
@@ -40,13 +37,10 @@ public class SNSController {
     @GetMapping("/detail") //자세히 보기 불러오기
     public String detail(Model model, @RequestParam("p_no") String p_no, @RequestParam("p_id") String p_id) throws Exception {
         PostVO postDetail = sService.postSelectOne(p_no);
-        List<String> attachNameList = sService.getFile(p_no);
         List<PostCommentVO> commentList = sService.commentList(p_no);
         int postCommentCnt = sService.postCommentCnt(p_no);
         model.addAttribute("postDetail", postDetail);
-        model.addAttribute("attachNameList", attachNameList);
         model.addAttribute("commentList", commentList);
-        model.addAttribute("p_id", p_id);
         model.addAttribute("postCommentCnt", postCommentCnt);
         return "detail";
     }
@@ -87,6 +81,12 @@ public class SNSController {
         return "redirect:detail?p_no=" + pvo.getP_no() + "&p_id=" + pvo.getP_id();
     }
 
+    @GetMapping(value = "postDelete")
+    public String postDelete(@ModelAttribute PostVO pvo) throws Exception {
+        sService.postDelete(pvo);
+        return "redirect:main";
+    }
+
     @GetMapping(value = "postCommentDelete") //댓글 삭제
     public String postCommentDelete(@ModelAttribute PostCommentVO pcvo, @ModelAttribute PostVO pvo) throws Exception {
         sService.postCommentDelete(pcvo);
@@ -101,5 +101,42 @@ public class SNSController {
         return "searchResult";
     }
 
+    @ResponseBody
+    @GetMapping(value = "postLike") //게시글 좋아요
+    public int postLike(@ModelAttribute PostVO pvo) throws Exception {
+        int chk = 0;
+        sService.postLike(pvo);
+        if (sService.postLikeSelect(pvo) == null) {
+            return chk;
+        } else {
+            chk = 1;
+            return chk;
+        }
+    }
+
+    @ResponseBody
+    @GetMapping(value = "postLikeSelect") //게시글 좋아요 확인
+    public int postLikeSelect(@ModelAttribute PostVO pvo) throws Exception {
+        int chk = 0;
+        if (sService.postLikeSelect(pvo) == null) {
+            return chk;
+        } else {
+            chk = 1;
+            return chk;
+        }
+    }
+
+    @ResponseBody
+    @GetMapping(value = "postLikeCount") //게시글 좋아요 갯수
+    public int postLikeCount(@ModelAttribute PostVO pvo) throws Exception {
+        int postLikeCount = sService.postLikeCOunt(pvo);
+        return postLikeCount;
+    }
+
+    @GetMapping(value = "postLikeDetail") //게시글 자세히보기 좋아요 후 같은 글 자세히보기로 이동
+    public String postLikeDetail(@ModelAttribute PostVO pvo) throws Exception {
+        sService.postLike(pvo);
+        return "redirect:detail?p_no=" + pvo.getP_no() + "&p_id=" + pvo.getP_id();
+    }
 
 }

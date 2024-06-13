@@ -14,8 +14,10 @@
     </select>
     <select id="postSelectOne" resultType="com.smartwave.tripsns.vo.PostVO"><!-- 게시글 하나 불러오기 -->
         select *
-        from post
-        where p_no = #{p_no}
+        from post p
+                 inner join postpic pp on p.p_no = pp.pp_no
+                 left join postLike pl on p.p_no = pl.pl_no
+        where p.p_no = #{p_no};
     </select>
     <select id="getFile" resultType="String"><!--사진파일 불러오기 -->
         select pp_pic
@@ -56,7 +58,8 @@
         select *
         from post p
                  inner join postpic pp on p.p_no = pp.pp_no
-        order by p_indate desc
+                 left join postLike pl on p.p_no = pl.pl_no
+        order by p.p_indate desc;
     </select>
     <select id="postSearch" resultType="com.smartwave.tripsns.vo.PostVO"><!--게시글 아이디로 검색-->
         select *
@@ -74,10 +77,17 @@
         delete
         from postLike
         where pl_id = #{p_id}
+          and pl_no = #{p_no}
     </delete>
-    <select id="postLikeSelect" resultType="com.smartwave.tripsns.vo.PostVO"><!--게시글 좋아요 조회-->
+    <select id="postLikeSelect" resultType="com.smartwave.tripsns.vo.PostLikeVO"><!--게시글 좋아요 조회-->
         select *
         from postLike
         where pl_id = #{p_id}
+          and pl_no = #{p_no}
+    </select>
+    <select id="postLikeCount" resultType="int">
+        select count(*)
+        from postLike
+        where pl_no = #{p_no}
     </select>
 </mapper>

@@ -18,5 +18,7 @@ public class PostVO {
     private String p_indate = null;
     private String pp_pic = null;
     private String[] filename = null;
+    private int pl_no = 0;
+    private String pl_id = null;
 
 }
