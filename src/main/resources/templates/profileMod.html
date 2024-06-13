@@ -17,9 +17,11 @@
         font-family: apple black;
         text-decoration-line: none;
     }
+
     body {
         background-image: url("/images/background.jpg");
     }
+
 </style>
 
 <body>
@@ -64,15 +66,17 @@
         </li>
     </ul>
 </nav>
-<div class="mypic">
+<div class="mypic" style="z-index: 3">
     <div class="dropdown-content">
         <th:block th:if="${session.userid!=null}">
-            <a href="#">프로필(<span th:text="${session.userid}">)</span></a>
+            <a th:href="@{/profile(u_id=${session.userid})}">프로필(<span th:text="${session.userid}"></span>)</a>
         </th:block>
         <a href="logout">로그아웃</a>
     </div>
     <a href="#">
-        <img src="/images/메인_2.jpg" alt="myPic">
+        <th:block th:if="${profiledetail.u_pic!=null}">
+            <img th:src="@{/download(filename=${profiledetail.u_pic})}">
+        </th:block>
     </a>
 </div>
 <!--상단 네비-->
@@ -95,16 +99,26 @@
 </nav>
 
 <div id="profilebox">
-    <h3>my profile</h3>
-    <div> <img src="/images/파닥몬.png" class="pro_pic">
-        <button id="picbtn">파일선택</button>
-        <label id="pro_id">@아이디 나올곳</label>
-    </div>
-    <label class="infor">소개</label><br>
-    <div id="fled">
-        <input type="text" class="tex" id="newintro" name="u_intro" placeholder="내용" required>
-        <button id="probtn">수정</button>
-    </div>
+    <h3>my profile edit</h3>
+    <form action="profileupdate" method="post" enctype="multipart/form-data">
+        <div>
+            <!--      <img src="/images/파닥몬.png" class="pro_pic">-->
+            <th:block th:if="${profiledetail.u_pic!=null}">
+                <img th:src="@{/download(filename=${profiledetail.u_pic})}" class="pro_pic" id="preview">
+            </th:block>
+            <input type="file" accept="jpeg, jpg, png" name="pfile" id="filepic" onchange="readURL(this)"><!--onchange="readURL2(this)"-->
+            <label id="pro_id">@<span th:text="${id}">)</span></label>
+        </div>
+
+
+        <div id="fled">
+            <label class="infor">소개</label><br>
+            <input type="text" class="tex" id="newintro" name="u_intro" placeholder="내용" required>
+
+        </div>
+        <button id="probtn" type="submit">변경</button>
+        <input type="hidden" th:value="${id}" name="u_id">
+    </form>
 </div>
 
 <form action="userupdate" method="post">
@@ -149,6 +163,18 @@
             errmsg.textContent = "비밀번호가 일치하지 않습니다";
         }
     })
+    //프로필 미리보기
+    function readURL(input) {// 파일입력 태그가 onchange - 변화가 있을 시 동작하는 함수를 구현
+        if (input.files && input.files[0]) {//파일이 선택되엇을시
+            var reader = new FileReader();//미리보기 생성을 위해 filreader객체생성 >파일을 읽고 사용자의 컴퓨터에 저장하는 것을 가능하게 해주는 Web API
+            reader.onload = function(e) {//onload 함수를 통해 파일 데이터를 읽었을때 실행될 함수 정의
+                document.getElementById('preview').src = e.target.result;//읽은 파일데이터를 src속성에 할당, e.target.result는 파일의 데이터 URL
+            };
+            reader.readAsDataURL(input.files[0]);//데이터 URL은 파일의 내용을 base64로 인코딩한 문자열
+        } else {
+            document.getElementById('preview').src = "";//파일이 선택되지 않은 경우 이미지 초기화
+        }
+    }
 </script>
 
 </html>

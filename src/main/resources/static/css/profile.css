@@ -1,0 +1,189 @@
+#profilebox {
+    display: block;
+    width: 1160px;
+    height: 250px;
+    position: absolute;
+    left: 6%;
+    top: 10%;
+    background-color: rgb(255, 255, 255, 0.4);
+    border-radius: 30px;
+    /* border: 1px solid; */
+
+}
+@font-face {
+    font-family: apple black;
+    src: url(AppleSDGothicNeoB.ttf);
+}
+
+.profile {
+    padding: 10px;
+}
+
+.profile-image {
+    float: left;
+    width: calc(33.333% - 1rem);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-right: 3rem;
+}
+.profile-image img {
+    border-radius: 50%;
+    margin-top: 10px;
+    width: 180px;
+    height: 180px;
+}
+h1{
+    font-family: apple Black;
+}
+
+.profile-user-settings,
+.profile-stats,
+.profile-bio {
+    float: left;
+    width: calc(66.666% - 2rem);
+    font-family: apple black;
+}
+
+.profile-user-settings {
+    margin-top: 1.1rem;
+
+}
+
+.profile-user-name {
+    display: inline-block;
+    font-size: 30px;
+    font-family: apple Black;
+
+}
+
+.editbtn {
+    font-family: apple Black;
+    width: 60px;
+    height: 40px;
+    background: #fff;
+    border: 1px solid rgb(77, 77, 77);
+    border-radius: 10px;
+    cursor: pointer;
+    /*margin-top: 10px;*/
+    margin-left: 20px;
+}
+.editbtn:hover{
+    border: 1px solid cornflowerblue;
+}
+.followbtn {
+    font-family: apple Black;
+    width: 60px;
+    height: 40px;
+    background: #fff;
+    border: 1px solid rgb(77, 77, 77);
+    border-radius: 10px;
+    cursor: pointer;
+    /*margin-bottom: 20px;*/
+    margin-left: 30px;
+}
+.followbtn:hover{
+    border: 1px solid cornflowerblue;
+}
+
+#upbutton{
+
+    background-color: red;
+}
+
+.profile-settings-btn {
+    font-size: 2rem;
+    margin-left: 1rem;
+
+}
+
+.profile-stats {
+    margin-top: 2.3rem;
+}
+
+
+.stat {
+    display: inline;
+    padding-left: 10px;
+    font-size: 20px;
+    font-family: apple Black;
+}
+
+.profile-bio {
+    margin-top: 50px;
+    font-family: apple Black;
+
+}
+
+
+#profilemain {
+    display: block;
+    width: 1160px;
+    height: 470px;
+    position: absolute;
+    left: 6%;
+    bottom: 0.7%;
+    margin-top: 50px;
+    background-color: rgb(255, 255, 255, 0.4);
+    border-radius: 30px;
+    /* border: 1px solid; */
+    display: flex;
+    flex-direction: row;
+    font-family: apple Black;
+}
+
+.box {
+
+    height: 350px;
+    width: 350px;
+    /* background-color: blueviolet; */
+    /* border: 1px solid; */
+    /* border-radius: 30px; */
+    margin-left: 25px;
+    margin-top: 5px;
+
+}
+
+#over {
+    overflow: auto;
+    margin-top: 10px;
+}
+
+.inpic {
+    
+    width: 320px;
+    border-radius: 30px;
+    margin-top: auto;
+    margin-left: auto;
+
+    align-items: center;
+}
+
+/* 게시물 스크롤바 설정 시작 */
+#over::-webkit-scrollbar {
+    width: 10px;
+}
+
+#over::-webkit-scrollbar-thumb {
+    background-color: rgba(166, 189, 221, 0.67);
+    border-radius: 10px;
+}
+#menubar{
+    display: block;
+    font-family: apple Black;
+    height: 50px;
+    position: absolute;
+    left: 45%;
+    top: 40%;
+    font-size: 20px;
+    border: 1px solid;
+}
+.menu{
+    left: 5%;
+    font-family: apple Black;
+    margin-left: 10px;
+}
+#mainuser{
+    font-family: apple Black;
+    font-size: 20px;
+}

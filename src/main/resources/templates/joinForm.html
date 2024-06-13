@@ -10,7 +10,9 @@
         integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ=="
         crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 <link rel="stylesheet" href="/css/snsjoin.css">
+<style>
 
+</style>
 <body>
 <form action="joinsave" method="post" >
     <div id="Joinbox">
@@ -120,8 +122,11 @@
             url: "/idchk",//컨트롤러에서 요청받을 주소
             type: "post",//post 방식으로 전달
             data: {"originid": sendid},
+            dataType: "text",
             success: function (cnt){// 컨트롤러에서 넘어온 cnt 값 받는다
-                if(cnt == 0){// cnt 가 0 이면 DB에 없음 -> 사용 가능 아이디
+                console.log(typeof cnt);
+                if(cnt == '0'){// cnt 가 0 이면 DB에 없음 -> 사용 가능 아이디
+
                     iderrmsg.style.color = "green";
                     iderrmsg.textContent = "사용 가능한 아이디 입니다";
                     return true;
