@@ -32,7 +32,6 @@ public class FileDataUtil {
 	//@Resource(name = "uploadPath") // 이름으로 주입받기, 그럼 이거 객체가 있어야 한다...
 	private String uploadPath = "/postImg"; // 디렉토리 정보. 정보의 값을 주입받도록 코딩.
 	// 컨테이너로부터 주입받는 코드 @Resource
-
 	public String getUploadPath() {
 		return uploadPath;
 	}

@@ -17,6 +17,19 @@
     <update id="proupdate" parameterType="com.smartwave.tripsns.vo.UserVO">
         update user set name=#{name},pw=#{pw},email=#{email} where id = #{id}
     </update>
+    <!--프로필 기본정보 회원가입시 한줄소개멘트랑 기본사진 보내서 db 저장하도록함-->
+    <insert id="userprofile"  parameterType="com.smartwave.tripsns.vo.UserVO">
+        insert into profile values (#{id},"한줄소개를 입력해주세요","userPic.jpg")
+    </insert>
+    <!--한줄소개멘트랑 기본사진 db 로부터 get-->
+    <select id="getprofile" parameterType="String" resultType="com.smartwave.tripsns.vo.ProfileVO">
+        select * from profile where id = #{u_id}
+    </select>
+
+    <update id="introupdate" parameterType="com.smartwave.tripsns.vo.ProfileVO">
+        update profile set u_intro =#{u_intro},u_pic=#{filename} where id = #{u_id}
+    </update>
+
 
 
 </mapper>

@@ -1,5 +1,6 @@
 package com.smartwave.tripsns.service;
 
+import com.smartwave.tripsns.vo.ProfileVO;
 import com.smartwave.tripsns.vo.UserVO;
 
 public interface IF_UserService {
@@ -10,4 +11,10 @@ public interface IF_UserService {
     public UserVO login(String id) throws Exception;
     // 프로필 개인정보 수정
     public void userupdate(UserVO uservo) throws Exception;
+
+    public void userprofile(UserVO uservo) throws Exception;// 프로필 기본정보(한줄소개, 기본 프로필 사진)
+    //프로필 기본정보 get
+    public ProfileVO getProfile(String u_id) throws Exception;
+    // 프로필  수정
+    public void profileupdate(ProfileVO pvo) throws Exception ;
 }
