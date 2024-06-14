@@ -3,6 +3,8 @@ package com.smartwave.tripsns.dao;
 import com.smartwave.tripsns.vo.PostCommentVO;
 import com.smartwave.tripsns.vo.PostLikeVO;
 import com.smartwave.tripsns.vo.PostVO;
+import com.smartwave.tripsns.vo.ShortVO;
+import com.smartwave.tripsns.vo.VideoVO;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -100,6 +102,25 @@ public class SNSDAOImpl implements IF_SNSDAO {
     @Override
     public int postLikeCount(PostVO pvo) throws Exception {
         return sqlSession.selectOne(mapperQuery + ".postLikeCount", pvo);
+
+    @Override
+    public void videoInsert(VideoVO vvo) throws Exception {//쇼츠 동영상 저장
+        sqlSession.insert(mapperQuery + ".videoInsert", vvo);
+    }
+
+    @Override
+    public int videoSelect() throws Exception {
+        return sqlSession.selectOne(mapperQuery+".videoSelect");
+    }
+
+    @Override
+    public List<PostVO> postSelectPost() throws Exception {
+        return sqlSession.selectList(mapperQuery + ".postSelectPost");
+    }
+
+    @Override
+    public void InsertShort(ShortVO svo) throws Exception {
+        sqlSession.insert(mapperQuery+".insertShort",svo);
     }
 
 }

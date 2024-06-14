@@ -90,4 +90,14 @@
         from postLike
         where pl_no = #{p_no}
     </select>
+    <insert id="videoInsert" parameterType="com.smartwave.tripsns.vo.VideoVO"> <!-- 쇼츠 동영상 저장 -->
+        insert into short_video values ((nextval(video_seq)),#{videoAddr},#{thumbnail})
+    </insert>
+    <select id="videoSelect" resultType="int"><!--저장한 동영상 번호 가져오기-->
+        select max(s_vno)
+        from short_video
+    </select>
+    <insert id="insertShort" parameterType="com.smartwave.tripsns.vo.ShortVO">
+        insert into short_form values ((nextval(short_seq)),#{videoNo},#{id},default,#{description},#{place})
+    </insert>
 </mapper>

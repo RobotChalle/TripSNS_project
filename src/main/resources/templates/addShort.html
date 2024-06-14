@@ -5,10 +5,10 @@
     <title>쇼츠 등록</title>
 </head>
 <style>
-    .short{
+    .short {
         border-radius: 25px;
-        padding : 2.5em;
-        box-shadow: 0 20px 70px -25px rgba(0,0,0,2);
+        padding: 2.5em;
+        box-shadow: 0 20px 70px -25px rgba(0, 0, 0, 2);
         display: flex;
         align-items: center;
         height: 700px;
@@ -16,31 +16,112 @@
         margin-right: 50px;
         background-color: antiquewhite;
     }
-    video{
+
+    video {
         flex: auto;
         width: 100%;
         height: 100%;
     }
-    .vid{
+
+    .vid {
         display: flex;
         width: 50%;
         height: 100%;
     }
-    .InsertDetails{
+
+    .InsertDetails {
         display: flex;
         width: 50%;
         height: 100%;
         background-color: white;
     }
+
+    table {
+        margin: auto;
+        width: 290%;
+        height: 100%;
+    }
+
+    input[type="text"] {
+        border: 1px rgb(26, 111, 255) solid;
+        width: 90%;
+        height: 50px;
+        border-radius: 5px;
+        padding-left: 10px;
+    }
+
+    textarea {
+        border: 1px rgb(26, 111, 255) solid;
+        width: 90%;
+        height: 200px;
+        border-radius: 5px;
+        padding-left: 10px;
+        padding-top: 10px;
+        resize: none;
+    }
+
+    .header {
+        height: 30px;
+    }
+
+    input[type="submit"] {
+        width: 100px;
+        height: 40px;
+        font-size: 15px;
+        border: 0;
+        outline: 1.5px rgb(68, 136, 244) solid;
+        border-radius: 5px;
+        padding-left: 10px;
+        background-color: rgb(164, 199, 255);
+    }
+
+    input[type="submit"]:active {
+        width: 100px;
+        height: 40px;
+        font-size: 15px;
+        border: 0;
+        border-radius: 5px;
+        outline: 1.5px rgb(27, 76, 155) solid;
+        padding-left: 10px;
+        background-color: rgb(68, 136, 244);
+    }
 </style>
 <body>
 <div class="d-flex justify-content-center short">
-    <div class="vid" >
-        <video width="720" height="1280" loop controls autoplay muted oncontextmenu="return false;">
-            <source src="/video/Taylor%20Swift%20-%20The%20Eras%20Tour.mp4" type="video/mp4">
+    <div class="vid">
+        <video autoplay controls height="1280" loop muted oncontextmenu="return false;" width="720">
+            <source th:src="@{/download(filename=${video})}" type="video/mp4">
         </video>
     </div>
     <div class="InsertDetails">
+        <form action="insertShort" method="post">
+            <table>
+                <tr>
+                    <td><h3>글작성</h3></td>
+                </tr>
+                <tr>
+                    <td><input type="hidden" name="videoNo" th:value="${videoNo}"></td>
+                </tr>
+                <tr>
+                    <td><input type="hidden" name ="id" th:value="${session.userid}"></td>
+                </tr>
+                <tr>
+                    <td class="header">여행지 이름</td>
+                </tr>
+                <tr>
+                    <td><input name="place" placeholder="여행지를 입력하세요" type="text"></td>
+                </tr>
+                <tr>
+                    <td class="header">내용</td>
+                </tr>
+                <tr>
+                    <td><textarea name="description" placeholder="내용을 입력하세요"></textarea></td>
+                </tr>
+                <tr>
+                    <td><input onclick="alert(쇼츠 등록 완료)" type="submit" value="등록"></td>
+                </tr>
+            </table>
+        </form>
     </div>
 </div>
 </body>

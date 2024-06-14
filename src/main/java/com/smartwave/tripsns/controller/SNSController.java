@@ -4,12 +4,20 @@ import com.smartwave.tripsns.service.IF_SNSService;
 import com.smartwave.tripsns.util.FileDataUtil;
 import com.smartwave.tripsns.vo.PostCommentVO;
 import com.smartwave.tripsns.vo.PostVO;
+import com.smartwave.tripsns.vo.ShortVO;
+import com.smartwave.tripsns.vo.VideoVO;
+import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.File;
+import java.io.IOException;
+import java.util.HashMap;
 import java.util.List;
 
 @Controller
@@ -21,7 +29,7 @@ public class SNSController {
     @Autowired
     FileDataUtil fileDataUtil;
 
-    @GetMapping("/main") //메인화면 불러오기
+    @GetMapping("/main")//메인화면 불러오기
     public String main(Model model) throws Exception {
         List<PostVO> allList = sService.postSelectPost();
         model.addAttribute("allListPost", allList);
@@ -58,16 +66,28 @@ public class SNSController {
         sService.CommentSave(pcvo);
         return "redirect:detail?p_no=" + pvo.getP_no() + "&p_id=" + pvo.getP_id();
     }
-
-    @GetMapping(value = {"/shorts", "/"})
-    public String shorts() {
-        return "shorts";
+    @GetMapping(value = {"/shorts"})
+    public String shorts() {return "shorts";}
+    @GetMapping(value="/short")
+    public String shortOne() {return "short";}
+    @GetMapping(value="/addShortVideo")
+    public String addShortVideo() {return "addShortVideo";}
+    @PostMapping(value="/addShort")
+    public String addShort(Model model,@ModelAttribute VideoVO vvo, MultipartFile[] file) throws Exception {
+        String[] filename = fileDataUtil.fileUpload(file);
+        vvo.setVideoAddr(filename[0]);
+        vvo.setThumbnail(filename[1]);
+        sService.videoInsert(vvo);
+        model.addAttribute("video",filename[0]);
+        model.addAttribute("videoNo",sService.videoSelect());
+        return "addShort";
+    }
+    @PostMapping(value = "/insertShort")
+    public String insertShort(@ModelAttribute ShortVO svo) throws Exception {
+        sService.InsertShort(svo);
+        return "redirect:short";
     }
 
-    @GetMapping(value = "/short")
-    public String shortOne() {
-        return "short";
-    }
 
     @GetMapping(value = "postModifyForm") //게시글 수정페이지
     public String postModifyForm(Model model, @RequestParam("p_no") String p_no) throws Exception {

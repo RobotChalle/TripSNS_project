@@ -3,6 +3,8 @@ package com.smartwave.tripsns.dao;
 import com.smartwave.tripsns.vo.PostCommentVO;
 import com.smartwave.tripsns.vo.PostLikeVO;
 import com.smartwave.tripsns.vo.PostVO;
+import com.smartwave.tripsns.vo.ShortVO;
+import com.smartwave.tripsns.vo.VideoVO;
 
 import java.util.List;
 
@@ -21,6 +23,10 @@ public interface IF_SNSDAO {
     public void commentSave(PostCommentVO pcvo) throws Exception; //댓글 저장하기
 
     public List<PostCommentVO> commentList(String p_no) throws Exception; //댓글 가져오기
+  
+    public void videoInsert(VideoVO vvo) throws Exception;
+
+    public int videoSelect()throws Exception;
 
     public void postDelete(PostVO pvo) throws Exception; //게시물 삭제
 
@@ -41,5 +47,6 @@ public interface IF_SNSDAO {
     public PostLikeVO postLikeSelect(PostVO pvo) throws Exception; //게시글 좋아요 조회
 
     public int postLikeCount(PostVO pvo) throws Exception; //게시글 좋아요 갯수
-
+  
+    public void InsertShort(ShortVO svo) throws Exception;
 }

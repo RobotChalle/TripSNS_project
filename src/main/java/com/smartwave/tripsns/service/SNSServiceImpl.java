@@ -4,6 +4,8 @@ import com.smartwave.tripsns.dao.IF_SNSDAO;
 import com.smartwave.tripsns.vo.PostCommentVO;
 import com.smartwave.tripsns.vo.PostLikeVO;
 import com.smartwave.tripsns.vo.PostVO;
+import com.smartwave.tripsns.vo.ShortVO;
+import com.smartwave.tripsns.vo.VideoVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -96,6 +98,26 @@ public class SNSServiceImpl implements IF_SNSService {
     @Override
     public int postLikeCOunt(PostVO pvo) throws Exception {
         return sdao.postLikeCount(pvo);
+    }
+
+    @Override
+    public void videoInsert(VideoVO vvo) throws Exception {
+        sdao.videoInsert(vvo);
+    }
+
+    @Override
+    public int videoSelect() throws Exception {
+        return sdao.videoSelect();
+    }
+
+    @Override
+    public List<PostVO> postSelectPost() throws Exception {
+        return sdao.postSelectPost();
+    }
+
+    @Override
+    public void InsertShort(ShortVO svo) throws Exception {
+        sdao.InsertShort(svo);
     }
 
 }

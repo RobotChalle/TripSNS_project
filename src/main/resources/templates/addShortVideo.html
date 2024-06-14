@@ -1,9 +1,12 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="kor">
 <head>
     <meta charset="UTF-8">
     <title>쇼츠 등록</title>
 </head>
+<script crossorigin="anonymous"
+        integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ=="
+        referrerpolicy="no-referrer" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <style>
     .short {
         border-radius: 25px;
@@ -11,10 +14,10 @@
         box-shadow: 0 20px 70px -25px rgba(0, 0, 0, 2);
         display: flex;
         align-items: center;
-        height: 300px;
+        height: 700px;
         width: 50%;
         margin-left: 20%;
-        margin-top: 10%;
+        margin-top: 3%;
         margin-right: 50px;
         background-color: antiquewhite;
     }
@@ -23,28 +26,91 @@
         height: 20px;
         width: 100%;
         justify-content: center;
-        display: block;
-        background-color: green;
+        text-align: center;
+        display: flex;
     }
+
     .shortFile {
         height: 80%;
         width: 100%;
         display: flex;
         justify-content: center;
     }
+
+    .main {
+        width: 100%;
+    }
+
+    img {
+        text-align: center;
+        display: flex;
+        justify-content: center;
+        margin: 1em 0;
+        background: rgb(240, 240, 240);
+        border: 1px solid rgb(0, 0, 0);
+    }
 </style>
 <body>
 <div class="d-flex justify-content-center short">
-    <div>
+    <div class="main">
         <div class="title">
-            <label>새 쇼츠 등록하기</label>
+            <label style="font-size: 20px">쇼츠 등록하기</label>
         </div>
         <hr>
+        <div>
+            <a download="thumbnail.jpg" id="download" target="_blank">
+                <img alt="썸네일" id="preview" src="" width="300">
+            </a>
+        </div>
         <div class="shortFile">
-            <input accept="video/mp4" type="file">
+            <form action="addShort" class="fileInsert" enctype="multipart/form-data" method="post">
+                <input type="file" accept="video/mp4" id="getfile" name="file" >
+                <br>
+                <br>
+                <label class="guideline">위 이미지를 클릭하면 썸네일을 다운받을 수 있습니다.</label>
+                <input type="file" name="file" id="thumbimg">
+                <br>
+                <br>
+                <input type="submit" value="등록하기">
+            </form>
         </div>
     </div>
 </div>
-
 </body>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script>
+    const $file = document.querySelector('#getfile');
+    const $preview = document.querySelector('#preview');
+    const $download = document.querySelector('#download');
+    const $thumbnail = document.querySelector('#thumbimg')
+
+    $file.onchange = function () {
+        $preview.src = '';
+        $download.href = '';
+        $thumbnail.value = '';
+
+        const [file] = $file.files;
+        const url = URL.createObjectURL(file);
+        const video = document.createElement('video');
+        video.muted = true;
+        video.preload = 'auto';
+
+        video.addEventListener('loadeddata', function () {//캔버스로 그려서 썸네일 만들고 url 만드는 부분
+            const canvas = document.createElement('canvas');
+            canvas.width = video.videoWidth;
+            canvas.height = video.videoHeight;
+
+            const ctx = canvas.getContext('2d');
+            ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
+
+            const datauri = canvas.toDataURL();
+            $preview.src = datauri;
+            $download.href = datauri;
+            $thumbnail.value = datauri;
+        });
+        video.src = url;
+        console.log($thumbnail.value)
+    };
+
+</script>
 </html>
