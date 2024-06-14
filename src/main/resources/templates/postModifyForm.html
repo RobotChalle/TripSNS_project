@@ -21,10 +21,23 @@
     }
 
     body {
-        background-image: url("/img/5528913.jpg");
+        background: linear-gradient(300deg, deepskyblue, #b8f4f9, #0060ff);
+        animation: gradient-animation 5s ease infinite;
         background-position: center;
-        background-size: cover;
+        background-size: 180% 180%;
         background-attachment: fixed;
+    }
+
+    @keyframes gradient-animation {
+        0% {
+            background-position: 0% 50%;
+        }
+        50% {
+            background-position: 100% 50%;
+        }
+        100% {
+            background-position: 0% 50%;
+        }
     }
 </style>
 <body>
@@ -94,7 +107,7 @@
     </a>
     <ul>
         <form>
-            <li><input type="search" placeholder="검색" class="search"></li>
+            <li><input type="search" placeholder="검색" class="search" name="searchWord"></li>
             <li><input type="submit" value="검색" class="submit"></li>
         </form>
     </ul>
@@ -104,7 +117,7 @@
     <div class="feedBoard">
         <article class="feed">
             <form action="postModify" method="post">
-                <h1 style="text-align: center;">글작성</h1>
+                <h1 style="text-align: center;">글수정</h1>
                 <div class="option">
                     <label>지역</label>
                     <input type="text" name="p_place" placeholder="시는 빼고 입력바랍니다. ex)수원시 => 수원" required>
@@ -116,6 +129,7 @@
                 </div>
                 <div class="submitBtn">
                     <input type="hidden" th:value="${p_no}" name="p_no">
+                    <input type="hidden" th:value="${session.userid}" name="p_id">
                     <input type="submit" value="작성" id="textSubmit">
                 </div>
             </form>

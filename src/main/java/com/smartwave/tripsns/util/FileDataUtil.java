@@ -24,6 +24,7 @@ public class FileDataUtil {
 			add("gif");
 			add("jpg");
 			add("png");
+			add("mp4");
 		}
 	}; // <-- 현재 코드는 활용하지는 않는다.. 얘는 선언이지 기능이 동작하지는 않는다. 절대 미리 예측 금지..
 
