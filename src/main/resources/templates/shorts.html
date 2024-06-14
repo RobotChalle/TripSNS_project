@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="kor">
+<head>
+    <meta charset="UTF-8">
+    <title>숏폼 리스트</title>
+</head>
+<style>
+    .container {
+        flex: 6.5;
+        width: 60%;
+        float: right;
+        padding-top: 50px;
+        padding-right: 200px;
+        margin-bottom: -50px;
+    }
+
+    .short {
+        float: left;
+        display: flex;
+        width: 30%;
+        margin-left: 10px;
+        margin-top: 10px;
+        background: #fff;
+        border: 1px solid #e8e8e8;
+        border-radius: 10px;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+        transition: all 0.3s cubic-bezier(.25, .8, .25, 1);
+    }
+
+    .short:hover {
+        box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
+    }
+
+    .thumbnail img {
+        width: 100%;
+        object-fit: fill;
+        border-radius: 10px;
+    }
+
+</style>
+<body>
+<!--쇼츠는 최근 게시한 시간의 역순으로 출력되도록 한다.-->
+<div class="container">
+    <h1 class="title-text">Shorts List</h1>
+    <hr class="titleFootLine">
+    <div class="short" th:each="shortList:${allShortList}">
+        <a class="short-Link" th:href="@{/short/view(s_no = ${shortList.s_no},s_id = ${shortList.s_id})}">
+            <section class="thumbnail">
+                <th:block th:if="${shortList.sv_thumbnail!=null}">
+                    <img th:src="@{/download(filename=${shortList.sv_thumbnail})}" alt="썸네일">
+                </th:block>
+            </section>
+        </a>
+    </div>
+</div>
+</body>
+</html>
