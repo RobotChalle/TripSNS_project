@@ -1,8 +1,6 @@
-
-
-body {
-    background-image: url(/img/배경사진.png);
-    background-repeat: no-repeat;
+section{
+    margin-left: 5%;
+    padding-top: 6%;
 }
 
 img {
@@ -15,14 +13,27 @@ img {
 }
 
 #userLpan {
-    background-color: rgba(255, 255, 255, 0.80);
-    margin-top: 15px;
-    margin-left: 15px;
+    background-color: rgba(255, 255, 255, 0.6);
     width: 400px;
-    height: 600px;
+    height: 700px;
     padding-top: 20px;
+}
+
+#chatWithMe {
+    height: 620px;
     overflow: auto;
 }
+
+/* 채팅한 멤버 리스트 스크롤바 설정 시작 */
+#chatWithMe::-webkit-scrollbar {
+    width: 10px;
+}
+
+#chatWithMe::-webkit-scrollbar-thumb {
+    background-color: rgba(166, 189, 221, 0.67);
+    border-radius: 10px;
+}
+/* 채팅한 멤버 리스트 스크롤바 설정 끝 */
 
 .Chattxt {
     padding-left: 25px;
@@ -48,11 +59,17 @@ a {
 
 .chatOne {
     /* 채팅방 하나 */
-    padding-top: 5%;
+    margin-top: 1%;
+}
+
+.chatOne:hover {
+    background-color: rgba(167, 185, 207, 0.9);
 }
 
 .chatchat {
     margin-left: 40px;
+    margin-top: 2%;
+    margin-bottom: 2%;
 }
 
 .divF {
@@ -73,11 +90,10 @@ a {
 }
 
 #chatting {
-    background-color: rgb(255, 255, 255, 0.8);
-    margin-top: 15px;
+    background-color: rgba(255, 255, 255, 0.6);
     margin-left: 20px;
-    width: 610px;
-    height: 600px;
+    width: 730px;
+    height: 720px;
 }
 
 #chatText {
@@ -109,7 +125,7 @@ a {
 #chatWhoHr {
     margin-left: -10px;
     margin-top: 20px;
-    width: 570px;
+    width: 680px;
 }
 
 /*#chatAlllist {*/
@@ -126,12 +142,23 @@ a {
     /*background-color: blue;*/
     padding-left: 10px;
     padding-bottom: 5px;
-    width: 550px;
-    height: 400px;
+    width: 670px;
+    height: 500px;
     display: inline-flex;
     flex-wrap: wrap;
     overflow: auto;
 }
+
+/* 채팅내용 스크롤바 설정 시작 */
+#cchhaatt::-webkit-scrollbar {
+    width: 10px;
+}
+
+#cchhaatt::-webkit-scrollbar-thumb {
+    background-color: rgba(166, 189, 221, 0.67);
+    border-radius: 10px;
+}
+/* 채팅내용 스크롤바 설정 끝 */
 
 .chatU {
     background-color: rgb(166, 189, 221);
@@ -177,26 +204,26 @@ a {
 
 .inputext{
     /*background-color: cornflowerblue;*/
-    width: 550px;
+    width: 560px;
     margin-top: 20px;
     display: inline-flex;
     /*flex-wrap: wrap;*/
 }
 
 #chat{
-    width: 430px;
+    width: 530px;
     height: 60px;
     resize: none;
 }
 
 #chatbtn{
-    margin-left: 20px;
-    margin-top: 3px;
+    margin-left: 30px;
+    margin-top: 1px;
     background-color: rgb(68, 98, 145);
     color: white;
     border: none;
     border-radius: 5px;
-    padding: 15px;
+    padding: 22px;
     min-height: 10px;
     min-width: 90px;
     font-size: 15px;
