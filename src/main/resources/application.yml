@@ -3,8 +3,8 @@ spring:
     multipart:
       enabled: true
       location: d:/postImg
-      max-file-size: 5000KB
-      max-request-size: 5000KB
+      max-file-size:  100MB
+      max-request-size: 100MB
   mail:
     # Google smtp server 사용
     host: smtp.gmail.com
