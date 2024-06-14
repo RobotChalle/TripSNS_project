@@ -2,20 +2,28 @@ package com.smartwave.tripsns.controller;
 
 
 import com.smartwave.tripsns.service.IF_UserService;
+import com.smartwave.tripsns.util.FileDataUtil;
+import com.smartwave.tripsns.vo.ProfileVO;
 import com.smartwave.tripsns.vo.UserVO;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+
+
 
 @Controller
 public class UserController {
 
 
+    @Autowired
+    private FileDataUtil fileDataUtil;
 
-//회원가입
+
+    //회원가입
     @GetMapping(value = "join")
     public String join() {return "joinForm";}
 
@@ -24,8 +32,10 @@ public class UserController {
     @PostMapping(value = "joinsave")//회원정보 입력 버튼
     public String joinsave(@ModelAttribute UserVO uservo) throws Exception {
         userservice.userinsert(uservo);
+        userservice.userprofile(uservo);//프로필 기본정보
         return "redirect:login";
     }
+
     @ResponseBody
     @PostMapping(value = "idchk")//중복체크 버튼
     public int idchk(@RequestParam("originid") String id) throws Exception {
@@ -82,36 +92,53 @@ public class UserController {
         }
         return "redirect:main";
     }
-//    @GetMapping(value = "test")
-//    public String test(HttpSession session , Model model) throws Exception {
-//        return "test";
-//    }
+
 
     @GetMapping(value = "logout")//로그아웃
     public String logout(HttpSession session) {
         session.invalidate();
         return "redirect:/login";
     }
-
+    // 프로필 기본정보 html 보내기 (한줄소개 코멘트, 프로필 기본사진)
     @GetMapping(value = "profile")
-    public String profile() {
+    public String profile(@RequestParam("u_id") String u_id,Model model) throws Exception {
+       ProfileVO prodetail = userservice.getProfile(u_id);
+        model.addAttribute("profiledetail", prodetail);
         return "profile";
     }
 
 
-    /// 프로필 수정
+    /// 프로필 수정 세션값 넘기기
     @GetMapping(value = "proupdate")
-    public String proupdate(Model model, @RequestParam("id") String id) {
-        model.addAttribute("id", id);
+    public String proupdate(Model model, @RequestParam("u_id") String u_id) throws Exception{
+        ProfileVO prodetail = userservice.getProfile(u_id);
+        model.addAttribute("profiledetail", prodetail);
+
+        model.addAttribute("id", u_id);
         return "profileMod";
     }
 
-
+    // 개인정보 수정
     @PostMapping(value = "userupdate")
     public String userupdate(@ModelAttribute UserVO uvo) throws Exception{
         userservice.userupdate(uvo);
-        return "redirect:main"; // 프로필 화면 넣기 redirect 식별자
+        return "redirect:profile?u_id="+uvo.getId(); // 프로필 화면 넣기 redirect 식별자
     }
+    // 프로필 수정
+    @PostMapping(value = "profileupdate")
+    public String profileupdate(@ModelAttribute ProfileVO pvo, MultipartFile[] pfile) throws Exception{
+        System.out.println(pfile+"asdf");
+        System.out.println(pvo.getU_id()+"소개:"+pvo.getU_intro());//여기까지 아이디랑 변경내용 받음
+       String[] filename =fileDataUtil.fileUpload(pfile);
+        System.out.println(filename[0]);
+        pvo.setFilename(filename[0]);
+        userservice.profileupdate(pvo);
+        return "redirect:profile?u_id="+pvo.getU_id(); // 프로필 화면 넣기 redirect 식별자
+    }
+
+
+
+
 
 
 
