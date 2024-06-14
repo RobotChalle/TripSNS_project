@@ -51,4 +51,7 @@ public interface IF_SNSDAO {
     public void InsertShort(ShortVO svo) throws Exception;
 
     public List<ShortVO>  allShortList() throws Exception;
+
+    public ShortVO shortDetails(int s_no) throws Exception;
+
 }

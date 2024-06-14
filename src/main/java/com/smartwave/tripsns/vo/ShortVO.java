@@ -12,5 +12,6 @@ public class ShortVO {
     private String sv_thumbnail;
     private String s_place;
     private String s_description;
+    private String s_date;
 
 }
