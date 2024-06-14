@@ -14,8 +14,10 @@
     </select>
     <select id="postSelectOne" resultType="com.smartwave.tripsns.vo.PostVO"><!-- 게시글 하나 불러오기 -->
         select *
-        from post
-        where p_no = #{p_no}
+        from post p
+                 inner join postpic pp on p.p_no = pp.pp_no
+                 left join postLike pl on p.p_no = pl.pl_no
+        where p.p_no = #{p_no};
     </select>
     <select id="getFile" resultType="String"><!--사진파일 불러오기 -->
         select pp_pic
@@ -30,26 +32,6 @@
         select *
         from postComment
         where pc_no = #{p_no}
-    </select>
-    <insert id="postLike" parameterType="com.smartwave.tripsns.vo.PostVO"><!--좋아요 정보 저장-->
-        insert into postLike
-        values (#{p_no}, #{p_id})
-    </insert>
-    <delete id="postLikeDel" parameterType="com.smartwave.tripsns.vo.PostVO"><!--좋아요 삭제-->
-        delete
-        from postLike
-        where pl_id = #{p_id}
-    </delete>
-    <select id="postLikeCnt" resultType="int"><!--게시글 좋아요 갯수-->
-        select count(*)
-        from postLike
-        where pl_no = #{p_no}
-    </select>
-    <select id="postLikeChk" resultType="int"><!--좋아요 체크-->
-        select count(*)
-        from postLike
-        where pl_id = #{p_id}
-          and pl_no = #{p_no}
     </select>
     <delete id="postDelete" parameterType="com.smartwave.tripsns.vo.PostVO"><!--게시글 삭제-->
         delete
@@ -67,20 +49,46 @@
         from postComment
         where pc_text = #{pc_text}
     </delete>
-    <select id="postSelectNo" resultType="String">
-        select p_no
-        from post;
-    </select>
-    <select id="postCommentCnt" resultType="int">
+    <select id="postCommentCnt" resultType="int"><!--댓글 수 조회-->
         select count(*)
         from postComment
         where pc_no = #{p_no}
     </select>
-    <select id="postSelectPost" resultType="com.smartwave.tripsns.vo.PostVO">
+    <select id="postSelectPost" resultType="com.smartwave.tripsns.vo.PostVO"><!--게시글 사진 이너조인-->
         select *
         from post p
                  inner join postpic pp on p.p_no = pp.pp_no
-        order by p_indate desc;
+                 left join postLike pl on p.p_no = pl.pl_no
+        order by p.p_indate desc;
+    </select>
+    <select id="postSearch" resultType="com.smartwave.tripsns.vo.PostVO"><!--게시글 아이디로 검색-->
+        select *
+        from post
+        where p_id like concat('%', '${searchWord}', '%')
+           or p_place like concat('%', '${searchWord}', '%')
+           or p_text like concat('%', '${searchWord}', '%')
+        order by p_indate desc
+    </select>
+    <insert id="postLike" parameterType="com.smartwave.tripsns.vo.PostVO"><!--게시글 좋아요-->
+        insert into postLike
+        values (#{p_no}, #{p_id})
+    </insert>
+    <delete id="postLikeDelete" parameterType="com.smartwave.tripsns.vo.PostVO"><!--게시글 좋아요 취소-->
+        delete
+        from postLike
+        where pl_id = #{p_id}
+          and pl_no = #{p_no}
+    </delete>
+    <select id="postLikeSelect" resultType="com.smartwave.tripsns.vo.PostLikeVO"><!--게시글 좋아요 조회-->
+        select *
+        from postLike
+        where pl_id = #{p_id}
+          and pl_no = #{p_no}
+    </select>
+    <select id="postLikeCount" resultType="int">
+        select count(*)
+        from postLike
+        where pl_no = #{p_no}
     </select>
     <insert id="videoInsert" parameterType="com.smartwave.tripsns.vo.VideoVO"> <!-- 쇼츠 동영상 저장 -->
         insert into short_video values ((nextval(video_seq)),#{videoAddr},#{thumbnail})
