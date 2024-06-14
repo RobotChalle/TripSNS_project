@@ -124,4 +124,9 @@ public class SNSDAOImpl implements IF_SNSDAO {
         return sqlSession.selectList(mapperQuery+".allShortList");
     }
 
+    @Override
+    public ShortVO shortDetails(int s_no) throws Exception {
+        return sqlSession.selectOne(mapperQuery+".shortDetails",s_no);
+    }
+
 }
