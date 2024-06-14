@@ -100,22 +100,25 @@
                     <td><h3>글작성</h3></td>
                 </tr>
                 <tr>
-                    <td><input type="hidden" name="videoNo" th:value="${videoNo}"></td>
+                    <td><input type="hidden" name="sv_no" th:value="${videoNo}"></td>
                 </tr>
                 <tr>
-                    <td><input type="hidden" name ="id" th:value="${session.userid}"></td>
+                    <td><input type="hidden" name="sv_thumbnail" th:value="${thumbnail}"></td>
+                </tr>
+                <tr>
+                    <td><input type="hidden" name ="s_id" th:value="${session.userid}"></td>
                 </tr>
                 <tr>
                     <td class="header">여행지 이름</td>
                 </tr>
                 <tr>
-                    <td><input name="place" placeholder="여행지를 입력하세요" type="text"></td>
+                    <td><input name="s_place" placeholder="여행지를 입력하세요" type="text"></td>
                 </tr>
                 <tr>
                     <td class="header">내용</td>
                 </tr>
                 <tr>
-                    <td><textarea name="description" placeholder="내용을 입력하세요"></textarea></td>
+                    <td><textarea name="s_description" placeholder="내용을 입력하세요"></textarea></td>
                 </tr>
                 <tr>
                     <td><input onclick="alert(쇼츠 등록 완료)" type="submit" value="등록"></td>

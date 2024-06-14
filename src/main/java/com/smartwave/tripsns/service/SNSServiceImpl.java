@@ -71,10 +71,6 @@ public class SNSServiceImpl implements IF_SNSService {
         return sdao.postCommentCnt(p_no);
     }
 
-    @Override
-    public List<PostVO> postSelectPost() throws Exception {
-        return sdao.postSelectPost();
-    }
 
     @Override
     public List<PostVO> postSearch(String searchWord) throws Exception {
@@ -119,5 +115,11 @@ public class SNSServiceImpl implements IF_SNSService {
     public void InsertShort(ShortVO svo) throws Exception {
         sdao.InsertShort(svo);
     }
+
+    @Override
+    public List<ShortVO> allShortList() throws Exception {
+        return sdao.allShortList();
+    }
+
 
 }

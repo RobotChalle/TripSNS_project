@@ -67,25 +67,36 @@ public class SNSController {
         return "redirect:detail?p_no=" + pvo.getP_no() + "&p_id=" + pvo.getP_id();
     }
     @GetMapping(value = {"/shorts"})
-    public String shorts() {return "shorts";}
-    @GetMapping(value="/short")
-    public String shortOne() {return "short";}
+    public String shorts(Model model) throws Exception {
+        List<ShortVO> shortList = sService.allShortList();
+        model.addAttribute("allShortList", shortList);
+        return "shorts";
+    }
+    @GetMapping(value="/short/view")
+    public String shortOne(Model model,@RequestParam("s_no") int s_no,@RequestParam("s_id") String s_id)throws Exception {
+        model.addAttribute("s_no", s_no);
+        model.addAttribute("s_id", s_id);
+        return "short";
+    }
+
     @GetMapping(value="/addShortVideo")
     public String addShortVideo() {return "addShortVideo";}
+
     @PostMapping(value="/addShort")
     public String addShort(Model model,@ModelAttribute VideoVO vvo, MultipartFile[] file) throws Exception {
         String[] filename = fileDataUtil.fileUpload(file);
-        vvo.setVideoAddr(filename[0]);
-        vvo.setThumbnail(filename[1]);
+        vvo.setSv_addr(filename[0]);
+        vvo.setSv_thumbnail(filename[1]);
         sService.videoInsert(vvo);
         model.addAttribute("video",filename[0]);
+        model.addAttribute("thumbnail",filename[1]);
         model.addAttribute("videoNo",sService.videoSelect());
         return "addShort";
     }
     @PostMapping(value = "/insertShort")
     public String insertShort(@ModelAttribute ShortVO svo) throws Exception {
         sService.InsertShort(svo);
-        return "redirect:short";
+        return "redirect:shorts";
     }
 
 

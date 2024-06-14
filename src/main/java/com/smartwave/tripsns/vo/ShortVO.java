@@ -1,40 +1,16 @@
 package com.smartwave.tripsns.vo;
 
+import lombok.Getter;
+import lombok.Setter;
+
+@Setter
+@Getter
 public class ShortVO {
-    private String id;
-    private int videoNo;
-    private String place;
-    private String description;
+    private int s_no;
+    private String s_id;
+    private int sv_no;
+    private String sv_thumbnail;
+    private String s_place;
+    private String s_description;
 
-    public int getVideoNo() {
-        return videoNo;
-    }
-
-    public void setVideoNo(int videoNo) {
-        this.videoNo = videoNo;
-    }
-
-    public String getId() {
-        return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
-    }
-
-    public String getPlace() {
-        return place;
-    }
-
-    public void setPlace(String place) {
-        this.place = place;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
 }

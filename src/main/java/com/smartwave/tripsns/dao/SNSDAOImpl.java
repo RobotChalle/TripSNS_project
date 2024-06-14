@@ -102,6 +102,7 @@ public class SNSDAOImpl implements IF_SNSDAO {
     @Override
     public int postLikeCount(PostVO pvo) throws Exception {
         return sqlSession.selectOne(mapperQuery + ".postLikeCount", pvo);
+    }
 
     @Override
     public void videoInsert(VideoVO vvo) throws Exception {//쇼츠 동영상 저장
@@ -114,13 +115,13 @@ public class SNSDAOImpl implements IF_SNSDAO {
     }
 
     @Override
-    public List<PostVO> postSelectPost() throws Exception {
-        return sqlSession.selectList(mapperQuery + ".postSelectPost");
+    public void InsertShort(ShortVO svo) throws Exception {
+        sqlSession.insert(mapperQuery+".insertShort",svo);
     }
 
     @Override
-    public void InsertShort(ShortVO svo) throws Exception {
-        sqlSession.insert(mapperQuery+".insertShort",svo);
+    public List<ShortVO> allShortList() throws Exception {
+        return sqlSession.selectList(mapperQuery+".allShortList");
     }
 
 }

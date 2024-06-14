@@ -103,10 +103,10 @@
             const ctx = canvas.getContext('2d');
             ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
 
-            const datauri = canvas.toDataURL();
-            $preview.src = datauri;
-            $download.href = datauri;
-            $thumbnail.value = datauri;
+            const thumbnailURI = canvas.toDataURL();
+            $preview.src = thumbnailURI;
+            $download.href = thumbnailURI;
+            $thumbnail.value = thumbnailURI;
         });
         video.src = url;
         console.log($thumbnail.value)
