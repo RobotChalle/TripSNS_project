@@ -1,11 +1,9 @@
 package com.smartwave.tripsns.controller;
 
 import com.smartwave.tripsns.service.IF_SNSService;
+import com.smartwave.tripsns.service.IF_UserService;
 import com.smartwave.tripsns.util.FileDataUtil;
-import com.smartwave.tripsns.vo.PostCommentVO;
-import com.smartwave.tripsns.vo.PostVO;
-import com.smartwave.tripsns.vo.ShortVO;
-import com.smartwave.tripsns.vo.VideoVO;
+import com.smartwave.tripsns.vo.*;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -22,7 +20,8 @@ import java.util.List;
 
 @Controller
 public class SNSController {
-
+    @Autowired
+    IF_UserService userservice;
     @Autowired
     IF_SNSService sService;
 
@@ -30,9 +29,14 @@ public class SNSController {
     FileDataUtil fileDataUtil;
 
     @GetMapping("/main")//메인화면 불러오기
-    public String main(Model model) throws Exception {
+    public String main(Model model,
+                       @SessionAttribute("userid") String u_id) throws Exception {
+
         List<PostVO> allList = sService.postSelectPost();
         model.addAttribute("allListPost", allList);
+        //프로필 사진 불러오기
+        ProfileVO prodetail = userservice.getProfile(u_id);
+        model.addAttribute("profiledetail", prodetail);
         return "main";
     }
 
@@ -66,33 +70,38 @@ public class SNSController {
         sService.CommentSave(pcvo);
         return "redirect:detail?p_no=" + pvo.getP_no() + "&p_id=" + pvo.getP_id();
     }
+
     @GetMapping(value = {"/shorts"})
     public String shorts(Model model) throws Exception {
         List<ShortVO> shortList = sService.allShortList();
         model.addAttribute("allShortList", shortList);
         return "shorts";
     }
-    @GetMapping(value="/short/view")
-    public String shortOne(Model model,@RequestParam("s_no") int s_no,@RequestParam("s_id") String s_id)throws Exception {
+
+    @GetMapping(value = "/short/view")
+    public String shortOne(Model model, @RequestParam("s_no") int s_no, @RequestParam("s_id") String s_id) throws Exception {
         model.addAttribute("s_no", s_no);
         model.addAttribute("s_id", s_id);
         return "short";
     }
 
-    @GetMapping(value="/addShortVideo")
-    public String addShortVideo() {return "addShortVideo";}
+    @GetMapping(value = "/addShortVideo")
+    public String addShortVideo() {
+        return "addShortVideo";
+    }
 
-    @PostMapping(value="/addShort")
-    public String addShort(Model model,@ModelAttribute VideoVO vvo, MultipartFile[] file) throws Exception {
+    @PostMapping(value = "/addShort")
+    public String addShort(Model model, @ModelAttribute VideoVO vvo, MultipartFile[] file) throws Exception {
         String[] filename = fileDataUtil.fileUpload(file);
         vvo.setSv_addr(filename[0]);
         vvo.setSv_thumbnail(filename[1]);
         sService.videoInsert(vvo);
-        model.addAttribute("video",filename[0]);
-        model.addAttribute("thumbnail",filename[1]);
-        model.addAttribute("videoNo",sService.videoSelect());
+        model.addAttribute("video", filename[0]);
+        model.addAttribute("thumbnail", filename[1]);
+        model.addAttribute("videoNo", sService.videoSelect());
         return "addShort";
     }
+
     @PostMapping(value = "/insertShort")
     public String insertShort(@ModelAttribute ShortVO svo) throws Exception {
         sService.InsertShort(svo);

@@ -112,6 +112,9 @@
             <div class="newPost">
                 <div class="postImage">
                     <img alt="profile image" class="roundImg" src="/images/img4.png">
+                    <th:block th:if="${session.userid==postList.p_id}">
+                        <img th:src="@{/download(filename=${profiledetail.u_pic})}" class="roundImg">
+                    </th:block>
                 </div>
                 <a href="#" class="postId" th:text="${postList.p_id}">p_id</a>
                 <a href="#" class="place" th:text="${postList.p_place}">p_place</a>
@@ -121,7 +124,7 @@
                     <img th:src="@{/download(filename=${postList.pp_pic})}">
                 </th:block>
                 <div class="interactions">
-                    <input type="hidden" id="p_id" th:value="${session.userid}">
+                    <input type="hidden" id="p_id" th:value="${session.userid}" th:href="@{/profile}">
                     <input type="hidden" id="p_no" th:value="${postList.p_no}">
                     <a onclick="like()" class="like">
                         <div id="thumbsUp">
@@ -157,15 +160,17 @@
         </svg>
     </a>
 </div>
-<div class="mypic">
+<div class="mypic" style="z-index: 3">
     <div class="dropdown-content">
         <th:block th:if="${session.userid!=null}">
-            <a th:href="@{/profile(u_id=${session.userid})}">프로필(<span th:text="${session.userid}"></span>)</a>
+            <a th:href="@{/profile}">프로필(<span th:text="${session.userid}"></span>)</a>
         </th:block>
         <a href="logout">로그아웃</a>
     </div>
     <a href="#">
-        <img src="/images/메인_2.jpg" alt="myPic">
+        <th:block th:if="${profiledetail.u_pic!=null}">
+            <img th:src="@{/download(filename=${profiledetail.u_pic})}">
+        </th:block>
     </a>
 </div>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>

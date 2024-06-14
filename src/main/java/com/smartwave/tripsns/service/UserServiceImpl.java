@@ -48,4 +48,14 @@ public class UserServiceImpl implements IF_UserService {
     public void profileupdate(ProfileVO pvo) throws Exception {
         sdao.profileupdate(pvo);
     }
+
+    @Override
+    public void introupdate(ProfileVO pvo) throws Exception {
+        sdao.introupdate(pvo);
+    }
+
+    @Override
+    public String getpw(String u_id) throws Exception {
+        return sdao.getpw(u_id);
+    }
 }

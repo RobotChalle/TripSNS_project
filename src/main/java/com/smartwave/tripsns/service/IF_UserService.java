@@ -17,4 +17,8 @@ public interface IF_UserService {
     public ProfileVO getProfile(String u_id) throws Exception;
     // 프로필  수정
     public void profileupdate(ProfileVO pvo) throws Exception ;
+    //프로필 한줄소개만 업데이트
+    public void introupdate(ProfileVO pvo) throws Exception;
+    //회원탈퇴시 비번 대조하기위한 메서드
+    public String getpw(String u_id) throws Exception;
 }

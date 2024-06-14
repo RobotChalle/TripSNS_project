@@ -17,6 +17,8 @@ public interface IF_UserDAO {
     public ProfileVO getProfile(String u_id) throws Exception;
     //프로필 업데이트
    public void profileupdate(ProfileVO pvo) throws Exception;
-
-
+    //프로필 한줄소개만 업데이트
+    public void introupdate(ProfileVO pvo) throws Exception;
+    //회원탈퇴시 필요한 pw 가져오기
+    public String getpw(String u_id) throws Exception;
 }

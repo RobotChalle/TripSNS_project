@@ -73,11 +73,8 @@ public class UserController {
                 // 서버에서는 쿠키값을 참고하여 세선에 등록된 변수값을 가져오도록 설정
                 if (session.getAttribute("userid") != null){// userid값이 존재한다면 -> 쓰레기값이 있다면
                     session.removeAttribute("userid");
-                    session.removeAttribute("userpw");
-
                 }
                 session.setAttribute("userid", uvo.getId());
-                session.setAttribute("userpw", uvo.getPw());
             }else {
                 //비밀번호 틀릴경우
 //                System.out.println("비밀번호가 일치x");
@@ -99,10 +96,22 @@ public class UserController {
         session.invalidate();
         return "redirect:/login";
     }
+
+    //회원 탈퇴 페이지
+    @GetMapping(value = "withdrawform")
+    public String withdrawform(@SessionAttribute("userid") String u_id,Model model) throws Exception{
+        String orginpw = userservice.getpw(u_id);
+        model.addAttribute("orginpw", orginpw);
+        return "withdraw";
+    }
+
     // 프로필 기본정보 html 보내기 (한줄소개 코멘트, 프로필 기본사진)
     @GetMapping(value = "profile")
-    public String profile(@RequestParam("u_id") String u_id,Model model) throws Exception {
-       ProfileVO prodetail = userservice.getProfile(u_id);
+    public String profile(@SessionAttribute("userid") String u_id,Model model) throws Exception {
+
+       String mainsuser = u_id;
+        model.addAttribute("mainsuser", mainsuser);
+        ProfileVO prodetail = userservice.getProfile(u_id);
         model.addAttribute("profiledetail", prodetail);
         return "profile";
     }
@@ -110,7 +119,7 @@ public class UserController {
 
     /// 프로필 수정 세션값 넘기기
     @GetMapping(value = "proupdate")
-    public String proupdate(Model model, @RequestParam("u_id") String u_id) throws Exception{
+    public String proupdate(Model model, @SessionAttribute("userid") String u_id) throws Exception{
         ProfileVO prodetail = userservice.getProfile(u_id);
         model.addAttribute("profiledetail", prodetail);
 
@@ -122,18 +131,28 @@ public class UserController {
     @PostMapping(value = "userupdate")
     public String userupdate(@ModelAttribute UserVO uvo) throws Exception{
         userservice.userupdate(uvo);
-        return "redirect:profile?u_id="+uvo.getId(); // 프로필 화면 넣기 redirect 식별자
+        return "redirect:profile"; // 프로필 화면 넣기 redirect 식별자
     }
     // 프로필 수정
     @PostMapping(value = "profileupdate")
-    public String profileupdate(@ModelAttribute ProfileVO pvo, MultipartFile[] pfile) throws Exception{
-        System.out.println(pfile+"asdf");
-        System.out.println(pvo.getU_id()+"소개:"+pvo.getU_intro());//여기까지 아이디랑 변경내용 받음
-       String[] filename =fileDataUtil.fileUpload(pfile);
-        System.out.println(filename[0]);
-        pvo.setFilename(filename[0]);
-        userservice.profileupdate(pvo);
-        return "redirect:profile?u_id="+pvo.getU_id(); // 프로필 화면 넣기 redirect 식별자
+    public String profileupdate(@ModelAttribute ProfileVO pvo, MultipartFile[] pfile,@RequestParam("u_intro") String intro) throws Exception{
+//        System.out.println(pfile+"asdf");
+//        System.out.println(pvo.getU_id()+"소개:"+pvo.getU_intro());//여기까지 아이디랑 변경내용 받음
+
+       String filename =fileDataUtil.fileUpload(pfile)[0];
+//        System.out.println(filename);
+        if(filename==null){
+            // 파일선택 안햇을시 > null 값일시 한줄소개만 변경 
+            pvo.setU_intro(intro);
+            userservice.introupdate(pvo);
+            return "redirect:/profile";
+        }else{
+            //파일선택한 경우 >파일, 한줄소개 둘다 변경
+            pvo.setFilename(filename);
+            userservice.profileupdate(pvo);
+            return "redirect:profile"; // 프로필 화면 넣기 redirect 식별자
+        }
+
     }
 
 

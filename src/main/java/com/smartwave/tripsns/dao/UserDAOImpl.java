@@ -46,9 +46,18 @@ public class UserDAOImpl implements IF_UserDAO {
     //프로필 업데이트
     @Override
     public void profileupdate(ProfileVO pvo) throws Exception {
+        sqlSession.update(mapperQuery+".profileupdate",pvo);
+    }
+
+    @Override
+    public void introupdate(ProfileVO pvo) throws Exception {
         sqlSession.update(mapperQuery+".introupdate",pvo);
     }
 
+    @Override
+    public String getpw(String u_id) throws Exception {
+        return sqlSession.selectOne(mapperQuery+".getpw",u_id);
+    }
 
 
 }
