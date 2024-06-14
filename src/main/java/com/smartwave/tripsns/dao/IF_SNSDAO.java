@@ -49,4 +49,6 @@ public interface IF_SNSDAO {
     public int postLikeCount(PostVO pvo) throws Exception; //게시글 좋아요 갯수
   
     public void InsertShort(ShortVO svo) throws Exception;
+
+    public List<ShortVO>  allShortList() throws Exception;
 }
