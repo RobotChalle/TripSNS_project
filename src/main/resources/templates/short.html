@@ -5,10 +5,10 @@
     <title>쇼츠</title>
 </head>
 <style>
-    .short{
+    .short {
         border-radius: 25px;
-        padding : 2.5em;
-        box-shadow: 0 20px 70px -25px rgba(0,0,0,2);
+        padding: 2.5em;
+        box-shadow: 0 20px 70px -25px rgba(0, 0, 0, 2);
         display: flex;
         align-items: center;
         height: 700px;
@@ -16,128 +16,256 @@
         margin-right: 50px;
         background-color: antiquewhite;
     }
-    .vid{
+
+    .vid {
         display: flex;
         width: 50%;
         height: 100%;
         background-color: black;
     }
-    .details{
+
+    .details {
         display: flex;
         flex-wrap: wrap;
         width: 50%;
         height: 100%;
     }
-    .writer{
-        display: flex;
-        flex-wrap: wrap;
+
+    .writer {
         width: 100%;
         height: 12%;
     }
-    .comment{
+
+    .deleteShort{
+        border: none;
+        padding: 5px 25px;
+        border-radius: 10px;
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        text-decoration: none;
+        font-weight: 600;
+        background-color: red;
+        color: white;
         display: flex;
-        flex-wrap: wrap;
-        width: 100%;
-        height: 70%;
+        font-size: 10px;
+        }
+
+    .deleteShort:hover {
+        cursor: pointer;
+        background-color: palevioletred;
+        color: black;
     }
-    .liking{
+
+    .comments {
+        width: 550px;
+        height: 490px;
+        display: inline-flex;
+        flex-wrap: wrap;
+        overflow: auto;
+        padding: 0 20px;
+        margin-left: auto;
+        margin-right: auto;
+        margin-bottom: 10px;
+        margin-top: 10px;
+        border: white solid 1px;
+        border-radius: 10px;
+    }
+
+    .comment {
+        height: 40px;
+        gap: 10px;
+        border-bottom: white solid 1px;
+    }
+
+    .commentDate {
+        color: gray;
+        font-size: 50%;
+    }
+
+    .commentText {
+        width: 300px;
+    }
+
+    .liking {
         display: flex;
         flex-wrap: wrap;
         width: 100%;
         height: 5%;
     }
-    .commentInsert{
-        display: flex;
-        flex-wrap: wrap;
-        width: 100%;
-        height: 13%;
-        margin-left: 2%;
-    }
 
-    .profileImg{
+    .profileImg {
         display: flex;
-        width: 30px;
-        height: 30px;
+        background-color: #0060ff;
+        width: 50px;
+        height: 50px;
         margin-left: 5px;
         margin-top: 5px;
     }
-    .profile{
-        display: flex;
-        width: 40%;
-        height: 80%;
-        margin-left: 10%;
-        margin-top: 2%;
-        background-color: white;
-        text-align: center;
+
+    img {
+        width: 100%;
+        object-fit: fill;
     }
-    .likeImg{
+
+    .likeImg {
         display: inline-block;
         width: 35px;
         height: 35px;
     }
-    .liketext{
+
+    .liketext {
         display: inline-block;
         margin-left: 20px;
         text-align: center;
     }
-    video{
+
+    video {
         flex: auto;
         width: 100%;
         height: 100%;
     }
-    .commentArea{
-        border-color: white;
-        font-family: AppleSDGothicNeoB00,serif;
-        font-size: 17px;
-    }
-    .commentArea:hover{
-        border-color: white;
-    }
-    .heart{
+
+    .heart {
         border: none;
     }
-    .heart:hover{
+
+    .heart:hover {
     }
 
+    .divF {
+        display: flex;
+    }
+
+    #description {
+    }
+
+    #userDescription {
+        display: flex;
+        margin-left: 20px;
+    }
+
+    .s_date {
+        font-size: 75%;
+    }
+
+    textarea {
+        border: none;
+        resize: none;
+        font-size: 16px;
+        font-family: AppleSDGothicNeoB00;
+    }
+
+    textarea:focus {
+        outline: none;
+    }
+
+    .commentInsertB {
+        border: none;
+        padding: 5px 25px;
+        border-radius: 10px;
+        box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5);
+        text-decoration: none;
+        font-weight: 600;
+        background-color: lawngreen;
+        color: white;
+    }
+
+    .commentInsertB:hover {
+        background-color: palegreen;
+        color: black;
+        cursor: pointer;
+    }
+
+    .deleteComment {
+        border: none;
+        padding: 5px 25px;
+        border-radius: 10px;
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        text-decoration: none;
+        font-weight: 600;
+        background-color: red;
+        color: white;
+    }
+
+    .deleteComment:hover {
+        cursor: pointer;
+        background-color: palevioletred;
+        color: black;
+    }
+
+    table {
+        display: flex;
+    }
 
 </style>
 <body>
-    <div class="d-flex justify-content-center short">
-        <div class="vid" >
-            <video width="720" height="1280" loop controls autoplay muted oncontextmenu="return false;">
-                <source src="/video/Taylor%20Swift%20-%20The%20Eras%20Tour.mp4" type="video/mp4">
+<div class="d-flex justify-content-center short">
+    <div class="vid">
+        <th:block th:if="${video.sv_addr!=null}">
+            <video autoplay controls height="1280" loop muted oncontextmenu="return false;" width="720">
+                <source th:src="@{/download(filename=${video.sv_addr})}" type="video/mp4">
             </video>
+        </th:block>
+    </div>
+    <div class="details divF">
+        <div class="writer divF">
+            <div class="profileImg divF">
+                <span class="divF">
+                    <a href="http://localhost:8080"> <img alt="유저사진" src="/img/userPic.png"></a>
+                </span>
+            </div>
+            <div id="userDescription">
+                <div id="description">
+                    <span th:text="${shortDetails.s_id}"></span>
+                    <br>
+                    <span th:text="${shortDetails.s_description}"></span>
+                    <div id="delShortDiv" th:if="${session.userid==shortDetails.s_id}">
+                        <form action="deleteShort" method="get" onsubmit='return delAlert()'>
+                            <input name="s_no" th:value="${shortDetails.s_no}" type="hidden">
+                            <input name="sc_id" th:value="${session.userid}" type="hidden">
+                            <input class="deleteShort" type="submit" value="글삭제">
+                        </form>
+                    </div>
+                    <span class="s_date" th:text="${shortDetails.s_date}"></span>
+                </div>
+            </div>
         </div>
-        <div class="details">
-            <div class = "writer">
-                <div class="profileImg">
-                    <a href="http://localhost:8080"> <img src="/img/userPic.png" alt="유저사진"></a>
-                </div>
-                <div class="profile">
-                    <label>username</label>
-                </div>
-            </div>
-            <hr>
-            <section class="description">
-                <span><br th:text="${shortDetails.s_description}"></span>
-                <span th:text="${shortDetails.s_date}" class="s_date"></span>
-            </section>
-            <hr>
-            <div class="comment">
-                <label><h2>댓글영역 (반복문으로 가져온 값 출력)</h2></label>
-            </div>
-            <div class="liking">
-                <div><button class="heart"><img src="/img/heart.svg" class="likeImg" alt="하트"></button><label class="liketext">좋아요 ?만개</label></div>
-            </div>
-            <hr>
-            <div class="commentInsert">
-                <form action="/short/commentInsert" method="post">
-                <textarea class="commentArea" name="comment" cols="50" rows="2"></textarea>
-                <input type="submit" value="게시" class="commentSubmit">
+        <div class="comments">
+            <table>
+                <tr class="comment" th:each="comment:${commentList}">
+                    <td class="commentId" th:text="${comment.sc_id}"></td>
+                    <td class="commentText" th:text="${comment.sc_comment}"><br></td>
+                    <td class="commentDate" th:text="${comment.sc_date}"></td>
+                    <th:block class="deleteB" th:if="${session.userid==comment.sc_id}">
+                        <td>
+                            <form action="shortCommentDelete" method="get" onsubmit='return delAlert()'>
+                                <input name="sc_date" th:value="${comment.sc_date}" type="hidden">
+                                <input name="s_no" th:value="${shortDetails.s_no}" type="hidden">
+                                <input name="sc_id" th:value="${session.userid}" type="hidden">
+                                <input class="deleteComment" type="submit" value="삭제">
+                            </form>
+                        </td>
+                    </th:block>
+            </table>
+        </div>
+        <div class="liking">
+            <div>
+                <button class="heart"><img alt="하트" class="likeImg" src="/img/heart.svg"></button>
+                <label class="liketext">좋아요 ?만개</label></div>
+        </div>
+        <div class="commentInsert">
+            <form action="shortCommentInsert" method="post" >
+                <input name="s_no" th:value="${shortDetails.s_no}" type="hidden">
+                <input name="sc_id" th:value="${session.userid}" type="hidden">
+                <textarea cols="50" maxlength="120" name="sc_comment" placeholder="댓글" required rows="4"></textarea>
+                <input class="commentInsertB" type="submit" value="게시">
             </form>
-            </div>
         </div>
     </div>
-
+</div>
 </body>
+<script>
+    function delAlert(){
+        return confirm("정말 삭제하시겠습니까?");
+    }
+</script>
 </html>

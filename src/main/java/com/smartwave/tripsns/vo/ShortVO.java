@@ -13,5 +13,4 @@ public class ShortVO {
     private String s_place;
     private String s_description;
     private String s_date;
-
 }

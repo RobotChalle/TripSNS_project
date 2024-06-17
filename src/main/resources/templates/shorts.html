@@ -44,7 +44,7 @@
     <h1 class="title-text">Shorts List</h1>
     <hr class="titleFootLine">
     <div class="short" th:each="shortList:${allShortList}">
-        <a class="short-Link" th:href="@{/short/view(s_no = ${shortList.s_no},s_id = ${shortList.s_id})}">
+        <a class="short-Link" th:href="@{/short(s_no = ${shortList.s_no})}">
             <section class="thumbnail">
                 <th:block th:if="${shortList.sv_thumbnail!=null}">
                     <img th:src="@{/download(filename=${shortList.sv_thumbnail})}" alt="썸네일">
