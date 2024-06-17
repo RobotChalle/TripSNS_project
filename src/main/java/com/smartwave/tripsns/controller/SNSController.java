@@ -41,19 +41,25 @@ public class SNSController {
     }
 
     @GetMapping("/post") //글 작성화면 불러오기
-    public String post(Model model, @RequestParam("p_id") String p_id) throws Exception {
+    public String post(Model model, @RequestParam("p_id") String p_id, @SessionAttribute("userid") String u_id) throws Exception {
         model.addAttribute("p_id", p_id);
+        //프로필 사진 불러오기
+        ProfileVO prodetail = userservice.getProfile(u_id);
+        model.addAttribute("profiledetail", prodetail);
         return "post";
     }
 
     @GetMapping("/detail") //자세히 보기 불러오기
-    public String detail(Model model, @RequestParam("p_no") String p_no, @RequestParam("p_id") String p_id) throws Exception {
+    public String detail(Model model, @RequestParam("p_no") String p_no, @RequestParam("p_id") String p_id, @SessionAttribute("userid") String u_id) throws Exception {
         PostVO postDetail = sService.postSelectOne(p_no);
         List<PostCommentVO> commentList = sService.commentList(p_no);
         int postCommentCnt = sService.postCommentCnt(p_no);
         model.addAttribute("postDetail", postDetail);
         model.addAttribute("commentList", commentList);
         model.addAttribute("postCommentCnt", postCommentCnt);
+        //프로필 사진 불러오기
+        ProfileVO prodetail = userservice.getProfile(u_id);
+        model.addAttribute("profiledetail", prodetail);
         return "detail";
     }
 
@@ -78,10 +84,10 @@ public class SNSController {
         return "shorts";
     }
 
-    @GetMapping(value="/short/view")
-    public String shortOne(Model model,@RequestParam("s_no") int s_no) throws Exception {
+    @GetMapping(value = "/short/view")
+    public String shortOne(Model model, @RequestParam("s_no") int s_no) throws Exception {
         ShortVO shortDetails = sService.shortDetails(s_no);
-        model.addAttribute("shortDetails",shortDetails);
+        model.addAttribute("shortDetails", shortDetails);
         return "short";
     }
 
@@ -110,8 +116,11 @@ public class SNSController {
 
 
     @GetMapping(value = "postModifyForm") //게시글 수정페이지
-    public String postModifyForm(Model model, @RequestParam("p_no") String p_no) throws Exception {
+    public String postModifyForm(Model model, @RequestParam("p_no") String p_no, @SessionAttribute("userid") String u_id) throws Exception {
         model.addAttribute("p_no", p_no);
+        //프로필 사진 불러오기
+        ProfileVO prodetail = userservice.getProfile(u_id);
+        model.addAttribute("profiledetail", prodetail);
         return "postModifyForm";
     }
 
@@ -134,10 +143,13 @@ public class SNSController {
     }
 
     @GetMapping(value = "postSearchById") //게시글 검색
-    public String postSearchById(@RequestParam("searchWord") String searchWord, Model model) throws Exception {
+    public String postSearchById(@RequestParam("searchWord") String searchWord, Model model, @SessionAttribute("userid") String u_id) throws Exception {
         List<PostVO> pvo = sService.postSearch(searchWord);
         model.addAttribute("searchWord", searchWord);
         model.addAttribute("pvo", pvo);
+        //프로필 사진 불러오기
+        ProfileVO prodetail = userservice.getProfile(u_id);
+        model.addAttribute("profiledetail", prodetail);
         return "searchResult";
     }
 

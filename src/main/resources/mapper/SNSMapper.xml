@@ -16,7 +16,6 @@
         select *
         from post p
                  inner join postpic pp on p.p_no = pp.pp_no
-                 left join postLike pl on p.p_no = pl.pl_no
         where p.p_no = #{p_no};
     </select>
     <select id="getFile" resultType="String"><!--사진파일 불러오기 -->
@@ -58,7 +57,6 @@
         select *
         from post p
                  inner join postpic pp on p.p_no = pp.pp_no
-                 left join postLike pl on p.p_no = pl.pl_no
                 inner join profile f on f.id = p.p_id
         order by p.p_indate desc;
     </select>
