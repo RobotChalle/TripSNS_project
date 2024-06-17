@@ -104,4 +104,7 @@
     <select id="allShortList" resultType="com.smartwave.tripsns.vo.ShortVO">
         select * from short_form order by s_date desc;
     </select>
+    <select id="shortDetails" resultType="com.smartwave.tripsns.vo.ShortVO">
+        select * from short_form where s_id = #{s_id}
+    </select>
 </mapper>

@@ -1,0 +1,230 @@
+section{
+    margin-left: 5%;
+    padding-top: 6%;
+}
+
+img {
+    margin-left: -20%;
+    margin-right: 20%;
+}
+
+#chatpan {
+    display: flex;
+}
+
+#userLpan {
+    background-color: rgba(255, 255, 255, 0.6);
+    width: 400px;
+    height: 700px;
+    padding-top: 20px;
+}
+
+#chatWithMe {
+    height: 620px;
+    overflow: auto;
+}
+
+/* 채팅한 멤버 리스트 스크롤바 설정 시작 */
+#chatWithMe::-webkit-scrollbar {
+    width: 10px;
+}
+
+#chatWithMe::-webkit-scrollbar-thumb {
+    background-color: rgba(166, 189, 221, 0.67);
+    border-radius: 10px;
+}
+/* 채팅한 멤버 리스트 스크롤바 설정 끝 */
+
+.Chattxt {
+    padding-left: 25px;
+    font-size: 30px;
+}
+
+#chatLHr {
+    margin-left: 20px;
+    margin-right: 20px;
+}
+
+#chatLpan {
+    display: flex;
+}
+
+a {
+    text-decoration: none;
+}
+
+.linkChat {
+    color: gray;
+}
+
+.chatOne {
+    /* 채팅방 하나 */
+    margin-top: 1%;
+}
+
+.chatOne:hover {
+    background-color: rgba(167, 185, 207, 0.9);
+}
+
+.chatchat {
+    margin-left: 40px;
+    margin-top: 2%;
+    margin-bottom: 2%;
+}
+
+.divF {
+    display: flex;
+}
+
+.nicName {
+    font-size: 18px;
+}
+
+.chatCon {
+    font-size: 15px;
+    width: 230px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    word-break: break-all;
+}
+
+#chatting {
+    background-color: rgba(255, 255, 255, 0.6);
+    margin-left: 20px;
+    width: 730px;
+    height: 720px;
+}
+
+#chatText {
+    display: flex;
+    flex-wrap: wrap;
+    width: 100px;
+    height: 50px;
+    margin-left: 35px;
+    margin-top: 20px;
+}
+
+#chatBox {
+    width: 500px;
+}
+
+#userWho {
+    display: inline-flex;
+    width: 390px;
+    margin-top: 5px;
+    margin-left: 20px;
+    font-size: 30px;
+}
+
+#hrp {
+    display: inline-flex;
+    flex-wrap: wrap;
+}
+
+#chatWhoHr {
+    margin-left: -10px;
+    margin-top: 20px;
+    width: 680px;
+}
+
+/*#chatAlllist {*/
+/*    !*background-color: crimson;*!*/
+/*    !*width: 570px;*!*/
+/*    !*height: 400px;*!*/
+/*    !*word-break: break-all;*!*/
+/*    !*overflow: auto;*!*/
+/*    display: inline-flex;*/
+/*    flex-wrap: wrap;*/
+/*}*/
+
+#cchhaatt {
+    /*background-color: blue;*/
+    padding-left: 10px;
+    padding-bottom: 5px;
+    width: 670px;
+    height: 500px;
+    display: inline-flex;
+    flex-wrap: wrap;
+    overflow: auto;
+}
+
+/* 채팅내용 스크롤바 설정 시작 */
+#cchhaatt::-webkit-scrollbar {
+    width: 10px;
+}
+
+#cchhaatt::-webkit-scrollbar-thumb {
+    background-color: rgba(166, 189, 221, 0.67);
+    border-radius: 10px;
+}
+/* 채팅내용 스크롤바 설정 끝 */
+
+.chatU {
+    background-color: rgb(166, 189, 221);
+    border-radius: 5px;
+    margin-left: 5px;
+    padding-left: 10px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    width: 350px;
+}
+
+.chatUCon {
+    /*background-color: aqua;*/
+    width: 330px;
+    overflow: hidden;
+    word-wrap: break-word; /*창 안에서만 글자 입력*/
+}
+
+.chatI {
+    background-color: rgb(208, 206, 206);
+    width: 350px;
+    border-radius: 5px;
+    margin-top: 5px;
+}
+
+.chatICon {
+    width: 335px;
+    margin-left: 8px;
+    margin-top: 3px;
+    margin-bottom: 5px;
+    overflow: hidden;
+    word-wrap: break-word; /*창 안에서만 글자 입력*/
+}
+
+/*.wwwn {*/
+/*    background-color: beige;*/
+/*}*/
+
+.whatright {
+    margin-left: auto;
+    margin-bottom: 5px;
+}
+
+.inputext{
+    /*background-color: cornflowerblue;*/
+    width: 560px;
+    margin-top: 20px;
+    display: inline-flex;
+    /*flex-wrap: wrap;*/
+}
+
+#chat{
+    width: 530px;
+    height: 60px;
+    resize: none;
+}
+
+#chatbtn{
+    margin-left: 30px;
+    margin-top: 1px;
+    background-color: rgb(68, 98, 145);
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 22px;
+    min-height: 10px;
+    min-width: 90px;
+    font-size: 15px;
+}

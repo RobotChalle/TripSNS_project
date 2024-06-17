@@ -78,10 +78,10 @@ public class SNSController {
         return "shorts";
     }
 
-    @GetMapping(value = "/short/view")
-    public String shortOne(Model model, @RequestParam("s_no") int s_no, @RequestParam("s_id") String s_id) throws Exception {
-        model.addAttribute("s_no", s_no);
-        model.addAttribute("s_id", s_id);
+    @GetMapping(value="/short/view")
+    public String shortOne(Model model,@RequestParam("s_no") int s_no) throws Exception {
+        ShortVO shortDetails = sService.shortDetails(s_no);
+        model.addAttribute("shortDetails",shortDetails);
         return "short";
     }
 

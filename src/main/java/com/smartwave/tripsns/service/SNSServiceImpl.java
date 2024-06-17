@@ -121,5 +121,10 @@ public class SNSServiceImpl implements IF_SNSService {
         return sdao.allShortList();
     }
 
+    @Override
+    public ShortVO shortDetails(int s_no) throws Exception {
+        return sdao.shortDetails(s_no);
+    }
+
 
 }
