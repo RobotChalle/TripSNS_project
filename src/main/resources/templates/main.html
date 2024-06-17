@@ -113,7 +113,8 @@
                 <div class="postImage">
                     <img th:src="@{/download(filename=${postList.u_pic})}" class="roundImg">
                 </div>
-                <a href="#" class="postId" th:text="${postList.p_id}">p_id</a>
+                <a th:href="@{/otherprofile(p_id=${postList.p_id})}"  class="postId" th:text="${postList.p_id}"  >p_id</a>
+
                 <a href="#" class="place" th:text="${postList.p_place}">p_place</a>
             </div>
             <section class="feedImg">

@@ -73,16 +73,17 @@
 <div class="mypic" style="z-index: 3">
     <div class="dropdown-content">
         <th:block th:if="${session.userid!=null}">
-            <a th:href="@{/profile}">프로필(<span th:text="${session.userid}"></span>)</a>
+            <a th:href="@{/profile}">프로필(<span th:text="${session.userid}" ></span>)</a>
         </th:block>
         <a href="logout">로그아웃</a>
     </div>
     <a href="#">
         <th:block th:if="${profiledetail.u_pic!=null}">
-            <img th:src="@{/download(filename=${profiledetail.u_pic})}">
+            <img th:src="@{/download(filename=${profiledetail2.u_pic})}">
         </th:block>
     </a>
 </div>
+
 <!--상단 네비-->
 <nav id="navTop">
     <a href="main">
@@ -106,30 +107,29 @@
     <div class="profile">
 
         <div class="profile-image">
+
             <th:block th:if="${profiledetail.u_pic!=null}">
                 <img th:src="@{/download(filename=${profiledetail.u_pic})}">
             </th:block>
         </div>
 
         <div class="profile-user-settings">
-            <th:block th:if="${session.userid!=null}"> <b><span th:text="${session.userid}" id="mainuser" style="font-style:italic;"></span></b>
-            <h1 class="profile-user-name">
-
-            </h1>
+            <th:block th:if="${session.userid==mainsuser}"> <b><span th:text="${session.userid}" id="mainuser" style="font-style:italic;"></span></b>
+            </th:block>
+            <th:block th:unless="${session.userid==mainsuser}"> <b><span th:text="${otheruser}" id="otheruser" style="font-style:italic;"></span></b>
             </th:block>
 
-            <th:block th:if="${session.userid==mainsuser}">
+           <th:block th:if="${session.userid==mainsuser}">
+
                 <button class="editbtn" th:onclick="|location.href='@{/proupdate}'|">편집</button>
-
                     <button class="editbtn" th:onclick="|location.href='@{/withdrawform}'|">탈퇴</button>
-
+               <input type="hidden" th:value="${mainsuser}" id="myid">
             </th:block>
         </div>
-
         <div class="profile-stats">
-
+<!--            <h4 id="postcnts"></h4>-->
             <ul>
-                <li class="stat"><span class="profile-stat-count">숫자</span> 게시물</li>
+                <li class="stat"> 게시물  <span class="profile-stat-count" id="postcnts"></span></li>
 <!--                <li class="stat"><span class="profile-stat-count">숫자</span> 팔로우</li>-->
 <!--                <li class="stat"><span class="profile-stat-count">숫자</span> 팔로워</li>-->
             </ul>
@@ -185,7 +185,25 @@
 
 
 </body>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <script>
+$('document').ready(function (){
+    let myid=$('#myid').val();
+    let postcnt = document.getElementById("postcnts")
+   $.ajax({
+       url: "/postcnt",
+       type: "post",
+       data: {"myid":myid},
+       dataType: "json",
+       success: function (cnt){//컨트롤러 리턴값
+           console.log(cnt);
+            postcnt.innerHTML = cnt;
+       }
+
+
+   });
+});
+
 
 </script>
 
