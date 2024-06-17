@@ -37,9 +37,13 @@
     <select id="getpw" parameterType="String" resultType="String">
         select pw from user where id = #{u_id}
     </select>
-    <!--inner join 통해서 게시물작성 아이디와 프로필사진 가져오기 -->
-    <select id="postprofile" parameterType="String" resultType="com.smartwave.tripsns.vo.ProfileVO">
-        select f.id,f.u_pic  from  profile f inner join post p on f.id = p.p_id where id = #{u_id};
+   <!--회원탈퇴시 user delete  CASCADE 설정해서 부모테이블인 user 테이블 delete 될떄 자식테이블 매치되는 post 등 테이블 에도 delete 적용시킴  -->
+    <delete id="userdelete" parameterType="String">
+        delete from user where id = #{id};
+    </delete>
+    <!--게시물수 get-->
+    <select id="postcnt" parameterType="String" resultType="int">
+        select count(p_no) from post where p_id = #{id};
     </select>
 
 

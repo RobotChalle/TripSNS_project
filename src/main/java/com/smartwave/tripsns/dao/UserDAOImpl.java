@@ -59,5 +59,15 @@ public class UserDAOImpl implements IF_UserDAO {
         return sqlSession.selectOne(mapperQuery+".getpw",u_id);
     }
 
+    @Override
+    public void userdelete(String id) throws Exception {
+        sqlSession.delete(mapperQuery+".userdelete",id);
+    }
+
+    @Override
+    public int postcnt(String id) throws Exception {
+        return sqlSession.selectOne(mapperQuery+".postcnt",id);
+    }
+
 
 }

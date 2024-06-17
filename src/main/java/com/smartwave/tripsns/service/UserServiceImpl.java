@@ -58,4 +58,14 @@ public class UserServiceImpl implements IF_UserService {
     public String getpw(String u_id) throws Exception {
         return sdao.getpw(u_id);
     }
+
+    @Override
+    public void userdelete(String id) throws Exception {
+        sdao.userdelete(id);
+    }
+
+    @Override
+    public int postcnt(String id) throws Exception {
+        return sdao.postcnt(id);
+    }
 }

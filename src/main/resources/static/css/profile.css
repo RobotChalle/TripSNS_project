@@ -54,6 +54,7 @@ h1{
     display: inline-block;
     font-size: 30px;
     font-family: apple Black;
+    background-color: red;
 
 }
 
@@ -184,6 +185,10 @@ h1{
     margin-left: 10px;
 }
 #mainuser{
+    font-family: apple Black;
+    font-size: 20px;
+}
+#otheruser{
     font-family: apple Black;
     font-size: 20px;
 }

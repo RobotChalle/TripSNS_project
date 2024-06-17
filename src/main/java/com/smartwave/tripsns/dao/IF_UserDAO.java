@@ -21,4 +21,8 @@ public interface IF_UserDAO {
     public void introupdate(ProfileVO pvo) throws Exception;
     //회원탈퇴시 필요한 pw 가져오기
     public String getpw(String u_id) throws Exception;
+    //회원탈퇴 delete
+    public void userdelete(String id) throws Exception;
+    //게시물 수 get
+    public int postcnt(String id) throws Exception;
 }

@@ -15,7 +15,7 @@
 
 <div id="Loginbox">
     <h1>회원탈퇴</h1>
-    <form action="withdrawal" method="post" onsubmit="return chk()">
+    <form action="withdrawal" method="post" onsubmit='return chk()'>
         <h3>아이디: <span th:text="${session.userid}" ></span></h3>
 
         <div class="field">
@@ -23,9 +23,10 @@
             <input type="password" id="newpw" class="te" name="pw" placeholder="비밀번호" minlength="4" maxlength="16" pattern="^[a-zA-Z\d]+$"
                    required >
             <input type="hidden" th:value="${orginpw}" id="orginpw">
+            <input type="hidden" th:value="${id}" name="id">
         </div>
 
-        <div><input type="submit" value="회원탈퇴" class="btn" ></div>
+        <div><input type="submit" value="회원탈퇴" class="btn"></div>
 
         <div><a th:href="@{/profile}"><input type="button" value="취소" class="join"></a></div>
     </form>
@@ -40,13 +41,15 @@
 function chk(){
     let orginpw = $('#orginpw').val();
     let nowpw = $('#newpw').val();
-    if(orginpw==nowpw){
-        if(confirm("정말 탈퇴하시겠어요 ?\n" +
-            " 탈퇴버튼 선택시 계정은 삭제되며 복구되지 않습니다")){
-        }
-    }else{
-       alert("비밀번호가 일치하지않습니다")
+
+    if(orginpw!=nowpw){
+        alert("비밀번호가 일치하지않습니다");
+        $('#newpw').val("");
+        $('#newpw').focus();
         return false;
+    }else{
+        return confirm("정말 탈퇴하시겠어요 ?\n" +
+            " 탈퇴버튼 선택시 계정은 삭제되며 복구되지 않습니다")
     }
 }
 

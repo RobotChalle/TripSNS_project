@@ -100,21 +100,49 @@ public class UserController {
     //회원 탈퇴 페이지
     @GetMapping(value = "withdrawform")
     public String withdrawform(@SessionAttribute("userid") String u_id,Model model) throws Exception{
-        String orginpw = userservice.getpw(u_id);
+        String orginpw = userservice.getpw(u_id);//db에서 로그인한 pw 가져옴
         model.addAttribute("orginpw", orginpw);
+        model.addAttribute("id", u_id);
         return "withdraw";
     }
-
+    //회원탈퇴
+    @PostMapping(value = "withdrawal")
+    public String userdelete(@RequestParam("id") String id , HttpSession session ) throws Exception {
+        userservice.userdelete(id);
+        return "redirect:login";
+    }
     // 프로필 기본정보 html 보내기 (한줄소개 코멘트, 프로필 기본사진)
     @GetMapping(value = "profile")
     public String profile(@SessionAttribute("userid") String u_id,Model model) throws Exception {
-
        String mainsuser = u_id;
         model.addAttribute("mainsuser", mainsuser);
         ProfileVO prodetail = userservice.getProfile(u_id);
         model.addAttribute("profiledetail", prodetail);
+        model.addAttribute("profiledetail2", prodetail);
         return "profile";
     }
+    // 상대 프로필 기본정보 html 보내기 (한줄소개 코멘트, 프로필 기본사진)
+    @GetMapping(value = "otherprofile")
+    public String otherprofile(@RequestParam("p_id") String u_id,Model model,@SessionAttribute("userid") String myid) throws Exception {
+        String otheruser = u_id;
+        String mainsuser = myid;
+        System.out.println("끌고온 상대방아이디"+otheruser);
+        if(mainsuser.equals(otheruser) ){
+            return "redirect:profile";
+        }else{
+            model.addAttribute("otheruser", otheruser);
+            ProfileVO prodetail = userservice.getProfile(u_id);
+            ProfileVO myprodetail = userservice.getProfile(myid);
+            model.addAttribute("profiledetail", prodetail);
+            model.addAttribute("profiledetail2", myprodetail);
+            return "profile";
+        }
+
+
+
+
+    }
+
 
 
     /// 프로필 수정 세션값 넘기기
@@ -136,11 +164,7 @@ public class UserController {
     // 프로필 수정
     @PostMapping(value = "profileupdate")
     public String profileupdate(@ModelAttribute ProfileVO pvo, MultipartFile[] pfile,@RequestParam("u_intro") String intro) throws Exception{
-//        System.out.println(pfile+"asdf");
-//        System.out.println(pvo.getU_id()+"소개:"+pvo.getU_intro());//여기까지 아이디랑 변경내용 받음
-
        String filename =fileDataUtil.fileUpload(pfile)[0];
-//        System.out.println(filename);
         if(filename==null){
             // 파일선택 안햇을시 > null 값일시 한줄소개만 변경 
             pvo.setU_intro(intro);
@@ -152,7 +176,13 @@ public class UserController {
             userservice.profileupdate(pvo);
             return "redirect:profile"; // 프로필 화면 넣기 redirect 식별자
         }
-
+    }
+    @ResponseBody
+    @PostMapping(value = "postcnt")//중복체크 버튼
+    public int postcnt(@RequestParam("myid") String id) throws Exception {
+        System.out.println(id);
+        int cnt = userservice.postcnt(id);
+        return cnt;
     }
 
 

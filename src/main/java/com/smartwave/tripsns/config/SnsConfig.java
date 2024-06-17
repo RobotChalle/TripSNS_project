@@ -30,11 +30,12 @@ public class SnsConfig implements WebMvcConfigurer {
                 .addPathPatterns("/proupdate")//프로필 수정버튼
                 .addPathPatterns("/userupdate")//개인정보 수정
                 .addPathPatterns("/profileupdate")//프로필정보 수정
+                .addPathPatterns("/withdrawform")//회원탈퇴 화면
+                .addPathPatterns("/withdrawal")//회원탈퇴버튼
 //                .addPathPatterns("/**")
 //                .excludePathPatterns("/css/**", "/images/**", "/js/**")
 //                .excludePathPatterns("/main")
 //                .excludePathPatterns("/idchk")
-                .excludePathPatterns("/withdrawform")//테스트용도로 탈퇴화면 예외처리함 나중에 포함하기
                 .excludePathPatterns("/login*") //로그인 요청은 예외처리 -> interceptorx
                 .excludePathPatterns("/join*");
 
