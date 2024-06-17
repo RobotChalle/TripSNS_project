@@ -1,0 +1,120 @@
+body{
+    /* background-image: url(backimg.png); */
+    background-image: url("../images/background.jpg");
+    /*background-image: url("../images/qqq.jpg");*/
+}
+#Loginbox {
+    display: block;
+    width: 450px;
+    height: 430px;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    margin-left: -225px;
+    margin-top: -215px;
+    background-color: rgb(255, 255, 255, 0.4);
+    border-radius: 30px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+    transition: all 0.3s cubic-bezier(.25,.8,.25,1);
+}
+#Loginbox:hover{
+    box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
+}
+
+
+input[type="password"]{
+    width: 300px;
+    height: 40px;
+    font-size: 15px;
+    border: 0.1px;
+    border-color: rgb(233,233,233,0.1);
+    border-radius: 15px;
+    outline: none;
+    padding-left: 10px;
+    background-color: rgb(255, 255, 255);
+    margin-top: 10px;
+    margin-left: 70px;
+    font-family: apple Black;
+}
+input[type="password"]:hover{
+    border: 0.2px solid;
+    border-color: rgb(56, 100, 178,0.7);
+    transition: 0.7s;
+
+
+}
+.btn {
+    width: 260px;
+    height: 32px;
+    font-size: 18px;
+    border: 0;
+    border-radius: 15px;
+    outline: none;
+    padding-left: 10px;
+    background-color: red;
+    color: white;
+    margin-top: 60px;
+    margin-left: 95px;
+    font-family: apple Black;
+    /* font-family: 'YeongdeokSea'; */
+}
+.btn:hover{
+    border: 0.2px solid;
+    border-color: rgb(56, 100, 178,0.7);
+
+}
+
+h1,h3{
+    text-align: center;
+
+}
+.join{
+    width: 260px;
+    height: 32px;
+    font-size: 18px;
+    border: 0.1px solid;
+    border-radius: 15px;
+    outline: none;
+    padding-left: 10px;
+    color:rgb(56, 100, 178);
+    background-color:white;
+    margin-top: 10px;
+    margin-left: 95px;
+    font-family: apple Black;
+    /* font-family: 'YeongdeokSea'; */
+
+}
+.join:hover{
+    border: 0.2px solid;
+    border-color: rgb(56, 100, 178,0.7);
+
+}
+
+@font-face {
+    font-family: apple black;
+    src: url(AppleSDGothicNeoB.ttf);
+}
+.te {
+    width: 389px;
+    height: 40px;
+    font-size: 15px;
+    border: 0.1px;
+    border-color: rgb(233, 233, 233, 0.7);
+    border-radius: 15px;
+    outline: none;
+    padding-left: 10px;
+    background-color: rgb(255, 255, 255);
+    margin-left: 105px;
+    margin-top: 5px;
+    font-family: apple Black;
+}
+.te:hover {
+    border: 0.2px solid;
+}
+
+
+.infor {
+
+    margin-left: 75px;
+    font-family: apple Black;
+}

@@ -73,7 +73,7 @@
 <div class="mypic" style="z-index: 3">
     <div class="dropdown-content">
         <th:block th:if="${session.userid!=null}">
-            <a th:href="@{/profile(u_id=${session.userid})}">프로필(<span th:text="${session.userid}"></span>)</a>
+            <a th:href="@{/profile}">프로필(<span th:text="${session.userid}"></span>)</a>
         </th:block>
         <a href="logout">로그아웃</a>
     </div>
@@ -118,12 +118,12 @@
             </h1>
             </th:block>
 
+            <th:block th:if="${session.userid==mainsuser}">
+                <button class="editbtn" th:onclick="|location.href='@{/proupdate}'|">편집</button>
 
-                <button class="editbtn" th:onclick="|location.href='@{/proupdate(u_id=${session.userid})}'|">편집</button>
+                    <button class="editbtn" th:onclick="|location.href='@{/withdrawform}'|">탈퇴</button>
 
-<!--                    <button class="followbtn">팔로우</button>-->
-
-
+            </th:block>
         </div>
 
         <div class="profile-stats">

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="kor">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<link rel="stylesheet" href="/css/withdraw.css">
+<style>
+
+
+</style>
+<body>
+
+<div id="Loginbox">
+    <h1>회원탈퇴</h1>
+    <form action="withdrawal" method="post" onsubmit="return chk()">
+        <h3>아이디: <span th:text="${session.userid}" ></span></h3>
+
+        <div class="field">
+            <label class="infor">비밀번호<span style="color:rgb(160, 49, 49);" class="star">*</span></label><br>
+            <input type="password" id="newpw" class="te" name="pw" placeholder="비밀번호" minlength="4" maxlength="16" pattern="^[a-zA-Z\d]+$"
+                   required >
+            <input type="hidden" th:value="${orginpw}" id="orginpw">
+        </div>
+
+        <div><input type="submit" value="회원탈퇴" class="btn" ></div>
+
+        <div><a th:href="@{/profile}"><input type="button" value="취소" class="join"></a></div>
+    </form>
+</div>
+
+
+</div>
+</body>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script >
+function chk(){
+    let orginpw = $('#orginpw').val();
+    let nowpw = $('#newpw').val();
+    if(orginpw==nowpw){
+        if(confirm("정말 탈퇴하시겠어요 ?\n" +
+            " 탈퇴버튼 선택시 계정은 삭제되며 복구되지 않습니다")){
+        }
+    }else{
+       alert("비밀번호가 일치하지않습니다")
+        return false;
+    }
+}
+
+
+
+</script>
+</html>

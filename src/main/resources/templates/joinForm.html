@@ -61,7 +61,7 @@
             <select class="emailbox" id="domain-list">
                 <option value="type">직접 입력</option>
                 <option value="naver.com">naver.com</option>
-                <option value="google.com">google.com</option>
+                <option value="gmail.com">gmail.com</option>
                 <option value="hanmail.net">hanmail.net</option>
                 <option value="nate.com">nate.com</option>
                 <option value="kakao.com">kakao.com</option>
@@ -123,10 +123,11 @@
             type: "post",//post 방식으로 전달
             data: {"originid": sendid},
             dataType: "text",
+            //dataType: "json",
             success: function (cnt){// 컨트롤러에서 넘어온 cnt 값 받는다
                 console.log(typeof cnt);
                 if(cnt == '0'){// cnt 가 0 이면 DB에 없음 -> 사용 가능 아이디
-
+                    //if(cnt == 0)
                     iderrmsg.style.color = "green";
                     iderrmsg.textContent = "사용 가능한 아이디 입니다";
                     return true;

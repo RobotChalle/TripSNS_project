@@ -26,10 +26,21 @@
         select * from profile where id = #{u_id}
     </select>
 
-    <update id="introupdate" parameterType="com.smartwave.tripsns.vo.ProfileVO">
+    <update id="profileupdate" parameterType="com.smartwave.tripsns.vo.ProfileVO">
         update profile set u_intro =#{u_intro},u_pic=#{filename} where id = #{u_id}
     </update>
+    <update id="introupdate" parameterType="com.smartwave.tripsns.vo.ProfileVO">
+        update profile set u_intro =#{u_intro} where id = #{u_id}
+    </update>
 
+    <!--회원탈퇴시 필요한 pw get-->
+    <select id="getpw" parameterType="String" resultType="String">
+        select pw from user where id = #{u_id}
+    </select>
+    <!--inner join 통해서 게시물작성 아이디와 프로필사진 가져오기 -->
+    <select id="postprofile" parameterType="String" resultType="com.smartwave.tripsns.vo.ProfileVO">
+        select f.id,f.u_pic  from  profile f inner join post p on f.id = p.p_id where id = #{u_id};
+    </select>
 
 
 </mapper>
