@@ -37,6 +37,10 @@
     <select id="getpw" parameterType="String" resultType="String">
         select pw from user where id = #{u_id}
     </select>
+    <!--inner join 통해서 게시물작성 아이디와 프로필사진 가져오기 -->
+    <select id="postprofile" parameterType="String" resultType="com.smartwave.tripsns.vo.ProfileVO">
+        select f.id,f.u_pic  from  profile f inner join post p on f.id = p.p_id where id = #{u_id};
+    </select>
 
 
 </mapper>

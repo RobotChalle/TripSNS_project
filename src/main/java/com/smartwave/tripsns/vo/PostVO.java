@@ -20,5 +20,6 @@ public class PostVO {
     private String[] filename = null;
     private int pl_no = 0;
     private String pl_id = null;
+    private String u_pic =null; // 프로필 사진
 
 }

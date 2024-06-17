@@ -59,6 +59,7 @@
         from post p
                  inner join postpic pp on p.p_no = pp.pp_no
                  left join postLike pl on p.p_no = pl.pl_no
+                inner join profile f on f.id = p.p_id
         order by p.p_indate desc;
     </select>
     <select id="postSearch" resultType="com.smartwave.tripsns.vo.PostVO"><!--게시글 아이디로 검색-->
