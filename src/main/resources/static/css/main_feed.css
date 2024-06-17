@@ -69,7 +69,7 @@ div.feedBoard {
 
 .interactions .like:hover {
     /*margin: 0 10px;*/
-    color: red;
+    color: cornflowerblue;
     cursor: pointer;
 }
 
