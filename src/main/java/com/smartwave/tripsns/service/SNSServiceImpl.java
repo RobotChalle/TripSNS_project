@@ -1,11 +1,7 @@
 package com.smartwave.tripsns.service;
 
 import com.smartwave.tripsns.dao.IF_SNSDAO;
-import com.smartwave.tripsns.vo.PostCommentVO;
-import com.smartwave.tripsns.vo.PostLikeVO;
-import com.smartwave.tripsns.vo.PostVO;
-import com.smartwave.tripsns.vo.ShortVO;
-import com.smartwave.tripsns.vo.VideoVO;
+import com.smartwave.tripsns.vo.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -124,6 +120,31 @@ public class SNSServiceImpl implements IF_SNSService {
     @Override
     public ShortVO shortDetails(int s_no) throws Exception {
         return sdao.shortDetails(s_no);
+    }
+
+    @Override
+    public void ShortCommentInsert(ShortCommentVO scvo) throws Exception {
+        sdao.ShortCommentInsert(scvo);
+    }
+
+    @Override
+    public VideoVO getVideo(int sv_no) throws Exception {
+        return sdao.GetVideo(sv_no);
+    }
+
+    @Override
+    public List<ShortCommentVO> shortCommentList(int s_no) throws Exception {
+        return sdao.shortCommentList(s_no);
+    }
+
+    @Override
+    public void shortCommentDelete(ShortCommentVO scvo) throws Exception {
+        sdao.shortCommentDelete(scvo);
+    }
+
+    @Override
+    public void deleteShort(ShortVO svo) throws Exception {
+        sdao.deleteShort(svo);
     }
 
 

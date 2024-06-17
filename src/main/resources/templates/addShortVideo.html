@@ -64,11 +64,11 @@
         </div>
         <div class="shortFile">
             <form action="addShort" class="fileInsert" enctype="multipart/form-data" method="post">
-                <input type="file" accept="video/mp4" id="getfile" name="file" >
+                <input type="file" accept="video/mp4" id="videoFile" name="file" >
                 <br>
                 <br>
                 <label class="guideline">위 이미지를 클릭하면 썸네일을 다운받을 수 있습니다.</label>
-                <input type="file" name="file" id="thumbimg">
+                <input type="file" name="file" id="thumbnail">
                 <br>
                 <br>
                 <input type="submit" value="등록하기">
@@ -79,10 +79,10 @@
 </body>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <script>
-    const $file = document.querySelector('#getfile');
+    const $file = document.querySelector('#videoFile');
     const $preview = document.querySelector('#preview');
     const $download = document.querySelector('#download');
-    const $thumbnail = document.querySelector('#thumbimg')
+    const $thumbnail = document.querySelector('#thumbnail')
 
     $file.onchange = function () {
         $preview.src = '';
@@ -109,7 +109,6 @@
             $thumbnail.value = thumbnailURI;
         });
         video.src = url;
-        console.log($thumbnail.value)
     };
 
 </script>

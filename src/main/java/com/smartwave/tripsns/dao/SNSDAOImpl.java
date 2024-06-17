@@ -1,10 +1,6 @@
 package com.smartwave.tripsns.dao;
 
-import com.smartwave.tripsns.vo.PostCommentVO;
-import com.smartwave.tripsns.vo.PostLikeVO;
-import com.smartwave.tripsns.vo.PostVO;
-import com.smartwave.tripsns.vo.ShortVO;
-import com.smartwave.tripsns.vo.VideoVO;
+import com.smartwave.tripsns.vo.*;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -127,6 +123,31 @@ public class SNSDAOImpl implements IF_SNSDAO {
     @Override
     public ShortVO shortDetails(int s_no) throws Exception {
         return sqlSession.selectOne(mapperQuery+".shortDetails",s_no);
+    }
+
+    @Override
+    public void ShortCommentInsert(ShortCommentVO scvo) throws Exception {
+        sqlSession.insert(mapperQuery+".shortCommentInsert",scvo);
+    }
+
+    @Override
+    public VideoVO GetVideo(int sv_no) throws Exception {
+        return sqlSession.selectOne(mapperQuery+".getVideo",sv_no);
+    }
+
+    @Override
+    public List<ShortCommentVO> shortCommentList(int s_no) throws Exception {
+        return sqlSession.selectList(mapperQuery+".shortCommentList",s_no);
+    }
+
+    @Override
+    public void shortCommentDelete(ShortCommentVO scvo) throws Exception {
+        sqlSession.delete(mapperQuery+".shortCommentDelete",scvo);
+    }
+
+    @Override
+    public void deleteShort(ShortVO svo) throws Exception {
+        sqlSession.delete(mapperQuery+".deleteShort",svo);
     }
 
 }

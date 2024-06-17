@@ -1,10 +1,6 @@
 package com.smartwave.tripsns.dao;
 
-import com.smartwave.tripsns.vo.PostCommentVO;
-import com.smartwave.tripsns.vo.PostLikeVO;
-import com.smartwave.tripsns.vo.PostVO;
-import com.smartwave.tripsns.vo.ShortVO;
-import com.smartwave.tripsns.vo.VideoVO;
+import com.smartwave.tripsns.vo.*;
 
 import java.util.List;
 
@@ -54,4 +50,13 @@ public interface IF_SNSDAO {
 
     public ShortVO shortDetails(int s_no) throws Exception;
 
+    public void ShortCommentInsert(ShortCommentVO scvo) throws Exception;
+
+    public VideoVO GetVideo(int sv_no) throws Exception;
+
+    public List<ShortCommentVO> shortCommentList(int s_no) throws Exception;
+
+    public void shortCommentDelete(ShortCommentVO scvo) throws Exception;
+
+    public void deleteShort(ShortVO svo) throws Exception;
 }

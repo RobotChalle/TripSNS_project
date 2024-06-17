@@ -103,6 +103,24 @@
         select * from short_form order by s_date desc;
     </select>
     <select id="shortDetails" resultType="com.smartwave.tripsns.vo.ShortVO">
-        select * from short_form where s_id = #{s_id}
+        select * from short_form where s_no = #{s_no}
+    </select>
+    <select id="getVideo" resultType="com.smartwave.tripsns.vo.VideoVO">
+        select * from short_video where sv_no = #{sv_no}
+    </select>
+    <insert id="shortCommentInsert" parameterType="com.smartwave.tripsns.vo.ShortCommentVO">
+        insert into short_comment values (#{s_no},#{sc_id},#{sc_comment},default)
+    </insert>
+    <select id="shortCommentList" resultType="com.smartwave.tripsns.vo.ShortCommentVO">
+        select * from short_comment where s_no = #{s_no}
+    </select>
+    <delete id="shortCommentDelete" parameterType="com.smartwave.tripsns.vo.ShortCommentVO">
+        delete from short_comment where s_no = #{s_no} AND sc_date = #{sc_date} AND sc_id = #{sc_id}
+    </delete>
+    <delete id="deleteShort" parameterType="com.smartwave.tripsns.vo.ShortVO">
+        delete from short_form where s_no= #{s_no}
+    </delete>
+    <select id="findLikeTF" parameterType="com.smartwave.tripsns.vo.ShortLikeVO">
+        select count(*) from short_like where s_no = #{s_no} AND slike_id = #{slike_id}
     </select>
 </mapper>
