@@ -1,8 +1,14 @@
 package com.smartwave.tripsns.vo;
 
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Data
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor
 public class ChatInfoVO { // 채팅 정보
 
     public enum MessageType {
@@ -16,7 +22,7 @@ public class ChatInfoVO { // 채팅 정보
     private String chatRoomNum ; // 채팅방 번호
     private String sendName ; // 유저 이름
     private String sendID ; // 유저의 ID
-    private String chat ; // 채팅내용
+    private String message ; // 채팅내용
     private String sendTime ; // 전송시간
 
 }

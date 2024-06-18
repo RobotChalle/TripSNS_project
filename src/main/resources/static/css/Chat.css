@@ -8,6 +8,66 @@ img {
     margin-right: 20%;
 }
 
+.hidden{
+    display: none;
+}
+
+#cNamePage {
+    background-color: rgba(255, 255, 255, 0.6);
+    width: 800px;
+    height: 550px;
+    margin-top: 5%;
+    margin-left: 13%;
+    border-radius: 10px;
+}
+
+.cNameSet {
+    /* background-color: beige; */
+}
+
+#cNameTitle {
+    font-family: fontB;
+    font-size: 34px;
+    margin-left: 120px;
+    margin-top: 75px;
+}
+
+.cNameHr {
+    margin-top: 70px;
+    background-color: rgb(48, 47, 47);
+    border: none;
+    width: 100px;
+    height: 1px;
+}
+
+.cNameInfo {
+    margin-top: 70px;
+    /* margin-left: 20px; */
+    width: 780px;
+    text-align: center;
+    font-size: 18px;
+}
+
+.chatUser {
+    margin-top: 100px;
+    margin-left: 210px;
+    width: 300px;
+    height: 25px;
+    text-align: center;
+}
+
+.chatInput {
+    margin-top: 100px;
+    margin-left: 30px;
+    background-color: rgb(68, 98, 145);
+    color: white;
+    border: none;
+    border-radius: 4px;
+    width: 60px;
+    height: 30px;
+    font-size: 15px;
+}
+
 #chatpan {
     display: flex;
 }
@@ -63,7 +123,7 @@ a {
 }
 
 .chatOne:hover {
-    background-color: rgba(167, 185, 207, 0.9);
+    background-color: rgba(224, 234, 248, 0.9);
 }
 
 .chatchat {
@@ -78,15 +138,12 @@ a {
 
 .nicName {
     font-size: 18px;
+    margin-top: 2px;
 }
 
 .chatCon {
     font-size: 15px;
     width: 230px;
-    overflow: hidden;
-    white-space: nowrap;
-    text-overflow: ellipsis;
-    word-break: break-all;
 }
 
 #chatting {
@@ -112,8 +169,7 @@ a {
 #userWho {
     display: inline-flex;
     width: 390px;
-    margin-top: 5px;
-    margin-left: 20px;
+    margin-top: 6px;
     font-size: 30px;
 }
 
@@ -160,8 +216,41 @@ a {
 }
 /* 채팅내용 스크롤바 설정 끝 */
 
+
+
+.connectChat {
+    background-color: rgb(199, 199, 199);
+    margin-left: 190px;
+    padding-left: 120px;
+    padding-top: 8px;
+    width: 210px;
+    height: 30px;
+    display: inline-flex;
+    flex-wrap: wrap;
+}
+
+.enterCss {
+    text-align: center;
+    background-color: rgb(182, 191, 207);
+    margin-top: 10px;
+    margin-bottom: 10px;
+    width: 660px;
+    height: 30px;
+    line-height: 34px;
+}
+
+.leaveCss {
+    text-align: center;
+    background-color: rgb(187, 182, 207);
+    margin-top: 10px;
+    margin-bottom: 10px;
+    width: 660px;
+    height: 30px;
+    line-height: 34px;
+}
+
 .chatU {
-    background-color: rgb(166, 189, 221);
+    background-color: rgb(146, 167, 201);
     border-radius: 5px;
     margin-left: 5px;
     padding-left: 10px;

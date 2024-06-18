@@ -1,0 +1,90 @@
+
+
+.divF {
+    display: flex;
+}
+
+section {
+    padding-top: 8%;
+    margin-left: 8%;
+    /* font-family: 'font'; */
+}
+
+#chatListPan {
+    background-color: rgba(255, 255, 255, 0.589);
+    width: 1080px;
+    height: 700px;
+    border-radius: 15px;
+}
+
+#cListHeader {
+    /* background-color: aquamarine; */
+    font-size: 35px;
+    margin-top: 35px;
+    margin-left: 35px;
+    height: 40px;
+    display: inline-flex;
+    flex-wrap: wrap;
+}
+
+#chatList {
+    /* background-color: aqua; */
+    margin-left: 40px;
+    margin-top: 40px;
+    height: 500px;
+    width: 950px;
+}
+
+#chattingList {
+    /* background-color: brown; */
+    width: 1000px;
+    height: 540px;
+    overflow: auto;
+}
+
+/* 채팅방 스크롤바 설정 시작 */
+#chattingList::-webkit-scrollbar {
+    width: 10px;
+}
+
+#chattingList::-webkit-scrollbar-thumb {
+    background-color: rgba(166, 189, 221, 0.67);
+    border-radius: 10px;
+}
+
+/* 채팅방 스크롤바 설정 끝 */
+
+#chatTable {
+    /* background-color: blueviolet; */
+    width: 950px;
+}
+
+table th,
+table td {
+    border-bottom: 1px lightgrey solid;
+}
+
+.tHead {
+    font-size: 23px;
+    text-align: center;
+}
+
+.tBody {
+    height: 45px;
+    font-size: 18px;
+    text-align: center;
+}
+
+tbody tr:hover {
+    background-color: rgb(210, 227, 250);
+}
+
+.cRoomName {
+    width: 350px;
+    /* background-color: bisque; */
+}
+
+.cRoomCnt {
+    /* background-color: azure; */
+    width: 250px;
+}

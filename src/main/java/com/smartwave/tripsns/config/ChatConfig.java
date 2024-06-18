@@ -32,7 +32,8 @@ public class ChatConfig implements WebSocketMessageBrokerConfigurer {
         // 주소를 구독한 클라이언트는 모든 브로드캐스팅 메시지를 수신함.
         registry.addEndpoint("/stomp/chat")
                 //[         연결될 엔드포인트       ]
-                .setAllowedOrigins("http://localhost:8080")
+                // STOMP 접속 url : /stomp/chat
+                .setAllowedOrigins("*")
                 // setAllowedOrigins("*") : 모든 ip에서 접속 가능하게 해줌
                 .withSockJS();
                 //[SocketJS를 연결]

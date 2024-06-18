@@ -1,0 +1,469 @@
+<!DOCTYPE html>
+<html lang="kor">
+
+<head>
+    <meta charset="UTF-8">
+    <title>채팅</title>
+    <link rel="stylesheet" href="/css/Chat.css">
+    <link rel="stylesheet" href="/css/main_navTop.css">
+    <link rel="stylesheet" href="/css/main_navSide.css">
+</head>
+<style>
+    @font-face {
+        font-family: 'font';
+        src: url(/font/AppleSDGothicNeoL.ttf);
+    }
+
+    .font {
+        font-family: 'font';
+    }
+
+    @font-face {
+        font-family: 'fontB';
+        src: url(/font/AppleSDGothicNeoB.ttf);
+    }
+
+    .fontB {
+        font-family: 'fontB';
+        /* display: flex;
+        text-align: center;
+        align-items: center;
+        justify-content: center; */
+    }
+
+    body {
+        background-image: url("/img/5528913.jpg");
+        background-position: center;
+        background-size: cover;
+        background-attachment: fixed;
+    }
+
+    #navSide {
+        margin-left: -8px;
+        margin-top: -15px;
+        height: 120%;
+    }
+
+    #navTop {
+        margin-top: -8px;
+        margin-left: -7px;
+    }
+
+    #srhForm {
+        margin-top: -18px;
+    }
+</style>
+
+<body>
+<!--좌측 네비-->
+<nav id="navSide">
+    <ul>
+        <li>
+            <a href="/main">
+                <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor"
+                     class="bi bi-house-fill" viewBox="0 0 16 16">
+                    <path
+                            d="M8.707 1.5a1 1 0 0 0-1.414 0L.646 8.146a.5.5 0 0 0 .708.708L8 2.207l6.646 6.647a.5.5 0 0 0 .708-.708L13 5.793V2.5a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5v1.293z"/>
+                    <path d="m8 3.293 6 6V13.5a1.5 1.5 0 0 1-1.5 1.5h-9A1.5 1.5 0 0 1 2 13.5V9.293z"/>
+                </svg>
+            </a>
+        </li>
+        <li>
+            <a href="#">
+                <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor"
+                     class="bi bi-map-fill" viewBox="0 0 16 16">
+                    <path fill-rule="evenodd"
+                          d="M16 .5a.5.5 0 0 0-.598-.49L10.5.99 5.598.01a.5.5 0 0 0-.196 0l-5 1A.5.5 0 0 0 0 1.5v14a.5.5 0 0 0 .598.49l4.902-.98 4.902.98a.5.5 0 0 0 .196 0l5-1A.5.5 0 0 0 16 14.5zM5 14.09V1.11l.5-.1.5.1v12.98l-.402-.08a.5.5 0 0 0-.196 0zm5 .8V1.91l.402.08a.5.5 0 0 0 .196 0L11 1.91v12.98l-.5.1z"/>
+                </svg>
+            </a>
+        </li>
+        <li>
+            <a href="/chatList">
+                <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor"
+                     class="bi bi-chat-left-text-fill" viewBox="0 0 16 16">
+                    <path
+                            d="M0 2a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H4.414a1 1 0 0 0-.707.293L.854 15.146A.5.5 0 0 1 0 14.793zm3.5 1a.5.5 0 0 0 0 1h9a.5.5 0 0 0 0-1zm0 2.5a.5.5 0 0 0 0 1h9a.5.5 0 0 0 0-1zm0 2.5a.5.5 0 0 0 0 1h5a.5.5 0 0 0 0-1z"/>
+                </svg>
+            </a>
+        </li>
+        <li>
+            <a href="#">
+                <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor"
+                     class="bi bi-file-play-fill" viewBox="0 0 16 16">
+                    <path
+                            d="M12 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2M6 5.883a.5.5 0 0 1 .757-.429l3.528 2.117a.5.5 0 0 1 0 .858l-3.528 2.117a.5.5 0 0 1-.757-.43V5.884z"/>
+                </svg>
+            </a>
+        </li>
+    </ul>
+</nav>
+<!--상단 네비-->
+<nav id="navTop">
+    <a href="main">
+        <svg xmlns="http://www.w3.org/2000/svg" width="35" height="35" fill="currentColor"
+             class="bi bi-bootstrap-fill" viewBox="0 0 16 16">
+            <path
+                    d="M6.375 7.125V4.658h1.78c.973 0 1.542.457 1.542 1.237 0 .802-.604 1.23-1.764 1.23zm0 3.762h1.898c1.184 0 1.81-.48 1.81-1.377 0-.885-.65-1.348-1.886-1.348H6.375z"/>
+            <path
+                    d="M4.002 0a4 4 0 0 0-4 4v8a4 4 0 0 0 4 4h8a4 4 0 0 0 4-4V4a4 4 0 0 0-4-4zm1.06 12V3.545h3.399c1.587 0 2.543.809 2.543 2.11 0 .884-.65 1.675-1.483 1.816v.1c1.143.117 1.904.931 1.904 2.033 0 1.488-1.084 2.396-2.888 2.396z"/>
+        </svg>
+    </a>
+    <ul>
+        <form id="srhForm">
+            <li><input type="search" placeholder="검색" class="search"></li>
+            <li><input type="submit" value="검색" class="submit"></li>
+        </form>
+    </ul>
+</nav>
+<section>
+
+
+    <div id="cNamePage"> <!-- 이름 설정창 -->
+        <div class="divF cNameSet">
+            <span id="cNameTitle">채팅방에서 사용할 닉네임을 입력해주세요.</span>
+        </div>
+        <hr class="cNameHr">
+        <div class="font cNameInfo "> <!-- 안내문구 -->
+            단, <b>상대방에게 불쾌감을 줄 수 있는 이름으로 설정</b>하거나<br>
+            <b>타인의 권리 침해 등 커뮤니티 분위기 형성에 악영향</b>을 미치는 경우,<br>
+            <b style="color:rgb(10, 53, 133)">서비스 이용이 제한</b>될 수 있으니 신중하게 작성해주시기 바랍니다.
+        </div>
+        <form class="divF" id="cNameForm" name="cNameForm">
+            <div class="divF">
+                <div th:if="${cName == null}">
+                    <input type="text" class="chatUser" placeholder="5글자 이내" autocomplete="off" maxlength="5" oninput="textLengthHandle(this, 5)">
+                </div>
+                <div th:if="${cName != null}">
+                    <input type="text" class="chatUser" placeholder="5글자 이내" autocomplete="off"
+                           th:value="${cName.nickName}" maxlength="5" oninput="textLengthHandle(this, 5)">
+                </div>
+                <div>
+                    <button type="submit" class="chatInput">입장</button>
+                </div>
+            </div>
+        </form>
+    </div><!--이름 설정창 끝-->
+
+    <div id="chatpan" class="divF"> <!-- 전체 큰 div -->
+        <div id="userLpan" class="hidden">
+            <div> <!-- 채팅방 정보 -->
+                <span class="fontB Chattxt">채팅 참여자 명단</span>
+                <hr id="chatLHr">
+            </div>
+            <div id="chatWithMe"> <!-- 유저 리스트 -->
+                <!--n번째 유저-->
+                <div class="divF chatOne">
+                    <div class="divF chatchat">
+                        <div class="divF"><!--유저프로필 구분-->
+                            <div class="divF"><!--유저 프로필 사진-->
+                                <div class="divF">
+                                        <span class="divF">
+                                            <img src="/img/userPic.png" width="50" height="50">
+                                        </span>
+                                </div>
+                            </div>
+                            <div class="divF"><!--유저 정보-->
+                                <div>
+                                    <div class="fontB nicName"><!--채팅방에 참여한 유저 이름-->
+                                        참여유저위치
+                                    </div>
+                                    <div style="height: 1px"></div><!--이름과 아이디 사이 공간-->
+                                    <div class="font chatCon"> <!--유저의 ID-->
+                                        @asdf(암튼 ID)
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div><!--채팅방 참여 유저 한 명 끝-->
+
+            </div>
+        </div>
+        <div id="chatting" class="hidden"><!--채팅창-->
+            <div>
+                <div id="chatText">
+                    <div> <!-- 채팅방 이름 -->
+                        <div id="chatBox" class="divF"><!--유저와 메시지창 구분-->
+                            <div class="divF"><!--채팅 정보-->
+                                <div class="divF">
+                                    <div id="userWho" class="fontB divF"><!--채팅방 이름-->
+                                        채팅창 이름
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="hrp"><!--구분선-->
+                        <hr id="chatWhoHr">
+                    </div>
+                    <div id="chatAlllist">
+                        <div>
+                            <div id="cchhaatt"><!--채팅창(내용+입력창)-->
+                                <div> <!--연결확인-->
+                                    <div class="connectChat">
+                                        connecting...
+                                    </div>
+                                </div>
+                                <div id="connecInfo" class="font"><!-- 입/퇴장 메시지 ; 이 태그 안에 들어감(JS) -->
+
+                                </div>
+                                <div>
+                                    <!-- 상대 채팅 시작 -->
+                                    <div class="divF"> <!--상대채팅창(내용)-->
+                                        <div class="divF wwwn">
+                                            <img src="/img/userPic.png" width="35" height="35">
+                                        </div>
+                                        <div class="chatU"><!-- 상대채팅창모양 -->
+                                            <div class="chatUCon"><!--상대 채팅 내용-->
+                                                안녕하세요 만나서 반갑습니다. 이건 글자수 넘어가는 테스트입니다. 채팅 글자수를 말하는 겁니다 하하하 아 div짜는 게 젤
+                                                어렵긴
+                                                하네요
+                                                어렵다 어려워~ 이제 거의 다 찰 때 됐는데 걍
+                                                복붙해야겟따!ㄴㅇㄹㄴㅇㄻㄴㅇㄹㄻㅇㄴㅁㄴㅇㄻㄴㅇㄹㅇㄹㄴㅇㄹㄴㅇ랴ㅕ뫄어롸놀ㄴㅇ랴ㅐㅁ래ㅗ라ㅓ노아ㅓㅁㄴ오러ㅏ몬야ㅕㄻ냥로나멍롬노올ㄴㅇㄹㄴㅇㄻㄴㅇㄹㄻㅇㄴㅁㄴㅇㄻㄴㅇㄹㅇㄹㄴㅇㄹㄴㅇ랴ㅕ뫄어롸놀ㄴㅇ랴ㅐㅁ래ㅗ라ㅓ노아ㅓㅁㄴ
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- 상대 채팅 끝 -->
+                                </div>
+                                <div class="whatright"><!--내 채팅 시작-->
+                                    <div class="divF">
+                                        <div class="divF"> <!--내 채팅창(내용)-->
+                                            <div class="chatI"><!-- 내 채팅창모양 -->
+                                                <div class="chatICon"><!--내 채팅 내용-->
+                                                    안뇽?
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div><!--내 채팅 끝-->
+                                <!-- 상대 채팅 시작-->
+                                <div class="divF"> <!--상대채팅창(내용)-->
+                                    <div class="divF wwwn">
+                                        <img src="/img/userPic.png" width="35" height="35">
+                                    </div>
+                                    <div class="chatU"><!-- 상대채팅창모양 -->
+                                        <div class="chatUCon"><!--상대 채팅 내용-->
+                                            안녕하세요 만나서 반갑습니다. 이건 글자수 넘어가는 테스트입니다. 채팅 글자수를 말하는 겁니다 하하하 아 div짜는 게 젤
+                                            어렵긴
+                                            하네요
+                                            어렵다 어려워~ 이제 거의 다 찰 때 됐는데 걍
+                                            복붙해야겟따!ㄴㅇㄹㄴㅇㄻㄴㅇㄹㄻㅇㄴㅁㄴㅇㄻㄴㅇㄹㅇㄹㄴㅇㄹㄴㅇ랴ㅕ뫄어롸놀ㄴㅇ랴ㅐㅁ래ㅗ라ㅓ노아ㅓㅁㄴ오러ㅏ몬야ㅕㄻ냥로나멍롬노올ㄴㅇㄹㄴㅇㄻㄴㅇㄹㄻㅇㄴㅁㄴㅇㄻㄴㅇㄹㅇㄹㄴㅇㄹㄴㅇ랴ㅕ뫄어롸놀ㄴㅇ랴ㅐㅁ래ㅗ라ㅓ노아ㅓㅁㄴ
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- 상대 채팅 끝 -->
+                                <div class="whatright"> <!-- 내 채팅 시작 -->
+                                    <div class="divF">
+                                        <div class="divF"> <!--내 채팅창(내용)-->
+                                            <div class="chatI"><!-- 내 채팅창모양 -->
+                                                <div class="chatICon"><!--내 채팅 내용-->
+                                                    여긴 채팅 자리
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div><!--내 채팅 끝-->
+                            </div>
+                        </div>
+                        <div class="inputext"><!-- 입력창 -->
+                            <div><!--입력창-->
+                                <textarea id="chat" placeholder="채팅 내용"></textarea>
+                            </div>
+                            <div><!--버튼-->
+                                <button id="chatbtn" type="submit">입력</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div><!--채팅창 끝-->
+    </div>
+</section>
+</body>
+</html>
+<script>
+
+    // 추후 파일 분리할 예정(지금은 코드 작성 편의성을 위해 여기다 작성함)
+
+    // 채팅메시지 가장 최근부터 보기 위해 스크롤을 요소의 높이만큼 이동함
+    document.getElementById('cchhaatt').scrollTop = document.getElementById('cchhaatt').scrollHeight;
+
+    // 닉네임 글자수 입력제한
+    function textLengthHandle(el, max) {
+        if (el.value.length > max) {
+            el.value = el.value.substring(0, max) ; // 5글자 초과 시, 글자 절삭
+        }
+    }
+
+
+    // 채팅 기능 부분
+
+    let chatNamePage = document.querySelector('#cNamePage') ; // 채팅방 이름 설정창
+    let chatNameForm = document.querySelector('#cNameForm') ; // 채팅방 이름 Form
+    let chatPage = document.querySelector('#userLpan') ; // 채팅창(채팅방 정보)
+    let chatForm = document.querySelector('#chatting') ; // 채팅창(채팅 공간)
+    let userELInfo = document.querySelector('#connecInfo') ; // 채팅 입/퇴장 안내 공간
+    let chatSend = document.querySelector('#chat') ; // 채팅 입력란
+    let chattingMe = document.querySelector('.chatICon') ; // 내 채팅 말풍선
+    let chattingYou = document.querySelector('.chatUCon') ; // 상대 채팅 말풍선
+    let connectingChk = document.querySelector('.connectChat') ; // 연결 확인
+
+    let stompClient = null ;
+    let username = null ;
+
+
+    // 채팅방번호 가져오기
+    let url = new URL(location.href).searchParams ;
+    let chatRoomNum = url.get('chatRoomNum') ;
+
+    function connect(e) { // 채팅 연결
+        username = document.querySelector('.chatUser') ;
+
+        // 닉네임 중복 확인
+        userSame(); // 아래 메서드 참고
+
+        // 닉네임 입력창 가린 후, 채팅창 보여줌
+        chatNamePage.classList.add('hidden') ; // 가림
+        chatPage.classList.remove('hidden') ; // 채팅방 정보 보여줌
+        chatForm.classList.remove('hidden') ; // 채팅창 보여줌
+
+
+        // 연결하고자 하는 Socket의 endPoint 설정
+        let socket = new SockJS('/stomp/chat') ; // config 참고
+        stompClient = Stomp.over(socket); // WebSocket 정의
+
+        stompClient.connect({}, onConnected, onError); // 연결됐을 때 / 안 됐을 때 작업 -> 하단 메서드 참고
+        e.preventDefault(); // 이벤트 처리 취소 (기본동작 실행하지 않도록 지정)
+
+    }
+
+    function onConnected() { // 채팅방 입장 관리
+        stompClient.subscribe('/sub/chatting/room/' + chatRoomNum, onMessageReceived);
+        // onMessageReceived : 메시지 수신... 아래 메서드 참고
+
+        // 서버에 유저가 들어왔음을 알림.(username)
+        // 메시지 보냄.
+        // -> pub/chat/enterUser 로 메시지 발송하고 ChattingController 에 있는
+        // @MessageMapping 에 의해서 해당 어노테이션이 달린 메서드 실행됨.
+        // => 그 중, chatUser() (ChattingController 참고) 메서드가 실행됨.
+        stompClient.send("/pub/chatting/chatUser"
+            , {}
+            , JSON.stringify({
+                "chatRoomNum" : chatRoomNum
+                , sendName : username
+                , type : 'ENTER'
+            })
+        )
+        connectingChk.classList.add('hidden'); // connectting... 문구 숨김
+                                            // 채팅창 맨 상단에 연결상태 안내하는 문구 부분을 숨긴 것임!
+    }
+
+    function onError(error) { // 웹소켓 연결 오류 안내 메시지(connectiing... 자리에 뜸)
+        connectingChk.textContent = 'WebSocket Server 연결 오류... 다시 접속해주세요...'
+        connectingChk.style.color = 'red' ;
+    }
+
+    function userSame() { // 유저 닉네임 중복확인
+        $.ajax({
+            type : "GET"
+            , url : "chatting/userSame" // ChattingController userSame() 참고
+            , data : {
+                "username" : username,
+                "chatRoomNum" : chatRoomNum
+            },
+            success: function (data) {
+                console.log("함수 동작 : " + data) ;
+
+                username = data ;
+            }
+        })
+    }
+
+
+    function chatUserList() { // 현재 채팅방에 있는 유저 리스트
+
+        let $chatWithMe = $("#chatWithMe") ;
+
+        $.ajax({
+            type : "GET"
+            , url : "/chatting/userList" // ChattingController userList() 참고
+            , data : {
+                "chatRoomNum" : chatRoomNum
+            },
+            success : function (data) {
+                let cUsers = "";
+                for (let i = 0 ; i < data.length ; i++) {
+                    cUsers += "<div class=\"divF chatOne\">\n" +
+                        "                    <div class=\"divF chatchat\">\n" +
+                        "                        <div class=\"divF\"><!--유저프로필 구분-->\n" +
+                        "                            <div class=\"divF\"><!--유저 프로필 사진-->\n" +
+                        "                                <div class=\"divF\">\n" +
+                        "                                        <span class=\"divF\">\n" +
+                        "                                            <img src=\"/img/userPic.png\" width=\"50\" height=\"50\">\n" +
+                        "                                        </span>\n" +
+                        "                                </div>\n" +
+                        "                            </div>\n" +
+                        "                            <div class=\"divF\"><!--유저 정보-->\n" +
+                        "                                <div>\n" +
+                        "                                    <div class=\"fontB nicName\"><!--채팅방에 참여한 유저 이름-->\n" +
+                                                                    data[i] /* 이름 */ +
+                        "                                    </div>\n" +
+                        "                                    <div style=\"height: 1px\"></div><!--이름과 아이디 사이 공간-->\n" +
+                        "                                    <div class=\"font chatCon\"> <!--유저의 ID-->\n" +
+                        "                                        @asdf(나중에 추가...)\n" +
+                        "                                    </div>\n" +
+                        "                                </div>\n" +
+                        "                            </div>\n" +
+                        "                        </div>\n" +
+                        "                    </div>\n" +
+                        "                </div>"
+                }
+                $chatWithMe.html(cUsers) ; // 채팅방 유저리스트 출력되는 부분에 매핑
+            }
+        })
+    }
+
+    function sendMessage(e) { // 메시지 전송 (JSON 사용)
+        let messageCon = chatSend.value.trim() ;
+
+        if (messageCon && stompClient) {
+            let chatTxt = {
+                sendName : username
+                , message : chatSend.value
+                , type : 'TALK'
+            };
+            stompClient.send("pub/chatting/sendMessage", {}, JSON.stringify(chatTxt)) ;
+            // 메시지 보냄.
+            // -> pub/chat/sendMessage 로 메시지 발송하고 ChattingController 에 있는
+            // @MessageMapping 에 의해서 해당 어노테이션이 달린 메서드 실행됨.
+            // => 그 중, sendMessage()(ChattingController 참고) 메서드가 실행됨.
+            chatSend.value = '';
+        }
+        e.preventDefault();
+    }
+
+    function onMessageReceived(payload) { // 메시지 받을 때 처리...(JSON 사용)
+        let chat = JSON.parse(payload.body) ; // JSON 타입으로 메시지를 받아 parse 해서 사용
+
+        // 채팅창에 메시지 나오는 부분
+        let messageElU = chattingYou.createElement('div') ; // 상대방이 채팅함
+        let messageELInfo = userELInfo.createElement('div') ; // 채팅방 입/퇴장
+        // messageEl.classList.add('chatUCon') ; // 채팅창 css 설정 위해 class 추가
+
+        if (chat.type === 'ENTER') { // chatType : ENTER(입장) ; ChatInfoVO 참고
+            // 입장관리는 ChattingController 에서 chatUser() 메서드가 관리중...
+            messageELInfo.classList.add('enterCss') ; // 채팅 입장창 css 설정 위해 class 추가
+            chat.content = chat.sendName + chat.message ;
+            chatUserList(); // 유저가 입장했으므로 chatUserList() 메서드 실행 후 유저리스트 갱신
+
+        } else if (chat.type === 'LEAVE') { // chatType : LEAVE(퇴장) ; ChatInfoVo 참고
+            messageELInfo.classList.add('leaveCss') ; // 채팅 퇴장창 css 설정 위해 class 추가
+            chat.content = chat.sendName + chat.message ;
+            chatUserList() ; // 유저가 퇴장했으므로 chatUserList() 메서드 실행 후 유저리스트 갱신
+
+        } else { // chatType : TALK(채팅) ; ChatInfoVo 참고
+            messageElU.classList.add('chatUCon') ; // 채팅 말풍선 css 설정 위해 class 추가
+        }
+    }
+
+</script>
