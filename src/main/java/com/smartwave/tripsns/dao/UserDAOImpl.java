@@ -1,5 +1,6 @@
 package com.smartwave.tripsns.dao;
 
+import com.smartwave.tripsns.vo.AdminVO;
 import com.smartwave.tripsns.vo.ProfileVO;
 import com.smartwave.tripsns.vo.UserVO;
 import org.apache.ibatis.session.SqlSession;
@@ -18,7 +19,7 @@ public class UserDAOImpl implements IF_UserDAO {
     }
 
 
-
+    //아이디 중복체크
     @Override
     public int idchk(String id) throws Exception {
          return sqlSession.selectOne(mapperQuery+".idchk",id);
@@ -48,25 +49,35 @@ public class UserDAOImpl implements IF_UserDAO {
     public void profileupdate(ProfileVO pvo) throws Exception {
         sqlSession.update(mapperQuery+".profileupdate",pvo);
     }
-
+    //프로필 한줄소개 업데이트
     @Override
     public void introupdate(ProfileVO pvo) throws Exception {
         sqlSession.update(mapperQuery+".introupdate",pvo);
     }
-
+    //회원탈퇴시 필요한 pw get
     @Override
     public String getpw(String u_id) throws Exception {
         return sqlSession.selectOne(mapperQuery+".getpw",u_id);
     }
-
+    //회원 탈퇴
     @Override
     public void userdelete(String id) throws Exception {
         sqlSession.delete(mapperQuery+".userdelete",id);
     }
-
+    //게시물 수
     @Override
     public int postcnt(String id) throws Exception {
         return sqlSession.selectOne(mapperQuery+".postcnt",id);
+    }
+    //쇼츠 수
+    @Override
+    public int shortcnt(String id) throws Exception {
+        return sqlSession.selectOne(mapperQuery+".shortcnt",id);
+    }
+    //관리자 로그인
+    @Override
+    public AdminVO getAdmin(String id) throws Exception {
+        return sqlSession.selectOne(mapperQuery+".getadmin",id);
     }
 
 
