@@ -1,8 +1,11 @@
 package com.smartwave.tripsns.dao;
 
 import com.smartwave.tripsns.vo.AdminVO;
+
 import com.smartwave.tripsns.vo.ProfileVO;
 import com.smartwave.tripsns.vo.UserVO;
+
+import java.util.List;
 
 public interface IF_UserDAO {
     //회원가입
@@ -30,4 +33,6 @@ public interface IF_UserDAO {
     public int shortcnt(String id) throws Exception;
     //관리자 로그인
     public AdminVO getAdmin(String id) throws Exception;
+    //관리자용 회원목록 전부 보기
+    public List<UserVO> userList() throws Exception;
 }

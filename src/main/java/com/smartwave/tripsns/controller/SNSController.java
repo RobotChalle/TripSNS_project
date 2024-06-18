@@ -158,6 +158,13 @@ public class SNSController {
         return "redirect:main";
     }
 
+    @GetMapping(value = "postDeleteManager")
+    public String postDeleteManager(@ModelAttribute PostVO pvo) throws Exception {
+        System.out.println("외 않돼");
+        sService.postDelete(pvo);
+        return "redirect:manager";
+    }
+
     @GetMapping(value = "postCommentDelete") //댓글 삭제
     public String postCommentDelete(@ModelAttribute PostCommentVO pcvo, @ModelAttribute PostVO pvo) throws Exception {
         sService.postCommentDelete(pcvo);
@@ -212,12 +219,16 @@ public class SNSController {
         sService.postLike(pvo);
         return "redirect:detail?p_no=" + pvo.getP_no() + "&p_id=" + pvo.getP_id();
     }
-
+    // 관리자 로그인지 관리페이지로 이동
     @GetMapping(value = "manager")
     public String manager(Model model, @SessionAttribute("userid") String u_id) throws Exception {
         //게시글 정보 가져오기
         List<PostVO> postList = sService.postSelectList();
         model.addAttribute("postList", postList);
+
+        //관리자용 회원목록 get
+        List<UserVO> userList = userservice.userList();
+        model.addAttribute("userList", userList);
 
         //프로필 사진 불러오기
         ProfileVO prodetail = userservice.getProfile(u_id);
