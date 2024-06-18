@@ -273,3 +273,37 @@ div.feedBoard {
 #tab01 .btn-15:active {
     top: 2px;
 }
+
+.userTable{
+    border-collapse: collapse;
+    width: 100%;
+}
+#usertables{
+    height: 400px;
+    overflow-x:auto;
+}
+.userTable th,td {
+    padding: 10px;
+
+    border-bottom: 1px solid black;
+}
+.userTable td {
+    padding-left: 20px;
+}
+.userTable tr:hover{
+    background-color: rgba(100, 149, 237, 0.15);
+}
+.delbtn {
+    font-family: apple Black;
+    width: 50px;
+    height: 40px;
+    background: #fff;
+    border: 1px solid rgb(77, 77, 77);
+    border-radius: 10px;
+    cursor: pointer;
+    /*margin-top: 10px;*/
+}
+
+.delbtn:hover {
+    border: 1px solid red;
+}

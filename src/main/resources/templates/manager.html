@@ -164,7 +164,39 @@
                 </div>
             </div>
             <div id="tab02">쇼츠 관리</div>
-            <div id="tab03">회원 관리</div>
+            <div id="tab03"><!--회원 관리-->
+                <h1 style="text-align: center">회원관리</h1>
+                <input type="search" placeholder="검색" class="search" name="searchWord">
+                <input type="submit" value="검색" class="submit">
+                <br>
+
+                <table class="userTable">
+                    <tr>
+                        <th>체크박스</th>
+                        <th>아이디</th>
+                        <th>이름</th>
+                        <th>생일</th>
+                        <th>이메일</th>
+                        <th>삭제</th>
+                        <th>자세히</th>
+                    </tr>
+                </table>
+                <div id="usertables">
+                    <table class="userTable">
+                        <tr th:each="userList:${userList}">
+                            <td><input type="checkbox"></td>
+                            <td th:text="${userList.id}">아이디 자리</td>
+                            <td th:text="${userList.name}">이름 자리</td>
+                            <td th:text="${userList.birth}">생일 자리</td>
+                            <td th:text="${userList.email}">이메일 자리</td>
+                            <td>
+                                <button class="delbtn" th:onclick="|location.href='@{/withdrawalManger(id=${userList.id})}'|">삭제</button>
+                            </td>
+                            <td><a th:href="@{/otherprofile(p_id=${userList.id})}">프로필</a></td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
         </div>
     </div>
 </div>
