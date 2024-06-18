@@ -10,7 +10,7 @@ public interface IF_SNSDAO {
 
     public void postSaveAttach(String filename) throws Exception; //게시글 사진파일 저장
 
-    public List<PostVO> postSelectAll() throws Exception; //게시글 전부 가져오기
+    public List<PostVO> postSelectAll(String p_id) throws Exception; //게시글 전부 가져오기
 
     public PostVO postSelectOne(String p_no) throws Exception; //게시글 하나 가져오기
 
@@ -19,10 +19,10 @@ public interface IF_SNSDAO {
     public void commentSave(PostCommentVO pcvo) throws Exception; //댓글 저장하기
 
     public List<PostCommentVO> commentList(String p_no) throws Exception; //댓글 가져오기
-  
+
     public void videoInsert(VideoVO vvo) throws Exception;
 
-    public int videoSelect()throws Exception;
+    public int videoSelect() throws Exception;
 
     public void postDelete(PostVO pvo) throws Exception; //게시물 삭제
 
@@ -43,10 +43,10 @@ public interface IF_SNSDAO {
     public PostLikeVO postLikeSelect(PostVO pvo) throws Exception; //게시글 좋아요 조회
 
     public int postLikeCount(PostVO pvo) throws Exception; //게시글 좋아요 갯수
-  
+
     public void InsertShort(ShortVO svo) throws Exception;
 
-    public List<ShortVO>  allShortList() throws Exception;
+    public List<ShortVO> allShortList() throws Exception;
 
     public ShortVO shortDetails(int s_no) throws Exception;
 
@@ -59,4 +59,6 @@ public interface IF_SNSDAO {
     public void shortCommentDelete(ShortCommentVO scvo) throws Exception;
 
     public void deleteShort(ShortVO svo) throws Exception;
+
+    public List<PostVO> postSelectList() throws Exception; //게시글 전부 보기
 }

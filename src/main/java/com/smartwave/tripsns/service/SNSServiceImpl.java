@@ -23,8 +23,8 @@ public class SNSServiceImpl implements IF_SNSService {
     }
 
     @Override
-    public List<PostVO> postSelectAll() throws Exception {
-        return sdao.postSelectAll();
+    public List<PostVO> postSelectAll(String p_id) throws Exception {
+        return sdao.postSelectAll(p_id);
     }
 
     @Override
@@ -145,6 +145,11 @@ public class SNSServiceImpl implements IF_SNSService {
     @Override
     public void deleteShort(ShortVO svo) throws Exception {
         sdao.deleteShort(svo);
+    }
+
+    @Override
+    public List<PostVO> postSelectList() throws Exception {
+        return sdao.postSelectList();
     }
 
 

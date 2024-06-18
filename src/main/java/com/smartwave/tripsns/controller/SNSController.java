@@ -83,46 +83,53 @@ public class SNSController {
         model.addAttribute("allShortList", shortList);
         return "shorts";
     }
-    @GetMapping(value="/short")//쇼츠 게시글 자세히 보기
-    public String shortOne(Model model,@RequestParam("s_no") int s_no) throws Exception {
+
+    @GetMapping(value = "/short")//쇼츠 게시글 자세히 보기
+    public String shortOne(Model model, @RequestParam("s_no") int s_no) throws Exception {
         ShortVO shortDetails = sService.shortDetails(s_no);
         VideoVO vvo = sService.getVideo(shortDetails.getSv_no());
         List<ShortCommentVO> commentList = sService.shortCommentList(s_no);
-        model.addAttribute("shortDetails",shortDetails);
+        model.addAttribute("shortDetails", shortDetails);
         model.addAttribute("video", vvo);
         model.addAttribute("commentList", commentList);
         return "short";
     }
+
     @PostMapping(value = "shortCommentInsert")//쇼츠 댓글 입력
     public String shortCommentInsert(@ModelAttribute ShortCommentVO scvo) throws Exception {
         sService.ShortCommentInsert(scvo);
-        return "redirect:/short?s_no="+scvo.getS_no();
+        return "redirect:/short?s_no=" + scvo.getS_no();
     }
+
     @GetMapping(value = "shortCommentDelete") //댓글 삭제
     public String shortCommentDelete(@ModelAttribute ShortCommentVO scvo) throws Exception {
         sService.shortCommentDelete(scvo);
-        return "redirect:/short?s_no="+scvo.getS_no();
+        return "redirect:/short?s_no=" + scvo.getS_no();
     }
 
-    @GetMapping(value="/addShortVideo")//쇼츠 비디오 추가
-    public String addShortVideo() {return "addShortVideo";}
+    @GetMapping(value = "/addShortVideo")//쇼츠 비디오 추가
+    public String addShortVideo() {
+        return "addShortVideo";
+    }
 
-    @PostMapping(value="/addShort")//쇼츠 게시글 추가
-    public String addShort(Model model,@ModelAttribute VideoVO vvo, MultipartFile[] file) throws Exception {
+    @PostMapping(value = "/addShort")//쇼츠 게시글 추가
+    public String addShort(Model model, @ModelAttribute VideoVO vvo, MultipartFile[] file) throws Exception {
         String[] filename = fileDataUtil.fileUpload(file);
         vvo.setSv_addr(filename[0]);
         vvo.setSv_thumbnail(filename[1]);
         sService.videoInsert(vvo);
-        model.addAttribute("video",filename[0]);
-        model.addAttribute("thumbnail",filename[1]);
-        model.addAttribute("videoNo",sService.videoSelect());
+        model.addAttribute("video", filename[0]);
+        model.addAttribute("thumbnail", filename[1]);
+        model.addAttribute("videoNo", sService.videoSelect());
         return "addShort";
     }
+
     @PostMapping(value = "/insertShort")
     public String insertShort(@ModelAttribute ShortVO svo) throws Exception {
         sService.InsertShort(svo);
         return "redirect:shorts";
     }
+
     @GetMapping(value = "deleteShort") //댓글 삭제
     public String shortCommentDelete(@ModelAttribute ShortVO svo) throws Exception {
         sService.deleteShort(svo);
@@ -204,6 +211,18 @@ public class SNSController {
     public String postLikeDetail(@ModelAttribute PostVO pvo) throws Exception {
         sService.postLike(pvo);
         return "redirect:detail?p_no=" + pvo.getP_no() + "&p_id=" + pvo.getP_id();
+    }
+
+    @GetMapping(value = "manager")
+    public String manager(Model model, @SessionAttribute("userid") String u_id) throws Exception {
+        //게시글 정보 가져오기
+        List<PostVO> postList = sService.postSelectList();
+        model.addAttribute("postList", postList);
+
+        //프로필 사진 불러오기
+        ProfileVO prodetail = userservice.getProfile(u_id);
+        model.addAttribute("profiledetail", prodetail);
+        return "manager";
     }
 
 }
