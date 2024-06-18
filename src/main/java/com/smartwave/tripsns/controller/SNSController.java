@@ -158,6 +158,13 @@ public class SNSController {
         return "redirect:main";
     }
 
+    @GetMapping(value = "postDeleteManager")
+    public String postDeleteManager(@ModelAttribute PostVO pvo) throws Exception {
+        System.out.println("외 않돼");
+        sService.postDelete(pvo);
+        return "redirect:manager";
+    }
+
     @GetMapping(value = "postCommentDelete") //댓글 삭제
     public String postCommentDelete(@ModelAttribute PostCommentVO pcvo, @ModelAttribute PostVO pvo) throws Exception {
         sService.postCommentDelete(pcvo);
