@@ -4,6 +4,7 @@ package com.smartwave.tripsns.controller;
 import com.smartwave.tripsns.service.IF_SNSService;
 import com.smartwave.tripsns.service.IF_UserService;
 import com.smartwave.tripsns.util.FileDataUtil;
+import com.smartwave.tripsns.vo.AdminVO;
 import com.smartwave.tripsns.vo.PostVO;
 import com.smartwave.tripsns.vo.ProfileVO;
 import com.smartwave.tripsns.vo.UserVO;
@@ -193,11 +194,28 @@ public class UserController {
         }
     }
     @ResponseBody
-    @PostMapping(value = "postcnt")//중복체크 버튼
-    public int postcnt(@RequestParam("myid") String id) throws Exception {
-        System.out.println(id);
-        int cnt = userservice.postcnt(id);
-        return cnt;
+    @PostMapping(value = "postcnt")//나의 게시물수
+    public int postcnt(@RequestParam("myid") String id ) throws Exception {
+        int pcnt = userservice.postcnt(id);
+        return pcnt;
+    }
+    @ResponseBody
+    @PostMapping(value = "shortcnt")//나의 쇼츠 수
+    public int shortcnt(@RequestParam("myid") String id ) throws Exception {
+            int scnt = userservice.shortcnt(id);
+            return scnt;
+    }
+    @ResponseBody
+    @PostMapping(value = "otherpostcnt")//상대방 게시물수
+    public int otherpostcnt(@RequestParam("otherid") String id) throws Exception {
+        int pcnt = userservice.postcnt(id);
+        return pcnt;
+    }
+    @ResponseBody
+    @PostMapping(value = "othershortcnt")//상대방 쇼츠 수
+    public int othershortcnt(@RequestParam("otherid") String id ) throws Exception {
+        int scnt = userservice.shortcnt(id);
+        return scnt;
     }
 
 

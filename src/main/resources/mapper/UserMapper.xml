@@ -13,6 +13,8 @@
     <select id="selectid" parameterType="String" resultType="com.smartwave.tripsns.vo.UserVO">
         select * from user where id = #{id}
     </select>
+
+
   <!--프로필-->
     <update id="proupdate" parameterType="com.smartwave.tripsns.vo.UserVO">
         update user set name=#{name},pw=#{pw},email=#{email} where id = #{id}
@@ -45,6 +47,13 @@
     <select id="postcnt" parameterType="String" resultType="int">
         select count(p_no) from post where p_id = #{id};
     </select>
-
+    <!--쇼츠수 get-->
+    <select id="shortcnt" parameterType="String" resultType="int">
+        select count(s_no) from short_form where s_id = #{id};
+    </select>
+    <!--관리자로그인-->
+    <select id="getadmin" parameterType="String" resultType="com.smartwave.tripsns.vo.AdminVO">
+        select * from admin where admin_id = #{id}
+    </select>
 
 </mapper>

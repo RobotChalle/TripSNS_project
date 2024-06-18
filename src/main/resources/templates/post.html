@@ -95,7 +95,9 @@
         <a href="logout">로그아웃</a>
     </div>
     <a href="#">
-        <img src="/images/메인_2.jpg" alt="myPic">
+        <th:block th:if="${profiledetail.u_pic!=null}">
+            <img th:src="@{/download(filename=${profiledetail.u_pic})}">
+        </th:block>
     </a>
 </div>
 <!--상단 네비-->

@@ -1,5 +1,6 @@
 package com.smartwave.tripsns.service;
 
+import com.smartwave.tripsns.vo.AdminVO;
 import com.smartwave.tripsns.vo.ProfileVO;
 import com.smartwave.tripsns.vo.UserVO;
 
@@ -25,4 +26,8 @@ public interface IF_UserService {
     public void userdelete(String id) throws Exception;
     //게시물 수 get
     public int postcnt(String id) throws Exception;
+    //쇼츠 수 get
+    public int shortcnt(String id) throws Exception;
+    //관리자 로그인
+    public AdminVO getAdmin(String id) throws Exception;
 }
