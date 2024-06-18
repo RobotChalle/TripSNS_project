@@ -7,6 +7,8 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
+
 @Repository
 public class UserDAOImpl implements IF_UserDAO {
     private static String  mapperQuery = "com.smartwave.tripsns.dao.IF_UserDAO";
@@ -78,6 +80,11 @@ public class UserDAOImpl implements IF_UserDAO {
     @Override
     public AdminVO getAdmin(String id) throws Exception {
         return sqlSession.selectOne(mapperQuery+".getadmin",id);
+    }
+
+    @Override
+    public List<UserVO> userList() throws Exception {
+        return sqlSession.selectList(mapperQuery+".userList");
     }
 
 

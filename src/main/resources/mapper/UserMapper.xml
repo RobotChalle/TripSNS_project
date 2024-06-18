@@ -55,5 +55,9 @@
     <select id="getadmin" parameterType="String" resultType="com.smartwave.tripsns.vo.AdminVO">
         select * from admin where admin_id = #{id}
     </select>
-
+    <!-- 관리자 회원 관리 리스트-->
+    <select id="userList" resultType="com.smartwave.tripsns.vo.UserVO">
+        select *
+        from user where name not in ('관리자')
+    </select>
 </mapper>
