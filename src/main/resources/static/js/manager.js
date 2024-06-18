@@ -1,3 +1,4 @@
+//탭 기능
 $(function () {
     $('.tabcontent > div').hide();
     $('.tabnav a').click(function () {
@@ -7,3 +8,11 @@ $(function () {
         return false;
     }).filter(':eq(0)').click();
 });
+
+//게시글 관리
+function checkAll(selectAll) {
+    const checkboxes = document.getElementsByName('checkAll');
+    checkboxes.forEach((checkbox) => {
+        checkbox.checked = selectAll.checked;
+    })
+}

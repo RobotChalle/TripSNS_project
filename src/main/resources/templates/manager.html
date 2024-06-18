@@ -21,10 +21,10 @@
     }
 
     body {
-        background: linear-gradient(300deg, deepskyblue, #b8f4f9, #0060ff);
-        animation: gradient-animation 5s ease infinite;
+        background: linear-gradient(91deg, deepskyblue, #0674e7);
+        animation: gradient-animation 20s ease infinite;
         background-position: center;
-        background-size: 180% 180%;
+        background-size: 120% 120%;
         background-attachment: fixed;
     }
 
@@ -117,29 +117,51 @@
         <!--게시글 관리-->
         <div class="tabcontent">
             <div id="tab01">
-                <table class="postTable">
-                    <tr>
-                        <th>체크박스</th>
-                        <th>고유번호</th>
-                        <th>작성자</th>
-                        <th>장소</th>
-                        <th>글 내용</th>
-                        <th>작성일</th>
-                        <th>삭제</th>
-                        <th>자세히</th>
-                    </tr>
-                    <tr th:each="postList:${postList}">
-                        <td><input type="checkbox"></td>
-                        <td th:text="${postList.p_no}"></td>
-                        <td th:text="${postList.p_id}"></td>
-                        <td th:text="${postList.p_place}"></td>
-                        <td th:text="${postList.p_text}"></td>
-                        <td th:text="${postList.p_indate}"></td>
-                        <td>삭제 버튼</td>
-                        <td><a th:href="@{/detail(p_no=${postList.p_no}, p_id=${session.userid})}" class="detail">자세히
-                            보기</a></td>
-                    </tr>
-                </table>
+                <h1>게시글 관리</h1>
+                <div class="tbl-header">
+                    <table cellpadding="0" cellspacing="0" border="0">
+                        <thead>
+                        <tr>
+                            <th><input type="checkbox" id="checkAll"> 전체선택</th>
+                            <th>고유번호</th>
+                            <th>작성자</th>
+                            <th>장소</th>
+                            <th>글 내용</th>
+                            <th>작성일</th>
+                            <th>삭제</th>
+                            <th>자세히</th>
+                        </tr>
+                        </thead>
+                    </table>
+                </div>
+                <div class="tbl-content">
+                    <table cellpadding="0" cellspacing="0" border="0">
+                        <tbody>
+                        <tr th:each="postList:${postList}">
+                            <td><input type="checkbox" class="chk"></td>
+                            <td th:text="${postList.p_no}"></td>
+                            <td th:text="${postList.p_id}"></td>
+                            <td th:text="${postList.p_place}"></td>
+                            <td th:text="${postList.p_text}"></td>
+                            <td th:text="${postList.p_indate}"></td>
+                            <td>
+                                <button class="custom-btn btn-12">
+                                    <a th:href="@{/postDeleteManager(p_no=${postList.p_no})}">
+                                        <span>정말?</span>
+                                        <span>삭제</span>
+                                    </a>
+                                </button>
+                            </td>
+                            <td><a th:href="@{/detail(p_no=${postList.p_no}, p_id=${session.userid})}" class="detail">자세히
+                                보기</a>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="postDeleteChk">
+                    <button class="custom-btn btn-15">삭제</button>
+                </div>
             </div>
             <div id="tab02">쇼츠 관리</div>
             <div id="tab03">회원 관리</div>
