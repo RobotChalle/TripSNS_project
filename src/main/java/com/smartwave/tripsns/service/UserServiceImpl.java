@@ -8,6 +8,8 @@ import com.smartwave.tripsns.vo.UserVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class UserServiceImpl implements IF_UserService {
     @Autowired
@@ -78,5 +80,10 @@ public class UserServiceImpl implements IF_UserService {
     @Override
     public AdminVO getAdmin(String id) throws Exception {
         return sdao.getAdmin(id);
+    }
+    // 관리자용 회원목록
+    @Override
+    public List<UserVO> userList() throws Exception {
+        return sdao.userList();
     }
 }
