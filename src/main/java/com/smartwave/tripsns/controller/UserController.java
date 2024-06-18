@@ -1,8 +1,10 @@
 package com.smartwave.tripsns.controller;
 
 
+import com.smartwave.tripsns.service.IF_SNSService;
 import com.smartwave.tripsns.service.IF_UserService;
 import com.smartwave.tripsns.util.FileDataUtil;
+import com.smartwave.tripsns.vo.PostVO;
 import com.smartwave.tripsns.vo.ProfileVO;
 import com.smartwave.tripsns.vo.UserVO;
 import jakarta.servlet.http.HttpSession;
@@ -13,6 +15,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import java.util.List;
 
 
 @Controller
@@ -29,6 +32,10 @@ public class UserController {
 
     @Autowired
     IF_UserService userservice;
+
+    @Autowired
+    IF_SNSService sService;
+
     @PostMapping(value = "joinsave")//회원정보 입력 버튼
     public String joinsave(@ModelAttribute UserVO uservo) throws Exception {
         userservice.userinsert(uservo);
@@ -119,6 +126,10 @@ public class UserController {
         ProfileVO prodetail = userservice.getProfile(u_id);
         model.addAttribute("profiledetail", prodetail);
         model.addAttribute("profiledetail2", prodetail);
+
+        //게시글 목록
+        List<PostVO> postVOList = sService.postSelectAll(u_id);
+        model.addAttribute("postVOList", postVOList);
         return "profile";
     }
     // 상대 프로필 기본정보 html 보내기 (한줄소개 코멘트, 프로필 기본사진)
@@ -135,6 +146,10 @@ public class UserController {
             ProfileVO myprodetail = userservice.getProfile(myid);
             model.addAttribute("profiledetail", prodetail);
             model.addAttribute("profiledetail2", myprodetail);
+
+            //게시글 목록
+            List<PostVO> postVOList = sService.postSelectAll(u_id);
+            model.addAttribute("postVOList", postVOList);
             return "profile";
         }
 

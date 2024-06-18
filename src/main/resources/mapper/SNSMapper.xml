@@ -9,7 +9,9 @@
     </insert>
     <select id="postSelectAll" resultType="com.smartwave.tripsns.vo.PostVO"><!-- 게시글 전부 불러오기 -->
         select *
-        from post
+        from post p
+                 inner join postPic pp on p.p_no = pp.pp_no
+        where p.p_id = #{p_id}
         order by p_indate desc;
     </select>
     <select id="postSelectOne" resultType="com.smartwave.tripsns.vo.PostVO"><!-- 게시글 하나 불러오기 -->
@@ -122,5 +124,9 @@
     </delete>
     <select id="findLikeTF" parameterType="com.smartwave.tripsns.vo.ShortLikeVO">
         select count(*) from short_like where s_no = #{s_no} AND slike_id = #{slike_id}
+    </select>
+    <select id="postSelectList" resultType="com.smartwave.tripsns.vo.PostVO">
+        select *
+        from post
     </select>
 </mapper>

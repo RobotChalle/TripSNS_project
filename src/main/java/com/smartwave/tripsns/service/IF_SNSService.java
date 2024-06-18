@@ -8,7 +8,7 @@ public interface IF_SNSService {
 
     public void postInsert(PostVO pvo) throws Exception; //게시글 저장
 
-    public List<PostVO> postSelectAll() throws Exception; //게시글 전부 불러오기
+    public List<PostVO> postSelectAll(String p_id) throws Exception; //게시글 전부 불러오기
 
     public PostVO postSelectOne(String p_no) throws Exception; //게시글 하나 불러오기
 
@@ -55,4 +55,6 @@ public interface IF_SNSService {
     public void shortCommentDelete(ShortCommentVO scvo) throws Exception;
 
     public void deleteShort(ShortVO svo) throws Exception;
+
+    public List<PostVO> postSelectList() throws Exception; //게시글 전체 보기
 }
