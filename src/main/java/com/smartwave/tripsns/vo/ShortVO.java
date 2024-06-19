@@ -13,4 +13,7 @@ public class ShortVO {
     private String s_place;
     private String s_description;
     private String s_date;
+
+    //profile 테이블
+    private String u_pic = null; //프로필 사진
 }

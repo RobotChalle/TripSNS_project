@@ -8,8 +8,6 @@ import lombok.ToString;
 @Getter
 @ToString
 public class ShortLikeVO {
-    public int slike_idx ;
     public String slike_id;
     public int s_no;
-
 }
