@@ -81,7 +81,7 @@
                 </svg>
             </a>
         </li>
-        <th:block th:if="${session.userid=='qwer'}"> <!--관리자용 메뉴-->
+        <th:block th:if="${session.userid=='smartwave0377'}"> <!--관리자용 메뉴-->
             <li>
                 <a href="manager">
                     <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor"
@@ -118,16 +118,36 @@
         <div class="tabcontent">
             <div id="tab01">
                 <h1>게시글 관리</h1>
+                <div class="postSearchDiv">
+                    <!--                    <div class="postSearchChk">-->
+                    <!--                        <input type="radio" value="p_id" name="searchOpt" class="searchId" checked>아이디-->
+                    <!--                        <input type="radio" value="p_place" name="searchOpt" class="searchPlace">장소-->
+                    <!--                    </div>-->
+                    <input type="search" placeholder="검색" class="postSearch" id="postSearch">
+                    <!--                    <input type="button" value="검색" class="postSubmit">-->
+                </div>
                 <div class="tbl-header">
                     <table cellpadding="0" cellspacing="0" border="0">
                         <thead>
                         <tr>
                             <th><input type="checkbox" id="checkAll"> 전체선택</th>
-                            <th>고유번호</th>
-                            <th>작성자</th>
-                            <th>장소</th>
-                            <th>글 내용</th>
-                            <th>작성일</th>
+                            <th>고유번호
+                                <button onclick="sortTD ( 0 )" class="sortBtn">▲</button>
+                                <button onclick="reverseTD ( 0 )" class="sortBtn">▼</button>
+                            </th>
+                            <th>작성자
+                                <button onclick="sortTD ( 0 )" class="sortBtn">▲</button>
+                                <button onclick="reverseTD ( 0 )" class="sortBtn">▼</button>
+                            </th>
+                            <th>장소
+                                <button onclick="sortTD ( 0 )" class="sortBtn">▲</button>
+                                <button onclick="reverseTD ( 0 )" class="sortBtn">▼</button>
+                            </th>
+                            <th>내용</th>
+                            <th>작성일
+                                <button onclick="sortTD ( 0 )" class="sortBtn">▲</button>
+                                <button onclick="reverseTD ( 0 )" class="sortBtn">▼</button>
+                            </th>
                             <th>삭제</th>
                             <th>자세히</th>
                         </tr>
@@ -135,20 +155,19 @@
                     </table>
                 </div>
                 <div class="tbl-content">
-                    <table cellpadding="0" cellspacing="0" border="0">
+                    <table cellpadding="0" cellspacing="0" border="0" class="sortable" id="postList">
                         <tbody>
                         <tr th:each="postList:${postList}">
-                            <td><input type="checkbox" class="chk"></td>
-                            <td th:text="${postList.p_no}"></td>
-                            <td th:text="${postList.p_id}"></td>
-                            <td th:text="${postList.p_place}"></td>
+                            <td><input type="checkbox" class="chk" th:value="${postList.p_no}"></td>
+                            <td th:text="${postList.p_no}" id="p_no"></td>
+                            <td th:text="${postList.p_id}" id="searchId"></td>
+                            <td th:text="${postList.p_place}" id="searchPlace"></td>
                             <td th:text="${postList.p_text}"></td>
                             <td th:text="${postList.p_indate}"></td>
                             <td>
-                                <button class="custom-btn btn-12">
+                                <button class="postDelete1">
                                     <a th:href="@{/postDeleteManager(p_no=${postList.p_no})}">
-                                        <span>정말?</span>
-                                        <span>삭제</span>
+                                        삭제
                                     </a>
                                 </button>
                             </td>
@@ -159,8 +178,9 @@
                         </tbody>
                     </table>
                 </div>
-                <div class="postDeleteChk">
-                    <button class="custom-btn btn-15">삭제</button>
+                <div class="postOption">
+                    <button class="postDelete2" onclick="postDeleteChk()">삭제</button>
+                    <button class="postExcel" id="excelDownload">엑셀</button>
                 </div>
             </div>
             <div id="tab02">쇼츠 관리</div>
@@ -190,7 +210,9 @@
                             <td th:text="${userList.birth}">생일 자리</td>
                             <td th:text="${userList.email}">이메일 자리</td>
                             <td>
-                                <button class="delbtn" th:onclick="|location.href='@{/withdrawalManger(id=${userList.id})}'|">삭제</button>
+                                <button class="delbtn"
+                                        th:onclick="|location.href='@{/withdrawalManger(id=${userList.id})}'|">삭제
+                                </button>
                             </td>
                             <td><a th:href="@{/otherprofile(p_id=${userList.id})}">프로필</a></td>
                         </tr>
@@ -202,5 +224,9 @@
 </div>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <script type="text/javascript" src="/js/manager.js"></script>
+<!-- Sheet JS -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.14.3/xlsx.full.min.js"></script>
+<!--FileSaver savaAs 이용 -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/1.3.8/FileSaver.min.js"></script>
 </body>
 </html>

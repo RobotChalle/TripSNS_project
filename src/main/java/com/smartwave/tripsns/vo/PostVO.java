@@ -17,6 +17,7 @@ public class PostVO {
     private String p_place = null;
     private String p_text = null;
     private String p_indate = null;
+    private int p_views = 0;
 
     //postPic 테이블
     private String pp_pic = null;
