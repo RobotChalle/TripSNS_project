@@ -1,4 +1,4 @@
-gkd
+
     $('document').ready(function (){
     let myid=$('#myid').val();//로그인 아이디
     let seid=$('#seid').val();// 세션에 저장된 로그인 아이디

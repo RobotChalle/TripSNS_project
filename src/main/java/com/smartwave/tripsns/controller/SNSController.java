@@ -4,18 +4,14 @@ import com.smartwave.tripsns.service.IF_SNSService;
 import com.smartwave.tripsns.service.IF_UserService;
 import com.smartwave.tripsns.util.FileDataUtil;
 import com.smartwave.tripsns.vo.*;
-import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.Banner;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.multipart.MultipartFile;
 
-import java.io.File;
-import java.io.IOException;
-import java.util.HashMap;
 import java.util.List;
 
 @Controller
@@ -78,20 +74,29 @@ public class SNSController {
     }
 
     @GetMapping(value = {"/shorts"})
-    public String shorts(Model model) throws Exception {
+    public String shorts(Model model,@SessionAttribute("userid") String u_id) throws Exception {
         List<ShortVO> shortList = sService.allShortList();
         model.addAttribute("allShortList", shortList);
+        //프로필 사진 불러오기
+        ProfileVO prodetail = userservice.getProfile(u_id);
+        model.addAttribute("profiledetail", prodetail);
         return "shorts";
     }
-
-    @GetMapping(value = "/short")//쇼츠 게시글 자세히 보기
-    public String shortOne(Model model, @RequestParam("s_no") int s_no) throws Exception {
-        ShortVO shortDetails = sService.shortDetails(s_no);
+    @GetMapping(value="/short")//쇼츠 게시글 자세히 보기
+    public String shortOne(Model model,@ModelAttribute ShortLikeVO slikevo, @SessionAttribute("userid") String u_id) throws Exception {
+        ShortVO shortDetails = sService.shortDetails(slikevo.getS_no());
         VideoVO vvo = sService.getVideo(shortDetails.getSv_no());
-        List<ShortCommentVO> commentList = sService.shortCommentList(s_no);
-        model.addAttribute("shortDetails", shortDetails);
+        List<ShortCommentVO> commentList = sService.shortCommentList(slikevo.getS_no());
+        int shortCommentCount = sService.shortCommentCount(slikevo.getS_no());
+        String profileImg = sService.profileImg(shortDetails.getS_no());
+        model.addAttribute("shortDetails",shortDetails);
         model.addAttribute("video", vvo);
         model.addAttribute("commentList", commentList);
+        model.addAttribute("shortCommentCount", shortCommentCount);
+        model.addAttribute("profileImg", profileImg);
+        //프로필 사진 불러오기
+        ProfileVO prodetail = userservice.getProfile(u_id);
+        model.addAttribute("profiledetail", prodetail);
         return "short";
     }
 
@@ -108,12 +113,15 @@ public class SNSController {
     }
 
     @GetMapping(value = "/addShortVideo")//쇼츠 비디오 추가
-    public String addShortVideo() {
+    public String addShortVideo(Model model, @SessionAttribute("userid") String u_id) throws Exception {
+        //프로필 사진 불러오기
+        ProfileVO prodetail = userservice.getProfile(u_id);
+        model.addAttribute("profiledetail", prodetail);
         return "addShortVideo";
     }
 
     @PostMapping(value = "/addShort")//쇼츠 게시글 추가
-    public String addShort(Model model, @ModelAttribute VideoVO vvo, MultipartFile[] file) throws Exception {
+    public String addShort(Model model, @ModelAttribute VideoVO vvo, MultipartFile[] file,@SessionAttribute("userid") String u_id) throws Exception {
         String[] filename = fileDataUtil.fileUpload(file);
         vvo.setSv_addr(filename[0]);
         vvo.setSv_thumbnail(filename[1]);
@@ -121,6 +129,9 @@ public class SNSController {
         model.addAttribute("video", filename[0]);
         model.addAttribute("thumbnail", filename[1]);
         model.addAttribute("videoNo", sService.videoSelect());
+        //프로필 사진 불러오기
+        ProfileVO prodetail = userservice.getProfile(u_id);
+        model.addAttribute("profiledetail", prodetail);
         return "addShort";
     }
 
@@ -134,6 +145,35 @@ public class SNSController {
     public String shortCommentDelete(@ModelAttribute ShortVO svo) throws Exception {
         sService.deleteShort(svo);
         return "redirect:/shorts";
+    }
+
+    @ResponseBody
+    @GetMapping(value = "shortLikeUpDown") //게시글 좋아요
+    public int shortLikeUpDown(@ModelAttribute ShortLikeVO slikevo) throws Exception {
+        sService.shortLikeUpDown(slikevo);
+        int flag = 0;
+        if(sService.shortLikeSelectOne(slikevo)==null){
+            return flag;
+        } else {
+            flag = 1;
+        }
+        return flag;
+    }
+
+    @ResponseBody
+    @GetMapping(value = "shortLikeCount")
+    public int shortLikeCount(@ModelAttribute ShortLikeVO slikevo)throws Exception{
+        return sService.shortLikeCount(slikevo);
+    }
+
+    @ResponseBody
+    @GetMapping(value = "shortLikeChk")
+    public int shortLikeChk(@ModelAttribute ShortLikeVO slikevo)throws Exception{
+        int flag=0;
+        if(sService.shortLikeSelectOne(slikevo)!=null){
+            flag=1;
+        }
+        return flag;
     }
 
 

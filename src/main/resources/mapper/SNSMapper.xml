@@ -138,15 +138,31 @@
         from short_form
         where s_no = #{s_no}
     </delete>
-    <select id="findLikeTF" parameterType="com.smartwave.tripsns.vo.ShortLikeVO">
-        select count(*)
-        from short_like
-        where s_no = #{s_no}
-          AND slike_id = #{slike_id}
+    <select id="shortLikeTF" parameterType="com.smartwave.tripsns.vo.ShortLikeVO" resultType="int">
+        select count(*) from short_like where s_no = #{s_no} AND slike_id = #{slike_id}
     </select>
     <select id="postSelectList" resultType="com.smartwave.tripsns.vo.PostVO"><!--게시물 전체 가져오기-->
         select *
         from post
+    </select>
+    <insert id="shortLikeInsert" parameterType="com.smartwave.tripsns.vo.ShortLikeVO">
+        insert into short_like values (#{slike_id},#{s_no})
+    </insert>
+    <delete id="shortLikeDelete" parameterType="com.smartwave.tripsns.vo.ShortLikeVO">
+        delete from short_like where slike_id = #{slike_id} AND s_no = #{s_no}
+    </delete>
+    <select id="shortLikeSelectOne" parameterType="com.smartwave.tripsns.vo.ShortLikeVO" resultType="com.smartwave.tripsns.vo.ShortLikeVO">
+        select * from short_like where slike_id = #{slike_id} AND s_no = #{s_no}
+    </select>
+    <select id="shortLikeCount" parameterType="com.smartwave.tripsns.vo.ShortLikeVO">
+        select count(*) from short_like where s_no = #{s_no}
+    </select>
+    <select id="shortCommentCount" parameterType="int" resultType="int">
+        select count(*) from short_comment where s_no = #{s_no}
+    </select>
+    <!--short 작성자 프로필 사진-->
+    <select id="profileImg" parameterType="int" resultType="String">
+        select f.u_pic from profile f inner join short_form s on f.id = s.s_id where s_no = #{s_no}
     </select>
     <update id="postViewInsert" parameterType="com.smartwave.tripsns.vo.PostVO">
         update from post
