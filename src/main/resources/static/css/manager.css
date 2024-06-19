@@ -132,167 +132,149 @@ div.feedBoard {
 }
 
 /*삭제 버튼*/
-#tab01 .custom-btn {
-    width: 130px;
-    height: 40px;
-    color: #fff;
-    border-radius: 5px;
-    padding: 10px 25px;
-    font-family: 'Lato', sans-serif;
-    font-weight: 500;
-    background: transparent;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    position: relative;
-    display: inline-block;
-    box-shadow: inset 2px 2px 2px 0px rgba(255, 255, 255, .5),
-    7px 7px 20px 0px rgba(0, 0, 0, .1),
-    4px 4px 5px 0px rgba(0, 0, 0, .1);
-    outline: none;
-}
-
-#tab01 .btn-12 {
-    position: relative;
-    right: 20px;
-    bottom: 20px;
+#tab01 .postDelete1 {
     border: none;
-    box-shadow: none;
-    width: 130px;
-    height: 40px;
-    line-height: 42px;
-    -webkit-perspective: 230px;
-    perspective: 230px;
+    padding: 5px 25px;
+    border-radius: 10px;
+    /*box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);*/
+    text-decoration: none;
+    font-weight: 600;
+    transition: 0.50s;
+    background-color: white;
 }
 
-#tab01 .btn-12 span {
-    background: rgba(0, 172, 238);
-    background: linear-gradient(0deg, rgba(0, 172, 238, 1) 0%, rgba(2, 126, 251, 1) 100%);
-    display: block;
-    position: absolute;
-    width: 80px;
-    height: 40px;
-    box-shadow: inset 2px 2px 2px 0px rgba(255, 255, 255, .5),
-    7px 7px 20px 0px rgba(0, 0, 0, .1),
-    4px 4px 5px 0px rgba(0, 0, 0, .1);
-    border-radius: 5px;
-    margin: 0;
-    text-align: center;
-    -webkit-box-sizing: border-box;
-    -moz-box-sizing: border-box;
-    box-sizing: border-box;
-    -webkit-transition: all .3s;
-    transition: all .3s;
+#tab01 .postDelete1:hover {
+    cursor: pointer;
+    box-shadow: 0 14px 28px rgba(255, 0, 0, 0.5), 0 10px 10px rgba(255, 0, 0, 0.5);
 }
 
-#tab01 .btn-12 span:nth-child(1) {
-    box-shadow: -7px -7px 20px 0px #fff9,
-    -4px -4px 5px 0px #fff9,
-    7px 7px 20px 0px #0002,
-    4px 4px 5px 0px #0001;
-    -webkit-transform: rotateX(90deg);
-    -moz-transform: rotateX(90deg);
-    transform: rotateX(90deg);
-    -webkit-transform-origin: 50% 50% -20px;
-    -moz-transform-origin: 50% 50% -20px;
-    transform-origin: 50% 50% -20px;
-}
-
-#tab01 .btn-12 span:nth-child(2) {
-    -webkit-transform: rotateX(0deg);
-    -moz-transform: rotateX(0deg);
-    transform: rotateX(0deg);
-    -webkit-transform-origin: 50% 50% -20px;
-    -moz-transform-origin: 50% 50% -20px;
-    transform-origin: 50% 50% -20px;
-}
-
-#tab01 .btn-12:hover span:nth-child(1) {
-    background: red;
-    background: linear-gradient(0deg, red 0%, rgb(251, 2, 106) 100%);
-    box-shadow: inset 2px 2px 2px 0px rgba(255, 255, 255, .5),
-    7px 7px 20px 0px rgba(0, 0, 0, .1),
-    4px 4px 5px 0px rgba(0, 0, 0, .1);
-    -webkit-transform: rotateX(0deg);
-    -moz-transform: rotateX(0deg);
-    transform: rotateX(0deg);
-}
-
-#tab01 .btn-12:hover span:nth-child(2) {
-    background: red;
-    background: linear-gradient(0deg, red 0%, rgb(251, 2, 106) 100%);
-    box-shadow: inset 2px 2px 2px 0px rgba(255, 255, 255, .5),
-    7px 7px 20px 0px rgba(0, 0, 0, .1),
-    4px 4px 5px 0px rgba(0, 0, 0, .1);
-    color: transparent;
-    -webkit-transform: rotateX(-90deg);
-    -moz-transform: rotateX(-90deg);
-    transform: rotateX(-90deg);
-}
-
-#tab01 a {
+#tab01 .postDelete1 a {
     text-decoration-line: none;
-    color: white;
+    color: #000000;
 }
 
 /*게시글 관리 삭제 버튼 2*/
-#tab01 .postDeleteChk {
+#tab01 .postOption {
     padding-top: 15px;
 }
-#tab01 .btn-15 {
-    background: white;
-    color: black;
+
+#tab01 .postDelete2 {
     border: none;
-    z-index: 1;
+    padding: 5px 25px;
+    border-radius: 10px;
+    /*box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);*/
+    text-decoration: none;
+    font-weight: 600;
+    transition: 0.50s;
+    background-color: white;
 }
 
-#tab01 .btn-15:after {
-    position: absolute;
-    content: "";
-    width: 0;
-    height: 100%;
-    top: 0;
-    right: 0;
-    z-index: -1;
-    background-color: red;
-    border-radius: 5px;
-    box-shadow: inset 2px 2px 2px 0px rgba(255, 255, 255, .5),
-    7px 7px 20px 0px rgba(0, 0, 0, .1),
-    4px 4px 5px 0px rgba(0, 0, 0, .1);
-    transition: all 0.3s ease;
+#tab01 .postDelete2:hover {
+    cursor: pointer;
+    box-shadow: 0 14px 28px rgba(255, 0, 0, 0.5), 0 10px 10px rgba(255, 0, 0, 0.5);
 }
 
-#tab01 .btn-15:hover {
-    color: #fff;
+#tab01 .postDelete2 a {
+    text-decoration-line: none;
+    color: #000000;
 }
 
-#tab01 .btn-15:hover:after {
-    left: 0;
-    width: 100%;
+/*게시물 관리 엑셀 다운*/
+#tab01 .postExcel {
+    border: none;
+    padding: 5px 25px;
+    border-radius: 10px;
+    /*box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);*/
+    text-decoration: none;
+    font-weight: 600;
+    transition: 0.50s;
+    background-color: white;
 }
 
-#tab01 .btn-15:active {
-    top: 2px;
+#tab01 .postExcel:hover {
+    cursor: pointer;
+    box-shadow: 0 14px 28px rgba(85, 255, 0, 0.5), 0 10px 10px rgba(85, 255, 0, 0.5);
 }
 
-.userTable{
+#tab01 .postExcel a {
+    text-decoration-line: none;
+    color: #000000;
+}
+
+/*게시물 정렬 버튼*/
+#tab01 .sortBtn {
+    border: none;
+    background-color: rgba(255, 255, 255, 0);
+    /*text-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);*/
+}
+
+#tab01 .sortBtn:hover {
+    cursor: pointer;
+    text-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
+    color: cornflowerblue;
+}
+
+/*게시물 검색창*/
+#tab01 .postSearchDiv {
+    float: right;
+    margin-top: -50px;
+    /*line-height: 30px;*/
+}
+
+#tab01 .postSearch {
+    border: none;
+    padding: 5px 25px;
+    border-radius: 10px;
+    /*box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);*/
+    text-decoration: none;
+    font-weight: 600;
+    transition: 0.50s;
+    background-color: white;
+}
+
+#tab01 .postSubmit {
+    border: none;
+    padding: 5px 25px;
+    border-radius: 10px;
+    /*box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);*/
+    text-decoration: none;
+    font-weight: 600;
+    transition: 0.50s;
+    background-color: white;
+    color: cornflowerblue;
+}
+
+#tab01 .postSubmit:hover {
+    cursor: pointer;
+    box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
+}
+
+/************************************/
+
+.userTable {
     border-collapse: collapse;
     width: 100%;
 }
-#usertables{
+
+#usertables {
     height: 400px;
-    overflow-x:auto;
+    overflow-x: auto;
 }
-.userTable th,td {
+
+.userTable th, td {
     padding: 10px;
 
     border-bottom: 1px solid black;
 }
+
 .userTable td {
     padding-left: 20px;
 }
-.userTable tr:hover{
+
+.userTable tr:hover {
     background-color: rgba(100, 149, 237, 0.15);
 }
+
 .delbtn {
     font-family: apple Black;
     width: 50px;

@@ -160,7 +160,6 @@ public class SNSController {
 
     @GetMapping(value = "postDeleteManager")
     public String postDeleteManager(@ModelAttribute PostVO pvo) throws Exception {
-        System.out.println("외 않돼");
         sService.postDelete(pvo);
         return "redirect:manager";
     }
@@ -219,6 +218,7 @@ public class SNSController {
         sService.postLike(pvo);
         return "redirect:detail?p_no=" + pvo.getP_no() + "&p_id=" + pvo.getP_id();
     }
+
     // 관리자 로그인지 관리페이지로 이동
     @GetMapping(value = "manager")
     public String manager(Model model, @SessionAttribute("userid") String u_id) throws Exception {

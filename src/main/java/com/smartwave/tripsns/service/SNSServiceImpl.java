@@ -152,5 +152,4 @@ public class SNSServiceImpl implements IF_SNSService {
         return sdao.postSelectList();
     }
 
-
 }

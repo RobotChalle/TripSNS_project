@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.smartwave.tripsns.dao.IF_SNSDAO">
     <insert id="posting" parameterType="com.smartwave.tripsns.vo.PostVO"> <!-- 게시글 저장 -->
-        insert into post values (nextval(p_cnt),#{p_id}, #{p_place}, #{p_text}, default)
+        insert into post values (nextval(p_cnt),#{p_id}, #{p_place}, #{p_text}, default, default)
     </insert>
     <insert id="postSaveAttach" parameterType="String"> <!-- 게시글 사진파일 저장 -->
         insert into postPic values ((select max (p_no) from post), #{filename})
@@ -59,7 +59,7 @@
         select *
         from post p
                  inner join postpic pp on p.p_no = pp.pp_no
-                inner join profile f on f.id = p.p_id
+                 inner join profile f on f.id = p.p_id
         order by p.p_indate desc;
     </select>
     <select id="postSearch" resultType="com.smartwave.tripsns.vo.PostVO"><!--게시글 아이디로 검색-->
@@ -99,34 +99,58 @@
         from short_video
     </select>
     <insert id="insertShort" parameterType="com.smartwave.tripsns.vo.ShortVO">
-        insert into short_form values ((nextval(short_seq)),#{sv_no},#{sv_thumbnail},#{s_id},default,#{s_description},#{s_place})
+        insert into short_form
+        values ((nextval(short_seq)), #{sv_no}, #{sv_thumbnail}, #{s_id}, default, #{s_description}, #{s_place})
     </insert>
     <select id="allShortList" resultType="com.smartwave.tripsns.vo.ShortVO">
-        select * from short_form order by s_date desc;
+        select *
+        from short_form
+        order by s_date desc;
     </select>
     <select id="shortDetails" resultType="com.smartwave.tripsns.vo.ShortVO">
-        select * from short_form where s_no = #{s_no}
+        select *
+        from short_form
+        where s_no = #{s_no}
     </select>
     <select id="getVideo" resultType="com.smartwave.tripsns.vo.VideoVO">
-        select * from short_video where sv_no = #{sv_no}
+        select *
+        from short_video
+        where sv_no = #{sv_no}
     </select>
     <insert id="shortCommentInsert" parameterType="com.smartwave.tripsns.vo.ShortCommentVO">
-        insert into short_comment values (#{s_no},#{sc_id},#{sc_comment},default)
+        insert into short_comment
+        values (#{s_no}, #{sc_id}, #{sc_comment}, default)
     </insert>
     <select id="shortCommentList" resultType="com.smartwave.tripsns.vo.ShortCommentVO">
-        select * from short_comment where s_no = #{s_no}
+        select *
+        from short_comment
+        where s_no = #{s_no}
     </select>
     <delete id="shortCommentDelete" parameterType="com.smartwave.tripsns.vo.ShortCommentVO">
-        delete from short_comment where s_no = #{s_no} AND sc_date = #{sc_date} AND sc_id = #{sc_id}
+        delete
+        from short_comment
+        where s_no = #{s_no}
+          AND sc_date = #{sc_date}
+          AND sc_id = #{sc_id}
     </delete>
     <delete id="deleteShort" parameterType="com.smartwave.tripsns.vo.ShortVO">
-        delete from short_form where s_no= #{s_no}
+        delete
+        from short_form
+        where s_no = #{s_no}
     </delete>
     <select id="findLikeTF" parameterType="com.smartwave.tripsns.vo.ShortLikeVO">
-        select count(*) from short_like where s_no = #{s_no} AND slike_id = #{slike_id}
+        select count(*)
+        from short_like
+        where s_no = #{s_no}
+          AND slike_id = #{slike_id}
     </select>
-    <select id="postSelectList" resultType="com.smartwave.tripsns.vo.PostVO">
+    <select id="postSelectList" resultType="com.smartwave.tripsns.vo.PostVO"><!--게시물 전체 가져오기-->
         select *
         from post
     </select>
+    <update id="postViewInsert" parameterType="com.smartwave.tripsns.vo.PostVO">
+        update from post
+        set p_views = p_views + 1
+        where p_no = #{p_no}
+    </update>
 </mapper>

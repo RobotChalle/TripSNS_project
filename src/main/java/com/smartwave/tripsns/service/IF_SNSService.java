@@ -26,7 +26,7 @@ public interface IF_SNSService {
 
     public void videoInsert(VideoVO vvo) throws Exception;
 
-    public int videoSelect()throws Exception;
+    public int videoSelect() throws Exception;
 
     public int postCommentCnt(String p_no) throws Exception; //댓글 갯수
 
@@ -57,4 +57,5 @@ public interface IF_SNSService {
     public void deleteShort(ShortVO svo) throws Exception;
 
     public List<PostVO> postSelectList() throws Exception; //게시글 전체 보기
+    
 }
