@@ -152,5 +152,33 @@ public class SNSServiceImpl implements IF_SNSService {
         return sdao.postSelectList();
     }
 
+    @Override
+    public void shortLikeUpDown(ShortLikeVO slikevo) throws Exception {
+        if(sdao.shortLikeSelectOne(slikevo)==null){
+            sdao.shortLikeInsert(slikevo);
+        }else {
+            sdao.shortLikeDelete(slikevo);
+        }
+    }
+
+    @Override
+    public ShortLikeVO shortLikeSelectOne(ShortLikeVO slikevo) throws Exception {
+        return sdao.shortLikeSelectOne(slikevo);
+    }
+
+    @Override
+    public int shortLikeCount(ShortLikeVO slikevo) throws Exception {
+        return sdao.shortLikeCount(slikevo);
+    }
+
+    @Override
+    public int shortCommentCount(int s_no) throws Exception {
+        return sdao.shortCommentCount(s_no);
+    }
+
+    @Override
+    public String profileImg(int s_no) throws Exception {
+        return sdao.profileImg(s_no);
+    }
 
 }

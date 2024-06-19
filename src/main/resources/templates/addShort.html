@@ -1,10 +1,49 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="kor">
 <head>
     <meta charset="UTF-8">
     <title>쇼츠 등록</title>
+    <link href="/css/main_navTop.css" rel="stylesheet">
+    <link href="/css/main_navSide.css" rel="stylesheet">
 </head>
 <style>
+    * {
+        padding: 0;
+        margin: 0;
+        font-family: apple black;
+        text-decoration-line: none;
+    }
+
+    @font-face {
+        font-family: apple;
+        src: url(/font/AppleSDGothicNeoL.ttf);
+    }
+
+    body {
+        background: linear-gradient(300deg, deepskyblue, #b8f4f9, #0060ff);
+        animation: gradient-animation 5s ease infinite;
+        background-position: center;
+        background-size: 180% 180%;
+        background-attachment: fixed;
+    }
+
+    @keyframes gradient-animation {
+        0% {
+            background-position: 0% 50%;
+        }
+        50% {
+            background-position: 100% 50%;
+        }
+        100% {
+            background-position: 0% 50%;
+        }
+    }
+
+    section {
+        margin-left: 5%;
+        padding-top: 6%;
+    }
+
     .short {
         border-radius: 25px;
         padding: 2.5em;
@@ -14,7 +53,7 @@
         height: 700px;
         margin-left: 50px;
         margin-right: 50px;
-        background-color: antiquewhite;
+        background-color: white;
     }
 
     video {
@@ -87,45 +126,121 @@
     }
 </style>
 <body>
-<div class="d-flex justify-content-center short">
-    <div class="vid">
-        <video autoplay controls height="1280" loop muted oncontextmenu="return false;" width="720">
-            <source th:src="@{/download(filename=${video})}" type="video/mp4">
-        </video>
+<!--좌측 네비-->
+<nav id="navSide">
+    <ul>
+        <li>
+            <a href="main">
+                <svg class="bi bi-house-fill" fill="currentColor" height="30" viewBox="0 0 16 16"
+                     width="30" xmlns="http://www.w3.org/2000/svg">
+                    <path
+                            d="M8.707 1.5a1 1 0 0 0-1.414 0L.646 8.146a.5.5 0 0 0 .708.708L8 2.207l6.646 6.647a.5.5 0 0 0 .708-.708L13 5.793V2.5a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5v1.293z"/>
+                    <path d="m8 3.293 6 6V13.5a1.5 1.5 0 0 1-1.5 1.5h-9A1.5 1.5 0 0 1 2 13.5V9.293z"/>
+                </svg>
+            </a>
+        </li>
+        <li>
+            <a href="#">
+                <svg class="bi bi-map-fill" fill="currentColor" height="30" viewBox="0 0 16 16"
+                     width="30" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M16 .5a.5.5 0 0 0-.598-.49L10.5.99 5.598.01a.5.5 0 0 0-.196 0l-5 1A.5.5 0 0 0 0 1.5v14a.5.5 0 0 0 .598.49l4.902-.98 4.902.98a.5.5 0 0 0 .196 0l5-1A.5.5 0 0 0 16 14.5zM5 14.09V1.11l.5-.1.5.1v12.98l-.402-.08a.5.5 0 0 0-.196 0zm5 .8V1.91l.402.08a.5.5 0 0 0 .196 0L11 1.91v12.98l-.5.1z"
+                          fill-rule="evenodd"/>
+                </svg>
+            </a>
+        </li>
+        <li>
+            <a href="#">
+                <svg class="bi bi-chat-left-text-fill" fill="currentColor" height="30" viewBox="0 0 16 16"
+                     width="30" xmlns="http://www.w3.org/2000/svg">
+                    <path
+                            d="M0 2a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H4.414a1 1 0 0 0-.707.293L.854 15.146A.5.5 0 0 1 0 14.793zm3.5 1a.5.5 0 0 0 0 1h9a.5.5 0 0 0 0-1zm0 2.5a.5.5 0 0 0 0 1h9a.5.5 0 0 0 0-1zm0 2.5a.5.5 0 0 0 0 1h5a.5.5 0 0 0 0-1z"/>
+                </svg>
+            </a>
+        </li>
+        <li>
+            <a href="shorts">
+                <svg class="bi bi-file-play-fill" fill="currentColor" height="30" viewBox="0 0 16 16"
+                     width="30" xmlns="http://www.w3.org/2000/svg">
+                    <path
+                            d="M12 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2M6 5.883a.5.5 0 0 1 .757-.429l3.528 2.117a.5.5 0 0 1 0 .858l-3.528 2.117a.5.5 0 0 1-.757-.43V5.884z"/>
+                </svg>
+            </a>
+        </li>
+    </ul>
+</nav>
+<div class="mypic">
+    <div class="dropdown-content">
+        <th:block th:if="${session.userid!=null}">
+            <a th:href="@{/profile(u_id=${session.userid})}">프로필(<span th:text="${session.userid}"></span>)</a>
+        </th:block>
+        <a href="logout">로그아웃</a>
     </div>
-    <div class="InsertDetails">
-        <form action="insertShort" method="post">
-            <table>
-                <tr>
-                    <td><h3>글작성</h3></td>
-                </tr>
-                <tr>
-                    <td><input type="hidden" name="sv_no" th:value="${videoNo}"></td>
-                </tr>
-                <tr>
-                    <td><input type="hidden" name="sv_thumbnail" th:value="${thumbnail}"></td>
-                </tr>
-                <tr>
-                    <td><input type="hidden" name ="s_id" th:value="${session.userid}"></td>
-                </tr>
-                <tr>
-                    <td class="header">여행지 이름</td>
-                </tr>
-                <tr>
-                    <td><input name="s_place" placeholder="여행지를 입력하세요" type="text"></td>
-                </tr>
-                <tr>
-                    <td class="header">내용</td>
-                </tr>
-                <tr>
-                    <td><textarea name="s_description" placeholder="내용을 입력하세요"></textarea></td>
-                </tr>
-                <tr>
-                    <td><input onclick="alert(쇼츠 등록 완료)" type="submit" value="등록"></td>
-                </tr>
-            </table>
-        </form>
-    </div>
+    <a href="#">
+        <th:block th:if="${profiledetail.u_pic!=null}">
+            <img th:src="@{/download(filename=${profiledetail.u_pic})}">
+        </th:block>
+    </a>
 </div>
+<!--상단 네비-->
+<nav id="navTop">
+    <a href="main">
+        <svg class="bi bi-bootstrap-fill" fill="currentColor" height="35" viewBox="0 0 16 16"
+             width="35" xmlns="http://www.w3.org/2000/svg">
+            <path
+                    d="M6.375 7.125V4.658h1.78c.973 0 1.542.457 1.542 1.237 0 .802-.604 1.23-1.764 1.23zm0 3.762h1.898c1.184 0 1.81-.48 1.81-1.377 0-.885-.65-1.348-1.886-1.348H6.375z"/>
+            <path
+                    d="M4.002 0a4 4 0 0 0-4 4v8a4 4 0 0 0 4 4h8a4 4 0 0 0 4-4V4a4 4 0 0 0-4-4zm1.06 12V3.545h3.399c1.587 0 2.543.809 2.543 2.11 0 .884-.65 1.675-1.483 1.816v.1c1.143.117 1.904.931 1.904 2.033 0 1.488-1.084 2.396-2.888 2.396z"/>
+        </svg>
+    </a>
+    <ul>
+        <form>
+            <li><input class="search" name="searchWord" placeholder="검색" type="search"></li>
+            <li><input class="submit" type="submit" value="검색"></li>
+        </form>
+    </ul>
+</nav>
+<!--쇼츠 등록 폼-->
+<section>
+    <div class="d-flex justify-content-center short">
+        <div class="vid">
+            <video autoplay controls height="1280" loop muted oncontextmenu="return false;" width="720">
+                <source th:src="@{/download(filename=${video})}" type="video/mp4">
+            </video>
+        </div>
+        <div class="InsertDetails">
+            <form action="insertShort" method="post">
+                <table>
+                    <tr>
+                        <td><h3>글작성</h3></td>
+                    </tr>
+                    <tr>
+                        <td><input name="sv_no" th:value="${videoNo}" type="hidden"></td>
+                    </tr>
+                    <tr>
+                        <td><input name="sv_thumbnail" th:value="${thumbnail}" type="hidden"></td>
+                    </tr>
+                    <tr>
+                        <td><input name="s_id" th:value="${session.userid}" type="hidden"></td>
+                    </tr>
+                    <tr>
+                        <td class="header">여행지 이름</td>
+                    </tr>
+                    <tr>
+                        <td><input name="s_place" placeholder="여행지를 입력하세요" type="text"></td>
+                    </tr>
+                    <tr>
+                        <td class="header">내용</td>
+                    </tr>
+                    <tr>
+                        <td><textarea name="s_description" placeholder="내용을 입력하세요"></textarea></td>
+                    </tr>
+                    <tr>
+                        <td><input onclick="alert('쇼츠 등록 완료')" type="submit" value="등록"></td>
+                    </tr>
+                </table>
+            </form>
+        </div>
+    </div>
+</section>
 </body>
 </html>

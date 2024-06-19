@@ -3,9 +3,47 @@
 <head>
     <meta charset="UTF-8">
     <title>쇼츠</title>
+    <link href="/css/main_navTop.css" rel="stylesheet">
+    <link href="/css/main_navSide.css" rel="stylesheet">
 </head>
 <style>
+    * {
+        padding: 0;
+        margin: 0;
+        font-family: apple black;
+        text-decoration-line: none;
+    }
+
+    @font-face {
+        font-family: apple;
+        src: url(/font/AppleSDGothicNeoL.ttf);
+    }
+
+    body {
+        background: linear-gradient(300deg, deepskyblue, #b8f4f9, #0060ff);
+        animation: gradient-animation 5s ease infinite;
+        background-position: center;
+        background-size: 180% 180%;
+        background-attachment: fixed;
+    }
+
+    @keyframes gradient-animation {
+        0% {
+            background-position: 0% 50%;
+        }
+        50% {
+            background-position: 100% 50%;
+        }
+        100% {
+            background-position: 0% 50%;
+        }
+    }
+    section{
+        margin-left: 5%;
+        padding-top: 6%;
+    }
     .short {
+        display: flex;
         border-radius: 25px;
         padding: 2.5em;
         box-shadow: 0 20px 70px -25px rgba(0, 0, 0, 2);
@@ -14,7 +52,7 @@
         height: 700px;
         margin-left: 50px;
         margin-right: 50px;
-        background-color: antiquewhite;
+        background-color: white;
     }
 
     .vid {
@@ -36,7 +74,7 @@
         height: 12%;
     }
 
-    .deleteShort{
+    .deleteShort {
         border: none;
         padding: 5px 25px;
         border-radius: 10px;
@@ -47,7 +85,7 @@
         color: white;
         display: flex;
         font-size: 10px;
-        }
+    }
 
     .deleteShort:hover {
         cursor: pointer;
@@ -85,7 +123,7 @@
         width: 300px;
     }
 
-    .liking {
+    .likeDiv {
         display: flex;
         flex-wrap: wrap;
         width: 100%;
@@ -106,29 +144,10 @@
         object-fit: fill;
     }
 
-    .likeImg {
-        display: inline-block;
-        width: 35px;
-        height: 35px;
-    }
-
-    .liketext {
-        display: inline-block;
-        margin-left: 20px;
-        text-align: center;
-    }
-
     video {
         flex: auto;
         width: 100%;
         height: 100%;
-    }
-
-    .heart {
-        border: none;
-    }
-
-    .heart:hover {
     }
 
     .divF {
@@ -148,7 +167,9 @@
     }
 
     textarea {
-        border: none;
+        margin-left: 10px;
+        border: gray solid 1px;
+        border-radius: 2px;
         resize: none;
         font-size: 16px;
         font-family: AppleSDGothicNeoB00;
@@ -159,6 +180,7 @@
     }
 
     .commentInsertB {
+        width: 15%;
         border: none;
         padding: 5px 25px;
         border-radius: 10px;
@@ -167,6 +189,7 @@
         font-weight: 600;
         background-color: lawngreen;
         color: white;
+        text-align: center;
     }
 
     .commentInsertB:hover {
@@ -196,75 +219,245 @@
         display: flex;
     }
 
+    #commentText {
+        width: 80%;
+    }
 </style>
-<body>
-<div class="d-flex justify-content-center short">
-    <div class="vid">
-        <th:block th:if="${video.sv_addr!=null}">
-            <video autoplay controls height="1280" loop muted oncontextmenu="return false;" width="720">
-                <source th:src="@{/download(filename=${video.sv_addr})}" type="video/mp4">
-            </video>
+<body onload="startFunction()">
+<!--좌측 네비-->
+<nav id="navSide">
+    <ul>
+        <li>
+            <a href="main">
+                <svg class="bi bi-house-fill" fill="currentColor" height="30" viewBox="0 0 16 16"
+                     width="30" xmlns="http://www.w3.org/2000/svg">
+                    <path
+                            d="M8.707 1.5a1 1 0 0 0-1.414 0L.646 8.146a.5.5 0 0 0 .708.708L8 2.207l6.646 6.647a.5.5 0 0 0 .708-.708L13 5.793V2.5a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5v1.293z"/>
+                    <path d="m8 3.293 6 6V13.5a1.5 1.5 0 0 1-1.5 1.5h-9A1.5 1.5 0 0 1 2 13.5V9.293z"/>
+                </svg>
+            </a>
+        </li>
+        <li>
+            <a href="#">
+                <svg class="bi bi-map-fill" fill="currentColor" height="30" viewBox="0 0 16 16"
+                     width="30" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M16 .5a.5.5 0 0 0-.598-.49L10.5.99 5.598.01a.5.5 0 0 0-.196 0l-5 1A.5.5 0 0 0 0 1.5v14a.5.5 0 0 0 .598.49l4.902-.98 4.902.98a.5.5 0 0 0 .196 0l5-1A.5.5 0 0 0 16 14.5zM5 14.09V1.11l.5-.1.5.1v12.98l-.402-.08a.5.5 0 0 0-.196 0zm5 .8V1.91l.402.08a.5.5 0 0 0 .196 0L11 1.91v12.98l-.5.1z"
+                          fill-rule="evenodd"/>
+                </svg>
+            </a>
+        </li>
+        <li>
+            <a href="#">
+                <svg class="bi bi-chat-left-text-fill" fill="currentColor" height="30" viewBox="0 0 16 16"
+                     width="30" xmlns="http://www.w3.org/2000/svg">
+                    <path
+                            d="M0 2a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H4.414a1 1 0 0 0-.707.293L.854 15.146A.5.5 0 0 1 0 14.793zm3.5 1a.5.5 0 0 0 0 1h9a.5.5 0 0 0 0-1zm0 2.5a.5.5 0 0 0 0 1h9a.5.5 0 0 0 0-1zm0 2.5a.5.5 0 0 0 0 1h5a.5.5 0 0 0 0-1z"/>
+                </svg>
+            </a>
+        </li>
+        <li>
+            <a href="shorts">
+                <svg class="bi bi-file-play-fill" fill="currentColor" height="30" viewBox="0 0 16 16"
+                     width="30" xmlns="http://www.w3.org/2000/svg">
+                    <path
+                            d="M12 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2M6 5.883a.5.5 0 0 1 .757-.429l3.528 2.117a.5.5 0 0 1 0 .858l-3.528 2.117a.5.5 0 0 1-.757-.43V5.884z"/>
+                </svg>
+            </a>
+        </li>
+    </ul>
+</nav>
+<div class="mypic">
+    <div class="dropdown-content">
+        <th:block th:if="${session.userid!=null}">
+            <a th:href="@{/profile(u_id=${session.userid})}">프로필(<span th:text="${session.userid}"></span>)</a>
         </th:block>
+        <a href="logout">로그아웃</a>
     </div>
-    <div class="details divF">
-        <div class="writer divF">
-            <div class="profileImg divF">
-                <span class="divF">
-                    <a href="http://localhost:8080"> <img alt="유저사진" src="/img/userPic.png"></a>
-                </span>
-            </div>
-            <div id="userDescription">
-                <div id="description">
-                    <span th:text="${shortDetails.s_id}"></span>
-                    <br>
-                    <span th:text="${shortDetails.s_description}"></span>
-                    <div id="delShortDiv" th:if="${session.userid==shortDetails.s_id}">
-                        <form action="deleteShort" method="get" onsubmit='return delAlert()'>
-                            <input name="s_no" th:value="${shortDetails.s_no}" type="hidden">
-                            <input name="sc_id" th:value="${session.userid}" type="hidden">
-                            <input class="deleteShort" type="submit" value="글삭제">
-                        </form>
-                    </div>
-                    <span class="s_date" th:text="${shortDetails.s_date}"></span>
-                </div>
-            </div>
+    <a href="#">
+        <th:block th:if="${profiledetail.u_pic!=null}">
+            <img th:src="@{/download(filename=${profiledetail.u_pic})}">
+        </th:block>
+    </a>
+</div>
+<!--상단 네비-->
+<nav id="navTop">
+    <a href="main">
+        <svg class="bi bi-bootstrap-fill" fill="currentColor" height="35" viewBox="0 0 16 16"
+             width="35" xmlns="http://www.w3.org/2000/svg">
+            <path
+                    d="M6.375 7.125V4.658h1.78c.973 0 1.542.457 1.542 1.237 0 .802-.604 1.23-1.764 1.23zm0 3.762h1.898c1.184 0 1.81-.48 1.81-1.377 0-.885-.65-1.348-1.886-1.348H6.375z"/>
+            <path
+                    d="M4.002 0a4 4 0 0 0-4 4v8a4 4 0 0 0 4 4h8a4 4 0 0 0 4-4V4a4 4 0 0 0-4-4zm1.06 12V3.545h3.399c1.587 0 2.543.809 2.543 2.11 0 .884-.65 1.675-1.483 1.816v.1c1.143.117 1.904.931 1.904 2.033 0 1.488-1.084 2.396-2.888 2.396z"/>
+        </svg>
+    </a>
+    <ul>
+        <form>
+            <li><input class="search" name="searchWord" placeholder="검색" type="search"></li>
+            <li><input class="submit" type="submit" value="검색"></li>
+        </form>
+    </ul>
+</nav>
+<!--쇼츠 자세히 보기 페이지-->
+<section>
+    <div class="d-flex justify-content-center short" id="shortContainer">
+        <div class="vid">
+            <th:block th:if="${video.sv_addr!=null}">
+                <video autoplay controls height="1280" loop muted oncontextmenu="return false;" width="720">
+                    <source th:src="@{/download(filename=${video.sv_addr})}" type="video/mp4">
+                </video>
+            </th:block>
         </div>
-        <div class="comments">
-            <table>
-                <tr class="comment" th:each="comment:${commentList}">
-                    <td class="commentId" th:text="${comment.sc_id}"></td>
-                    <td class="commentText" th:text="${comment.sc_comment}"><br></td>
-                    <td class="commentDate" th:text="${comment.sc_date}"></td>
-                    <th:block class="deleteB" th:if="${session.userid==comment.sc_id}">
-                        <td>
-                            <form action="shortCommentDelete" method="get" onsubmit='return delAlert()'>
-                                <input name="sc_date" th:value="${comment.sc_date}" type="hidden">
+        <div class="details divF">
+            <div class="writer divF">
+                <div class="profileImg divF">
+                <span class="divF">
+                <div class="postImage">
+                    <img th:src="@{/download(filename=${profileImg})}" class="roundImg">
+                </div> </span>
+                </div>
+                <div id="userDescription">
+                    <div id="description">
+                        <a th:href="@{/otherprofile(p_id=${shortDetails.s_id})}" class="shortId" th:text="${shortDetails.s_id}">p_id</a>
+                        <br>
+                        <span th:text="${shortDetails.s_description}"></span>
+                        <div id="delShortDiv" th:if="${session.userid==shortDetails.s_id}">
+                            <form action="deleteShort" method="get" onsubmit='return delAlert()'>
                                 <input name="s_no" th:value="${shortDetails.s_no}" type="hidden">
                                 <input name="sc_id" th:value="${session.userid}" type="hidden">
-                                <input class="deleteComment" type="submit" value="삭제">
+                                <input class="deleteShort" type="submit" value="글삭제">
                             </form>
-                        </td>
-                    </th:block>
-            </table>
-        </div>
-        <div class="liking">
-            <div>
-                <button class="heart"><img alt="하트" class="likeImg" src="/img/heart.svg"></button>
-                <label class="liketext">좋아요 ?만개</label></div>
-        </div>
-        <div class="commentInsert">
-            <form action="shortCommentInsert" method="post" >
-                <input name="s_no" th:value="${shortDetails.s_no}" type="hidden">
-                <input name="sc_id" th:value="${session.userid}" type="hidden">
-                <textarea cols="50" maxlength="120" name="sc_comment" placeholder="댓글" required rows="4"></textarea>
-                <input class="commentInsertB" type="submit" value="게시">
-            </form>
+                        </div>
+                        <span class="s_date" th:text="${shortDetails.s_date}"></span>
+                    </div>
+                </div>
+            </div>
+            <div class="comments">
+                <table>
+                    <tr class="comment" th:each="comment:${commentList}">
+                        <td class="commentId" th:text="${comment.sc_id}"></td>
+                        <td class="commentText" th:text="${comment.sc_comment}"><br></td>
+                        <td class="commentDate" th:text="${comment.sc_date}"></td>
+                        <th:block class="deleteB" th:if="${session.userid==comment.sc_id}">
+                            <td>
+                                <form action="shortCommentDelete" method="get" onsubmit='return delAlert()'>
+                                    <input name="sc_date" th:value="${comment.sc_date}" type="hidden">
+                                    <input name="s_no" th:value="${shortDetails.s_no}" type="hidden">
+                                    <input name="sc_id" th:value="${session.userid}" type="hidden">
+                                    <input class="deleteComment" type="submit" value="삭제">
+                                </form>
+                            </td>
+                        </th:block>
+                </table>
+            </div>
+            <div class="likeDiv">
+                <input id="slike_id" th:value="${session.userid}" type="hidden">
+                <input id="s_no" th:value="${shortDetails.s_no}" type="hidden">
+                <a class="like" th:onclick="like(this.getAttribute('s_no'), this)" th:s_no="${shortDetails.s_no}">
+                    <div id="thumbsUp">
+                        <svg class="bi bi-hand-thumbs-up" fill="currentColor" height="25" viewBox="0 0 16 16"
+                             width="25" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M8.864.046C7.908-.193 7.02.53 6.956 1.466c-.072 1.051-.23 2.016-.428 2.59-.125.36-.479 1.013-1.04 1.639-.557.623-1.282 1.178-2.131 1.41C2.685 7.288 2 7.87 2 8.72v4.001c0 .845.682 1.464 1.448 1.545 1.07.114 1.564.415 2.068.723l.048.03c.272.165.578.348.97.484.397.136.861.217 1.466.217h3.5c.937 0 1.599-.477 1.934-1.064a1.86 1.86 0 0 0 .254-.912c0-.152-.023-.312-.077-.464.201-.263.38-.578.488-.901.11-.33.172-.762.004-1.149.069-.13.12-.269.159-.403.077-.27.113-.568.113-.857 0-.288-.036-.585-.113-.856a2 2 0 0 0-.138-.362 1.9 1.9 0 0 0 .234-1.734c-.206-.592-.682-1.1-1.2-1.272-.847-.282-1.803-.276-2.516-.211a10 10 0 0 0-.443.05 9.4 9.4 0 0 0-.062-4.509A1.38 1.38 0 0 0 9.125.111zM11.5 14.721H8c-.51 0-.863-.069-1.14-.164-.281-.097-.506-.228-.776-.393l-.04-.024c-.555-.339-1.198-.731-2.49-.868-.333-.036-.554-.29-.554-.55V8.72c0-.254.226-.543.62-.65 1.095-.3 1.977-.996 2.614-1.708.635-.71 1.064-1.475 1.238-1.978.243-.7.407-1.768.482-2.85.025-.362.36-.594.667-.518l.262.066c.16.04.258.143.288.255a8.34 8.34 0 0 1-.145 4.725.5.5 0 0 0 .595.644l.003-.001.014-.003.058-.014a9 9 0 0 1 1.036-.157c.663-.06 1.457-.054 2.11.164.175.058.45.3.57.65.107.308.087.67-.266 1.022l-.353.353.353.354c.043.043.105.141.154.315.048.167.075.37.075.581 0 .212-.027.414-.075.582-.05.174-.111.272-.154.315l-.353.353.353.354c.047.047.109.177.005.488a2.2 2.2 0 0 1-.505.805l-.353.353.353.354c.006.005.041.05.041.17a.9.9 0 0 1-.121.416c-.165.288-.503.56-1.066.56z"/>
+                        </svg>
+                    </div>
+                    <div id="thumbsFill" style="display: none">
+                        <svg class="bi bi-hand-thumbs-up-fill" fill="currentColor" height="25" viewBox="0 0 16 16"
+                             width="25" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M6.956 1.745C7.021.81 7.908.087 8.864.325l.261.066c.463.116.874.456 1.012.965.22.816.533 2.511.062 4.51a10 10 0 0 1 .443-.051c.713-.065 1.669-.072 2.516.21.518.173.994.681 1.2 1.273.184.532.16 1.162-.234 1.733q.086.18.138.363c.077.27.113.567.113.856s-.036.586-.113.856c-.039.135-.09.273-.16.404.169.387.107.819-.003 1.148a3.2 3.2 0 0 1-.488.901c.054.152.076.312.076.465 0 .305-.089.625-.253.912C13.1 15.522 12.437 16 11.5 16H8c-.605 0-1.07-.081-1.466-.218a4.8 4.8 0 0 1-.97-.484l-.048-.03c-.504-.307-.999-.609-2.068-.722C2.682 14.464 2 13.846 2 13V9c0-.85.685-1.432 1.357-1.615.849-.232 1.574-.787 2.132-1.41.56-.627.914-1.28 1.039-1.639.199-.575.356-1.539.428-2.59z"/>
+                        </svg>
+                    </div>
+                </a>
+                <span id="likeCount"></span>
+                <svg class="bi bi-chat-text" fill="currentColor" height="25" viewBox="0 0 16 16"
+                     width="25" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M2.678 11.894a1 1 0 0 1 .287.801 11 11 0 0 1-.398 2c1.395-.323 2.247-.697 2.634-.893a1 1 0 0 1 .71-.074A8 8 0 0 0 8 14c3.996 0 7-2.807 7-6s-3.004-6-7-6-7 2.808-7 6c0 1.468.617 2.83 1.678 3.894m-.493 3.905a22 22 0 0 1-.713.129c-.2.032-.352-.176-.273-.362a10 10 0 0 0 .244-.637l.003-.01c.248-.72.45-1.548.524-2.319C.743 11.37 0 9.76 0 8c0-3.866 3.582-7 8-7s8 3.134 8 7-3.582 7-8 7a9 9 0 0 1-2.347-.306c-.52.263-1.639.742-3.468 1.105"/>
+                    <path d="M4 5.5a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7a.5.5 0 0 1-.5-.5M4 8a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7A.5.5 0 0 1 4 8m0 2.5a.5.5 0 0 1 .5-.5h4a.5.5 0 0 1 0 1h-4a.5.5 0 0 1-.5-.5"/>
+                </svg>
+                <span class="commentCount" th:text="${shortCommentCount}+'개'"></span>
+            </div>
+            <div class="commentInsert">
+                <form action="shortCommentInsert" method="post">
+                    <input name="s_no" th:value="${shortDetails.s_no}" type="hidden">
+                    <input name="sc_id" th:value="${session.userid}" type="hidden">
+                    <textarea cols="50" id="commentText" maxlength="120" name="sc_comment" placeholder="댓글" required
+                              rows="3"></textarea>
+                    <input class="commentInsertB" type="submit" value="게시">
+                </form>
+            </div>
         </div>
     </div>
-</div>
+</section>
 </body>
-<script>
-    function delAlert(){
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script th:inline="javascript">
+
+    function startFunction() {
+        shortLikeCount();
+        shortLikeChk();
+    }
+
+    function like(short_no, object) {
+        let slike_id = $('#slike_id').val();
+        let s_no = short_no;
+        let thumbsUp = $("#thumbsUp")
+        let thumbsFill = $("#thumbsFill")
+        $.ajax({
+            url: "/shortLikeUpDown",
+            type: "get",
+            data: {"slike_id": slike_id, "s_no": s_no},
+            success: function (flag) {
+                if (flag == 0) {
+                    shortLikeCount();
+                    thumbsUp.css("display", "block");
+                    thumbsFill.css("display", "none");
+                } else {
+                    shortLikeCount();
+                    thumbsUp.css("display", "none");
+                    thumbsFill.css("display", "block");
+                    thumbsFill.css("color", "rgb(255,0,136)");
+                }
+            }
+        })
+    }
+
+    function shortLikeChk() {
+        let slike_id = $('#slike_id').val();
+        let s_no = [[${shortDetails.s_no}]];
+        let thumbsUp = $("#thumbsUp")
+        let thumbsFill = $("#thumbsFill")
+        $.ajax({
+            url: "/shortLikeChk",
+            type: "get",
+            data: {"slike_id": slike_id, "s_no": s_no},
+            success: function (flag) {
+                if (flag == 0) {
+                    shortLikeCount();
+                    thumbsUp.css("display", "block");
+                    thumbsFill.css("display", "none");
+                } else {
+                    shortLikeCount();
+                    thumbsUp.css("display", "none");
+                    thumbsFill.css("display", "block");
+                    thumbsFill.css("color", "rgb(255,0,136)");
+                }
+            }
+        })
+    }
+
+    function shortLikeCount() {
+        let slike_id = $('#slike_id').val();
+        let s_no = $('#s_no').val()
+        var countSpan = document.getElementById("likeCount")
+        $.ajax({
+            url: "/shortLikeCount",
+            type: "get",
+            data: {"slike_id": slike_id, "s_no": s_no},
+            success: function (likeCount) {
+                countSpan.textContent = likeCount + "개";
+            }
+        })
+    }
+
+    function delAlert() {
         return confirm("정말 삭제하시겠습니까?");
     }
 </script>

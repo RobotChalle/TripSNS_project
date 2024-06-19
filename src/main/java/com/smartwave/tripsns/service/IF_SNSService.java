@@ -57,4 +57,14 @@ public interface IF_SNSService {
     public void deleteShort(ShortVO svo) throws Exception;
 
     public List<PostVO> postSelectList() throws Exception; //게시글 전체 보기
+
+    public void shortLikeUpDown(ShortLikeVO slikevo) throws Exception;
+
+    public ShortLikeVO shortLikeSelectOne(ShortLikeVO slikevo) throws Exception;
+
+    public int shortLikeCount(ShortLikeVO slikevo)throws Exception;
+
+    public int shortCommentCount(int s_no) throws Exception;
+
+    public String profileImg(int s_no) throws Exception;
 }
