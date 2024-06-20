@@ -5,7 +5,7 @@
     <title>여행여행</title>
     <link rel="stylesheet" href="/css/main_navTop.css">
     <link rel="stylesheet" href="/css/main_navSide.css">
-    <link rel="stylesheet" href="/css/postModify_feed.css">
+    <link rel="stylesheet" href="/css/map.css">
 </head>
 <style>
     * {
@@ -21,10 +21,10 @@
     }
 
     body {
-        background: linear-gradient(300deg, deepskyblue, #b8f4f9, #0060ff);
-        animation: gradient-animation 5s ease infinite;
+        background: linear-gradient(91deg, deepskyblue, #0674e7);
+        animation: gradient-animation 20s ease infinite;
         background-position: center;
-        background-size: 180% 180%;
+        background-size: 120% 120%;
         background-attachment: fixed;
     }
 
@@ -86,7 +86,8 @@
                 <a href="manager">
                     <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor"
                          class="bi bi-gear-fill" viewBox="0 0 16 16">
-                        <path d="M9.405 1.05c-.413-1.4-2.397-1.4-2.81 0l-.1.34a1.464 1.464 0 0 1-2.105.872l-.31-.17c-1.283-.698-2.686.705-1.987 1.987l.169.311c.446.82.023 1.841-.872 2.105l-.34.1c-1.4.413-1.4 2.397 0 2.81l.34.1a1.464 1.464 0 0 1 .872 2.105l-.17.31c-.698 1.283.705 2.686 1.987 1.987l.311-.169a1.464 1.464 0 0 1 2.105.872l.1.34c.413 1.4 2.397 1.4 2.81 0l.1-.34a1.464 1.464 0 0 1 2.105-.872l.31.17c1.283.698 2.686-.705 1.987-1.987l-.169-.311a1.464 1.464 0 0 1 .872-2.105l.34-.1c1.4-.413 1.4-2.397 0-2.81l-.34-.1a1.464 1.464 0 0 1-.872-2.105l.17-.31c.698-1.283-.705-2.686-1.987-1.987l-.311.169a1.464 1.464 0 0 1-2.105-.872zM8 10.93a2.929 2.929 0 1 1 0-5.86 2.929 2.929 0 0 1 0 5.858z"/>
+                        <path
+                                d="M9.405 1.05c-.413-1.4-2.397-1.4-2.81 0l-.1.34a1.464 1.464 0 0 1-2.105.872l-.31-.17c-1.283-.698-2.686.705-1.987 1.987l.169.311c.446.82.023 1.841-.872 2.105l-.34.1c-1.4.413-1.4 2.397 0 2.81l.34.1a1.464 1.464 0 0 1 .872 2.105l-.17.31c-.698 1.283.705 2.686 1.987 1.987l.311-.169a1.464 1.464 0 0 1 2.105.872l.1.34c.413 1.4 2.397 1.4 2.81 0l.1-.34a1.464 1.464 0 0 1 2.105-.872l.31.17c1.283.698 2.686-.705 1.987-1.987l-.169-.311a1.464 1.464 0 0 1 .872-2.105l.34-.1c1.4-.413 1.4-2.397 0-2.81l-.34-.1a1.464 1.464 0 0 1-.872-2.105l.17-.31c.698-1.283-.705-2.686-1.987-1.987l-.311.169a1.464 1.464 0 0 1-2.105-.872zM8 10.93a2.929 2.929 0 1 1 0-5.86 2.929 2.929 0 0 1 0 5.858z"/>
                     </svg>
                 </a>
             </li>
@@ -96,55 +97,28 @@
 <div class="mypic">
     <div class="dropdown-content">
         <th:block th:if="${session.userid!=null}">
-            <a th:href="@{/profile(u_id=${session.userid})}">프로필(<span th:text="${session.userid}"></span>)</a>
+            <a th:href="@{/profile(u_id=${session.userid})}">프로필(<span
+                    th:text="${session.userid}"></span>)</a>
         </th:block>
         <a href="logout">로그아웃</a>
     </div>
     <a href="#">
-        <img src="/images/메인_2.jpg" alt="myPic">
+        <th:block th:if="${profiledetail.u_pic!=null}">
+            <img th:src="@{/download(filename=${profiledetail.u_pic})}">
+        </th:block>
     </a>
 </div>
-<!--상단 네비-->
-<nav id="navTop">
-    <a href="main">
-        <svg xmlns="http://www.w3.org/2000/svg" width="35" height="35" fill="currentColor"
-             class="bi bi-bootstrap-fill" viewBox="0 0 16 16">
-            <path
-                    d="M6.375 7.125V4.658h1.78c.973 0 1.542.457 1.542 1.237 0 .802-.604 1.23-1.764 1.23zm0 3.762h1.898c1.184 0 1.81-.48 1.81-1.377 0-.885-.65-1.348-1.886-1.348H6.375z"/>
-            <path
-                    d="M4.002 0a4 4 0 0 0-4 4v8a4 4 0 0 0 4 4h8a4 4 0 0 0 4-4V4a4 4 0 0 0-4-4zm1.06 12V3.545h3.399c1.587 0 2.543.809 2.543 2.11 0 .884-.65 1.675-1.483 1.816v.1c1.143.117 1.904.931 1.904 2.033 0 1.488-1.084 2.396-2.888 2.396z"/>
-        </svg>
-    </a>
-    <ul>
-        <form>
-            <li><input type="search" placeholder="검색" class="search" name="searchWord"></li>
-            <li><input type="submit" value="검색" class="submit"></li>
-        </form>
-    </ul>
-</nav>
-<!--수정 폼-->
-<main>
-    <div class="feedBoard">
-        <article class="feed">
-            <form action="postModify" method="post">
-                <h1 style="text-align: center;">글수정</h1>
-                <div class="option">
-                    <label>지역</label>
-                    <input type="text" name="p_place" placeholder="시는 빼고 입력바랍니다. ex)수원시 => 수원" required>
-                </div>
-                <div class="textArea">
-                    <label style="padding-right: 800px;">내용</label><br>
-                    <textarea placeholder="비방, 욕설은 금지입니다.(최대 100자 입력가능)" name="p_text" required
-                              maxlength="100"></textarea>
-                </div>
-                <div class="submitBtn">
-                    <input type="hidden" th:value="${p_no}" name="p_no">
-                    <input type="hidden" th:value="${session.userid}" name="p_id">
-                    <input type="submit" value="작성" id="textSubmit">
-                </div>
-            </form>
-        </article>
-    </div>
-</main>
+<div class="feedBoard">
+    <div id="map"></div>
+    <p>
+        <input type="checkbox" id="chkUseDistrict" onclick="setOverlayMapTypeId()"/> 지적편집도 정보 보기
+        <input type="checkbox" id="chkTerrain" onclick="setOverlayMapTypeId()"/> 지형정보 보기
+        <input type="checkbox" id="chkTraffic" onclick="setOverlayMapTypeId()"/> 교통정보 보기
+        <input type="checkbox" id="chkBicycle" onclick="setOverlayMapTypeId()"/> 자전거도로 정보 보기
+    </p>
+</div>
+<script type="text/javascript"
+        src="//dapi.kakao.com/v2/maps/sdk.js?appkey=3219322cc2203f06482a54c7d0138f5f&libraries=services,clusterer,drawing"></script>
+<script type="text/javascript" src="/js/map.js"></script>
 </body>
 </html>
