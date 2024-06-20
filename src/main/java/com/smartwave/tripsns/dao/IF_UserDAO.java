@@ -4,6 +4,7 @@ import com.smartwave.tripsns.vo.AdminVO;
 import com.smartwave.tripsns.vo.ProfileVO;
 import com.smartwave.tripsns.vo.UserVO;
 
+import java.util.HashMap;
 import java.util.List;
 
 public interface IF_UserDAO {
@@ -38,4 +39,6 @@ public interface IF_UserDAO {
     public List<UserVO> userList() throws Exception;
     // 체크된 유저목록 삭제
     public void chkdel(String uid)throws Exception;
+    //select 박스 검색제어 (아이디,이름)
+    public List<UserVO> selectUserList(HashMap<String, String> userselect) throws Exception;
 }

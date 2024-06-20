@@ -56,6 +56,7 @@ public class SNSController {
         //프로필 사진 불러오기
         ProfileVO prodetail = userservice.getProfile(u_id);
         model.addAttribute("profiledetail", prodetail);
+        //자세히보기 프로필
         String propic = userservice.detailProfile(p_no);
         model.addAttribute("propic", propic);
         return "detail";
@@ -277,5 +278,7 @@ public class SNSController {
         model.addAttribute("profiledetail", prodetail);
         return "manager";
     }
+
+
 
 }
