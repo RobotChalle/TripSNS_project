@@ -8,6 +8,7 @@ import com.smartwave.tripsns.vo.UserVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.HashMap;
 import java.util.List;
 
 @Service
@@ -98,5 +99,10 @@ public class UserServiceImpl implements IF_UserService {
         for(String uid:id){
             sdao.chkdel(uid);
         }
+    }
+
+    @Override
+    public List<UserVO> selectUserList(HashMap<String, String> userselect) throws Exception {
+        return sdao.selectUserList(userselect);
     }
 }

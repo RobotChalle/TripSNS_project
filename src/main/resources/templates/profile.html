@@ -41,7 +41,6 @@
     }
 
 
-
 </style>
 
 <body>
@@ -89,7 +88,7 @@
 <div class="mypic" style="z-index: 3">
     <div class="dropdown-content">
         <th:block th:if="${session.userid!=null}">
-            <a th:href="@{/profile}">프로필(<span th:text="${session.userid}" ></span>)</a>
+            <a th:href="@{/profile}">프로필(<span th:text="${session.userid}"></span>)</a>
         </th:block>
         <a href="logout">로그아웃</a>
     </div>
@@ -130,75 +129,93 @@
         </div>
 
         <div class="profile-user-settings">
-            <th:block th:if="${session.userid==mainsuser}"> <b><span th:text="${session.userid}" id="mainuser" style="font-style:italic;"></span></b>
+            <th:block th:if="${session.userid==mainsuser}"><b><span th:text="${session.userid}" id="mainuser"
+                                                                    style="font-style:italic;"></span></b>
             </th:block>
-            <th:block th:unless="${session.userid==mainsuser}"> <b><span th:text="${otheruser}" id="otheruser" style="font-style:italic;"></span></b>
+            <th:block th:unless="${session.userid==mainsuser}"><b><span th:text="${otheruser}" id="otheruser"
+                                                                        style="font-style:italic;"></span></b>
             </th:block>
 
-           <th:block th:if="${session.userid==mainsuser}">
-
+            <th:block th:if="${session.userid==mainsuser} and ${session.userid!='smartwave0377'}">
                 <button class="editbtn" th:onclick="|location.href='@{/proupdate}'|">편집</button>
-                    <button class="editbtn" th:onclick="|location.href='@{/withdrawform}'|">탈퇴</button>
-               <input type="hidden" th:value="${mainsuser}" id="myid">
-               <input type="hidden" th:value="${session.userid}" id="seid">
+                <button class="editbtn" th:onclick="|location.href='@{/withdrawform}'|">탈퇴</button>
+                <input type="hidden" th:value="${mainsuser}" id="myid">
+                <input type="hidden" th:value="${session.userid}" id="seid">
+            </th:block>
+            <th:block th:unless="${session.userid==mainsuser}">
+                <button class="followbtn">팔로우</button>
+            </th:block>
+            <th:block th:if="${session.userid=='smartwave0377'} and ${session.userid==mainsuser} ">
+                <button class="followbtn" th:onclick="|location.href='@{/manager}'|">관리</button>
             </th:block>
             <input type="hidden" th:value="${otheruser}" id="otherid">
         </div>
         <div class="profile-stats">
-<!--            <h4 id="postcnts"></h4>-->
+            <!--            <h4 id="postcnts"></h4>-->
+
             <ul>
-                <li class="stat"> 게시물  <span class="profile-stat-count" id="postcnts"></span></li>
-                <li class="stat"> 쇼츠  <span class="profile-stat-count" id="shortcnts"></span></li>
-<!--                <li class="stat"><span class="profile-stat-count">숫자</span> 팔로우</li>-->
-<!--                <li class="stat"><span class="profile-stat-count">숫자</span> 팔로워</li>-->
+                <li class="stat"> 게시물 <span class="profile-stat-count" id="postcnts"></span></li>
+                <li class="stat"> 쇼츠 <span class="profile-stat-count" id="shortcnts"></span></li>
+                <li class="stat"> 팔로워 <span class="profile-stat-count" id="followercnts">숫자</span></li>
+                <li class="stat"> 팔로우 <span class="profile-stat-count" id="followcnts">숫자</span></li>
+                <!--                <li class="stat"><span class="profile-stat-count">숫자</span> 팔로우</li>-->
+                <!--                <li class="stat"><span class="profile-stat-count">숫자</span> 팔로워</li>-->
             </ul>
 
         </div>
 
         <div class="profile-bio">
             <th:block th:if="${profiledetail.u_intro!=null}">
-            <p th:text ="${profiledetail.u_intro}"> </p>
+                <p th:text="${profiledetail.u_intro}"></p>
             </th:block>
         </div>
 
     </div>
 </div>
-<div id="menubar">
-    <span class="menu"><a href="#">게시글</a></span>
-    <span class="menu"><a href="#">릴스</a></span>
-</div>
 
-<div id="profilemain">
-    <div id="over">
-        <table>
-            <tr class="row row-cols-3">
-                <td class="postList" th:each="postVOList:${postVOList}">
-                    <a th:href="@{/detail(p_no=${postVOList.p_no}, p_id=${session.userid})}" class="detail">
-                        <th:block th:if="${postVOList.pp_pic!=null}">
-                            <div class="box">
-                                <img class="inpic" th:src="@{/download(filename=${postVOList.pp_pic})}">
-                            </div>
-                        </th:block>
-                        <th:block th:if="${postVOList.pp_pic==null}">
-                            <div class="box2">
-                                <span class="intext" th:text="${postVOList.p_text}"></span>
-                            </div>
-                        </th:block>
-                    </a>
-                </td>
-            </tr>
-        </table>
 
+
+    <div class="tab">
+        <ul class="tabnav">
+            <li><a href="#tab01">게시물</a></li>
+            <li><a href="#tab02">쇼츠</a></li>
+        </ul>
+        <!--게시글 관리-->
+        <div class="tabcontent">
+            <div id="tab01"><div id="over">
+                <table>
+                    <tr class="row row-cols-3">
+                        <td class="postList" th:each="postVOList:${postVOList}">
+                            <a th:href="@{/detail(p_no=${postVOList.p_no}, p_id=${session.userid})}" class="detail">
+                                <th:block th:if="${postVOList.pp_pic!=null}">
+                                    <div class="box">
+                                        <img class="inpic" th:src="@{/download(filename=${postVOList.pp_pic})}">
+                                    </div>
+                                </th:block>
+                                <th:block th:if="${postVOList.pp_pic==null}">
+                                    <div class="box2">
+                                        <span class="intext" th:text="${postVOList.p_text}"></span>
+                                    </div>
+                                </th:block>
+                            </a>
+                        </td>
+                    </tr>
+                </table>
+
+            </div></div>
+            <div id="tab02">쇼츠</div>
+        </div>
     </div>
 
 
-</div>
+
 
 
 </body>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <script type="text/javascript" src="/js/profile.js"></script>
 
+<script>
 
 </script>
 
