@@ -280,8 +280,6 @@ public class SNSController {
         return "manager";
     }
 
-
-
     @GetMapping(value = "map") //지도 페이지
     public String map(Model model, @SessionAttribute("userid") String u_id) throws Exception {
         //프로필 사진 불러오기
