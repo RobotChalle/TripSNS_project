@@ -77,7 +77,7 @@ public class SNSController {
     }
 
     @GetMapping(value = {"/shorts"})
-    public String shorts(Model model,@SessionAttribute("userid") String u_id) throws Exception {
+    public String shorts(Model model, @SessionAttribute("userid") String u_id) throws Exception {
         List<ShortVO> shortList = sService.allShortList();
         model.addAttribute("allShortList", shortList);
         //프로필 사진 불러오기
@@ -85,14 +85,15 @@ public class SNSController {
         model.addAttribute("profiledetail", prodetail);
         return "shorts";
     }
-    @GetMapping(value="/short")//쇼츠 게시글 자세히 보기
-    public String shortOne(Model model,@ModelAttribute ShortLikeVO slikevo, @SessionAttribute("userid") String u_id) throws Exception {
+
+    @GetMapping(value = "/short")//쇼츠 게시글 자세히 보기
+    public String shortOne(Model model, @ModelAttribute ShortLikeVO slikevo, @SessionAttribute("userid") String u_id) throws Exception {
         ShortVO shortDetails = sService.shortDetails(slikevo.getS_no());
         VideoVO vvo = sService.getVideo(shortDetails.getSv_no());
         List<ShortCommentVO> commentList = sService.shortCommentList(slikevo.getS_no());
         int shortCommentCount = sService.shortCommentCount(slikevo.getS_no());
         String profileImg = sService.profileImg(shortDetails.getS_no());
-        model.addAttribute("shortDetails",shortDetails);
+        model.addAttribute("shortDetails", shortDetails);
         model.addAttribute("video", vvo);
         model.addAttribute("commentList", commentList);
         model.addAttribute("shortCommentCount", shortCommentCount);
@@ -124,7 +125,7 @@ public class SNSController {
     }
 
     @PostMapping(value = "/addShort")//쇼츠 게시글 추가
-    public String addShort(Model model, @ModelAttribute VideoVO vvo, MultipartFile[] file,@SessionAttribute("userid") String u_id) throws Exception {
+    public String addShort(Model model, @ModelAttribute VideoVO vvo, MultipartFile[] file, @SessionAttribute("userid") String u_id) throws Exception {
         String[] filename = fileDataUtil.fileUpload(file);
         vvo.setSv_addr(filename[0]);
         vvo.setSv_thumbnail(filename[1]);
@@ -155,7 +156,7 @@ public class SNSController {
     public int shortLikeUpDown(@ModelAttribute ShortLikeVO slikevo) throws Exception {
         sService.shortLikeUpDown(slikevo);
         int flag = 0;
-        if(sService.shortLikeSelectOne(slikevo)==null){
+        if (sService.shortLikeSelectOne(slikevo) == null) {
             return flag;
         } else {
             flag = 1;
@@ -165,16 +166,16 @@ public class SNSController {
 
     @ResponseBody
     @GetMapping(value = "shortLikeCount")
-    public int shortLikeCount(@ModelAttribute ShortLikeVO slikevo)throws Exception{
+    public int shortLikeCount(@ModelAttribute ShortLikeVO slikevo) throws Exception {
         return sService.shortLikeCount(slikevo);
     }
 
     @ResponseBody
     @GetMapping(value = "shortLikeChk")
-    public int shortLikeChk(@ModelAttribute ShortLikeVO slikevo)throws Exception{
-        int flag=0;
-        if(sService.shortLikeSelectOne(slikevo)!=null){
-            flag=1;
+    public int shortLikeChk(@ModelAttribute ShortLikeVO slikevo) throws Exception {
+        int flag = 0;
+        if (sService.shortLikeSelectOne(slikevo) != null) {
+            flag = 1;
         }
         return flag;
     }
@@ -279,6 +280,12 @@ public class SNSController {
         return "manager";
     }
 
-
+    @GetMapping(value = "map") //지도 페이지
+    public String map(Model model, @SessionAttribute("userid") String u_id) throws Exception {
+        //프로필 사진 불러오기
+        ProfileVO prodetail = userservice.getProfile(u_id);
+        model.addAttribute("profiledetail", prodetail);
+        return "map";
+    }
 
 }
