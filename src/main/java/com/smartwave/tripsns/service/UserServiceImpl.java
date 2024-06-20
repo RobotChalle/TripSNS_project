@@ -76,6 +76,12 @@ public class UserServiceImpl implements IF_UserService {
     public int shortcnt(String id) throws Exception {
         return sdao.shortcnt(id);
     }
+    //자세히 보기 프로필 innerjoin
+    @Override
+    public String detailProfile(String p_no) throws Exception {
+        return sdao.detailProfile(p_no);
+    }
+
     // 관리자 로그인
     @Override
     public AdminVO getAdmin(String id) throws Exception {
@@ -85,5 +91,12 @@ public class UserServiceImpl implements IF_UserService {
     @Override
     public List<UserVO> userList() throws Exception {
         return sdao.userList();
+    }
+
+    @Override
+    public void chkdel(String[] id) throws Exception {
+        for(String uid:id){
+            sdao.chkdel(uid);
+        }
     }
 }

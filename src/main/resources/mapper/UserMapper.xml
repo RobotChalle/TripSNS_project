@@ -60,4 +60,12 @@
         select *
         from user where name not in ('관리자')
     </select>
+    <!--게시글 자세히보기 프로필 (나의 프로필,상대방프로필 구분) inner join 활용-->
+    <select id="detailprofile" parameterType="String" resultType="String">
+        select f.u_pic  from  profile f inner join post p on f.id = p.p_id where p_no = #{p_no};
+    </select>
+    <!--관리자 체크된 유저 목록 삭제-->
+    <delete id="chkuserdelete" parameterType="String">
+        delete from user where id = #{uid};
+    </delete>
 </mapper>
