@@ -133,9 +133,16 @@
         <article class="feed">
             <div class="newPost">
                 <div class="postImage">
-                    <img alt="profile image" class="roundImg" src="/images/img4.png">
+<!--                    <img alt="profile image" class="roundImg" src="/images/img4.png">-->
+<!--                    <th:block th:if="${profiledetail.u_pic!=null}">-->
+<!--                        <img th:src="@{/download(filename=${profiledetail.u_pic})}" class="roundImg">-->
+<!--                    </th:block>-->
+                    <img th:src="@{/download(filename=${propic})}" class="roundImg">
+
                 </div>
-                <a href="#" class="postId" th:text="${postDetail.p_id}"></a>
+
+<!--                <a href="#" class="postId" th:text="${postDetail.p_id}"></a>-->
+                <a th:href="@{/otherprofile(p_id=${postDetail.p_id})}" class="postId" th:text="${postDetail.p_id}"></a>
                 <a href="#" class="place" th:text="${postDetail.p_place}"></a>
             </div>
             <section class="feedImg">

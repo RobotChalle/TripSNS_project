@@ -1,7 +1,6 @@
 package com.smartwave.tripsns.dao;
 
 import com.smartwave.tripsns.vo.AdminVO;
-
 import com.smartwave.tripsns.vo.ProfileVO;
 import com.smartwave.tripsns.vo.UserVO;
 
@@ -31,8 +30,12 @@ public interface IF_UserDAO {
     public int postcnt(String id) throws Exception;
     //쇼츠 수 get
     public int shortcnt(String id) throws Exception;
+    // 자세히보기 프로필 get
+    public String detailProfile(String p_no) throws Exception;
     //관리자 로그인
     public AdminVO getAdmin(String id) throws Exception;
     //관리자용 회원목록 전부 보기
     public List<UserVO> userList() throws Exception;
+    // 체크된 유저목록 삭제
+    public void chkdel(String uid)throws Exception;
 }

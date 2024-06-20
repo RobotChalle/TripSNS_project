@@ -76,6 +76,12 @@ public class UserDAOImpl implements IF_UserDAO {
     public int shortcnt(String id) throws Exception {
         return sqlSession.selectOne(mapperQuery+".shortcnt",id);
     }
+    //자세히 보기 프로필
+    @Override
+    public String detailProfile(String p_no) throws Exception {
+        return sqlSession.selectOne(mapperQuery+".detailprofile",p_no);
+    }
+
     //관리자 로그인
     @Override
     public AdminVO getAdmin(String id) throws Exception {
@@ -85,6 +91,11 @@ public class UserDAOImpl implements IF_UserDAO {
     @Override
     public List<UserVO> userList() throws Exception {
         return sqlSession.selectList(mapperQuery+".userList");
+    }
+
+    @Override
+    public void chkdel(String uid) throws Exception {
+        sqlSession.delete(mapperQuery+".chkuserdelete",uid);
     }
 
 

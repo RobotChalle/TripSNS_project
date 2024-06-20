@@ -17,9 +17,23 @@
 }
 
 body {
-    /* background-image: url(backimg.png); */
-    /*background-color: rgb(123, 147, 226);*/
-    background-image: url("../images/background.jpg");
+    background: linear-gradient(300deg, deepskyblue, #b8f4f9, #0060ff);
+    animation: gradient-animation 5s ease infinite;
+    background-position: center;
+    background-size: 180% 180%;
+    background-attachment: fixed;
+}
+
+@keyframes gradient-animation {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
 }
 
 #logo {
