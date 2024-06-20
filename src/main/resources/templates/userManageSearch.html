@@ -110,82 +110,12 @@
 <div class="feedBoard">
     <div class="tab">
         <ul class="tabnav">
-            <li><a href="#tab01">게시물</a></li>
-            <li><a href="#tab02">쇼츠</a></li>
             <li><a href="#tab03">회원</a></li>
         </ul>
         <!--게시글 관리-->
         <div class="tabcontent">
-            <div id="tab01">
-                <h1>게시글 관리</h1>
-                <div class="postSearchDiv">
-                    <!--                    <div class="postSearchChk">-->
-                    <!--                        <input type="radio" value="p_id" name="searchOpt" class="searchId" checked>아이디-->
-                    <!--                        <input type="radio" value="p_place" name="searchOpt" class="searchPlace">장소-->
-                    <!--                    </div>-->
-                    <input type="search" placeholder="검색" class="postSearch" id="postSearch">
-                    <!--                    <input type="button" value="검색" class="postSubmit">-->
-                </div>
-                <div class="tbl-header">
-                    <table cellpadding="0" cellspacing="0" border="0">
-                        <thead>
-                        <tr>
-                            <th><input type="checkbox" id="checkAll"> 전체선택</th>
-                            <th>고유번호
-                                <button onclick="sortTD ( 0 )" class="sortBtn">▲</button>
-                                <button onclick="reverseTD ( 0 )" class="sortBtn">▼</button>
-                            </th>
-                            <th>작성자
-                                <button onclick="sortTD ( 0 )" class="sortBtn">▲</button>
-                                <button onclick="reverseTD ( 0 )" class="sortBtn">▼</button>
-                            </th>
-                            <th>장소
-                                <button onclick="sortTD ( 0 )" class="sortBtn">▲</button>
-                                <button onclick="reverseTD ( 0 )" class="sortBtn">▼</button>
-                            </th>
-                            <th>내용</th>
-                            <th>작성일
-                                <button onclick="sortTD ( 0 )" class="sortBtn">▲</button>
-                                <button onclick="reverseTD ( 0 )" class="sortBtn">▼</button>
-                            </th>
-                            <th>삭제</th>
-                            <th>자세히</th>
-                        </tr>
-                        </thead>
-                    </table>
-                </div>
-                <div class="tbl-content">
-                    <table cellpadding="0" cellspacing="0" border="0" class="sortable" id="postList">
-                        <tbody>
-                        <tr th:each="postList:${postList}">
-                            <td><input type="checkbox" class="chk" th:value="${postList.p_no}"></td>
-                            <td th:text="${postList.p_no}" id="p_no"></td>
-                            <td th:text="${postList.p_id}" id="searchId"></td>
-                            <td th:text="${postList.p_place}" id="searchPlace"></td>
-                            <td th:text="${postList.p_text}"></td>
-                            <td th:text="${postList.p_indate}"></td>
-                            <td>
-                                <button class="postDelete1">
-                                    <a th:href="@{/postDeleteManager(p_no=${postList.p_no})}">
-                                        삭제
-                                    </a>
-                                </button>
-                            </td>
-                            <td><a th:href="@{/detail(p_no=${postList.p_no}, p_id=${session.userid})}" class="detail">자세히
-                                보기</a>
-                            </td>
-                        </tr>
-                        </tbody>
-                    </table>
-                </div>
-                <div class="postOption">
-                    <button class="postDelete2" onclick="postDeleteChk()">삭제</button>
-                    <button class="postExcel" id="excelDownload">엑셀</button>
-                </div>
-            </div>
-            <div id="tab02">쇼츠 관리</div>
             <div id="tab03"><!--회원 관리-->
-                <h1 style="text-align: center">회원관리</h1>
+                <h1 style="text-align: center">회원검색</h1>
                 <form action="userSearchList" method="post">
                     <select class="usearch" name="searchitem">
                         <option value="id">아이디</option>
@@ -234,6 +164,7 @@
                 <div>
                     <button class="delbtn" id="chkdel">삭제</button>
                     <input type="button" id="excelFileExport" value="엑셀 다운">
+                    <button class="bkbtn" id="back" th:onclick="|location.href='@{/manager}'|" >뒤로가기</button>
                 </div>
             </div>
         </div>

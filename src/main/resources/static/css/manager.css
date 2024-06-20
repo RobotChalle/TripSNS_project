@@ -249,7 +249,7 @@ div.feedBoard {
 }
 
 /************************************/
-
+/*회원관리*/
 #userTable {
     border-collapse: collapse;
     width: 100%;
@@ -300,6 +300,17 @@ div.feedBoard {
 
     /*margin-top: 10px;*/
 }
+.bkbtn{
+    font-family: apple Black;
+    width: 70px;
+    height: 40px;
+    background: #fff;
+    border: 1px solid white;
+    border-radius: 10px;
+    cursor: pointer;
+    margin-left:80%;
+
+}
 
 #excelFileExport {
     font-family: apple Black;
@@ -335,6 +346,11 @@ div.feedBoard {
     background: cornflowerblue;
     color: white;
 }
+.bkbtn:hover{
+    border: 1px solid dimgrey;
+    background: dimgrey;
+    color: white;
+}
 
 #dels {
     padding-left: 1px;
@@ -349,5 +365,17 @@ div.feedBoard {
     font-weight: 600;
     transition: 0.50s;
     background-color: white;
-    margin-left: 70%;
+
 }
+.usearch{
+    border: none;
+    padding: 5px 5px;
+    border-radius: 10px;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+    text-decoration: none;
+    font-weight: 600;
+    transition: 0.50s;
+    background-color: white;
+    margin-left:60%;
+}
+/*회원관리*/

@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import java.util.HashMap;
 import java.util.List;
 
 
@@ -226,12 +227,23 @@ public class UserController {
     // 관리자 체크된 튜플 삭제
     @GetMapping(value = "delchk")
     public String chkdel(@RequestParam("id") String[] id, HttpSession session) throws Exception {
-
-//        userservice.del(id);
         userservice.chkdel(id);
-        System.out.println(id);
         return "redirect:manager";
     }
+    //관리자 회원검색  > 검색페이지로 이동
+    @PostMapping(value = "userSearchList")
+    public String userSearchList(@SessionAttribute("userid") String u_id,@RequestParam("searchitem")String usercolumn,@RequestParam("usersearch") String usersearch,Model model) throws Exception {
+        HashMap<String, String> userselect = new HashMap<>();
+        userselect.put("usercolumn", usercolumn);
+        userselect.put("usersearch", usersearch);
+        List<UserVO> selectUserLists =userservice.selectUserList(userselect);
+        model.addAttribute("userList", selectUserLists);
+        //프로필 사진 불러오기
+        ProfileVO prodetail = userservice.getProfile(u_id);
+        model.addAttribute("profiledetail", prodetail);
+        return "userManageSearch";
+    }
+
 
 
 }

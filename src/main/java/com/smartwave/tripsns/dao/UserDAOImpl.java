@@ -7,6 +7,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import java.util.HashMap;
 import java.util.List;
 
 @Repository
@@ -96,6 +97,11 @@ public class UserDAOImpl implements IF_UserDAO {
     @Override
     public void chkdel(String uid) throws Exception {
         sqlSession.delete(mapperQuery+".chkuserdelete",uid);
+    }
+
+    @Override
+    public List<UserVO> selectUserList(HashMap<String, String> userselect) throws Exception {
+        return sqlSession.selectList(mapperQuery+".selectUserList",userselect);
     }
 
 
