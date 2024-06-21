@@ -150,23 +150,36 @@ public class SNSController {
     }
 
     @GetMapping(value = "deleteShort") //댓글 삭제
-    public String shortCommentDelete(@ModelAttribute ShortVO svo) throws Exception {
+    public String shortDelete(@ModelAttribute ShortVO svo) throws Exception {
         sService.deleteShort(svo);
         return "redirect:/shorts";
+    }
+    @GetMapping(value = "shortUpdate") //게시글 수정페이지
+    public String shortUpdate(Model model, @ModelAttribute ShortVO svo, @SessionAttribute("userid") String u_id) throws Exception {
+        if(svo.getS_id().equals(u_id)){
+            model.addAttribute("s_no", svo.getS_no());
+            //프로필 사진 불러오기
+            ProfileVO prodetail = userservice.getProfile(u_id);
+            model.addAttribute("profiledetail", prodetail);
+            return "shortUpdateForm";
+        }else {
+            return "redirect:/main";
+        }
+    }
+
+    @GetMapping(value = "deleteShortChk") //댓글 삭제
+    public String shortDeleteChecked(@ModelAttribute ShortVO svo) throws Exception {
+        sService.deleteShort(svo);
+        return "redirect:/manager";
     }
 
     @ResponseBody
     @GetMapping(value = "shortLikeUpDown") //게시글 좋아요
     public int shortLikeUpDown(@ModelAttribute ShortLikeVO slikevo) throws Exception {
-        sService.shortLikeUpDown(slikevo);
-        int flag = 0;
-        if (sService.shortLikeSelectOne(slikevo) == null) {
-            return flag;
-        } else {
-            flag = 1;
-        }
+        int flag = sService.shortLikeUpDown(slikevo);
         return flag;
     }
+
 
     @ResponseBody
     @GetMapping(value = "shortLikeCount")
@@ -221,7 +234,9 @@ public class SNSController {
     @GetMapping(value = "postSearchById") //게시글 검색
     public String postSearchById(@RequestParam("searchWord") String searchWord, Model model, @SessionAttribute("userid") String u_id) throws Exception {
         List<PostVO> pvo = sService.postSearch(searchWord);
+        List<ShortVO> svo = sService.shortSearch(searchWord);
         model.addAttribute("searchWord", searchWord);
+        model.addAttribute("svo",svo);
         model.addAttribute("pvo", pvo);
         //프로필 사진 불러오기
         ProfileVO prodetail = userservice.getProfile(u_id);
@@ -273,6 +288,10 @@ public class SNSController {
         //게시글 정보 가져오기
         List<PostVO> postList = sService.postSelectList();
         model.addAttribute("postList", postList);
+
+        //쇼츠 정보 가져오기
+        List<ShortVO> shortList = sService.allShortList();
+        model.addAttribute("shortList", shortList);
 
         //관리자용 회원목록 get
         List<UserVO> userList = userservice.userList();

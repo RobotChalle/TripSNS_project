@@ -81,7 +81,7 @@
         box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
         text-decoration: none;
         font-weight: 600;
-        background-color: red;
+        background-color: #ff4f4f;
         color: white;
         display: flex;
         font-size: 10px;
@@ -89,8 +89,26 @@
 
     .deleteShort:hover {
         cursor: pointer;
-        background-color: palevioletred;
-        color: black;
+        background-color: #ff0000;
+        color: white;
+    }
+    .updateShort {
+        border: none;
+        padding: 5px 25px;
+        border-radius: 10px;
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        text-decoration: none;
+        font-weight: 600;
+        background-color: #2471ff;
+        color: white;
+        display: flex;
+        font-size: 10px;
+    }
+
+    .updateShort:hover {
+        cursor: pointer;
+        background-color: #001fff;
+        color: white;
     }
 
     .comments {
@@ -100,12 +118,13 @@
         flex-wrap: wrap;
         overflow: auto;
         padding: 0 20px;
-        margin-left: auto;
-        margin-right: auto;
-        margin-bottom: 10px;
-        margin-top: 10px;
+        margin: 50px auto 10px;
         border: white solid 1px;
         border-radius: 10px;
+    }
+    .v-line {
+        border-left : 1px dotted #595959;
+        height : 10px;
     }
 
     .comment {
@@ -132,7 +151,6 @@
 
     .profileImg {
         display: flex;
-        background-color: #0060ff;
         width: 50px;
         height: 50px;
         margin-left: 5px;
@@ -187,15 +205,19 @@
         box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5);
         text-decoration: none;
         font-weight: 600;
-        background-color: lawngreen;
+        background-color: #06c300;
         color: white;
         text-align: center;
     }
 
     .commentInsertB:hover {
-        background-color: palegreen;
-        color: black;
+        background-color: #0dff00;
+        color: white;
         cursor: pointer;
+    }
+    .btnForm{
+        margin-top: 3px;
+        display: flex;
     }
 
     .deleteComment {
@@ -212,7 +234,7 @@
     .deleteComment:hover {
         cursor: pointer;
         background-color: palevioletred;
-        color: black;
+        color: white;
     }
 
     table {
@@ -221,6 +243,10 @@
 
     #commentText {
         width: 80%;
+    }
+
+    .roundImg {
+        border-radius: 50%;
     }
 </style>
 <body onload="startFunction()">
@@ -291,9 +317,9 @@
         </svg>
     </a>
     <ul>
-        <form>
-            <li><input class="search" name="searchWord" placeholder="검색" type="search"></li>
-            <li><input class="submit" type="submit" value="검색"></li>
+        <form action="postSearchById" method="get">
+            <li><input type="search" placeholder="검색" class="search" name="searchWord"></li>
+            <li><input type="submit" value="검색" class="submit"></li>
         </form>
     </ul>
 </nav>
@@ -321,10 +347,15 @@
                         <br>
                         <span th:text="${shortDetails.s_description}"></span>
                         <div id="delShortDiv" th:if="${session.userid==shortDetails.s_id}">
-                            <form action="deleteShort" method="get" onsubmit='return delAlert()'>
+                            <form class="btnForm" action="deleteShort" method="get" onsubmit='return delAlert()'>
                                 <input name="s_no" th:value="${shortDetails.s_no}" type="hidden">
                                 <input name="sc_id" th:value="${session.userid}" type="hidden">
                                 <input class="deleteShort" type="submit" value="글삭제">
+                            </form>
+                            <form class="btnForm" action="updateShort" method="get">
+                                <input name="s_no" th:value="${shortDetails.s_no}" type="hidden">
+                                <input name="sc_id" th:value="${shortDetails.s_id}" type="hidden">
+                                <input class="updateShort" type="submit" value="글수정">
                             </form>
                         </div>
                         <span class="s_date" th:text="${shortDetails.s_date}"></span>
@@ -335,6 +366,7 @@
                 <table>
                     <tr class="comment" th:each="comment:${commentList}">
                         <td class="commentId" th:text="${comment.sc_id}"></td>
+                        <td class='v-line'></td>
                         <td class="commentText" th:text="${comment.sc_comment}"><br></td>
                         <td class="commentDate" th:text="${comment.sc_date}"></td>
                         <th:block class="deleteB" th:if="${session.userid==comment.sc_id}">

@@ -195,5 +195,10 @@ public class SNSDAOImpl implements IF_SNSDAO {
         return sqlSession.selectOne(mapperQuery + ".postViewCount", pvo);
     }
 
+    @Override
+    public List<ShortVO> shortSearch(String searchWord) throws Exception {
+        return sqlSession.selectList(mapperQuery+".shortSearch", searchWord);
+    }
+
 
 }

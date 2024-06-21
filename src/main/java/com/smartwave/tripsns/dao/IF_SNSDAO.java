@@ -72,7 +72,9 @@ public interface IF_SNSDAO {
 
     public int shortCommentCount(int s_no) throws Exception;
 
-    public String profileImg(int s_no) throws Exception;
+    public String profileImg(int s_no)throws Exception;
+
+    public List<ShortVO> shortSearch(String searchWord) throws Exception;
 
     public void postViewUpdate(PostVO pvo) throws Exception; //게시글 조회수
 

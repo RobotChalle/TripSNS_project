@@ -3,12 +3,12 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <title>여행여행</title>
-    <link rel="stylesheet" href="/css/main_navTop.css">
-    <link rel="stylesheet" href="/css/main_navSide.css">
-    <link rel="stylesheet" href="/css/main_feed.css">
-    <link rel="stylesheet" href="/css/main_button.css">
+    <link href="/css/main_navTop.css" rel="stylesheet">
+    <link href="/css/main_navSide.css" rel="stylesheet">
+    <link href="/css/main_feed.css" rel="stylesheet">
+    <link href="/css/main_button.css" rel="stylesheet">
     <script src="/js/post_like.js"></script>
 </head>
 <style>
@@ -43,6 +43,138 @@
             background-position: 0% 50%;
         }
     }
+
+    section {
+        padding-top: 6%;
+    }
+
+    div, ul, li {
+        margin: 0;
+        padding: 0;
+    }
+
+    ul, li {
+        list-style: none;
+    }
+
+    div.feedBoard {
+        flex: 6.5;
+        width: 80%;
+        float: right;
+        padding-top: 20px;
+        padding-right: 150px;
+        margin-bottom: -50px;
+    }
+
+    .tab {
+        background-color: rgba(255, 255, 255, 0.75);
+        border: 1px solid #e8e8e8;
+        border-radius: 1%;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+        transition: all 0.3s cubic-bezier(.25, .8, .25, 1);
+
+        float: left;
+        width: 1100px;
+    }
+
+    .tabnav {
+        font-size: 0;
+        width: 1100px;
+    }
+
+    .tabnav li {
+        display: inline-block;
+        height: 46px;
+        text-align: center;
+    }
+
+    .tabnav li a:before {
+        content: "";
+        position: absolute;
+        left: 0;
+        bottom: 0px;
+        width: 100%;
+        height: 3px;
+    }
+
+    .tabnav li a.active:before {
+        background: cornflowerblue;
+    }
+
+    .tabnav li a.active {
+        /*border-bottom: 1px solid #fff;*/
+    }
+
+    .tabnav li a {
+        position: relative;
+        display: block;
+        /*background: rgba(248, 248, 248, 0.75);*/
+        color: #000;
+        padding: 0 30px;
+        line-height: 46px;
+        text-decoration: none;
+        font-size: 16px;
+    }
+
+    .tabnav li a:hover, .tabnav li a.active {
+        /*background: rgba(255, 255, 255, 0.75);*/
+        color: cornflowerblue;
+    }
+
+    .tabcontent {
+        padding: 20px;
+        border-top: none;
+    }
+
+    .tab:hover {
+        box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
+    }
+
+    #tab01 {
+        height: 700px;
+        overflow-x: auto;
+    }
+
+    #tab01 .feed {
+        margin-top: 50px;
+    }
+
+    #tab02 {
+        height: 700px;
+        overflow-x: auto;
+    }
+    #tab02 .container {
+        flex: 6.5;
+        width: 60%;
+        float: right;
+        padding-right: 200px;
+        margin-top: 50px;
+        margin-bottom: -50px;
+    }
+
+    .short {
+        float: left;
+        display: flex;
+        width: 30%;
+        margin-left: 10px;
+        margin-top: 10px;
+        background: #fff;
+        border: 1px solid #e8e8e8;
+        border-radius: 10px;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+        transition: all 0.3s cubic-bezier(.25, .8, .25, 1);
+    }
+
+    .short:hover {
+        box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
+    }
+
+    .thumbnail img {
+        width: 100%;
+        object-fit: fill;
+        border-radius: 10px;
+    }
+
 </style>
 
 <body>
@@ -114,45 +246,72 @@
     </ul>
 </nav>
 <!--메인 피드-->
-<main>
-    <div class="feedBoard" th:each="pvoList:${pvo}">
-        <article class="feed">
-            <div class="newPost">
-                <div class="postImage">
-                    <img alt="profile image" class="roundImg" src="/images/img4.png">
+<section>
+    <main>
+        <div class="feedBoard">
+            <div class="tab">
+                <ul class="tabnav">
+                    <li><a href="#tab01">게시물</a></li>
+                    <li><a href="#tab02">쇼츠</a></li>
+                    <li><a href="#tab03">회원</a></li>
+                </ul>
+                <!--게시글 관리-->
+                <div class="tabcontent">
+                    <div id="tab01">
+                        <h3>게시글</h3>
+                        <div class="feedBoard" th:each="pvoList:${pvo}">
+                            <article class="feed">
+                                <div class="newPost">
+                                    <div class="postImage">
+                                        <img alt="profile image" class="roundImg" src="/images/img4.png">
+                                    </div>
+                                    <a class="postId" href="#" th:text="${pvoList.p_id}">p_id</a>
+                                    <a class="place" href="#" th:text="${pvoList.p_place}">p_place</a>
+                                </div>
+                                <section class="feedImg">
+                                    <th:block th:if="${pvoList.pp_pic!=null}">
+                                        <img th:src="@{/download(filename=${pvoList.pp_pic})}">
+                                    </th:block>
+                                    <div class="interactions">
+                                        <svg class="bi bi-heart" fill="currentColor" height="25"
+                                             viewBox="0 0 16 16"
+                                             width="25" xmlns="http://www.w3.org/2000/svg">
+                                            <path
+                                                    d="m8 2.748-.717-.737C5.6.281 2.514.878 1.4 3.053c-.523 1.023-.641 2.5.314 4.385.92 1.815 2.834 3.989 6.286 6.357 3.452-2.368 5.365-4.542 6.286-6.357.955-1.886.838-3.362.314-4.385C13.486.878 10.4.28 8.717 2.01zM8 15C-7.333 4.868 3.279-3.04 7.824 1.143q.09.083.176.171a3 3 0 0 1 .176-.17C12.72-3.042 23.333 4.867 8 15"/>
+                                        </svg>
+                                        <a class="detail"
+                                           th:href="@{/detail(p_no=${pvoList.p_no}, p_id=${session.userid})}">자세히 보기</a>
+                                    </div>
+                                </section>
+                                <section class="feedText">
+                                    <span><br th:text="${pvoList.p_text}"></span>
+                                    <span class="indate" th:text="${pvoList.p_indate}"></span>
+                                </section>
+                            </article>
+                        </div>
+                    </div>
+                    <!--쇼츠 전체보기 (쇼츠는 최근 게시한 시간의 역순으로 출력되도록 한다.-->
+                    <div id="tab02">
+                        <div class="container">
+                            <div class="short" th:each="shortList:${svo}">
+                                <a class="short-Link" th:href="@{/short(s_no = ${shortList.s_no},slike_id = ${session.userid})}">
+                                    <section class="thumbnail">
+                                        <th:block th:if="${shortList.sv_thumbnail!=null}">
+                                            <img alt="썸네일" th:src="@{/download(filename=${shortList.sv_thumbnail})}">
+                                        </th:block>
+                                    </section>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="tab03">
+
+                    </div>
                 </div>
-                <a href="#" class="postId" th:text="${pvoList.p_id}">p_id</a>
-                <a href="#" class="place" th:text="${pvoList.p_place}">p_place</a>
             </div>
-            <section class="feedImg">
-                <th:block th:if="${pvoList.pp_pic!=null}">
-                    <img th:src="@{/download(filename=${pvoList.pp_pic})}">
-                </th:block>
-                <div class="interactions">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor"
-                         class="bi bi-heart" viewBox="0 0 16 16">
-                        <path
-                                d="m8 2.748-.717-.737C5.6.281 2.514.878 1.4 3.053c-.523 1.023-.641 2.5.314 4.385.92 1.815 2.834 3.989 6.286 6.357 3.452-2.368 5.365-4.542 6.286-6.357.955-1.886.838-3.362.314-4.385C13.486.878 10.4.28 8.717 2.01zM8 15C-7.333 4.868 3.279-3.04 7.824 1.143q.09.083.176.171a3 3 0 0 1 .176-.17C12.72-3.042 23.333 4.867 8 15"/>
-                    </svg>
-                    <a th:href="@{/detail(p_no=${pvoList.p_no}, p_id=${session.userid})}" class="detail">자세히 보기</a>
-                </div>
-            </section>
-            <section class="feedText">
-                <span><br th:text="${pvoList.p_text}"></span>
-                <span th:text="${pvoList.p_indate}" class="indate"></span>
-            </section>
-        </article>
-    </div>
-</main>
-<div id="floatingButton">
-    <a th:href="@{/post(p_id=${session.userid})}">
-        <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" fill="currentColor"
-             class="bi bi-plus-circle-fill" viewBox="0 0 16 16">
-            <path
-                    d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0M8.5 4.5a.5.5 0 0 0-1 0v3h-3a.5.5 0 0 0 0 1h3v3a.5.5 0 0 0 1 0v-3h3a.5.5 0 0 0 0-1h-3z"/>
-        </svg>
-    </a>
-</div>
+        </div>
+    </main>
+</section>
 <div class="mypic">
     <div class="dropdown-content">
         <th:block th:if="${session.userid!=null}">
@@ -161,9 +320,21 @@
         <a href="logout">로그아웃</a>
     </div>
     <a href="#">
-        <img src="/images/메인_2.jpg" alt="myPic">
+        <img alt="myPic" src="/images/메인_2.jpg">
     </a>
 </div>
 </body>
-
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script>
+    //탭 기능
+    $(function () {
+        $('.tabcontent > div').hide();
+        $('.tabnav a').click(function () {
+            $('.tabcontent > div').hide().filter(this.hash).fadeIn();
+            $('.tabnav a').removeClass('active');
+            $(this).addClass('active');
+            return false;
+        }).filter(':eq(0)').click();
+    });
+</script>
 </html>
