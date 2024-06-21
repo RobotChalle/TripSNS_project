@@ -5,6 +5,7 @@ import com.smartwave.tripsns.dao.IF_UserDAO;
 import com.smartwave.tripsns.vo.AdminVO;
 import com.smartwave.tripsns.vo.ProfileVO;
 import com.smartwave.tripsns.vo.UserVO;
+import com.smartwave.tripsns.vo.FollowVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -93,16 +94,41 @@ public class UserServiceImpl implements IF_UserService {
     public List<UserVO> userList() throws Exception {
         return sdao.userList();
     }
-
+    // 관리자용 체크박스 삭제
     @Override
     public void chkdel(String[] id) throws Exception {
         for(String uid:id){
             sdao.chkdel(uid);
         }
     }
-
+    // 관리자용 회원 검색목록 select
     @Override
     public List<UserVO> selectUserList(HashMap<String, String> userselect) throws Exception {
         return sdao.selectUserList(userselect);
+    }
+    // 팔로우  (팔로우 삽입 , 삭제)
+    @Override
+    public void follow(FollowVO fvo) throws Exception {
+        if(sdao.selectFollow(fvo)==null){// 팔로우 했던 사람이 아니면 db에 값이 없다면
+            sdao.follow(fvo);// 팔로우
+        }else{
+            sdao.followdel(fvo);// 값있으면 중복 x -> 삭제
+        }
+
+    }
+    // 팔로우 조회 팔로우 했던 사람인지 여부판단
+    @Override
+    public FollowVO selectFollow(FollowVO fvo) throws Exception {
+        return sdao.selectFollow(fvo);
+    }
+    //상대 화면 팔로워수 get 팔로우 당한사람 아이디의 팔로워개수
+    @Override
+    public int followercount(FollowVO fvo) throws Exception {
+        return sdao.followercount(fvo);
+    }
+    //로그인 한 나의 화면 팔로우 수 get 내가 팔로우 버튼을 클릭했을시 팔로우한 아이디의 팔로우개수
+    @Override
+    public int followcount(FollowVO fvo) throws Exception {
+        return sdao.followcount(fvo);
     }
 }

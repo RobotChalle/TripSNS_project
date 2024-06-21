@@ -4,10 +4,7 @@ package com.smartwave.tripsns.controller;
 import com.smartwave.tripsns.service.IF_SNSService;
 import com.smartwave.tripsns.service.IF_UserService;
 import com.smartwave.tripsns.util.FileDataUtil;
-import com.smartwave.tripsns.vo.AdminVO;
-import com.smartwave.tripsns.vo.PostVO;
-import com.smartwave.tripsns.vo.ProfileVO;
-import com.smartwave.tripsns.vo.UserVO;
+import com.smartwave.tripsns.vo.*;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -142,6 +139,7 @@ public class UserController {
             return "redirect:profile";
         }else{
             model.addAttribute("otheruser", otheruser);
+
             ProfileVO prodetail = userservice.getProfile(u_id);
             ProfileVO myprodetail = userservice.getProfile(myid);
             model.addAttribute("profiledetail", prodetail);
@@ -243,6 +241,44 @@ public class UserController {
         model.addAttribute("profiledetail", prodetail);
         return "userManageSearch";
     }
+    // 팔로우
+    @ResponseBody
+    @PostMapping(value = "follow")
+    public int follow(@ModelAttribute FollowVO fvo)throws Exception{
+        userservice.follow(fvo);// 팔로우 삽입 -> 서비스단에서 판단해서 팔로우 한상태면 db 에서 delete , 안한상태면 삽입
+        int cnt =0;// 팔로우 했던사람인지 여부
+        if(userservice.selectFollow(fvo) == null){// db에 값이 없다면 팔로우 가능함
+            return cnt;
+        }else{//db 에 값있으면 이미 팔로우 한 사람이여서 못하게
+            cnt =1;
+        }
+        return cnt;
+    }
+    // 팔로우 체크 (html 문서가 로딩되었을시 바로 함수 작동해서 팔로우 한 상태인지 안한상태인지 확인 여부 )
+    @ResponseBody
+    @PostMapping(value = "followchk")
+    public int followchk(@ModelAttribute FollowVO fvo)throws Exception{
+        int cnt =0;// 팔로우 했던사람인지 여부
+        if(userservice.selectFollow(fvo) != null){// db에 값이 있으면 팔로우 한 상태 -> 1 리턴
+            cnt=1;
+        }
+        return cnt; // 위에조건 넘겨서 db 값 없으면 팔로우 가능 상태 0 리턴
+    }
+    //상대 화면 팔로워수 get 팔로우 당한사람 아이디의 팔로워개수
+    @ResponseBody
+    @PostMapping(value = "followerCount")
+    public int followerCount(@ModelAttribute FollowVO fvo)throws Exception{
+        int followercnt = userservice.followercount(fvo);
+        return followercnt;
+    }
+    //로그인 한 나의 화면 팔로우 수 get 내가 팔로우 버튼을 클릭했을시 팔로우한 아이디의 팔로우개수
+    @ResponseBody
+    @PostMapping(value = "followCount")
+    public int followCount(@ModelAttribute FollowVO fvo)throws Exception{
+        int followcnt = userservice.followcount(fvo);
+        return followcnt;
+    }
+
 
 
 
