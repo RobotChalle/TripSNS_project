@@ -169,6 +169,13 @@
         set p_views = p_views + 1
         where p_no = #{p_no}
     </update>
+    <select id="shortSearch" resultType="com.smartwave.tripsns.vo.ShortVO" parameterType="String">
+        select * from short_form
+        where s_id like concat('%','${searchWord}','%')
+        or s_description like concat('%','${searchWord}','%')
+        or s_place like concat('%','${searchWord}','%')
+        order by s_date desc
+    </select>
     <select id="postViewCount" resultType="int">
         select p_views
         from post

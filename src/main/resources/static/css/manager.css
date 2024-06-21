@@ -249,6 +249,136 @@ div.feedBoard {
 }
 
 /************************************/
+#tab02 table {
+    table-layout: fixed;
+    border: 1px #a39485 solid;
+    box-shadow: 0 2px 5px rgba(0,0,0,.25);
+    width: 100%;
+    border-collapse: collapse;
+    border-radius: 5px;
+    height: 500px;
+    overflow: auto;
+}
+#tab02 #tableDiv{
+    height: 500px;
+    overflow-x: auto;
+    margin-top: 0px;
+    border: 1px solid rgba(255, 255, 255, 0.5);
+}
+
+#tab02 h1 {
+    text-align: center;
+    padding: 20px 0;
+}
+
+#tab02 .shortSearch{
+    margin-top: -50px;
+    float: right;
+}
+
+#tab02 .shortSearchInput{
+    border: none;
+    padding: 5px 25px;
+    border-radius: 10px;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+    text-decoration: none;
+    font-weight: 600;
+    transition: 0.50s;
+    background-color: white;
+}
+
+#tab02 table caption {
+    padding: .5em 0;
+}
+
+#tab02 th{
+    position: sticky;
+    top: 0px;
+    padding: 20px 15px;
+    font-size: 14px;
+    text-align: left;
+    background-color: rgba(214, 252, 255, 0.85);
+    width: 80px;
+}
+
+#tab02 td{
+    font-size: 12px;
+    text-align: left;
+    background-color: white;
+    max-height: 50px;
+    overflow: auto;
+}
+#tab02 .deleteB{
+    font-family: apple Black;
+    width: 50px;
+    height: 40px;
+    border: #fa2d2d solid 1px;
+    background: #ffffff;
+    outline: none;
+    border-radius: 10px;
+    cursor: pointer;
+}
+#tab02 .detailB{
+    font-family: apple Black;
+    width: 50px;
+    height: 40px;
+    border: #1a6fff solid 1px;
+    background: #ffffff;
+    outline: none;
+    border-radius: 10px;
+    cursor: pointer;
+
+}
+
+#tab02 .deleteB:hover{
+    border: 1px solid red;
+    background: red;
+    color: white;
+}
+#tab02 .detailB:hover{
+    border: #1a6fff solid 1px;
+    background: #1a6fff;
+    color: white;
+}
+#tab02 .tableOptions{
+    margin-top: 10px;
+    margin-left: 5px;
+}
+#tab02 .delShortchk{
+    font-family: apple Black;
+    width: 75px;
+    height: 25px;
+    border: #fa2d2d solid 1px;
+    background: #ffffff;
+    outline: none;
+    border-radius: 10px;
+    cursor: pointer;
+}
+#tab02 .delShortchk:hover{
+    border: 1px solid red;
+    background: red;
+    color: white;
+}
+#tab02 .shortExel{
+    font-family: apple Black;
+    width: 100px;
+    height: 25px;
+    border: #00ff3b solid 1px;
+    background: #ffffff;
+    outline: none;
+    border-radius: 10px;
+    cursor: pointer;
+}
+#tab02 .shortExel:hover{
+    border: #00ff3b solid 1px;
+    background: #00ff3b ;
+    color: white;
+}
+#tab02 .hidden {
+    display:none;
+}
+/************************************/
+
 /*회원관리*/
 #userTable {
     border-collapse: collapse;

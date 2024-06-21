@@ -97,6 +97,7 @@
         padding-left: 10px;
         padding-top: 10px;
         resize: none;
+        font-size: 15px;
     }
 
     .header {
@@ -193,9 +194,9 @@
         </svg>
     </a>
     <ul>
-        <form>
-            <li><input class="search" name="searchWord" placeholder="검색" type="search"></li>
-            <li><input class="submit" type="submit" value="검색"></li>
+        <form action="postSearchById" method="get">
+            <li><input type="search" placeholder="검색" class="search" name="searchWord"></li>
+            <li><input type="submit" value="검색" class="submit"></li>
         </form>
     </ul>
 </nav>
@@ -232,7 +233,7 @@
                         <td class="header">내용</td>
                     </tr>
                     <tr>
-                        <td><textarea name="s_description" placeholder="내용을 입력하세요"></textarea></td>
+                        <td><textarea cols="10" maxlength="300" required name="s_description" placeholder="내용을 입력하세요"></textarea></td>
                     </tr>
                     <tr>
                         <td><input onclick="alert('쇼츠 등록 완료')" type="submit" value="등록"></td>

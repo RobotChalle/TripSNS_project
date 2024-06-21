@@ -58,7 +58,7 @@ public interface IF_SNSService {
 
     public List<PostVO> postSelectList() throws Exception; //게시글 전체 보기
 
-    public void shortLikeUpDown(ShortLikeVO slikevo) throws Exception;
+    public int shortLikeUpDown(ShortLikeVO slikevo) throws Exception;
 
     public ShortLikeVO shortLikeSelectOne(ShortLikeVO slikevo) throws Exception;
 
@@ -72,4 +72,5 @@ public interface IF_SNSService {
 
     public int postViewCount(PostVO pvo) throws Exception; //게시글 조회수 조회
 
+    public List<ShortVO> shortSearch(String searchWord) throws Exception;
 }
