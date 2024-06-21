@@ -10,7 +10,7 @@
     <select id="postSelectAll" resultType="com.smartwave.tripsns.vo.PostVO"><!-- 게시글 전부 불러오기 -->
         select *
         from post p
-                 inner join postPic pp on p.p_no = pp.pp_no
+                 left join postPic pp on p.p_no = pp.pp_no
         where p.p_id = #{p_id}
         order by p_indate desc;
     </select>
@@ -58,8 +58,8 @@
     <select id="postSelectPost" resultType="com.smartwave.tripsns.vo.PostVO"><!--게시글 사진 이너조인-->
         select *
         from post p
-                 inner join postpic pp on p.p_no = pp.pp_no
-                 inner join profile f on f.id = p.p_id
+                 left join postpic pp on p.p_no = pp.pp_no
+                 left join profile f on f.id = p.p_id
         order by p.p_indate desc;
     </select>
     <select id="postSearch" resultType="com.smartwave.tripsns.vo.PostVO"><!--게시글 아이디로 검색-->
@@ -164,9 +164,14 @@
     <select id="profileImg" parameterType="int" resultType="String">
         select f.u_pic from profile f inner join short_form s on f.id = s.s_id where s_no = #{s_no}
     </select>
-    <update id="postViewInsert" parameterType="com.smartwave.tripsns.vo.PostVO">
-        update from post
+    <update id="postViewUpdate" parameterType="com.smartwave.tripsns.vo.PostVO">
+        update post
         set p_views = p_views + 1
         where p_no = #{p_no}
     </update>
+    <select id="postViewCount" resultType="int">
+        select p_views
+        from post
+        where p_no = #{p_no}
+    </select>
 </mapper>

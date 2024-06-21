@@ -1,3 +1,4 @@
+//기본 지도 생성////////////////////////////////////
 var container = document.getElementById('map'); //지도를 담을 영역의 DOM 레퍼런스
 var options = { //지도를 생성할 때 필요한 기본 옵션
     center: new kakao.maps.LatLng(37.2772219, 127.0279806), //지도의 중심좌표.
@@ -17,38 +18,25 @@ map.addControl(mapTypeControl, kakao.maps.ControlPosition.TOPRIGHT);
 var zoomControl = new kakao.maps.ZoomControl();
 map.addControl(zoomControl, kakao.maps.ControlPosition.RIGHT);
 
+//지도 타입 설정////////////////////////////////////
 // 지도 타입 정보를 가지고 있을 객체입니다
 // map.addOverlayMapTypeId 함수로 추가된 지도 타입은
 // 가장 나중에 추가된 지도 타입이 가장 앞에 표시됩니다
 // 이 예제에서는 지도 타입을 추가할 때 지적편집도, 지형정보, 교통정보, 자전거도로 정보 순으로 추가하므로
 // 자전거 도로 정보가 가장 앞에 표시됩니다
 var mapTypes = {
-    terrain: kakao.maps.MapTypeId.TERRAIN,
     traffic: kakao.maps.MapTypeId.TRAFFIC,
     bicycle: kakao.maps.MapTypeId.BICYCLE,
-    useDistrict: kakao.maps.MapTypeId.USE_DISTRICT
 };
 
 // 체크 박스를 선택하면 호출되는 함수입니다
 function setOverlayMapTypeId() {
-    var chkTerrain = document.getElementById('chkTerrain'),
-        chkTraffic = document.getElementById('chkTraffic'),
-        chkBicycle = document.getElementById('chkBicycle'),
-        chkUseDistrict = document.getElementById('chkUseDistrict');
+    var chkTraffic = document.getElementById('chkTraffic'),
+        chkBicycle = document.getElementById('chkBicycle');
 
     // 지도 타입을 제거합니다
     for (var type in mapTypes) {
         map.removeOverlayMapTypeId(mapTypes[type]);
-    }
-
-    // 지적편집도정보 체크박스가 체크되어있으면 지도에 지적편집도정보 지도타입을 추가합니다
-    if (chkUseDistrict.checked) {
-        map.addOverlayMapTypeId(mapTypes.useDistrict);
-    }
-
-    // 지형정보 체크박스가 체크되어있으면 지도에 지형정보 지도타입을 추가합니다
-    if (chkTerrain.checked) {
-        map.addOverlayMapTypeId(mapTypes.terrain);
     }
 
     // 교통정보 체크박스가 체크되어있으면 지도에 교통정보 지도타입을 추가합니다
@@ -62,3 +50,33 @@ function setOverlayMapTypeId() {
     }
 
 }
+
+//임의 마커 설정 + 인포윈도우////////////////////////////////////
+//마커를 표시할 위치
+var position = new kakao.maps.LatLng(37.2772219, 127.0279806);
+
+//마커 생성
+var marker3 = new kakao.maps.Marker({
+    position: position
+});
+
+//마커를 지도에 표시
+marker3.setMap(map);
+
+//마커 인포윈도우 생성
+var iwContent = '<div style = "padding:5px;">스마트 웨이브 본사</div>';
+
+//인포윈도우 생성
+var infowindow3 = new kakao.maps.InfoWindow({
+    content: iwContent
+});
+
+//마커에 마우스오버 이벤트 등록
+kakao.maps.event.addListener(marker3, 'mouseover', function () {
+    infowindow3.open(map, marker3);
+});
+
+//마커에 마우스아웃 이벤트 등록
+kakao.maps.event.addListener(marker3, 'mouseout', function () {
+    infowindow3.close();
+});

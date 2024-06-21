@@ -33,6 +33,10 @@ public class SNSController {
         //프로필 사진 불러오기
         ProfileVO prodetail = userservice.getProfile(u_id);
         model.addAttribute("profiledetail", prodetail);
+
+        for (int i = 0; i < allList.size(); i++) {
+            System.out.println(allList.get(i).toString());
+        }
         return "main";
     }
 
@@ -281,11 +285,25 @@ public class SNSController {
     }
 
     @GetMapping(value = "map") //지도 페이지
-    public String map(Model model, @SessionAttribute("userid") String u_id) throws Exception {
+    public String map(Model model, @SessionAttribute("userid") String u_id, @RequestParam("p_place") String p_place) throws Exception {
+        model.addAttribute("p_place", p_place);
         //프로필 사진 불러오기
         ProfileVO prodetail = userservice.getProfile(u_id);
         model.addAttribute("profiledetail", prodetail);
         return "map";
+    }
+
+    @ResponseBody //조회수 더하기
+    @PostMapping(value = "postViewUpdate")
+    public void postViewUpdate(@ModelAttribute PostVO pvo) throws Exception {
+        sService.postViewUpdate(pvo);
+    }
+
+    @ResponseBody //조회수 조회
+    @GetMapping(value = "postViewCount")
+    public int postViewCount(@ModelAttribute PostVO pvo) throws Exception {
+        int viewCount = sService.postViewCount(pvo);
+        return viewCount;
     }
 
 }
