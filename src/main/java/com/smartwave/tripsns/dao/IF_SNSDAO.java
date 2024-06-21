@@ -72,5 +72,9 @@ public interface IF_SNSDAO {
 
     public int shortCommentCount(int s_no) throws Exception;
 
-    public String profileImg(int s_no)throws Exception;
+    public String profileImg(int s_no) throws Exception;
+
+    public void postViewUpdate(PostVO pvo) throws Exception; //게시글 조회수
+
+    public int postViewCount(PostVO pvo) throws Exception; //게시글 조회수 조회
 }

@@ -154,9 +154,9 @@ public class SNSServiceImpl implements IF_SNSService {
 
     @Override
     public void shortLikeUpDown(ShortLikeVO slikevo) throws Exception {
-        if(sdao.shortLikeSelectOne(slikevo)==null){
+        if (sdao.shortLikeSelectOne(slikevo) == null) {
             sdao.shortLikeInsert(slikevo);
-        }else {
+        } else {
             sdao.shortLikeDelete(slikevo);
         }
     }
@@ -179,6 +179,16 @@ public class SNSServiceImpl implements IF_SNSService {
     @Override
     public String profileImg(int s_no) throws Exception {
         return sdao.profileImg(s_no);
+    }
+
+    @Override
+    public void postViewUpdate(PostVO pvo) throws Exception {
+        sdao.postViewUpdate(pvo);
+    }
+
+    @Override
+    public int postViewCount(PostVO pvo) throws Exception {
+        return sdao.postViewCount(pvo);
     }
 
 }
