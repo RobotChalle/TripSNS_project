@@ -13,6 +13,7 @@
     dataType: "json",
     success: function (pcnt) {//컨트롤러 리턴값
     postcnt.innerText = pcnt;
+
 }
 });
     $.ajax({//나의 쇼츠 수 ajax 비동기방식 화면 로딩되었을시 실시간으로 숫자 변경 가능하도록
@@ -21,7 +22,6 @@
     data: {"myid": myid},
     dataType: "json",
     success: function (scnt) {//컨트롤러 리턴값
-    console.log(scnt);
     shortcnt.innerText = scnt;
 }
 });
@@ -32,7 +32,6 @@
     data: {"otherid": other},
     dataType: "json",
     success: function (pcnt) {//컨트롤러 리턴값
-
     postcnt.innerText = pcnt;
 }
 });
@@ -42,7 +41,6 @@
     data: {"otherid": other},
     dataType: "json",
     success: function (scnt) {//컨트롤러 리턴값
-    console.log(scnt);
     shortcnt.innerText = scnt;
 }
 });

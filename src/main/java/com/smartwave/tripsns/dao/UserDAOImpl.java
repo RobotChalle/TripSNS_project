@@ -3,6 +3,7 @@ package com.smartwave.tripsns.dao;
 import com.smartwave.tripsns.vo.AdminVO;
 import com.smartwave.tripsns.vo.ProfileVO;
 import com.smartwave.tripsns.vo.UserVO;
+import com.smartwave.tripsns.vo.FollowVO;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -88,20 +89,45 @@ public class UserDAOImpl implements IF_UserDAO {
     public AdminVO getAdmin(String id) throws Exception {
         return sqlSession.selectOne(mapperQuery+".getadmin",id);
     }
-
+    // 관리자 회원관리 유저 목록 select
     @Override
     public List<UserVO> userList() throws Exception {
         return sqlSession.selectList(mapperQuery+".userList");
     }
-
+    // 관리자회원관리 체크박스 삭제
     @Override
     public void chkdel(String uid) throws Exception {
         sqlSession.delete(mapperQuery+".chkuserdelete",uid);
     }
-
+    // 관리자 회원 검색제어 select
     @Override
     public List<UserVO> selectUserList(HashMap<String, String> userselect) throws Exception {
         return sqlSession.selectList(mapperQuery+".selectUserList",userselect);
+    }
+    // 팔로우 insert
+    @Override
+    public void follow(FollowVO fvo) throws Exception {
+        sqlSession.insert(mapperQuery+".followinsert",fvo);
+    }
+    // 팔로우 조회 팔로우 했던 사람인지 여부판단
+    @Override
+    public FollowVO selectFollow(FollowVO fvo) throws Exception {
+        return sqlSession.selectOne(mapperQuery+".followSelect",fvo);
+    }
+    // 팔로우 취소
+    @Override
+    public void followdel(FollowVO fvo) throws Exception {
+        sqlSession.delete(mapperQuery+".followdel",fvo);
+    }
+    //상대 화면 팔로워수 get 팔로우 당한사람 아이디의 팔로워개수
+    @Override
+    public int followercount(FollowVO fvo) throws Exception {
+        return sqlSession.selectOne(mapperQuery+".followercnt",fvo);
+    }
+    //로그인 한 나의 화면 팔로우 수 get 내가 팔로우 버튼을 클릭했을시 팔로우한 아이디의 팔로우개수
+    @Override
+    public int followcount(FollowVO fvo) throws Exception {
+        return sqlSession.selectOne(mapperQuery+".followcnt",fvo);
     }
 
 

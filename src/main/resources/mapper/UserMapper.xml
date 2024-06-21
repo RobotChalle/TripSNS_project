@@ -72,4 +72,24 @@
     <select id="selectUserList" parameterType="hashmap" resultType="com.smartwave.tripsns.vo.UserVO">
         select * from user where ${usercolumn} like concat('%', #{usersearch}, '%')
     </select>
+    <!--follow insert-->
+    <insert id="followinsert" parameterType="com.smartwave.tripsns.vo.FollowVO">
+        insert into follow values(#{follow_id}, #{follower_id})
+    </insert>
+    <!--팔로우 조회 select 팔로우 한상태인지 여부 판단 -->
+    <select id="followSelect" resultType="com.smartwave.tripsns.vo.FollowVO">
+        select * from follow where follow_id =#{follow_id} and follower_id =#{follower_id}
+    </select>
+    <!--팔로우 취소-->
+    <delete id="followdel" parameterType="com.smartwave.tripsns.vo.FollowVO">
+        delete from follow where follow_id =#{follow_id} and follower_id =#{follower_id}
+    </delete>
+    <!--상대 화면 팔로워수 get 팔로우 당한사람 아이디의 팔로워개수 +-->
+    <select id="followercnt" parameterType="com.smartwave.tripsns.vo.FollowVO" resultType="int">
+        select count(follow_id) from follow where follow_id =#{follow_id}
+    </select>
+    <!--로그인 한 나의 화면 팔로우 수 get 내가 팔로우 버튼을 클릭했을시 팔로우한 아이디의 팔로우개수 +-->
+    <select id="followcnt" parameterType="com.smartwave.tripsns.vo.FollowVO" resultType="int">
+        select count(*) from follow where follower_id =#{follower_id}
+    </select>
 </mapper>
