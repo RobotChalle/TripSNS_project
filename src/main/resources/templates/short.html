@@ -113,7 +113,7 @@
 
     .comments {
         width: 550px;
-        height: 490px;
+        height: 470px;
         display: inline-flex;
         flex-wrap: wrap;
         overflow: auto;
@@ -131,6 +131,9 @@
         height: 40px;
         gap: 10px;
         border-bottom: white solid 1px;
+    }
+    .commentId{
+        font-size: 70%;
     }
 
     .commentDate {
@@ -182,6 +185,10 @@
 
     .s_date {
         font-size: 75%;
+        margin-right: 25px;
+    }
+    .place{
+        margin-right: 25px;
     }
 
     textarea {
@@ -247,6 +254,10 @@
 
     .roundImg {
         border-radius: 50%;
+    }
+    #btnDiv{
+        display: flex;
+
     }
 </style>
 <body onload="startFunction()">
@@ -344,7 +355,12 @@
                         <a th:href="@{/otherprofile(p_id=${shortDetails.s_id})}" class="shortId" th:text="${shortDetails.s_id}">p_id</a>
                         <br>
                         <span th:text="${shortDetails.s_description}"></span>
-                        <div id="delShortDiv" th:if="${session.userid==shortDetails.s_id}">
+                        <div id = "placeDate">
+                            <a th:href="@{/map(p_place=${shortDetails.s_place})}" class="place"
+                               th:text="${shortDetails.s_place}">s_place</a>
+                            <span class="s_date" th:text="${shortDetails.s_date}"></span>
+                        </div>
+                        <div id="btnDiv" th:if="${session.userid==shortDetails.s_id}">
                             <form class="btnForm" action="deleteShort" method="get" onsubmit='return delAlert()'>
                                 <input name="s_no" th:value="${shortDetails.s_no}" type="hidden">
                                 <input name="sc_id" th:value="${session.userid}" type="hidden">
@@ -356,14 +372,15 @@
                                 <input class="updateShort" type="submit" value="글수정">
                             </form>
                         </div>
-                        <span class="s_date" th:text="${shortDetails.s_date}"></span>
                     </div>
                 </div>
             </div>
             <div class="comments">
                 <table>
                     <tr class="comment" th:each="comment:${commentList}">
-                        <td class="commentId" th:text="${comment.sc_id}"></td>
+                        <td class="commentId">
+                            <a th:href="@{/otherprofile(p_id=${comment.sc_id})}" th:text="${comment.sc_id}">sc_id</a>
+                        </td>
                         <td class='v-line'></td>
                         <td class="commentText" th:text="${comment.sc_comment}"><br></td>
                         <td class="commentDate" th:text="${comment.sc_date}"></td>
