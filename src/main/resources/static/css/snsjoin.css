@@ -37,7 +37,9 @@ body {
 }
 
 #logo {
-    text-align: center;
+    margin-left: 39%;
+    margin-top: 10px;
+    width: 150px;
 }
 
 .te {

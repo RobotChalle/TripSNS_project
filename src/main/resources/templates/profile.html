@@ -87,8 +87,8 @@
         </th:block>
     </ul>
 </nav>
-<div class="mypic">
-    <div class="dropdown-content">
+<div class="mypic"style="z-index: 2">
+    <div class="dropdown-content" >
         <th:block th:if="${session.userid!=null}">
             <a th:href="@{/profile(u_id=${session.userid})}">프로필(<span th:text="${session.userid}"></span>)</a>
         </th:block>
@@ -157,9 +157,9 @@
                 <li class="stat"> 게시물 <span class="profile-stat-count" id="postcnts"></span></li>
                 <li class="stat"> 쇼츠 <span class="profile-stat-count" id="shortcnts"></span></li>
 
-                <li class="stat"> 팔로워 <span class="profile-stat-count" id="followercnts"></span></li>
+                <li class="stat"><a th:href="@{/followList(id=${followuser})}">팔로워</a> <span class="profile-stat-count" id="followercnts"></span></li>
 
-                <li class="stat"> 팔로우 <span class="profile-stat-count" id="followcnts"></span></li>
+                <li class="stat"> <a th:href="@{/followList(id=${followuser})}">팔로우</a>  <span class="profile-stat-count" id="followcnts"></span></li>
 
                     <!--로그인 했을시 자기 팔로우 뜨도록 -->
                     <!--                <li class="stat"><span class="profile-stat-count">숫자</span> 팔로우</li>-->

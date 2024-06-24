@@ -129,10 +129,20 @@ public class UserDAOImpl implements IF_UserDAO {
     public int followcount(FollowVO fvo) throws Exception {
         return sqlSession.selectOne(mapperQuery+".followcnt",fvo);
     }
-
+    //유저 검색
     @Override
     public List<ProfileVO> userSearch(String searchWord) throws Exception {
         return sqlSession.selectList(mapperQuery+".userSearch",searchWord);
+    }
+    // 팔로우 리스트
+    @Override
+    public List<FollowVO> followList(String userid) throws Exception {
+        return sqlSession.selectList(mapperQuery+".followList",userid);
+    }
+    // 팔로워 리스트
+    @Override
+    public List<FollowVO> followerList(String userid) throws Exception {
+        return sqlSession.selectList(mapperQuery+".followerList",userid);
     }
 
 

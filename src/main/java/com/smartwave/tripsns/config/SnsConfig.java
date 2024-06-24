@@ -31,6 +31,9 @@ public class SnsConfig implements WebMvcConfigurer {
                 .addPathPatterns("/profileupdate")//프로필정보 수정
                 .addPathPatterns("/withdrawform")//회원탈퇴 화면
                 .addPathPatterns("/withdrawal")//회원탈퇴버튼
+                .addPathPatterns("/followList")// 팔로우,팔로워 리스트
+                .addPathPatterns("/manager")
+
 //                .addPathPatterns("/**")
 //                .excludePathPatterns("/css/**", "/images/**", "/js/**")
 //                .excludePathPatterns("/main")
