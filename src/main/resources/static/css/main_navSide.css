@@ -9,6 +9,7 @@
     justify-content: start;
     align-items: center;
     line-height: 60px;
+    z-index: 1;
 }
 
 #navSide ul {
@@ -18,7 +19,6 @@
     align-items: flex-start;
     margin-bottom: 20px;
     width: 100%;
-    padding-top: 70px;
     padding-left: 10px;
 }
 
@@ -45,6 +45,7 @@
     bottom: 10px;
     cursor: pointer;
     object-fit:cover;
+    z-index: 2;
 }
 
 .mypic a {
@@ -80,4 +81,10 @@
 
 .mypic:hover .dropdown-content {
     display: block;
+}
+
+.logo {
+    width: 40px;
+    height: 40px;
+    margin-left: -4px;
 }
