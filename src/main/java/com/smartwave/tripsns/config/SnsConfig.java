@@ -25,7 +25,6 @@ public class SnsConfig implements WebMvcConfigurer {
                 .addPathPatterns("/short")
                 .addPathPatterns("/addShort")
                 .addPathPatterns("/addShortVideo")
-                .addPathPatterns("/chatList")
                 .addPathPatterns("/profile")//프로필화면
                 .addPathPatterns("/proupdate")//프로필 수정버튼
                 .addPathPatterns("/userupdate")//개인정보 수정

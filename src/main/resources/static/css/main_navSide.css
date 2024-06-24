@@ -44,6 +44,7 @@
     left: 8px;
     bottom: 10px;
     cursor: pointer;
+    object-fit:cover;
 }
 
 .mypic a {

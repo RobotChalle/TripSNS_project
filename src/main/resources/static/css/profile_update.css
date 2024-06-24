@@ -116,6 +116,7 @@ h3 {
     border-radius: 50%;
     width: 180px;
     height: 180px;
+    object-fit:cover;
 }
 
 #pro_id {

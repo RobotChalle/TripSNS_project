@@ -130,5 +130,10 @@ public class UserDAOImpl implements IF_UserDAO {
         return sqlSession.selectOne(mapperQuery+".followcnt",fvo);
     }
 
+    @Override
+    public List<ProfileVO> userSearch(String searchWord) throws Exception {
+        return sqlSession.selectList(mapperQuery+".userSearch",searchWord);
+    }
+
 
 }

@@ -249,9 +249,11 @@ public class SNSController {
     public String postSearchById(@RequestParam("searchWord") String searchWord, Model model, @SessionAttribute("userid") String u_id) throws Exception {
         List<PostVO> pvo = sService.postSearch(searchWord);
         List<ShortVO> svo = sService.shortSearch(searchWord);
+        List<ProfileVO> uvo = userservice.userSearch(searchWord);
         model.addAttribute("searchWord", searchWord);
         model.addAttribute("svo",svo);
         model.addAttribute("pvo", pvo);
+        model.addAttribute("uvo", uvo);
         //프로필 사진 불러오기
         ProfileVO prodetail = userservice.getProfile(u_id);
         model.addAttribute("profiledetail", prodetail);
