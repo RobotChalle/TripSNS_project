@@ -148,15 +148,17 @@
             <th:block th:if="${session.userid=='smartwave0377'} and ${session.userid==mainsuser} ">
                 <button class="followbtn" th:onclick="|location.href='@{/manager}'|">관리</button>
             </th:block>
-            <input type="hidden" th:value="${otheruser}" id="otherid">
+            <input type="hidden" th:value="${followuser}" id="otherid">
+
             <input type="hidden" th:value="${session.userid}" id="currentid">
         </div>
         <div class="profile-stats">
-            <!--            <h4 id="postcnts"></h4>-->
+
 
             <ul>
                 <li class="stat"> 게시물 <span class="profile-stat-count" id="postcnts"></span></li>
                 <li class="stat"> 쇼츠 <span class="profile-stat-count" id="shortcnts"></span></li>
+
                 <li class="stat"> 팔로워 <span class="profile-stat-count" id="followercnts"></span></li>
 
                 <li class="stat"> 팔로우 <span class="profile-stat-count" id="followcnts"></span></li>
@@ -233,7 +235,8 @@
 <script>
     $('document').ready(function (){
         followchk();// 화면 로딩될때 팔로우 상태인지 확인 여부 ajax로 화면 로딩 되자마자 판단 하기위한 함수
-        followrCount()// 팔로우 버튼을 클릭할시 상대 아이디 프로필에는 팔로워 수가 1 내프로필화면은 팔로우 수가 1
+        followrCount();// 팔로우 버튼을 클릭할시 상대 아이디 프로필에는 팔로워 수가 1 내프로필화면은 팔로우 수가 1
+        followchk();//팔로우수
     })
 
 
@@ -301,7 +304,8 @@
         })
     }
     function followCount() {//팔로우수(로그인한 사람이 팔로우 버튼 클릭했을시 내 프로필 팔로워수 +)
-        let followerid = $('#myid').val();
+
+        let followerid = $('#otherid').val();
         console.log("followercount" +followerid);
         let followscount = document.getElementById("followcnts")
         $.ajax({

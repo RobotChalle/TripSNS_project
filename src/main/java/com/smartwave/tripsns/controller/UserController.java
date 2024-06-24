@@ -123,7 +123,7 @@ public class UserController {
         ProfileVO prodetail = userservice.getProfile(u_id);
         model.addAttribute("profiledetail", prodetail);
         model.addAttribute("profiledetail2", prodetail);
-
+        model.addAttribute("followuser", mainsuser);// 로그인 아이디를 팔로우 아이디
         //게시글 목록
         List<PostVO> postVOList = sService.postSelectAll(u_id);
         model.addAttribute("postVOList", postVOList);
@@ -141,8 +141,8 @@ public class UserController {
         if(mainsuser.equals(otheruser) ){
             return "redirect:profile";
         }else{
-            model.addAttribute("otheruser", otheruser);
-
+            model.addAttribute("otheruser", otheruser);// 파라미터 로 받은 아이디를 팔로우 아이디
+            model.addAttribute("followuser", otheruser);
             ProfileVO prodetail = userservice.getProfile(u_id);
             ProfileVO myprodetail = userservice.getProfile(myid);
             model.addAttribute("profiledetail", prodetail);
@@ -272,6 +272,7 @@ public class UserController {
     @PostMapping(value = "followerCount")
     public int followerCount(@ModelAttribute FollowVO fvo)throws Exception{
         int followercnt = userservice.followercount(fvo);
+        System.out.println(followercnt);
         return followercnt;
     }
     //로그인 한 나의 화면 팔로우 수 get 내가 팔로우 버튼을 클릭했을시 팔로우한 아이디의 팔로우개수
@@ -279,6 +280,7 @@ public class UserController {
     @PostMapping(value = "followCount")
     public int followCount(@ModelAttribute FollowVO fvo)throws Exception{
         int followcnt = userservice.followcount(fvo);
+        System.out.println("팔로우랑꼐"+followcnt);
         return followcnt;
     }
 

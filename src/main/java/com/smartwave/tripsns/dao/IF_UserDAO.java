@@ -52,4 +52,6 @@ public interface IF_UserDAO {
     public int followercount(FollowVO fvo) throws Exception;
     //로그인 한 나의 화면 팔로우 수 get 내가 팔로우 버튼을 클릭했을시 팔로우한 아이디의 팔로우개수
     public int followcount(FollowVO fvo) throws Exception;
+    // 유저 검색
+    public List<ProfileVO> userSearch(String searchWord) throws Exception;
 }

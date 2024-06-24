@@ -143,6 +143,7 @@
         height: 700px;
         overflow-x: auto;
     }
+
     #tab02 .container {
         flex: 6.5;
         width: 60%;
@@ -174,6 +175,50 @@
         object-fit: fill;
         border-radius: 10px;
     }
+
+
+    #tab03 {
+        height: 700px;
+        overflow-x: auto;
+    }
+
+    .profile {
+        width: 98%;
+        height: 200px;
+        background: #fff;
+        border: 1px solid #e8e8e8;
+        border-radius: 10px;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+        transition: all 0.3s cubic-bezier(.25, .8, .25, 1);
+        margin-top: 30px;
+    }
+    .profile:hover{
+        box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
+    }
+    .userte{
+        font-size: 80px;
+        margin-top: 30px;
+        font-family: apple Black;
+        color: inherit; /* 링크의 색상 제거 */
+    }
+
+    .userImage {
+        float: left;
+        width: calc(33.333% - 1rem);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-right: 3rem;
+    }
+
+    .userImage img {
+        border-radius: 50%;
+        margin-top: 10px;
+        width: 180px;
+        height: 180px;
+        object-fit: cover;
+    }
+
 
 </style>
 
@@ -294,7 +339,8 @@
                     <div id="tab02">
                         <div class="container">
                             <div class="short" th:each="shortList:${svo}">
-                                <a class="short-Link" th:href="@{/short(s_no = ${shortList.s_no},slike_id = ${session.userid})}">
+                                <a class="short-Link"
+                                   th:href="@{/short(s_no = ${shortList.s_no},slike_id = ${session.userid})}">
                                     <section class="thumbnail">
                                         <th:block th:if="${shortList.sv_thumbnail!=null}">
                                             <img alt="썸네일" th:src="@{/download(filename=${shortList.sv_thumbnail})}">
@@ -304,7 +350,17 @@
                             </div>
                         </div>
                     </div>
+                    <!--회원 전체 보기 프로필 사진 + 아이디 -->
                     <div id="tab03">
+                        <div class="profile" th:each="uList:${uvo}">
+                            <div class="userImage">
+                                <img th:src="@{/download(filename=${uList.u_pic})}" class="roundImg">
+                            </div>
+                            <div class="userte">
+                                <a th:href="@{/otherprofile(p_id=${uList.id})}" class="postId"
+                                   th:text="${uList.id}" style="font-style:italic" ></a>
+                            </div>
+                        </div>
 
                     </div>
                 </div>
@@ -315,12 +371,14 @@
 <div class="mypic">
     <div class="dropdown-content">
         <th:block th:if="${session.userid!=null}">
-            <a href="profile">프로필(<span th:text="${session.userid}">)</span></a>
+            <a th:href="@{/profile(u_id=${session.userid})}">프로필(<span th:text="${session.userid}"></span>)</a>
         </th:block>
         <a href="logout">로그아웃</a>
     </div>
     <a href="#">
-        <img alt="myPic" src="/images/메인_2.jpg">
+        <th:block th:if="${profiledetail.u_pic!=null}">
+            <img th:src="@{/download(filename=${profiledetail.u_pic})}">
+        </th:block>
     </a>
 </div>
 </body>

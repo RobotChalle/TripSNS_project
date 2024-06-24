@@ -68,7 +68,7 @@
     <delete id="chkuserdelete" parameterType="String">
         delete from user where id = #{uid}
     </delete>
-    <!--select 박스에 따른 검색 제어 id만 , name만 -->
+    <!--관리자 select 박스에 따른 검색 제어 id만 , name만 -->
     <select id="selectUserList" parameterType="hashmap" resultType="com.smartwave.tripsns.vo.UserVO">
         select * from user where ${usercolumn} like concat('%', #{usersearch}, '%')
     </select>
@@ -86,10 +86,14 @@
     </delete>
     <!--상대 화면 팔로워수 get 팔로우 당한사람 아이디의 팔로워개수 +-->
     <select id="followercnt" parameterType="com.smartwave.tripsns.vo.FollowVO" resultType="int">
-        select count(follow_id) from follow where follow_id =#{follow_id}
+        select count(follower_id) from follow where follow_id =#{follow_id}
     </select>
     <!--로그인 한 나의 화면 팔로우 수 get 내가 팔로우 버튼을 클릭했을시 팔로우한 아이디의 팔로우개수 +-->
     <select id="followcnt" parameterType="com.smartwave.tripsns.vo.FollowVO" resultType="int">
-        select count(*) from follow where follower_id =#{follower_id}
+        select count(follow_id) from follow where follower_id =#{follower_id}
+    </select>
+    <!--메인화면 유저검색 -->
+    <select id="userSearch" parameterType="String" resultType="com.smartwave.tripsns.vo.ProfileVO">
+        select * from profile where id like concat('%', #{searchWord}, '%')
     </select>
 </mapper>
