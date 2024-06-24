@@ -68,15 +68,6 @@
             </a>
         </li>
         <li>
-            <a href="/chatList">
-                <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor"
-                     class="bi bi-chat-left-text-fill" viewBox="0 0 16 16">
-                    <path
-                            d="M0 2a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H4.414a1 1 0 0 0-.707.293L.854 15.146A.5.5 0 0 1 0 14.793zm3.5 1a.5.5 0 0 0 0 1h9a.5.5 0 0 0 0-1zm0 2.5a.5.5 0 0 0 0 1h9a.5.5 0 0 0 0-1zm0 2.5a.5.5 0 0 0 0 1h5a.5.5 0 0 0 0-1z"/>
-                </svg>
-            </a>
-        </li>
-        <li>
             <a href="shorts">
                 <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor"
                      class="bi bi-file-play-fill" viewBox="0 0 16 16">
@@ -97,6 +88,19 @@
         </th:block>
     </ul>
 </nav>
+<div class="mypic">
+    <div class="dropdown-content">
+        <th:block th:if="${session.userid!=null}">
+            <a th:href="@{/profile(u_id=${session.userid})}">프로필(<span th:text="${session.userid}"></span>)</a>
+        </th:block>
+        <a href="logout">로그아웃</a>
+    </div>
+    <a href="#">
+        <th:block th:if="${profiledetail.u_pic!=null}">
+            <img th:src="@{/download(filename=${profiledetail.u_pic})}">
+        </th:block>
+    </a>
+</div>
 <!--상단 네비-->
 <nav id="navTop">
     <a href="main">
@@ -111,8 +115,7 @@
             <li><input type="submit" value="검색" class="submit"></li>
         </form>
     </ul>
-</nav>
-<!--메인 피드-->
+</nav><!--메인 피드-->
 <main>
     <div class="feedBoard" th:each="postList:${allListPost}">
         <article class="feed">
@@ -169,19 +172,6 @@
             <path
                     d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0M8.5 4.5a.5.5 0 0 0-1 0v3h-3a.5.5 0 0 0 0 1h3v3a.5.5 0 0 0 1 0v-3h3a.5.5 0 0 0 0-1h-3z"/>
         </svg>
-    </a>
-</div>
-<div class="mypic">
-    <div class="dropdown-content">
-        <th:block th:if="${session.userid!=null}">
-            <a th:href="@{/profile(u_id=${session.userid})}">프로필(<span th:text="${session.userid}"></span>)</a>
-        </th:block>
-        <a href="logout">로그아웃</a>
-    </div>
-    <a href="#">
-        <th:block th:if="${profiledetail.u_pic!=null}">
-            <img th:src="@{/download(filename=${profiledetail.u_pic})}">
-        </th:block>
     </a>
 </div>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>

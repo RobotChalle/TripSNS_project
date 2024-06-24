@@ -51,7 +51,7 @@ public class SNSController {
     }
 
     @GetMapping("/detail") //자세히 보기 불러오기
-    public String detail(Model model, @RequestParam("p_no") String p_no, @RequestParam("p_id") String p_id, @SessionAttribute("userid") String u_id) throws Exception {
+    public String detail(Model model, @RequestParam("p_no") String p_no, @SessionAttribute("userid") String u_id) throws Exception {
         PostVO postDetail = sService.postSelectOne(p_no);
         List<PostCommentVO> commentList = sService.commentList(p_no);
         int postCommentCnt = sService.postCommentCnt(p_no);
@@ -155,6 +155,7 @@ public class SNSController {
         sService.deleteShort(svo);
         return "redirect:/shorts";
     }
+
     @GetMapping(value = "shortUpdate") //게시글 수정페이지
     public String shortUpdate(Model model,@ModelAttribute ShortVO svo, @SessionAttribute("userid") String u_id) throws Exception {
         if(svo.getS_id().equals(u_id)){
