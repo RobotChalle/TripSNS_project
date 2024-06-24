@@ -102,10 +102,21 @@
         insert into short_form
         values ((nextval(short_seq)), #{sv_no}, #{sv_thumbnail}, #{s_id}, default, #{s_description}, #{s_place})
     </insert>
+    <update id="shortUpdateSubmit" parameterType="com.smartwave.tripsns.vo.ShortVO">
+        update short_form
+        set s_description  = #{s_description},
+            s_place = #{s_place}
+        where s_no = #{s_no}
+    </update>
     <select id="allShortList" resultType="com.smartwave.tripsns.vo.ShortVO">
         select *
         from short_form
         order by s_date desc;
+    </select>
+    <select id="userShortList" resultType="com.smartwave.tripsns.vo.ShortVO">
+        select *
+        from short_form
+        where s_id = #{u_id}
     </select>
     <select id="shortDetails" resultType="com.smartwave.tripsns.vo.ShortVO">
         select *

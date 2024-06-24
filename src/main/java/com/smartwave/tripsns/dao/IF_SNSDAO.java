@@ -79,4 +79,8 @@ public interface IF_SNSDAO {
     public void postViewUpdate(PostVO pvo) throws Exception; //게시글 조회수
 
     public int postViewCount(PostVO pvo) throws Exception; //게시글 조회수 조회
+
+    public void shortUpdateSubmit(ShortVO svo) throws Exception;
+
+    public List<ShortVO> userShortList(String u_id) throws Exception;
 }

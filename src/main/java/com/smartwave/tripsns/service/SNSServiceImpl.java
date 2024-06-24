@@ -189,6 +189,16 @@ public class SNSServiceImpl implements IF_SNSService {
     }
 
     @Override
+    public void shortUpdateSubmit(ShortVO svo) throws Exception {
+        sdao.shortUpdateSubmit(svo);
+    }
+
+    @Override
+    public List<ShortVO> userShortList(String u_id) throws Exception {
+        return sdao.userShortList(u_id);
+    }
+
+    @Override
     public void postViewUpdate(PostVO pvo) throws Exception {
         sdao.postViewUpdate(pvo);
     }

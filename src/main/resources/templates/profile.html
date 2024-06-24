@@ -208,7 +208,20 @@
 
             </div>
         </div>
-        <div id="tab02">쇼츠</div>
+        <div id="tab02">
+            <!--shortVOList-->
+            <div class="container">
+                <div class="short" th:each="shortList:${shortVOList}">
+                    <a class="short-Link" th:href="@{/short(s_no = ${shortList.s_no},slike_id = ${session.userid})}">
+                        <section class="thumbnail">
+                            <th:block th:if="${shortList.sv_thumbnail!=null}">
+                                <img alt="썸네일" th:src="@{/download(filename=${shortList.sv_thumbnail})}">
+                            </th:block>
+                        </section>
+                    </a>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
 
