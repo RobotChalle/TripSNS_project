@@ -283,6 +283,19 @@ public class UserController {
         System.out.println("팔로우랑꼐"+followcnt);
         return followcnt;
     }
+    @GetMapping(value = "followList")
+    public String followList(@RequestParam("id") String userid,Model model, @SessionAttribute("userid") String u_id)throws Exception{
+        //팔로우,팔로워 목록 받아올 메서드 자리
+        System.out.println("받은 아디"+userid);
+        List<FollowVO> followList = userservice.followList(userid);
+        List<FollowVO> followerList = userservice.followerList(userid);
+        model.addAttribute("followList", followList);
+        model.addAttribute("followerList", followerList);
+        //프로필 사진 불러오기
+        ProfileVO prodetail = userservice.getProfile(u_id);
+        model.addAttribute("profiledetail", prodetail);
+        return "followList";
+    }
 
 
 

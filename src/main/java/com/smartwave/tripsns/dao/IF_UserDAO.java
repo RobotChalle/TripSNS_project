@@ -54,4 +54,8 @@ public interface IF_UserDAO {
     public int followcount(FollowVO fvo) throws Exception;
     // 유저 검색
     public List<ProfileVO> userSearch(String searchWord) throws Exception;
+    //팔로우 리스트
+    public List<FollowVO> followList(String userid) throws Exception;
+    //팔로워 리스트
+    public List<FollowVO> followerList(String userid) throws Exception;
 }

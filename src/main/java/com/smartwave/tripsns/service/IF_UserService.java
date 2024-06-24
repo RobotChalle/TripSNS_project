@@ -43,10 +43,14 @@ public interface IF_UserService {
     public void follow(FollowVO fvo) throws Exception;
     // 팔로우 조회 팔로우 했던 사람인지 여부판단
     public FollowVO selectFollow(FollowVO fvo) throws Exception;
-    ////상대 화면 팔로워수 get 팔로우 당한사람 아이디의 팔로워개수
+    //상대 화면 팔로워수 get 팔로우 당한사람 아이디의 팔로워개수
     public int followercount(FollowVO fvo) throws Exception;
     //로그인 한 나의 화면 팔로우 수 get 내가 팔로우 버튼을 클릭했을시 팔로우한 아이디의 팔로우개수
     public int followcount(FollowVO fvo) throws Exception;
     // 유저 검색
     public List<ProfileVO> userSearch(String searchWord) throws Exception;
+    //팔로우 리스트
+    public List<FollowVO> followList(String userid) throws Exception;
+    //팔로워 리스트
+    public List<FollowVO> followerList(String userid) throws Exception;
 }

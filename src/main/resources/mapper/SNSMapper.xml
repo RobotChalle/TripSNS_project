@@ -67,9 +67,9 @@
         from post p
                  left join postpic pp on p.p_no = pp.pp_no
                  left join profile f on f.id = p.p_id
-        where p_id like concat('%', 'q', '%')
-           or p_place like concat('%', 'q}', '%')
-           or p_text like concat('%', 'q', '%')
+        where p_id like concat('%', '${searchWord}', '%')
+           or p_place like concat('%', '${searchWord}', '%')
+           or p_text like concat('%', '${searchWord}', '%')
         order by p_indate desc;
     </select>
     <insert id="postLike" parameterType="com.smartwave.tripsns.vo.PostVO"><!--게시글 좋아요-->

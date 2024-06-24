@@ -45,7 +45,7 @@ input[type="text"] {
     outline: none;
     padding-left: 10px;
     background-color: rgb(255, 255, 255);
-    margin-top: 50px;
+    margin-top: 10px;
     margin-left: 70px;
     font-family: apple Black;
 }
@@ -124,4 +124,10 @@ h1{
 @font-face {
     font-family: apple black;
     src: url(AppleSDGothicNeoB.ttf);
+}
+#logo{
+    height: 100px;
+    margin-left: 39%;
+    margin-top: 10px;
+
 }

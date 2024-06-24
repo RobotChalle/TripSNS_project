@@ -96,4 +96,14 @@
     <select id="userSearch" parameterType="String" resultType="com.smartwave.tripsns.vo.ProfileVO">
         select * from profile where id like concat('%', #{searchWord}, '%')
     </select>
+    <!--팔로우 리스트-->
+    <select id="followList" parameterType="String" resultType="com.smartwave.tripsns.vo.FollowVO">
+--         select follow_id from follow where follower_id =#{userid}
+select p.u_pic,f.follow_id from follow f inner join profile p on f.follow_id = p.id where follower_id = #{userid};
+    </select>
+    <!--팔로워 리스트-->
+    <select id="followerList" parameterType="String" resultType="com.smartwave.tripsns.vo.FollowVO">
+--         select follower_id from follow where follow_id =#{userid}
+select p.u_pic,f.follower_id from follow f inner join profile p on f.follower_id = p.id where follow_id =  #{userid};
+    </select>
 </mapper>

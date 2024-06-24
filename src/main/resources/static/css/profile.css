@@ -354,3 +354,7 @@ h1 {
 .tab:hover {
     box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
 }
+.stat a{
+    text-decoration: none;
+    color: black;
+}

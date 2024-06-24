@@ -131,9 +131,19 @@ public class UserServiceImpl implements IF_UserService {
     public int followcount(FollowVO fvo) throws Exception {
         return sdao.followcount(fvo);
     }
-
+    //유저 검색
     @Override
     public List<ProfileVO> userSearch(String searchWord) throws Exception {
         return sdao.userSearch(searchWord);
+    }
+    // 팔로우 리스트
+    @Override
+    public List<FollowVO> followList(String userid) throws Exception {
+        return sdao.followList(userid);
+    }
+    // 팔로워 리스트
+    @Override
+    public List<FollowVO> followerList(String userid) throws Exception {
+        return sdao.followerList(userid);
     }
 }
