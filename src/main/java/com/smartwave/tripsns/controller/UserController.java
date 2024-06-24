@@ -127,6 +127,9 @@ public class UserController {
         //게시글 목록
         List<PostVO> postVOList = sService.postSelectAll(u_id);
         model.addAttribute("postVOList", postVOList);
+        //쇼츠 목록
+        List<ShortVO> shortVOList = sService.userShortList(u_id);
+        model.addAttribute("shortVOList", shortVOList);
         return "profile";
     }
     // 상대 프로필 기본정보 html 보내기 (한줄소개 코멘트, 프로필 기본사진)

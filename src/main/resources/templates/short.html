@@ -352,9 +352,9 @@
                                 <input name="sc_id" th:value="${session.userid}" type="hidden">
                                 <input class="deleteShort" type="submit" value="글삭제">
                             </form>
-                            <form class="btnForm" action="updateShort" method="get">
+                            <form class="btnForm" action="shortUpdate" method="get">
                                 <input name="s_no" th:value="${shortDetails.s_no}" type="hidden">
-                                <input name="sc_id" th:value="${shortDetails.s_id}" type="hidden">
+                                <input name="s_id" th:value="${shortDetails.s_id}" type="hidden">
                                 <input class="updateShort" type="submit" value="글수정">
                             </form>
                         </div>
