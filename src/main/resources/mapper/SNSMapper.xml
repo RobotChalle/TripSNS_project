@@ -17,7 +17,7 @@
     <select id="postSelectOne" resultType="com.smartwave.tripsns.vo.PostVO"><!-- 게시글 하나 불러오기 -->
         select *
         from post p
-                 inner join postpic pp on p.p_no = pp.pp_no
+                 left join postpic pp on p.p_no = pp.pp_no
         where p.p_no = #{p_no};
     </select>
     <select id="getFile" resultType="String"><!--사진파일 불러오기 -->
@@ -64,11 +64,13 @@
     </select>
     <select id="postSearch" resultType="com.smartwave.tripsns.vo.PostVO"><!--게시글 아이디로 검색-->
         select *
-        from post
-        where p_id like concat('%', '${searchWord}', '%')
-           or p_place like concat('%', '${searchWord}', '%')
-           or p_text like concat('%', '${searchWord}', '%')
-        order by p_indate desc
+        from post p
+                 left join postpic pp on p.p_no = pp.pp_no
+                 left join profile f on f.id = p.p_id
+        where p_id like concat('%', 'q', '%')
+           or p_place like concat('%', 'q}', '%')
+           or p_text like concat('%', 'q', '%')
+        order by p_indate desc;
     </select>
     <insert id="postLike" parameterType="com.smartwave.tripsns.vo.PostVO"><!--게시글 좋아요-->
         insert into postLike
