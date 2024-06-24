@@ -6,6 +6,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
+
 @Configuration
 public class SnsConfig implements WebMvcConfigurer {
 
@@ -31,6 +32,37 @@ public class SnsConfig implements WebMvcConfigurer {
                 .addPathPatterns("/profileupdate")//프로필정보 수정
                 .addPathPatterns("/withdrawform")//회원탈퇴 화면
                 .addPathPatterns("/withdrawal")//회원탈퇴버튼
+                .addPathPatterns("/commentSave") //댓글달기
+                .addPathPatterns("/shortCommentInsert") //쇼츠댓글 달기
+                .addPathPatterns("/shortCommentDelete")
+                .addPathPatterns("/insertShort")
+                .addPathPatterns("/deleteShort")
+                .addPathPatterns("/shortUpdate")
+                .addPathPatterns("/shortUpdateSubmit")
+                .addPathPatterns("/deleteShortChk")
+                .addPathPatterns("/shortLikeUpDown")
+                .addPathPatterns("/shortLikeCount")
+                .addPathPatterns("/shortLikeChk")
+                .addPathPatterns("/postModifyForm")
+                .addPathPatterns("/postModify")
+                .addPathPatterns("/postDelete")
+                .addPathPatterns("/postDeleteManager")
+                .addPathPatterns("/postCommentDelete")
+                .addPathPatterns("/postSearchById")
+                .addPathPatterns("/postLike")
+                .addPathPatterns("/postLikeSelect")
+                .addPathPatterns("/postLikeCount")
+                .addPathPatterns("/postLikeDetail")
+                .addPathPatterns("/map")
+                .addPathPatterns("/postViewUpdate")
+                .addPathPatterns("/postViewCount")
+                .addPathPatterns("/otherprofile")
+                .addPathPatterns("/withdrawalManger")
+                .addPathPatterns("/delchk")
+                .addPathPatterns("/userSearchList")
+                .addPathPatterns("/followList")
+
+
                 .addPathPatterns("/followList")// 팔로우,팔로워 리스트
                 .addPathPatterns("/manager")
 
@@ -40,8 +72,6 @@ public class SnsConfig implements WebMvcConfigurer {
 //                .excludePathPatterns("/idchk")
                 .excludePathPatterns("/login*") //로그인 요청은 예외처리 -> interceptorx
                 .excludePathPatterns("/join*");
-
-
 
 
     }

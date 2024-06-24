@@ -46,6 +46,11 @@
     <ul>
         <li>
             <a href="main">
+                <img src="/images/WaveLogo2.png" class="logo">
+            </a>
+        </li>
+        <li>
+            <a href="main">
                 <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor"
                      class="bi bi-house-fill" viewBox="0 0 16 16">
                     <path
@@ -84,19 +89,6 @@
         </th:block>
     </ul>
 </nav>
-<div class="mypic">
-    <div class="dropdown-content">
-        <th:block th:if="${session.userid!=null}">
-            <a th:href="@{/profile(u_id=${session.userid})}">프로필(<span th:text="${session.userid}"></span>)</a>
-        </th:block>
-        <a href="logout">로그아웃</a>
-    </div>
-    <a href="#">
-        <th:block th:if="${profiledetail.u_pic!=null}">
-            <img th:src="@{/download(filename=${profiledetail.u_pic})}">
-        </th:block>
-    </a>
-</div>
 <div class="mypic">
     <div class="dropdown-content">
         <th:block th:if="${session.userid!=null}">
