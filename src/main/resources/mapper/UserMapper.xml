@@ -1,109 +1,174 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace= "com.smartwave.tripsns.dao.IF_UserDAO">
+<mapper namespace="com.smartwave.tripsns.dao.IF_UserDAO">
     <!--회원가입-->
     <insert id="userinsert" parameterType="com.smartwave.tripsns.vo.UserVO">
-        insert into user values (#{id},#{pw},#{name},#{birth},#{email})
+        insert into user
+        values (#{id}, #{pw}, #{name}, #{birth}, #{email})
     </insert>
+    <!--아이디 중복체크-->
     <select id="idchk" parameterType="String" resultType="int">
-        select count(id) from user where id =#{id}
+        select count(id)
+        from user
+        where id = #{id}
     </select>
+    <!--    &lt;!&ndash;이메일 중복체크&ndash;&gt;-->
+    <!--    <select id="emailchk" parameterType="String" resultType="int">-->
+    <!--        select count(email) from user where email = #{email}-->
+    <!--    </select>-->
 
     <!--로그인-->
     <select id="selectid" parameterType="String" resultType="com.smartwave.tripsns.vo.UserVO">
-        select * from user where id = #{id}
+        select *
+        from user
+        where id = #{id}
     </select>
 
 
-  <!--프로필-->
+    <!--프로필-->
     <update id="proupdate" parameterType="com.smartwave.tripsns.vo.UserVO">
-        update user set name=#{name},pw=#{pw},email=#{email} where id = #{id}
+        update user
+        set name=#{name},
+            pw=#{pw},
+            email=#{email}
+        where id = #{id}
     </update>
     <!--프로필 기본정보 회원가입시 한줄소개멘트랑 기본사진 보내서 db 저장하도록함-->
-    <insert id="userprofile"  parameterType="com.smartwave.tripsns.vo.UserVO">
-        insert into profile values (#{id},"한줄소개를 입력해주세요","userPic.jpg")
+    <insert id="userprofile" parameterType="com.smartwave.tripsns.vo.UserVO">
+        insert into profile
+        values (#{id}, "한줄소개를 입력해주세요", "userPic.jpg")
     </insert>
     <!--한줄소개멘트랑 기본사진 db 로부터 get-->
     <select id="getprofile" parameterType="String" resultType="com.smartwave.tripsns.vo.ProfileVO">
-        select * from profile where id = #{u_id}
+        select *
+        from profile
+        where id = #{u_id}
     </select>
 
     <update id="profileupdate" parameterType="com.smartwave.tripsns.vo.ProfileVO">
-        update profile set u_intro =#{u_intro},u_pic=#{filename} where id = #{u_id}
+        update profile
+        set u_intro =#{u_intro},
+            u_pic=#{filename}
+        where id = #{u_id}
     </update>
     <update id="introupdate" parameterType="com.smartwave.tripsns.vo.ProfileVO">
-        update profile set u_intro =#{u_intro} where id = #{u_id}
+        update profile
+        set u_intro =#{u_intro}
+        where id = #{u_id}
     </update>
 
     <!--회원탈퇴시 필요한 pw get-->
     <select id="getpw" parameterType="String" resultType="String">
-        select pw from user where id = #{u_id}
+        select pw
+        from user
+        where id = #{u_id}
     </select>
-   <!--회원탈퇴시 user delete  CASCADE 설정해서 부모테이블인 user 테이블 delete 될떄 자식테이블 매치되는 post 등 테이블 에도 delete 적용시킴  -->
+    <!--회원탈퇴시 user delete  CASCADE 설정해서 부모테이블인 user 테이블 delete 될떄 자식테이블 매치되는 post 등 테이블 에도 delete 적용시킴  -->
     <delete id="userdelete" parameterType="String">
-        delete from user where id = #{id};
+        delete
+        from user
+        where id = #{id};
     </delete>
     <!--게시물수 get-->
     <select id="postcnt" parameterType="String" resultType="int">
-        select count(p_no) from post where p_id = #{id}
+        select count(p_no)
+        from post
+        where p_id = #{id}
     </select>
     <!--쇼츠수 get-->
     <select id="shortcnt" parameterType="String" resultType="int">
-        select count(s_no) from short_form where s_id = #{id}
-    </select>
-    <!--관리자로그인-->
-    <select id="getadmin" parameterType="String" resultType="com.smartwave.tripsns.vo.AdminVO">
-        select * from admin where admin_id = #{id}
+        select count(s_no)
+        from short_form
+        where s_id = #{id}
     </select>
     <!-- 관리자 회원 관리 리스트-->
     <select id="userList" resultType="com.smartwave.tripsns.vo.UserVO">
         select *
-        from user where name not in ('관리자')
+        from user
+        where name not in ('관리자')
     </select>
     <!--게시글 자세히보기 프로필 (나의 프로필,상대방프로필 구분) inner join 활용-->
     <select id="detailprofile" parameterType="String" resultType="String">
-        select f.u_pic  from  profile f inner join post p on f.id = p.p_id where p_no = #{p_no}
+        select f.u_pic
+        from profile f
+                 inner join post p on f.id = p.p_id
+        where p_no = #{p_no}
     </select>
     <!--관리자 체크된 유저 목록 삭제-->
     <delete id="chkuserdelete" parameterType="String">
-        delete from user where id = #{uid}
+        delete
+        from user
+        where id = #{uid}
     </delete>
     <!--관리자 select 박스에 따른 검색 제어 id만 , name만 -->
     <select id="selectUserList" parameterType="hashmap" resultType="com.smartwave.tripsns.vo.UserVO">
-        select * from user where ${usercolumn} like concat('%', #{usersearch}, '%')
+        select *
+        from user
+        where ${usercolumn} like concat('%', #{usersearch}, '%')
     </select>
     <!--follow insert-->
     <insert id="followinsert" parameterType="com.smartwave.tripsns.vo.FollowVO">
-        insert into follow values(#{follow_id}, #{follower_id})
+        insert into follow
+        values (#{follow_id}, #{follower_id})
     </insert>
     <!--팔로우 조회 select 팔로우 한상태인지 여부 판단 -->
     <select id="followSelect" resultType="com.smartwave.tripsns.vo.FollowVO">
-        select * from follow where follow_id =#{follow_id} and follower_id =#{follower_id}
+        select *
+        from follow
+        where follow_id = #{follow_id}
+          and follower_id = #{follower_id}
     </select>
     <!--팔로우 취소-->
     <delete id="followdel" parameterType="com.smartwave.tripsns.vo.FollowVO">
-        delete from follow where follow_id =#{follow_id} and follower_id =#{follower_id}
+        delete
+        from follow
+        where follow_id = #{follow_id}
+          and follower_id = #{follower_id}
     </delete>
     <!--상대 화면 팔로워수 get 팔로우 당한사람 아이디의 팔로워개수 +-->
     <select id="followercnt" parameterType="com.smartwave.tripsns.vo.FollowVO" resultType="int">
-        select count(follower_id) from follow where follow_id =#{follow_id}
+        select count(follower_id)
+        from follow
+        where follow_id = #{follow_id}
     </select>
     <!--로그인 한 나의 화면 팔로우 수 get 내가 팔로우 버튼을 클릭했을시 팔로우한 아이디의 팔로우개수 +-->
     <select id="followcnt" parameterType="com.smartwave.tripsns.vo.FollowVO" resultType="int">
-        select count(follow_id) from follow where follower_id =#{follower_id}
+        select count(follow_id)
+        from follow
+        where follower_id = #{follower_id}
     </select>
     <!--메인화면 유저검색 -->
     <select id="userSearch" parameterType="String" resultType="com.smartwave.tripsns.vo.ProfileVO">
-        select * from profile where id like concat('%', #{searchWord}, '%')
+        select *
+        from profile
+        where id like concat('%', #{searchWord}, '%')
     </select>
     <!--팔로우 리스트-->
     <select id="followList" parameterType="String" resultType="com.smartwave.tripsns.vo.FollowVO">
---         select follow_id from follow where follower_id =#{userid}
-select p.u_pic,f.follow_id from follow f inner join profile p on f.follow_id = p.id where follower_id = #{userid};
+        --         select follow_id from follow where follower_id =#{userid}
+        select p.u_pic, f.follow_id
+        from follow f
+                 inner join profile p on f.follow_id = p.id
+        where follower_id = #{userid}
     </select>
     <!--팔로워 리스트-->
     <select id="followerList" parameterType="String" resultType="com.smartwave.tripsns.vo.FollowVO">
---         select follower_id from follow where follow_id =#{userid}
-select p.u_pic,f.follower_id from follow f inner join profile p on f.follower_id = p.id where follow_id =  #{userid};
+        --         select follower_id from follow where follow_id =#{userid}
+        select p.u_pic, f.follower_id
+        from follow f
+                 inner join profile p on f.follower_id = p.id
+        where follow_id = #{userid}
     </select>
+    <!--알람 메세지 insert-->
+    <insert id="inmessage" parameterType="com.smartwave.tripsns.vo.AlarmVO">
+        insert into alarm values (nextval(alarmcnt),#{user_id},#{other_id},#{message},0,default)
+    </insert>
+    <!--알람메세지 select-->
+    <select id="getmessage" parameterType="String" resultType="com.smartwave.tripsns.vo.AlarmVO">
+        select * from alarm where user_id =#{id} and flag = 0 order by in_date desc;
+    </select>
+    <!--알람 확인상태 flag 변경-->
+    <update id="alarmchk" parameterType="com.smartwave.tripsns.vo.AlarmVO">
+        update alarm set flag = 1 where user_id =#{user_id} and alarm_no = #{alarm_no};
+    </update>
 </mapper>

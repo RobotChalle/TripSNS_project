@@ -60,7 +60,7 @@
         from post p
                  left join postpic pp on p.p_no = pp.pp_no
                  left join profile f on f.id = p.p_id
-        order by p.p_indate desc;
+        order by p.p_indate desc
     </select>
     <select id="postSearch" resultType="com.smartwave.tripsns.vo.PostVO"><!--게시글 아이디로 검색-->
         select *
@@ -113,7 +113,7 @@
     <select id="allShortList" resultType="com.smartwave.tripsns.vo.ShortVO">
         select *
         from short_form
-        order by s_date desc;
+        order by s_date desc
     </select>
     <select id="userShortList" resultType="com.smartwave.tripsns.vo.ShortVO">
         select *

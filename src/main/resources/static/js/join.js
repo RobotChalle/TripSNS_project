@@ -58,7 +58,7 @@ function sendNumber() {
     let nowmail = $('#nowmail').val();
     let inputmail = $('#domain-txt').val();
     let fullmail = nowmail + "@" + inputmail;
-
+    let cnt = 0;
     $.ajax({
         url: "/mail",
         type: "post",

@@ -60,9 +60,6 @@ public class SnsConfig implements WebMvcConfigurer {
                 .addPathPatterns("/withdrawalManger")
                 .addPathPatterns("/delchk")
                 .addPathPatterns("/userSearchList")
-                .addPathPatterns("/followList")
-
-
                 .addPathPatterns("/followList")// 팔로우,팔로워 리스트
                 .addPathPatterns("/manager")
 
