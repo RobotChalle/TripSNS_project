@@ -1,7 +1,22 @@
-body{
-    /* background-image: url(backimg.png); */
-    background-image: url("../images/background.jpg");
-} 
+body {
+    background: linear-gradient(300deg, deepskyblue, #b8f4f9, #0060ff);
+    animation: gradient-animation 5s ease infinite;
+    background-position: center;
+    background-size: 180% 180%;
+    background-attachment: fixed;
+}
+
+@keyframes gradient-animation {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+}
 #Loginbox {
     display: block;
     width: 450px;
@@ -30,7 +45,7 @@ input[type="text"] {
     outline: none;
     padding-left: 10px;
     background-color: rgb(255, 255, 255);
-    margin-top: 50px;
+    margin-top: 10px;
     margin-left: 70px;
     font-family: apple Black;
 }
@@ -109,4 +124,10 @@ h1{
 @font-face {
     font-family: apple black;
     src: url(AppleSDGothicNeoB.ttf);
+}
+#logo{
+    height: 100px;
+    margin-left: 39%;
+    margin-top: 10px;
+
 }

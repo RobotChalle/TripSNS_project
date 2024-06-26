@@ -1,8 +1,7 @@
 package com.smartwave.tripsns.service;
 
 import com.smartwave.tripsns.dao.IF_SNSDAO;
-import com.smartwave.tripsns.vo.PostCommentVO;
-import com.smartwave.tripsns.vo.PostVO;
+import com.smartwave.tripsns.vo.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -24,8 +23,8 @@ public class SNSServiceImpl implements IF_SNSService {
     }
 
     @Override
-    public List<PostVO> postSelectAll() throws Exception {
-        return sdao.postSelectAll();
+    public List<PostVO> postSelectAll(String p_id) throws Exception {
+        return sdao.postSelectAll(p_id);
     }
 
     @Override
@@ -49,30 +48,6 @@ public class SNSServiceImpl implements IF_SNSService {
     }
 
     @Override
-    public void postLike(PostVO pvo) throws Exception {
-        if (sdao.postLikeChk(pvo) >= 1) {
-            sdao.postLikeDel(pvo);
-        }
-        sdao.postLike(pvo);
-    }
-
-    @Override
-    public void postLikeDel(PostVO pvo) throws Exception {
-        sdao.postLikeDel(pvo);
-    }
-
-
-    @Override
-    public int postLikeCnt(String p_no) throws Exception {
-        return sdao.postLikeCnt(p_no);
-    }
-
-    @Override
-    public int postLikeChk(PostVO pvo) throws Exception {
-        return sdao.postLikeChk(pvo);
-    }
-
-    @Override
     public void postDelete(PostVO pvo) throws Exception {
         sdao.postDelete(pvo);
     }
@@ -88,13 +63,43 @@ public class SNSServiceImpl implements IF_SNSService {
     }
 
     @Override
-    public List<String> postSelectNo() throws Exception {
-        return sdao.postSelectNo();
+    public int postCommentCnt(String p_no) throws Exception {
+        return sdao.postCommentCnt(p_no);
+    }
+
+
+    @Override
+    public List<PostVO> postSearch(String searchWord) throws Exception {
+        return sdao.postSearch(searchWord);
     }
 
     @Override
-    public int postCommentCnt(String p_no) throws Exception {
-        return sdao.postCommentCnt(p_no);
+    public void postLike(PostVO pvo) throws Exception {
+        if (sdao.postLikeSelect(pvo) == null) {
+            sdao.postLike(pvo);
+        } else {
+            sdao.postLikeDelete(pvo);
+        }
+    }
+
+    @Override
+    public PostLikeVO postLikeSelect(PostVO pvo) throws Exception {
+        return sdao.postLikeSelect(pvo);
+    }
+
+    @Override
+    public int postLikeCOunt(PostVO pvo) throws Exception {
+        return sdao.postLikeCount(pvo);
+    }
+
+    @Override
+    public void videoInsert(VideoVO vvo) throws Exception {
+        sdao.videoInsert(vvo);
+    }
+
+    @Override
+    public int videoSelect() throws Exception {
+        return sdao.videoSelect();
     }
 
     @Override
@@ -102,5 +107,105 @@ public class SNSServiceImpl implements IF_SNSService {
         return sdao.postSelectPost();
     }
 
+    @Override
+    public void InsertShort(ShortVO svo) throws Exception {
+        sdao.InsertShort(svo);
+    }
+
+    @Override
+    public List<ShortVO> allShortList() throws Exception {
+        return sdao.allShortList();
+    }
+
+    @Override
+    public ShortVO shortDetails(int s_no) throws Exception {
+        return sdao.shortDetails(s_no);
+    }
+
+    @Override
+    public void ShortCommentInsert(ShortCommentVO scvo) throws Exception {
+        sdao.ShortCommentInsert(scvo);
+    }
+
+    @Override
+    public VideoVO getVideo(int sv_no) throws Exception {
+        return sdao.GetVideo(sv_no);
+    }
+
+    @Override
+    public List<ShortCommentVO> shortCommentList(int s_no) throws Exception {
+        return sdao.shortCommentList(s_no);
+    }
+
+    @Override
+    public void shortCommentDelete(ShortCommentVO scvo) throws Exception {
+        sdao.shortCommentDelete(scvo);
+    }
+
+    @Override
+    public void deleteShort(ShortVO svo) throws Exception {
+        sdao.deleteShort(svo);
+    }
+
+    @Override
+    public List<PostVO> postSelectList() throws Exception {
+        return sdao.postSelectList();
+    }
+
+    @Override
+    public int shortLikeUpDown(ShortLikeVO slikevo) throws Exception {
+        if (sdao.shortLikeSelectOne(slikevo) == null) {
+            sdao.shortLikeInsert(slikevo);
+            return 1;
+        } else {
+            sdao.shortLikeDelete(slikevo);
+            return 0;
+        }
+    }
+
+    @Override
+    public ShortLikeVO shortLikeSelectOne(ShortLikeVO slikevo) throws Exception {
+        return sdao.shortLikeSelectOne(slikevo);
+    }
+
+    @Override
+    public int shortLikeCount(ShortLikeVO slikevo) throws Exception {
+        return sdao.shortLikeCount(slikevo);
+    }
+
+    @Override
+    public int shortCommentCount(int s_no) throws Exception {
+        return sdao.shortCommentCount(s_no);
+    }
+
+    @Override
+    public String profileImg(int s_no) throws Exception {
+        return sdao.profileImg(s_no);
+    }
+
+    @Override
+    public List<ShortVO> shortSearch(String searchWord) throws Exception {
+        return sdao.shortSearch(searchWord);
+    }
+
+    @Override
+    public void shortUpdateSubmit(ShortVO svo) throws Exception {
+        sdao.shortUpdateSubmit(svo);
+    }
+
+    @Override
+    public List<ShortVO> userShortList(String u_id) throws Exception {
+        return sdao.userShortList(u_id);
+    }
+
+    @Override
+    public void postViewUpdate(PostVO pvo) throws Exception {
+        sdao.postViewUpdate(pvo);
+    }
+
+    @Override
+    public int postViewCount(PostVO pvo) throws Exception {
+        return sdao.postViewCount(pvo);
+    }
 
 }

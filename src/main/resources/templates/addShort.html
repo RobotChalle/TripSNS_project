@@ -1,47 +1,252 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="kor">
 <head>
     <meta charset="UTF-8">
     <title>쇼츠 등록</title>
+    <link href="/css/main_navTop.css" rel="stylesheet">
+    <link href="/css/main_navSide.css" rel="stylesheet">
 </head>
 <style>
-    .short{
+    * {
+        padding: 0;
+        margin: 0;
+        font-family: apple black;
+        text-decoration-line: none;
+    }
+
+    @font-face {
+        font-family: apple;
+        src: url(/font/AppleSDGothicNeoL.ttf);
+    }
+
+    body {
+        background: linear-gradient(300deg, deepskyblue, #b8f4f9, #0060ff);
+        animation: gradient-animation 5s ease infinite;
+        background-position: center;
+        background-size: 180% 180%;
+        background-attachment: fixed;
+    }
+
+    @keyframes gradient-animation {
+        0% {
+            background-position: 0% 50%;
+        }
+        50% {
+            background-position: 100% 50%;
+        }
+        100% {
+            background-position: 0% 50%;
+        }
+    }
+
+    section {
+        margin-left: 5%;
+        padding-top: 6%;
+    }
+
+    .short {
         border-radius: 25px;
-        padding : 2.5em;
-        box-shadow: 0 20px 70px -25px rgba(0,0,0,2);
+        padding: 2.5em;
+        box-shadow: 0 20px 70px -25px rgba(0, 0, 0, 2);
         display: flex;
         align-items: center;
         height: 700px;
         margin-left: 50px;
         margin-right: 50px;
-        background-color: antiquewhite;
+        background-color: white;
     }
-    video{
+
+    video {
         flex: auto;
         width: 100%;
         height: 100%;
     }
-    .vid{
+
+    .vid {
         display: flex;
         width: 50%;
         height: 100%;
     }
-    .InsertDetails{
+
+    .InsertDetails {
         display: flex;
         width: 50%;
         height: 100%;
         background-color: white;
     }
+
+    table {
+        margin: auto;
+        width: 290%;
+        height: 100%;
+    }
+
+    input[type="text"] {
+        border: 1px rgb(26, 111, 255) solid;
+        width: 90%;
+        height: 50px;
+        border-radius: 5px;
+        padding-left: 10px;
+    }
+
+    textarea {
+        border: 1px rgb(26, 111, 255) solid;
+        width: 90%;
+        height: 200px;
+        border-radius: 5px;
+        padding-left: 10px;
+        padding-top: 10px;
+        resize: none;
+        font-size: 15px;
+    }
+
+    .header {
+        height: 30px;
+    }
+
+    input[type="submit"] {
+        width: 100px;
+        height: 40px;
+        font-size: 15px;
+        border: 0;
+        outline: 1.5px rgb(68, 136, 244) solid;
+        border-radius: 5px;
+        padding-left: 10px;
+        background-color: rgb(164, 199, 255);
+    }
+
+    input[type="submit"]:active {
+        width: 100px;
+        height: 40px;
+        font-size: 15px;
+        border: 0;
+        border-radius: 5px;
+        outline: 1.5px rgb(27, 76, 155) solid;
+        padding-left: 10px;
+        background-color: rgb(68, 136, 244);
+    }
 </style>
 <body>
-<div class="d-flex justify-content-center short">
-    <div class="vid" >
-        <video width="720" height="1280" loop controls autoplay muted oncontextmenu="return false;">
-            <source src="/video/Taylor%20Swift%20-%20The%20Eras%20Tour.mp4" type="video/mp4">
-        </video>
+<!--좌측 네비-->
+<nav id="navSide">
+    <ul>
+        <li>
+            <a href="main">
+                <img src="/images/WaveLogo2.png" class="logo">
+            </a>
+        </li>
+        <li>
+            <a href="main">
+                <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor"
+                     class="bi bi-house-fill" viewBox="0 0 16 16">
+                    <path
+                            d="M8.707 1.5a1 1 0 0 0-1.414 0L.646 8.146a.5.5 0 0 0 .708.708L8 2.207l6.646 6.647a.5.5 0 0 0 .708-.708L13 5.793V2.5a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5v1.293z"/>
+                    <path d="m8 3.293 6 6V13.5a1.5 1.5 0 0 1-1.5 1.5h-9A1.5 1.5 0 0 1 2 13.5V9.293z"/>
+                </svg>
+            </a>
+        </li>
+        <li>
+            <a href="map?p_place=수원">
+                <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor"
+                     class="bi bi-map-fill" viewBox="0 0 16 16">
+                    <path fill-rule="evenodd"
+                          d="M16 .5a.5.5 0 0 0-.598-.49L10.5.99 5.598.01a.5.5 0 0 0-.196 0l-5 1A.5.5 0 0 0 0 1.5v14a.5.5 0 0 0 .598.49l4.902-.98 4.902.98a.5.5 0 0 0 .196 0l5-1A.5.5 0 0 0 16 14.5zM5 14.09V1.11l.5-.1.5.1v12.98l-.402-.08a.5.5 0 0 0-.196 0zm5 .8V1.91l.402.08a.5.5 0 0 0 .196 0L11 1.91v12.98l-.5.1z"/>
+                </svg>
+            </a>
+        </li>
+
+        <li>
+            <a href="shorts">
+                <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor"
+                     class="bi bi-file-play-fill" viewBox="0 0 16 16">
+                    <path
+                            d="M12 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2M6 5.883a.5.5 0 0 1 .757-.429l3.528 2.117a.5.5 0 0 1 0 .858l-3.528 2.117a.5.5 0 0 1-.757-.43V5.884z"/>
+                </svg>
+            </a>
+        </li>
+        <li>
+            <a href="alarm">
+                <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-bell" viewBox="0 0 16 16">
+                    <path d="M8 16a2 2 0 0 0 2-2H6a2 2 0 0 0 2 2M8 1.918l-.797.161A4 4 0 0 0 4 6c0 .628-.134 2.197-.459 3.742-.16.767-.376 1.566-.663 2.258h10.244c-.287-.692-.502-1.49-.663-2.258C12.134 8.197 12 6.628 12 6a4 4 0 0 0-3.203-3.92zM14.22 12c.223.447.481.801.78 1H1c.299-.199.557-.553.78-1C2.68 10.2 3 6.88 3 6c0-2.42 1.72-4.44 4.005-4.901a1 1 0 1 1 1.99 0A5 5 0 0 1 13 6c0 .88.32 4.2 1.22 6"/>
+                </svg>
+            </a>
+        </li>
+        <th:block th:if="${session.userid=='smartwave0377'}"> <!--관리자용 메뉴-->
+            <li>
+                <a href="manager">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor"
+                         class="bi bi-gear-fill" viewBox="0 0 16 16">
+                        <path d="M9.405 1.05c-.413-1.4-2.397-1.4-2.81 0l-.1.34a1.464 1.464 0 0 1-2.105.872l-.31-.17c-1.283-.698-2.686.705-1.987 1.987l.169.311c.446.82.023 1.841-.872 2.105l-.34.1c-1.4.413-1.4 2.397 0 2.81l.34.1a1.464 1.464 0 0 1 .872 2.105l-.17.31c-.698 1.283.705 2.686 1.987 1.987l.311-.169a1.464 1.464 0 0 1 2.105.872l.1.34c.413 1.4 2.397 1.4 2.81 0l.1-.34a1.464 1.464 0 0 1 2.105-.872l.31.17c1.283.698 2.686-.705 1.987-1.987l-.169-.311a1.464 1.464 0 0 1 .872-2.105l.34-.1c1.4-.413 1.4-2.397 0-2.81l-.34-.1a1.464 1.464 0 0 1-.872-2.105l.17-.31c.698-1.283-.705-2.686-1.987-1.987l-.311.169a1.464 1.464 0 0 1-2.105-.872zM8 10.93a2.929 2.929 0 1 1 0-5.86 2.929 2.929 0 0 1 0 5.858z"/>
+                    </svg>
+                </a>
+            </li>
+        </th:block>
+    </ul>
+</nav>
+<div class="mypic">
+    <div class="dropdown-content">
+        <th:block th:if="${session.userid!=null}">
+            <a th:href="@{/profile(u_id=${session.userid})}">프로필(<span th:text="${session.userid}"></span>)</a>
+        </th:block>
+        <a href="logout">로그아웃</a>
     </div>
-    <div class="InsertDetails">
-    </div>
+    <a href="#">
+        <th:block th:if="${profiledetail.u_pic!=null}">
+            <img th:src="@{/download(filename=${profiledetail.u_pic})}">
+        </th:block>
+    </a>
 </div>
+<!--상단 네비-->
+<nav id="navTop">
+    <ul>
+        <form action="postSearchById" method="get">
+            <li><input type="search" placeholder="검색" class="search" name="searchWord"></li>
+            <li><input type="submit" value="검색" class="submit"></li>
+        </form>
+    </ul>
+</nav>
+<!--쇼츠 등록 폼-->
+<section>
+    <div class="d-flex justify-content-center short">
+        <div class="vid">
+            <video autoplay controls height="1280" loop muted oncontextmenu="return false;" width="720">
+                <source th:src="@{/download(filename=${video})}" type="video/mp4">
+            </video>
+        </div>
+        <div class="InsertDetails">
+            <form action="insertShort" method="post">
+                <table>
+                    <tr>
+                        <td><h3>글 작성</h3></td>
+                    </tr>
+                    <tr>
+                        <td><input name="sv_no" th:value="${videoNo}" type="hidden"></td>
+                    </tr>
+                    <tr>
+                        <td><input name="sv_thumbnail" th:value="${thumbnail}" type="hidden"></td>
+                    </tr>
+                    <tr>
+                        <td><input name="s_id" th:value="${session.userid}" type="hidden"></td>
+                    </tr>
+                    <tr>
+                        <td class="header">여행지 이름</td>
+                    </tr>
+                    <tr>
+                        <td><input name="s_place" placeholder="여행지를 입력하세요" type="text"></td>
+                    </tr>
+                    <tr>
+                        <td class="header">내용</td>
+                    </tr>
+                    <tr>
+                        <td><textarea cols="10" maxlength="300" required name="s_description" placeholder="내용을 입력하세요"></textarea></td>
+                    </tr>
+                    <tr>
+                        <td><input onclick="alert('쇼츠 등록 완료')" type="submit" value="등록"></td>
+                    </tr>
+                </table>
+            </form>
+        </div>
+    </div>
+</section>
 </body>
 </html>

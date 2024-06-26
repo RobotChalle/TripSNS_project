@@ -1,7 +1,6 @@
 package com.smartwave.tripsns.dao;
 
-import com.smartwave.tripsns.vo.PostCommentVO;
-import com.smartwave.tripsns.vo.PostVO;
+import com.smartwave.tripsns.vo.*;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -17,18 +16,18 @@ public class SNSDAOImpl implements IF_SNSDAO {
     private SqlSession sqlSession;
 
     @Override
-    public void postInsert(PostVO pvo) throws Exception { //게시글 저장
+    public void postInsert(PostVO pvo) throws Exception {
         sqlSession.insert(mapperQuery + ".posting", pvo);
     }
 
     @Override
-    public void postSaveAttach(String filename) throws Exception { //게시글 사진파일 저장
+    public void postSaveAttach(String filename) throws Exception {
         sqlSession.insert(mapperQuery + ".postSaveAttach", filename);
     }
 
     @Override
-    public List<PostVO> postSelectAll() throws Exception {
-        return sqlSession.selectList(mapperQuery + ".postSelectAll");
+    public List<PostVO> postSelectAll(String p_id) throws Exception {
+        return sqlSession.selectList(mapperQuery + ".postSelectAll", p_id);
     }
 
     @Override
@@ -52,26 +51,6 @@ public class SNSDAOImpl implements IF_SNSDAO {
     }
 
     @Override
-    public void postLike(PostVO pvo) throws Exception {
-        sqlSession.insert(mapperQuery + ".postLike", pvo);
-    }
-
-    @Override
-    public void postLikeDel(PostVO pvo) throws Exception {
-        sqlSession.delete(mapperQuery + ".postLikeDel", pvo);
-    }
-
-    @Override
-    public int postLikeCnt(String p_no) throws Exception {
-        return sqlSession.selectOne(mapperQuery + ".postLikeCnt", p_no);
-    }
-
-    @Override
-    public int postLikeChk(PostVO pvo) throws Exception {
-        return sqlSession.selectOne(mapperQuery + ".postLikeChk", pvo);
-    }
-
-    @Override
     public void postDelete(PostVO pvo) throws Exception {
         sqlSession.delete(mapperQuery + ".postDelete", pvo);
     }
@@ -87,11 +66,6 @@ public class SNSDAOImpl implements IF_SNSDAO {
     }
 
     @Override
-    public List<String> postSelectNo() throws Exception {
-        return sqlSession.selectList(mapperQuery + ".postSelectNo");
-    }
-
-    @Override
     public int postCommentCnt(String p_no) throws Exception {
         return sqlSession.selectOne(mapperQuery + ".postCommentCnt", p_no);
     }
@@ -100,5 +74,141 @@ public class SNSDAOImpl implements IF_SNSDAO {
     public List<PostVO> postSelectPost() throws Exception {
         return sqlSession.selectList(mapperQuery + ".postSelectPost");
     }
+
+    @Override
+    public List<PostVO> postSearch(String searchWord) throws Exception {
+        return sqlSession.selectList(mapperQuery + ".postSearch", searchWord);
+    }
+
+    @Override
+    public void postLike(PostVO pvo) throws Exception {
+        sqlSession.insert(mapperQuery + ".postLike", pvo);
+    }
+
+    @Override
+    public void postLikeDelete(PostVO pvo) throws Exception {
+        sqlSession.delete(mapperQuery + ".postLikeDelete", pvo);
+    }
+
+    @Override
+    public PostLikeVO postLikeSelect(PostVO pvo) throws Exception {
+        return sqlSession.selectOne(mapperQuery + ".postLikeSelect", pvo);
+    }
+
+    @Override
+    public int postLikeCount(PostVO pvo) throws Exception {
+        return sqlSession.selectOne(mapperQuery + ".postLikeCount", pvo);
+    }
+
+    @Override
+    public void videoInsert(VideoVO vvo) throws Exception {//쇼츠 동영상 저장
+        sqlSession.insert(mapperQuery + ".videoInsert", vvo);
+    }
+
+    @Override
+    public int videoSelect() throws Exception {
+        return sqlSession.selectOne(mapperQuery + ".videoSelect");
+    }
+
+    @Override
+    public void InsertShort(ShortVO svo) throws Exception {
+        sqlSession.insert(mapperQuery + ".insertShort", svo);
+    }
+
+    @Override
+    public List<ShortVO> allShortList() throws Exception {
+        return sqlSession.selectList(mapperQuery + ".allShortList");
+    }
+
+    @Override
+    public ShortVO shortDetails(int s_no) throws Exception {
+        return sqlSession.selectOne(mapperQuery + ".shortDetails", s_no);
+    }
+
+    @Override
+    public void ShortCommentInsert(ShortCommentVO scvo) throws Exception {
+        sqlSession.insert(mapperQuery + ".shortCommentInsert", scvo);
+    }
+
+    @Override
+    public VideoVO GetVideo(int sv_no) throws Exception {
+        return sqlSession.selectOne(mapperQuery + ".getVideo", sv_no);
+    }
+
+    @Override
+    public List<ShortCommentVO> shortCommentList(int s_no) throws Exception {
+        return sqlSession.selectList(mapperQuery + ".shortCommentList", s_no);
+    }
+
+    @Override
+    public void shortCommentDelete(ShortCommentVO scvo) throws Exception {
+        sqlSession.delete(mapperQuery + ".shortCommentDelete", scvo);
+    }
+
+    @Override
+    public void deleteShort(ShortVO svo) throws Exception {
+        sqlSession.delete(mapperQuery + ".deleteShort", svo);
+    }
+
+    @Override
+    public List<PostVO> postSelectList() throws Exception {
+        return sqlSession.selectList(mapperQuery + ".postSelectList");
+    }
+
+    @Override
+    public void shortLikeInsert(ShortLikeVO slikevo) throws Exception {
+        sqlSession.insert(mapperQuery + ".shortLikeInsert", slikevo);
+    }
+
+    @Override
+    public void shortLikeDelete(ShortLikeVO slikevo) throws Exception {
+        sqlSession.delete(mapperQuery + ".shortLikeDelete", slikevo);
+    }
+
+    @Override
+    public ShortLikeVO shortLikeSelectOne(ShortLikeVO slikevo) throws Exception {
+        return sqlSession.selectOne(mapperQuery + ".shortLikeSelectOne", slikevo);
+    }
+
+    @Override
+    public int shortLikeCount(ShortLikeVO slikevo) throws Exception {
+        return sqlSession.selectOne(mapperQuery + ".shortLikeCount", slikevo);
+    }
+
+    @Override
+    public int shortCommentCount(int s_no) throws Exception {
+        return sqlSession.selectOne(mapperQuery + ".shortCommentCount", s_no);
+    }
+
+    @Override
+    public String profileImg(int s_no) throws Exception {
+        return sqlSession.selectOne(mapperQuery + ".profileImg", s_no);
+    }
+
+    @Override
+    public void postViewUpdate(PostVO pvo) throws Exception {
+        sqlSession.insert(mapperQuery + ".postViewUpdate", pvo);
+    }
+
+    @Override
+    public int postViewCount(PostVO pvo) throws Exception {
+        return sqlSession.selectOne(mapperQuery + ".postViewCount", pvo);
+    }
+
+    @Override
+    public void shortUpdateSubmit(ShortVO svo) throws Exception {
+        sqlSession.update(mapperQuery+ ".shortUpdateSubmit", svo);
+    }
+
+    @Override
+    public List<ShortVO> userShortList(String u_id) throws Exception {
+        return sqlSession.selectList(mapperQuery+".userShortList", u_id);
+    }
+
+    @Override
+    public List<ShortVO> shortSearch(String searchWord) throws Exception {
+        return sqlSession.selectList(mapperQuery+".shortSearch", searchWord);
+    }
+
 
 }

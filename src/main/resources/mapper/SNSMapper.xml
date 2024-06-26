@@ -2,20 +2,23 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.smartwave.tripsns.dao.IF_SNSDAO">
     <insert id="posting" parameterType="com.smartwave.tripsns.vo.PostVO"> <!-- 게시글 저장 -->
-        insert into post values (nextval(p_cnt),#{p_id}, #{p_place}, #{p_text}, default)
+        insert into post values (nextval(p_cnt),#{p_id}, #{p_place}, #{p_text}, default, default)
     </insert>
     <insert id="postSaveAttach" parameterType="String"> <!-- 게시글 사진파일 저장 -->
         insert into postPic values ((select max (p_no) from post), #{filename})
     </insert>
     <select id="postSelectAll" resultType="com.smartwave.tripsns.vo.PostVO"><!-- 게시글 전부 불러오기 -->
         select *
-        from post
+        from post p
+                 left join postPic pp on p.p_no = pp.pp_no
+        where p.p_id = #{p_id}
         order by p_indate desc;
     </select>
     <select id="postSelectOne" resultType="com.smartwave.tripsns.vo.PostVO"><!-- 게시글 하나 불러오기 -->
         select *
-        from post
-        where p_no = #{p_no}
+        from post p
+                 left join postpic pp on p.p_no = pp.pp_no
+        where p.p_no = #{p_no};
     </select>
     <select id="getFile" resultType="String"><!--사진파일 불러오기 -->
         select pp_pic
@@ -30,26 +33,6 @@
         select *
         from postComment
         where pc_no = #{p_no}
-    </select>
-    <insert id="postLike" parameterType="com.smartwave.tripsns.vo.PostVO"><!--좋아요 정보 저장-->
-        insert into postLike
-        values (#{p_no}, #{p_id})
-    </insert>
-    <delete id="postLikeDel" parameterType="com.smartwave.tripsns.vo.PostVO"><!--좋아요 삭제-->
-        delete
-        from postLike
-        where pl_id = #{p_id}
-    </delete>
-    <select id="postLikeCnt" resultType="int"><!--게시글 좋아요 갯수-->
-        select count(*)
-        from postLike
-        where pl_no = #{p_no}
-    </select>
-    <select id="postLikeChk" resultType="int"><!--좋아요 체크-->
-        select count(*)
-        from postLike
-        where pl_id = #{p_id}
-          and pl_no = #{p_no}
     </select>
     <delete id="postDelete" parameterType="com.smartwave.tripsns.vo.PostVO"><!--게시글 삭제-->
         delete
@@ -67,19 +50,148 @@
         from postComment
         where pc_text = #{pc_text}
     </delete>
-    <select id="postSelectNo" resultType="String">
-        select p_no
-        from post;
-    </select>
-    <select id="postCommentCnt" resultType="int">
+    <select id="postCommentCnt" resultType="int"><!--댓글 수 조회-->
         select count(*)
         from postComment
         where pc_no = #{p_no}
     </select>
-    <select id="postSelectPost" resultType="com.smartwave.tripsns.vo.PostVO">
+    <select id="postSelectPost" resultType="com.smartwave.tripsns.vo.PostVO"><!--게시글 사진 이너조인-->
         select *
         from post p
-                 inner join postpic pp on p.p_no = pp.pp_no
+                 left join postpic pp on p.p_no = pp.pp_no
+                 left join profile f on f.id = p.p_id
+        order by p.p_indate desc
+    </select>
+    <select id="postSearch" resultType="com.smartwave.tripsns.vo.PostVO"><!--게시글 아이디로 검색-->
+        select *
+        from post p
+                 left join postpic pp on p.p_no = pp.pp_no
+                 left join profile f on f.id = p.p_id
+        where p_id like concat('%', '${searchWord}', '%')
+           or p_place like concat('%', '${searchWord}', '%')
+           or p_text like concat('%', '${searchWord}', '%')
         order by p_indate desc;
+    </select>
+    <insert id="postLike" parameterType="com.smartwave.tripsns.vo.PostVO"><!--게시글 좋아요-->
+        insert into postLike
+        values (#{p_no}, #{p_id})
+    </insert>
+    <delete id="postLikeDelete" parameterType="com.smartwave.tripsns.vo.PostVO"><!--게시글 좋아요 취소-->
+        delete
+        from postLike
+        where pl_id = #{p_id}
+          and pl_no = #{p_no}
+    </delete>
+    <select id="postLikeSelect" resultType="com.smartwave.tripsns.vo.PostLikeVO"><!--게시글 좋아요 조회-->
+        select *
+        from postLike
+        where pl_id = #{p_id}
+          and pl_no = #{p_no}
+    </select>
+    <select id="postLikeCount" resultType="int">
+        select count(*)
+        from postLike
+        where pl_no = #{p_no}
+    </select>
+    <insert id="videoInsert" parameterType="com.smartwave.tripsns.vo.VideoVO"> <!-- 쇼츠 동영상 저장 -->
+        insert into short_video values ((nextval(video_seq)),#{sv_addr},#{sv_thumbnail})
+    </insert>
+    <select id="videoSelect" resultType="int"><!--저장한 동영상 번호 가져오기-->
+        select max(sv_no)
+        from short_video
+    </select>
+    <insert id="insertShort" parameterType="com.smartwave.tripsns.vo.ShortVO">
+        insert into short_form
+        values ((nextval(short_seq)), #{sv_no}, #{sv_thumbnail}, #{s_id}, default, #{s_description}, #{s_place})
+    </insert>
+    <update id="shortUpdateSubmit" parameterType="com.smartwave.tripsns.vo.ShortVO">
+        update short_form
+        set s_description  = #{s_description},
+            s_place = #{s_place}
+        where s_no = #{s_no}
+    </update>
+    <select id="allShortList" resultType="com.smartwave.tripsns.vo.ShortVO">
+        select *
+        from short_form
+        order by s_date desc
+    </select>
+    <select id="userShortList" resultType="com.smartwave.tripsns.vo.ShortVO">
+        select *
+        from short_form
+        where s_id = #{u_id}
+    </select>
+    <select id="shortDetails" resultType="com.smartwave.tripsns.vo.ShortVO">
+        select *
+        from short_form
+        where s_no = #{s_no}
+    </select>
+    <select id="getVideo" resultType="com.smartwave.tripsns.vo.VideoVO">
+        select *
+        from short_video
+        where sv_no = #{sv_no}
+    </select>
+    <insert id="shortCommentInsert" parameterType="com.smartwave.tripsns.vo.ShortCommentVO">
+        insert into short_comment
+        values (#{s_no}, #{sc_id}, #{sc_comment}, default)
+    </insert>
+    <select id="shortCommentList" resultType="com.smartwave.tripsns.vo.ShortCommentVO">
+        select *
+        from short_comment
+        where s_no = #{s_no}
+    </select>
+    <delete id="shortCommentDelete" parameterType="com.smartwave.tripsns.vo.ShortCommentVO">
+        delete
+        from short_comment
+        where s_no = #{s_no}
+          AND sc_date = #{sc_date}
+          AND sc_id = #{sc_id}
+    </delete>
+    <delete id="deleteShort" parameterType="com.smartwave.tripsns.vo.ShortVO">
+        delete
+        from short_form
+        where s_no = #{s_no}
+    </delete>
+    <select id="shortLikeTF" parameterType="com.smartwave.tripsns.vo.ShortLikeVO" resultType="int">
+        select count(*) from short_like where s_no = #{s_no} AND slike_id = #{slike_id}
+    </select>
+    <select id="postSelectList" resultType="com.smartwave.tripsns.vo.PostVO"><!--게시물 전체 가져오기-->
+        select *
+        from post
+    </select>
+    <insert id="shortLikeInsert" parameterType="com.smartwave.tripsns.vo.ShortLikeVO">
+        insert into short_like values (#{slike_id},#{s_no})
+    </insert>
+    <delete id="shortLikeDelete" parameterType="com.smartwave.tripsns.vo.ShortLikeVO">
+        delete from short_like where slike_id = #{slike_id} AND s_no = #{s_no}
+    </delete>
+    <select id="shortLikeSelectOne" parameterType="com.smartwave.tripsns.vo.ShortLikeVO" resultType="com.smartwave.tripsns.vo.ShortLikeVO">
+        select * from short_like where slike_id = #{slike_id} AND s_no = #{s_no}
+    </select>
+    <select id="shortLikeCount" parameterType="com.smartwave.tripsns.vo.ShortLikeVO">
+        select count(*) from short_like where s_no = #{s_no}
+    </select>
+    <select id="shortCommentCount" parameterType="int" resultType="int">
+        select count(*) from short_comment where s_no = #{s_no}
+    </select>
+    <!--short 작성자 프로필 사진-->
+    <select id="profileImg" parameterType="int" resultType="String">
+        select f.u_pic from profile f inner join short_form s on f.id = s.s_id where s_no = #{s_no}
+    </select>
+    <update id="postViewUpdate" parameterType="com.smartwave.tripsns.vo.PostVO">
+        update post
+        set p_views = p_views + 1
+        where p_no = #{p_no}
+    </update>
+    <select id="shortSearch" resultType="com.smartwave.tripsns.vo.ShortVO" parameterType="String">
+        select * from short_form
+        where s_id like concat('%','${searchWord}','%')
+        or s_description like concat('%','${searchWord}','%')
+        or s_place like concat('%','${searchWord}','%')
+        order by s_date desc
+    </select>
+    <select id="postViewCount" resultType="int">
+        select p_views
+        from post
+        where p_no = #{p_no}
     </select>
 </mapper>

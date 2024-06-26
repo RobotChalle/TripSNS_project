@@ -1,0 +1,511 @@
+<!DOCTYPE html>
+<html lang="kor">
+<head>
+    <meta charset="UTF-8">
+    <title>여행여행(관리자)</title>
+    <link href="/css/main_navTop.css" rel="stylesheet">
+    <link href="/css/main_navSide.css" rel="stylesheet">
+    <link href="/css/manager.css" rel="stylesheet">
+</head>
+<style>
+    * {
+        padding: 0;
+        margin: 0;
+        font-family: apple black;
+        text-decoration-line: none;
+    }
+
+    @font-face {
+        font-family: apple;
+        src: url(/font/AppleSDGothicNeoL.ttf);
+    }
+
+    body {
+        background: linear-gradient(91deg, deepskyblue, #0674e7);
+        animation: gradient-animation 20s ease infinite;
+        background-position: center;
+        background-size: 120% 120%;
+        background-attachment: fixed;
+    }
+
+    @keyframes gradient-animation {
+        0% {
+            background-position: 0% 50%;
+        }
+        50% {
+            background-position: 100% 50%;
+        }
+        100% {
+            background-position: 0% 50%;
+        }
+    }
+</style>
+<body>
+<!--좌측 네비-->
+<nav id="navSide">
+    <ul>
+        <li>
+            <a href="main">
+                <img src="/images/WaveLogo2.png" class="logo">
+            </a>
+        </li>
+        <li>
+            <a href="main">
+                <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor"
+                     class="bi bi-house-fill" viewBox="0 0 16 16">
+                    <path
+                            d="M8.707 1.5a1 1 0 0 0-1.414 0L.646 8.146a.5.5 0 0 0 .708.708L8 2.207l6.646 6.647a.5.5 0 0 0 .708-.708L13 5.793V2.5a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5v1.293z"/>
+                    <path d="m8 3.293 6 6V13.5a1.5 1.5 0 0 1-1.5 1.5h-9A1.5 1.5 0 0 1 2 13.5V9.293z"/>
+                </svg>
+            </a>
+        </li>
+        <li>
+            <a href="map?p_place=수원">
+                <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor"
+                     class="bi bi-map-fill" viewBox="0 0 16 16">
+                    <path fill-rule="evenodd"
+                          d="M16 .5a.5.5 0 0 0-.598-.49L10.5.99 5.598.01a.5.5 0 0 0-.196 0l-5 1A.5.5 0 0 0 0 1.5v14a.5.5 0 0 0 .598.49l4.902-.98 4.902.98a.5.5 0 0 0 .196 0l5-1A.5.5 0 0 0 16 14.5zM5 14.09V1.11l.5-.1.5.1v12.98l-.402-.08a.5.5 0 0 0-.196 0zm5 .8V1.91l.402.08a.5.5 0 0 0 .196 0L11 1.91v12.98l-.5.1z"/>
+                </svg>
+            </a>
+        </li>
+        <li>
+            <a href="shorts">
+                <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor"
+                     class="bi bi-file-play-fill" viewBox="0 0 16 16">
+                    <path
+                            d="M12 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2M6 5.883a.5.5 0 0 1 .757-.429l3.528 2.117a.5.5 0 0 1 0 .858l-3.528 2.117a.5.5 0 0 1-.757-.43V5.884z"/>
+                </svg>
+            </a>
+        </li>
+        <li>
+            <a href="alarm">
+                <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-bell" viewBox="0 0 16 16">
+                    <path d="M8 16a2 2 0 0 0 2-2H6a2 2 0 0 0 2 2M8 1.918l-.797.161A4 4 0 0 0 4 6c0 .628-.134 2.197-.459 3.742-.16.767-.376 1.566-.663 2.258h10.244c-.287-.692-.502-1.49-.663-2.258C12.134 8.197 12 6.628 12 6a4 4 0 0 0-3.203-3.92zM14.22 12c.223.447.481.801.78 1H1c.299-.199.557-.553.78-1C2.68 10.2 3 6.88 3 6c0-2.42 1.72-4.44 4.005-4.901a1 1 0 1 1 1.99 0A5 5 0 0 1 13 6c0 .88.32 4.2 1.22 6"/>
+                </svg>
+            </a>
+        </li>
+        <th:block th:if="${session.userid=='smartwave0377'}"> <!--관리자용 메뉴-->
+            <li>
+                <a href="manager">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor"
+                         class="bi bi-gear-fill" viewBox="0 0 16 16">
+                        <path d="M9.405 1.05c-.413-1.4-2.397-1.4-2.81 0l-.1.34a1.464 1.464 0 0 1-2.105.872l-.31-.17c-1.283-.698-2.686.705-1.987 1.987l.169.311c.446.82.023 1.841-.872 2.105l-.34.1c-1.4.413-1.4 2.397 0 2.81l.34.1a1.464 1.464 0 0 1 .872 2.105l-.17.31c-.698 1.283.705 2.686 1.987 1.987l.311-.169a1.464 1.464 0 0 1 2.105.872l.1.34c.413 1.4 2.397 1.4 2.81 0l.1-.34a1.464 1.464 0 0 1 2.105-.872l.31.17c1.283.698 2.686-.705 1.987-1.987l-.169-.311a1.464 1.464 0 0 1 .872-2.105l.34-.1c1.4-.413 1.4-2.397 0-2.81l-.34-.1a1.464 1.464 0 0 1-.872-2.105l.17-.31c.698-1.283-.705-2.686-1.987-1.987l-.311.169a1.464 1.464 0 0 1-2.105-.872zM8 10.93a2.929 2.929 0 1 1 0-5.86 2.929 2.929 0 0 1 0 5.858z"/>
+                    </svg>
+                </a>
+            </li>
+        </th:block>
+    </ul>
+</nav>
+<div class="mypic">
+    <div class="dropdown-content">
+        <th:block th:if="${session.userid!=null}">
+            <a th:href="@{/profile(u_id=${session.userid})}">프로필(<span th:text="${session.userid}"></span>)</a>
+        </th:block>
+        <a href="logout">로그아웃</a>
+    </div>
+    <a href="#">
+        <th:block th:if="${profiledetail.u_pic!=null}">
+            <img th:src="@{/download(filename=${profiledetail.u_pic})}">
+        </th:block>
+    </a>
+</div>
+<!--메인-->
+<div class="feedBoard">
+    <div class="tab">
+        <ul class="tabnav">
+            <li><a href="#tab01">게시물</a></li>
+            <li><a href="#tab02">쇼츠</a></li>
+            <li><a href="#tab03">회원</a></li>
+        </ul>
+        <!--게시글 관리-->
+        <div class="tabcontent">
+            <div id="tab01">
+                <h1>게시글 관리</h1>
+                <div class="postSearchDiv">
+                    <!--                    <div class="postSearchChk">-->
+                    <!--                        <input type="radio" value="p_id" name="searchOpt" class="searchId" checked>아이디-->
+                    <!--                        <input type="radio" value="p_place" name="searchOpt" class="searchPlace">장소-->
+                    <!--                    </div>-->
+                    <input class="postSearch" id="postSearch" placeholder="검색" type="search">
+                    <!--                    <input type="button" value="검색" class="postSubmit">-->
+                </div>
+                <div class="tbl-header">
+                    <table border="0" cellpadding="0" cellspacing="0">
+                        <thead>
+                        <tr>
+                            <th><input id="checkAll" type="checkbox"> 전체선택</th>
+                            <th>고유번호
+                                <button class="sortBtn" onclick="sortTD ( 0 )">▲</button>
+                                <button class="sortBtn" onclick="reverseTD ( 0 )">▼</button>
+                            </th>
+                            <th>작성자
+                                <button class="sortBtn" onclick="sortTD ( 0 )">▲</button>
+                                <button class="sortBtn" onclick="reverseTD ( 0 )">▼</button>
+                            </th>
+                            <th>장소
+                                <button class="sortBtn" onclick="sortTD ( 0 )">▲</button>
+                                <button class="sortBtn" onclick="reverseTD ( 0 )">▼</button>
+                            </th>
+                            <th>내용</th>
+                            <th>작성일
+                                <button class="sortBtn" onclick="sortTD ( 0 )">▲</button>
+                                <button class="sortBtn" onclick="reverseTD ( 0 )">▼</button>
+                            </th>
+                            <th>삭제</th>
+                            <th>자세히</th>
+                        </tr>
+                        </thead>
+                    </table>
+                </div>
+                <div class="tbl-content">
+                    <table border="0" cellpadding="0" cellspacing="0" class="sortable" id="postList">
+                        <tbody>
+                        <tr th:each="postList:${postList}">
+                            <td><input class="chk" th:value="${postList.p_no}" type="checkbox"></td>
+                            <td id="p_no" th:text="${postList.p_no}"></td>
+                            <td id="searchId" th:text="${postList.p_id}"></td>
+                            <td id="searchPlace" th:text="${postList.p_place}"></td>
+                            <td th:text="${postList.p_text}"></td>
+                            <td th:text="${postList.p_indate}"></td>
+                            <td>
+                                <button class="postDelete1">
+                                    <a th:href="@{/postDeleteManager(p_no=${postList.p_no})}">
+                                        삭제
+                                    </a>
+                                </button>
+                            </td>
+                            <td><a class="detail" th:href="@{/detail(p_no=${postList.p_no}, p_id=${session.userid})}">자세히
+                                보기</a>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="postOption">
+                    <button class="postDelete2" onclick="postDeleteChk()">삭제</button>
+                    <button class="postExcel" id="excelDownload">엑셀</button>
+                </div>
+            </div>
+            <!--구분-->
+            <div id="tab02">
+                <h1>쇼츠 관리</h1>
+                <div class="shortSearch">
+                    <input class="shortSearchInput" id="shortSearchInput" placeholder="검색" type="search">
+                </div>
+                <div id="tableDiv">
+                    <table class="shortTable" id="shortTable">
+                        <thead>
+                        <tr>
+                            <th><input id="allchk" name="allchk" type="checkbox"> 전체선택</th>
+                            <th>고유번호</th>
+                            <th>작성자</th>
+                            <th>장소</th>
+                            <th>내용</th>
+                            <th>작성일</th>
+                            <th>삭제</th>
+                            <th>자세히보기</th>
+                        </tr>
+                        </thead>
+                        <tbody class="tbody">
+                        <tr>
+                        <tr th:each="short:${shortList}">
+                            <td><input class="shortCheck" name="shortCheck" th:value="${short.s_no}" type="checkbox">
+                            </td>
+                            <td th:text="${short.s_no}"></td>
+                            <td th:text="${short.s_id}"></td>
+                            <td th:text="${short.s_place}"></td>
+                            <td th:text="${short.s_description}"></td>
+                            <td th:text="${short.s_date}"></td>
+                            <td id="deleteTd">
+                                <button class="deleteB"
+                                        th:onclick="|location.href='@{/deleteShortChk(s_no=${short.s_no})}'|">삭제
+                                </button>
+                            </td>
+                            <td>
+                                <button class="detailB"
+                                        th:onclick="|location.href='@{/short(s_no=${short.s_no})}'|">자세히
+                                </button>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+                <div class="tableOptions">
+                    <button class="delShortchk" onclick="deleteShortChk()">선택삭제</button>
+                    <button class="shortExel" id="shortExcelDownload">엑셀 다운로드</button>
+                </div>
+            </div>
+            <!--구분-->
+            <div id="tab03"><!--회원 관리-->
+                <h1 style="text-align: center">회원관리</h1>
+                <form action="userSearchList" method="post">
+                    <select class="usearch" name="searchitem">
+                        <option value="id">아이디</option>
+                        <option value="name">이름</option>
+                    </select>
+                    <input class="usersearch" name="usersearch" placeholder="검색" type="search">
+                    <input class="submit" type="submit" value="검색">
+                </form>
+                <br>
+                <div id="usertables">
+                    <table id="userTable">
+                        <thead>
+                        <tr id="tablehead">
+                            <th><input id="userAll" type="checkbox">전체선택</th>
+                            <th>아이디</th>
+                            <th>이름</th>
+                            <th>생일</th>
+                            <th>이메일</th>
+                            <th>삭제</th>
+                            <th>자세히</th>
+                        </tr>
+                        </thead>
+
+                        <tbody>
+                        <tr th:each="userList:${userList}">
+                            <td><input class="uchk" name="userchk" th:value="${userList.id}" type="checkbox"></td>
+                            <td th:text="${userList.id}"></td>
+                            <td th:text="${userList.name}"></td>
+                            <td th:text="${userList.birth}"></td>
+                            <td th:text="${userList.email}"></td>
+                            <td id="dels">
+                                <button class="delbtn"
+                                        th:onclick="|location.href='@{/withdrawalManger(id=${userList.id})}'|">삭제
+                                </button>
+                            </td>
+                            <!--                            <td><a th:href="@{/otherprofile(p_id=${userList.id})}">프로필</a></td>-->
+                            <td>
+                                <button class="probtn"
+                                        th:onclick="|location.href='@{/otherprofile(p_id=${userList.id})}'|">프로필
+                                </button>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div>
+                    <button class="delbtn" id="chkdel">삭제</button>
+                    <input id="excelFileExport" type="button" value="엑셀 다운">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script src="/js/manager.js" type="text/javascript"></script>
+<!-- Sheet JS -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.14.3/xlsx.full.min.js"></script>
+<!--FileSaver savaAs 이용 -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/1.3.8/FileSaver.min.js"></script>
+<!--전체 프로세스는
+1. 엑셀 Workbook을 생성하고
+2. 데이터(배열/json/html table) 가져와서 sheet 만들고
+3. workbook에 만든 시트를 추가합니다.
+4. 엑셀 파일을 만들고
+5. 다운로드 받을 수 있게 처리합니다. -->
+<script>
+    $(document).ready(function () {// 문서가 준비되었을시 매개변수로 넣은 콜백함수를 실행 {제이쿼리 이벤트 }
+        $('#userAll').click(function () {
+            if ($('#userAll').is(":checked")) {//.is(':checked') 를 이용하여 전체선택이 클릭되어 체크되었을떄
+                $("input[name =userchk]").prop("checked", true);// 전체선택의 리턴값이 true 면 아래의 체크박스 전부 true
+            } else {
+                $("input[name =userchk]").prop("checked", false);// 전체선택의 리턴값이 faluse 면 아래의 체크박스 전부 true
+            }
+        });
+        $("input[name =userchk]").click(function () {
+            var totalcnt = $("input[name =userchk]").length;// 체크박스 숫자
+            var checkedcnt = $("input[name =userchk]:checked").length;// 체크박스가 체크된 숫자
+            if (totalcnt != checkedcnt) {// 체크박스의 전체 숫자와 체크된 숫자가 다를 경우 > 한개라도 체크 해제 할시 전체선택 체크 수랑 다를경우
+                $('#userAll').prop("checked", false)// 전체 선택의 체크된 리턴값을 false> 한개라도 체크 해제하면 전체선택 체크 해제
+            } else {
+                $('#userAll').prop("checked", true)// 전체 체크된 수와 동일 할경우 >전체 선택의 체크된 리턴값을 true
+            }
+        });
+    });
+    $('#chkdel').click(function () {
+        //체크된박스들
+        var cnt = $("input[name=userchk]:checked").length;
+        if (cnt == 0) {
+            alert("선택된 글이 없습니다.");
+        }
+
+        // var arr = new Array();//jquery 방법
+        // $("input[name=userchk]:checked").each(function() {
+        //     arr.push($(this).attr('value'));
+        // });
+        // location.href="chkdel?id="+arr;
+
+        let arr = new Array();
+        let total = document.querySelectorAll('.uchk:checked');
+        console.log(total);
+        for (let i = 0; i < total.length; i++) {
+            arr[i] = total[i].value;
+            console.log(arr[i]);
+        }
+        location.href = "delchk?id=" + arr;
+
+
+    });
+
+
+</script>
+
+
+<script>//엑셀다운
+function s2ab(s) {
+    var buf = new ArrayBuffer(s.length); //convert s to arrayBuffer
+    var view = new Uint8Array(buf);
+    for (var i = 0; i < s.length; i++) view[i] = s.charCodeAt(i) & 0xFF; //convert to octet
+    return buf;
+}
+
+function userexportExcel() {
+    // 1. workbook 생성
+    var wb = XLSX.utils.book_new();
+    // 2. 시트 만들기
+    var newWorksheet = excelHandler2.getWorksheet2();
+    // 3. workbook 에 새로만든 워크시트에 이름 주고 붙임
+    XLSX.utils.book_append_sheet(wb, newWorksheet, excelHandler2.getSheetName2());
+    // step 4. 엑셀 파일 만들기
+    var wbout = XLSX.write(wb, {bookType: 'xlsx', type: 'binary'});
+    // step 5. 엑셀 파일 내보내기
+    saveAs(new Blob([s2ab(wbout)], {type: "application/octet-stream"}), excelHandler2.getExcelFileName2());
+}
+
+$(document).ready(function () {
+    $('#excelFileExport').click(function () {
+        userexportExcel();
+    })
+
+
+});
+
+var excelHandler2 = {
+    getExcelFileName2: function () {
+        return '회원목록.xlsx';
+    },
+    getSheetName2: function () {
+        return '회원목록 Sheet'
+    },
+    getExcelData2: function () {
+        return document.getElementById('userTable')
+    },
+    getWorksheet2: function () {
+        return XLSX.utils.table_to_sheet(this.getExcelData2())
+    }
+}
+
+
+</script>
+<script>//tab2 쇼츠 스크립트 모음
+document.querySelector('#allchk');
+allchk.addEventListener('click', function () {
+    if (allchk.checked) {
+        const shortCheckboxes = document.querySelectorAll('.shortCheck')
+        for (const checkbox of shortCheckboxes) {
+            checkbox.checked = true;
+        }
+    } else {
+        const shortCheckboxes = document.querySelectorAll('.shortCheck')
+        for (const checkbox of shortCheckboxes) {
+            checkbox.checked = false;
+        }
+    }
+})
+const shortCheckboxes = document.querySelectorAll('.shortCheck');
+for (const checkbox of shortCheckboxes) {
+    checkbox.addEventListener('click', function () {
+        const totalCnt = shortCheckboxes.length;
+        const checkedCnt = document.querySelectorAll('.shortCheck:checked').length;
+        if (totalCnt == checkedCnt) {
+            document.querySelector('#allchk').checked = true;
+        } else {
+            document.querySelector('#allchk').checked = false;
+        }
+    });
+}
+
+function deleteShortChk() {
+    const shortcheckboxes = document.querySelectorAll('.shortCheck:checked');
+    for (const checkbox of shortcheckboxes) {
+        location.href = "/deleteShortChk?s_no=" + checkbox.value;
+    }
+}
+
+//엑셀 다운로드 기능.
+function s2ab(s) {
+    var buf = new ArrayBuffer(s.length); //convert s to arrayBuffer
+    var view = new Uint8Array(buf);
+    for (var i = 0; i < s.length; i++) view[i] = s.charCodeAt(i) & 0xFF; //convert to octet
+    return buf;
+}
+
+function exportExcel3() {
+    // 1. workbook 생성
+    var wb = XLSX.utils.book_new();
+    // 2. 시트 만들기
+    var newWorksheet = excelHandler3.getWorksheet3();
+    // 3. workbook 에 새로만든 워크시트에 이름 주고 붙임
+    XLSX.utils.book_append_sheet(wb, newWorksheet, excelHandler3.getSheetName3());
+    // step 4. 엑셀 파일 만들기
+    var wbout = XLSX.write(wb, {bookType: 'xlsx', type: 'binary'});
+    // step 5. 엑셀 파일 내보내기
+    saveAs(new Blob([s2ab(wbout)], {type: "application/octet-stream"}), excelHandler3.getExcelFileName3());
+}
+
+$(document).ready(function () {
+    $('#shortExcelDownload').click(function () {
+        exportExcel3();
+    })
+});
+
+var excelHandler3 = {
+    getExcelFileName3: function () {
+        return '쇼츠목록.xlsx';
+    },
+    getSheetName3: function () {
+        return '쇼츠목록Sheet'
+    },
+    getExcelData3: function () {
+        return document.getElementById('shortTable')
+    },
+    getWorksheet3: function () {
+        return XLSX.utils.table_to_sheet(this.getExcelData3())
+    }
+}
+///keyup기능 테이블 검색 기능
+document.addEventListener('DOMContentLoaded', function () {
+    //검색창 엘리먼트 가져오기
+    const searchElement = document.querySelector('#shortSearchInput');
+    //테이블 엘리먼트 가져오기
+    const tableElement = document.querySelector('#shortTable');
+    //검색창 엘리먼트에 key 이벤트 설정으로 글자 입력마다 발생되는 이벤트 설정.
+    searchElement.addEventListener('keyup', function () {
+        //사용자가 입력한 검색어의 value를 가져와 소문자로 searchValue에 저장
+        const searchValue = searchElement.value.toLowerCase();
+        //table tbody의 모든 엘리먼트를 가져와 rows에 저장
+        const rows = tableElement.querySelectorAll('tbody tr')
+
+        //for 문으로 row 반복
+        for (const row of rows) {
+            //tr의 value를 소문자로 rowValue에 저장
+            var rowValue = row.textContent.toLowerCase();
+            //rowValue가 searchValue값을 포함하면 그 tr을 보여주고 아니면 숨김
+            if (rowValue.includes(searchValue)) {
+                row.style.display = '';
+            } else {
+                row.style.display = 'none';
+            }
+
+        }
+
+    })
+
+
+})
+
+
+</script>
+
+
+</body>
+</html>

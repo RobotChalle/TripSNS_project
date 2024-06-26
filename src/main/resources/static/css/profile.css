@@ -1,0 +1,360 @@
+#profilebox {
+    display: block;
+    width: 1130px;
+    height: 250px;
+    position: absolute;
+    left: 6%;
+    top: 10%;
+    background-color: rgb(255, 255, 255, 0.4);
+    border-radius: 30px;
+    /* border: 1px solid; */
+
+}
+
+@font-face {
+    font-family: apple black;
+    src: url(AppleSDGothicNeoB.ttf);
+}
+
+.profile {
+    padding: 10px;
+}
+
+.profile-image {
+    float: left;
+    width: calc(33.333% - 1rem);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-right: 3rem;
+}
+
+.profile-image img {
+    border-radius: 50%;
+    margin-top: 10px;
+    width: 180px;
+    height: 180px;
+    object-fit:cover;
+}
+
+h1 {
+    font-family: apple Black;
+}
+
+.profile-user-settings,
+.profile-stats,
+.profile-bio {
+    float: left;
+    width: calc(66.666% - 2rem);
+    font-family: apple black;
+}
+
+.profile-user-settings {
+    margin-top: 1.1rem;
+
+}
+
+.profile-user-name {
+    display: inline-block;
+    font-size: 30px;
+    font-family: apple Black;
+
+}
+
+.editbtn {
+    font-family: apple Black;
+    width: 60px;
+    height: 40px;
+    background: #fff;
+    border: 1px solid rgb(77, 77, 77);
+    border-radius: 10px;
+    cursor: pointer;
+    /*margin-top: 10px;*/
+    margin-left: 20px;
+}
+
+.editbtn:hover {
+    border: 1px solid cornflowerblue;
+}
+
+.followbtn {
+    font-family: apple Black;
+    width: 60px;
+    height: 40px;
+    background: #fff;
+    border: 1px solid rgb(77, 77, 77);
+    border-radius: 10px;
+    cursor: pointer;
+    /*margin-bottom: 20px;*/
+    margin-left: 30px;
+}
+
+.followbtn:hover {
+    border: 1px solid cornflowerblue;
+}
+
+#upbutton {
+
+    background-color: red;
+}
+
+.profile-settings-btn {
+    font-size: 2rem;
+    margin-left: 1rem;
+
+}
+
+.profile-stats {
+    margin-top: 2.3rem;
+}
+
+
+.stat {
+    display: inline;
+    padding-left: 10px;
+    font-size: 20px;
+    font-family: apple Black;
+}
+
+.profile-bio {
+    margin-top: 50px;
+    font-family: apple Black;
+
+}
+
+
+#profilemain {
+    display: block;
+    width: 1160px;
+    height: 470px;
+    position: absolute;
+    left: 6%;
+    bottom: 0.7%;
+    margin-top: 50px;
+    background-color: rgb(255, 255, 255, 0.4);
+    border-radius: 30px;
+    /* border: 1px solid; */
+    display: flex;
+    flex-direction: row;
+    font-family: apple Black;
+}
+
+.box {
+
+    height: 350px;
+    width: 350px;
+    /* background-color: blueviolet; */
+    /* border: 1px solid; */
+    /* border-radius: 30px; */
+    margin-left: 25px;
+    margin-top: 5px;
+
+}
+
+.box2 {
+    background-color: rgba(128, 128, 128, 0.25);
+    border-radius: 30px;
+
+    height: 320px;
+    width: 320px;
+    text-align: center;
+    color: black;
+    margin-left: 25px;
+    margin-top: 5px;
+
+    padding-top: 100px;
+    padding-left: 10px;
+    padding-right: 10px;
+
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+    transition: all 0.3s cubic-bezier(.25, .8, .25, 1);
+}
+
+.box2:hover {
+    box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
+}
+
+.intext {
+    width: 320px;
+    margin-left: 25px;
+    margin-top: 5px;
+    align-items: center;
+}
+
+#over {
+    overflow: auto;
+    margin-top: 10px;
+}
+
+.inpic {
+
+    width: 320px;
+    border-radius: 30px;
+    margin-top: auto;
+    margin-left: auto;
+
+    align-items: center;
+
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+    transition: all 0.3s cubic-bezier(.25, .8, .25, 1);
+}
+
+.inpic:hover {
+    box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
+}
+
+/* 게시물 스크롤바 설정 시작 */
+#over::-webkit-scrollbar {
+    width: 10px;
+}
+
+#over::-webkit-scrollbar-thumb {
+    background-color: rgba(166, 189, 221, 0.67);
+    border-radius: 10px;
+}
+
+#menubar {
+    display: block;
+    font-family: apple Black;
+    height: 50px;
+    position: absolute;
+    left: 45%;
+    top: 40%;
+    font-size: 20px;
+    border: 1px solid;
+}
+
+.menu {
+    left: 5%;
+    font-family: apple Black;
+    margin-left: 10px;
+}
+
+#mainuser {
+    font-family: apple Black;
+    font-size: 20px;
+}
+
+#otheruser {
+    font-family: apple Black;
+    font-size: 20px;
+}
+
+#tab02 {
+    height: 450px;
+    overflow-x: auto;
+}
+#tab02 .container {
+    flex: 6.5;
+    width: 60%;
+    float: right;
+    padding-right: 200px;
+    margin-top: 50px;
+    margin-bottom: -50px;
+}
+
+.short {
+    float: left;
+    display: flex;
+    width: 30%;
+    margin-left: 10px;
+    margin-top: 10px;
+    background: #fff;
+    border: 1px solid #e8e8e8;
+    border-radius: 10px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+    transition: all 0.3s cubic-bezier(.25, .8, .25, 1);
+}
+
+.short:hover {
+    box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
+}
+
+.thumbnail img {
+    width: 100%;
+    object-fit: fill;
+    border-radius: 10px;
+}
+
+/*텝*/
+.tab {
+    /*background-color: rgba(255, 255, 255, 0.75);*/
+    /*border: 1px solid #e8e8e8;*/
+    /*border-radius: 1%;*/
+    /*box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);*/
+    /*transition: all 0.3s cubic-bezier(.25, .8, .25, 1);*/
+
+    /*float: left;*/
+    /*width: 1100px;*/
+    display: block;
+    width: 1130px;
+    height:530px;
+    position: absolute;
+    left: 6%;
+    bottom:1%;
+    background-color: rgb(255, 255, 255, 0.4);
+    border-radius: 30px;
+    /* border: 1px solid; */
+    flex-direction: row;
+    font-family: apple Black;
+
+}
+
+.tabnav {
+    font-size: 0;
+    width: 1100px;
+}
+
+.tabnav li {
+    display: inline-block;
+    height: 46px;
+    text-align: center;
+}
+
+.tabnav li a:before {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: 0px;
+    width: 100%;
+    height: 3px;
+}
+
+.tabnav li a.active:before {
+    background: cornflowerblue;
+}
+
+.tabnav li a.active {
+    /*border-bottom: 1px solid #fff;*/
+}
+
+.tabnav li a {
+    position: relative;
+    display: block;
+    /*background: rgba(248, 248, 248, 0.75);*/
+    color: #000;
+    padding: 0 30px;
+    line-height: 46px;
+    text-decoration: none;
+    font-size: 16px;
+    left:280%;
+    margin-left:50px;
+}
+
+.tabnav li a:hover, .tabnav li a.active {
+    /*background: rgba(255, 255, 255, 0.75);*/
+    color: cornflowerblue;
+}
+
+.tabcontent {
+    padding: 20px;
+    border-top: none;
+}
+
+.tab:hover {
+    box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
+}
+.stat a{
+    text-decoration: none;
+    color: black;
+}

@@ -1,124 +1,348 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>Title</title>
-</head>
-<body>
-<!DOCTYPE html>
-<html lang="en">
 
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
-  <link rel="stylesheet" href="/css/main_navTop.css">
-  <link rel="stylesheet" href="/css/main_navSide.css">
-  <link rel="stylesheet" href="/css/profile_update.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="/css/main_navTop.css">
+    <link rel="stylesheet" href="/css/main_navSide.css">
+    <link rel="stylesheet" href="/css/profile.css">
+
+
 </head>
 
 <style>
-  * {
-    padding: 0;
-    margin: 0;
-    font-family: apple black;
-    text-decoration-line: none;
-  }
-  body {
-    background-image: url("/images/background.jpg");
-  }
+    * {
+        padding: 0;
+        margin: 0;
+        font-family: apple black;
+        text-decoration-line: none;
+    }
+
+    body {
+        background: linear-gradient(300deg, deepskyblue, #b8f4f9, #0060ff);
+        animation: gradient-animation 5s ease infinite;
+        background-position: center;
+        background-size: 180% 180%;
+        background-attachment: fixed;
+    }
+
+    @keyframes gradient-animation {
+        0% {
+            background-position: 0% 50%;
+        }
+        50% {
+            background-position: 100% 50%;
+        }
+        100% {
+            background-position: 0% 50%;
+        }
+    }
+
+
+
 </style>
 
 <body>
+<!--좌측 네비-->
 <nav id="navSide">
-  <ul>
-    <li>
-      <a href="main">
-        <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor"
-             class="bi bi-house-fill" viewBox="0 0 16 16">
-          <path
-                  d="M8.707 1.5a1 1 0 0 0-1.414 0L.646 8.146a.5.5 0 0 0 .708.708L8 2.207l6.646 6.647a.5.5 0 0 0 .708-.708L13 5.793V2.5a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5v1.293z"/>
-          <path d="m8 3.293 6 6V13.5a1.5 1.5 0 0 1-1.5 1.5h-9A1.5 1.5 0 0 1 2 13.5V9.293z"/>
-        </svg>
-      </a>
-    </li>
-    <li>
-      <a href="#">
-        <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor"
-             class="bi bi-map-fill" viewBox="0 0 16 16">
-          <path fill-rule="evenodd"
-                d="M16 .5a.5.5 0 0 0-.598-.49L10.5.99 5.598.01a.5.5 0 0 0-.196 0l-5 1A.5.5 0 0 0 0 1.5v14a.5.5 0 0 0 .598.49l4.902-.98 4.902.98a.5.5 0 0 0 .196 0l5-1A.5.5 0 0 0 16 14.5zM5 14.09V1.11l.5-.1.5.1v12.98l-.402-.08a.5.5 0 0 0-.196 0zm5 .8V1.91l.402.08a.5.5 0 0 0 .196 0L11 1.91v12.98l-.5.1z"/>
-        </svg>
-      </a>
-    </li>
-    <li>
-      <a href="#">
-        <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor"
-             class="bi bi-chat-left-text-fill" viewBox="0 0 16 16">
-          <path
-                  d="M0 2a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H4.414a1 1 0 0 0-.707.293L.854 15.146A.5.5 0 0 1 0 14.793zm3.5 1a.5.5 0 0 0 0 1h9a.5.5 0 0 0 0-1zm0 2.5a.5.5 0 0 0 0 1h9a.5.5 0 0 0 0-1zm0 2.5a.5.5 0 0 0 0 1h5a.5.5 0 0 0 0-1z"/>
-        </svg>
-      </a>
-    </li>
-    <li>
-      <a href="#">
-        <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor"
-             class="bi bi-file-play-fill" viewBox="0 0 16 16">
-          <path
-                  d="M12 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2M6 5.883a.5.5 0 0 1 .757-.429l3.528 2.117a.5.5 0 0 1 0 .858l-3.528 2.117a.5.5 0 0 1-.757-.43V5.884z"/>
-        </svg>
-      </a>
-    </li>
-  </ul>
+    <ul>
+        <li>
+            <a href="main">
+                <img src="/images/WaveLogo2.png" class="logo">
+            </a>
+        </li>
+        <li>
+            <a href="main">
+                <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor"
+                     class="bi bi-house-fill" viewBox="0 0 16 16">
+                    <path
+                            d="M8.707 1.5a1 1 0 0 0-1.414 0L.646 8.146a.5.5 0 0 0 .708.708L8 2.207l6.646 6.647a.5.5 0 0 0 .708-.708L13 5.793V2.5a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5v1.293z"/>
+                    <path d="m8 3.293 6 6V13.5a1.5 1.5 0 0 1-1.5 1.5h-9A1.5 1.5 0 0 1 2 13.5V9.293z"/>
+                </svg>
+            </a>
+        </li>
+        <li>
+            <a href="map?p_place=수원">
+                <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor"
+                     class="bi bi-map-fill" viewBox="0 0 16 16">
+                    <path fill-rule="evenodd"
+                          d="M16 .5a.5.5 0 0 0-.598-.49L10.5.99 5.598.01a.5.5 0 0 0-.196 0l-5 1A.5.5 0 0 0 0 1.5v14a.5.5 0 0 0 .598.49l4.902-.98 4.902.98a.5.5 0 0 0 .196 0l5-1A.5.5 0 0 0 16 14.5zM5 14.09V1.11l.5-.1.5.1v12.98l-.402-.08a.5.5 0 0 0-.196 0zm5 .8V1.91l.402.08a.5.5 0 0 0 .196 0L11 1.91v12.98l-.5.1z"/>
+                </svg>
+            </a>
+        </li>
+        <li>
+            <a href="shorts">
+                <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor"
+                     class="bi bi-file-play-fill" viewBox="0 0 16 16">
+                    <path
+                            d="M12 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2M6 5.883a.5.5 0 0 1 .757-.429l3.528 2.117a.5.5 0 0 1 0 .858l-3.528 2.117a.5.5 0 0 1-.757-.43V5.884z"/>
+                </svg>
+            </a>
+        </li>
+        <li>
+            <a href="alarm">
+            <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-bell" viewBox="0 0 16 16">
+                <path d="M8 16a2 2 0 0 0 2-2H6a2 2 0 0 0 2 2M8 1.918l-.797.161A4 4 0 0 0 4 6c0 .628-.134 2.197-.459 3.742-.16.767-.376 1.566-.663 2.258h10.244c-.287-.692-.502-1.49-.663-2.258C12.134 8.197 12 6.628 12 6a4 4 0 0 0-3.203-3.92zM14.22 12c.223.447.481.801.78 1H1c.299-.199.557-.553.78-1C2.68 10.2 3 6.88 3 6c0-2.42 1.72-4.44 4.005-4.901a1 1 0 1 1 1.99 0A5 5 0 0 1 13 6c0 .88.32 4.2 1.22 6"/>
+            </svg>
+            </a>
+        </li>
+        <th:block th:if="${session.userid=='smartwave0377'}"> <!--관리자용 메뉴-->
+            <li>
+                <a href="manager">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor"
+                         class="bi bi-gear-fill" viewBox="0 0 16 16">
+                        <path d="M9.405 1.05c-.413-1.4-2.397-1.4-2.81 0l-.1.34a1.464 1.464 0 0 1-2.105.872l-.31-.17c-1.283-.698-2.686.705-1.987 1.987l.169.311c.446.82.023 1.841-.872 2.105l-.34.1c-1.4.413-1.4 2.397 0 2.81l.34.1a1.464 1.464 0 0 1 .872 2.105l-.17.31c-.698 1.283.705 2.686 1.987 1.987l.311-.169a1.464 1.464 0 0 1 2.105.872l.1.34c.413 1.4 2.397 1.4 2.81 0l.1-.34a1.464 1.464 0 0 1 2.105-.872l.31.17c1.283.698 2.686-.705 1.987-1.987l-.169-.311a1.464 1.464 0 0 1 .872-2.105l.34-.1c1.4-.413 1.4-2.397 0-2.81l-.34-.1a1.464 1.464 0 0 1-.872-2.105l.17-.31c.698-1.283-.705-2.686-1.987-1.987l-.311.169a1.464 1.464 0 0 1-2.105-.872zM8 10.93a2.929 2.929 0 1 1 0-5.86 2.929 2.929 0 0 1 0 5.858z"/>
+                    </svg>
+                </a>
+            </li>
+        </th:block>
+    </ul>
 </nav>
-<div class="mypic">
-  <div class="dropdown-content">
-    <th:block th:if="${session.userid!=null}">
-      <a href="#">프로필(<span th:text="${session.userid}">)</span></a>
-    </th:block>
-    <a href="logout">로그아웃</a>
-  </div>
-  <a href="#">
-    <img src="/images/메인_2.jpg" alt="myPic">
-  </a>
+<div class="mypic" style="z-index: 2">
+    <div class="dropdown-content">
+        <th:block th:if="${session.userid!=null}">
+            <a th:href="@{/profile(u_id=${session.userid})}">프로필(<span th:text="${session.userid}"></span>)</a>
+        </th:block>
+        <a href="logout">로그아웃</a>
+    </div>
+    <a href="#">
+        <th:block th:if="${profiledetail.u_pic!=null}">
+            <img th:src="@{/download(filename=${profiledetail2.u_pic})}">
+        </th:block>
+    </a>
 </div>
 <!--상단 네비-->
 <nav id="navTop">
-  <a href="main">
-    <svg xmlns="http://www.w3.org/2000/svg" width="35" height="35" fill="currentColor"
-         class="bi bi-bootstrap-fill" viewBox="0 0 16 16">
-      <path
-              d="M6.375 7.125V4.658h1.78c.973 0 1.542.457 1.542 1.237 0 .802-.604 1.23-1.764 1.23zm0 3.762h1.898c1.184 0 1.81-.48 1.81-1.377 0-.885-.65-1.348-1.886-1.348H6.375z"/>
-      <path
-              d="M4.002 0a4 4 0 0 0-4 4v8a4 4 0 0 0 4 4h8a4 4 0 0 0 4-4V4a4 4 0 0 0-4-4zm1.06 12V3.545h3.399c1.587 0 2.543.809 2.543 2.11 0 .884-.65 1.675-1.483 1.816v.1c1.143.117 1.904.931 1.904 2.033 0 1.488-1.084 2.396-2.888 2.396z"/>
-    </svg>
-  </a>
-  <ul>
-    <form>
-      <li><input type="search" placeholder="검색" class="search"></li>
-      <li><input type="submit" value="검색" class="submit"></li>
-    </form>
-  </ul>
+    <ul>
+        <form action="postSearchById" method="get">
+            <li><input type="search" placeholder="검색" class="search" name="searchWord"></li>
+            <li><input type="submit" value="검색" class="submit"></li>
+        </form>
+    </ul>
 </nav>
 
 <div id="profilebox">
-  <h3>my profile</h3>
-  <div> <img src="/images/파닥몬.png" class="pro_pic">
-    <button id="picbtn">파일선택</button>
-    <label id="pro_id">@아이디 나올곳</label>
-  </div>
-  <label class="infor">소개</label><br>
-  <div id="fled">
-    <input type="text" class="tex" id="newintro" name="u_intro" placeholder="내용" required>
-    <a th:href="@{/proupdate(id=${session.userid})}"> <button id="probtn">수정</button><a>
-  </div>
+    <div class="profile">
+
+        <div class="profile-image">
+
+            <th:block th:if="${profiledetail.u_pic!=null}">
+                <img th:src="@{/download(filename=${profiledetail.u_pic})}">
+            </th:block>
+        </div>
+
+        <div class="profile-user-settings">
+            <th:block th:if="${session.userid==mainsuser}"><b><span th:text="${session.userid}" id="mainuser"
+                                                                    style="font-style:italic;"></span></b>
+            </th:block>
+            <th:block th:unless="${session.userid==mainsuser}"><b><span th:text="${otheruser}" id="otheruser"
+                                                                        style="font-style:italic;"></span></b>
+            </th:block>
+
+            <th:block th:if="${session.userid==mainsuser} and ${session.userid!='smartwave0377'}">
+                <button class="editbtn" th:onclick="|location.href='@{/proupdate}'|">편집</button>
+                <button class="editbtn" th:onclick="|location.href='@{/withdrawform}'|">탈퇴</button>
+                <input type="hidden" th:value="${mainsuser}" id="myid">
+                <input type="hidden" th:value="${session.userid}" id="seid">
+            </th:block>
+            <th:block th:unless="${session.userid==mainsuser}">
+                <button class="followbtn" id="followlike">팔로우</button>
+            </th:block>
+            <th:block th:if="${session.userid=='smartwave0377'} and ${session.userid==mainsuser} ">
+                <button class="followbtn" th:onclick="|location.href='@{/manager}'|">관리</button>
+            </th:block>
+            <input type="hidden" th:value="${followuser}" id="otherid">
+
+            <input type="hidden" th:value="${session.userid}" id="currentid">
+        </div>
+        <div class="profile-stats">
+
+
+            <ul>
+                <li class="stat"> 게시물 <span class="profile-stat-count" id="postcnts"></span></li>
+                <li class="stat"> 쇼츠 <span class="profile-stat-count" id="shortcnts"></span></li>
+
+                <li class="stat"><a th:href="@{/followList(id=${followuser})}">팔로워</a> <span class="profile-stat-count"
+                                                                                             id="followercnts"></span>
+                </li>
+
+                <li class="stat"><a th:href="@{/followList(id=${followuser})}">팔로우</a> <span class="profile-stat-count"
+                                                                                             id="followcnts"></span>
+                </li>
+
+                <!--로그인 했을시 자기 팔로우 뜨도록 -->
+                <!--                <li class="stat"><span class="profile-stat-count">숫자</span> 팔로우</li>-->
+                <!--                <li class="stat"><span class="profile-stat-count">숫자</span> 팔로워</li>-->
+            </ul>
+
+        </div>
+
+        <div class="profile-bio">
+            <th:block th:if="${profiledetail.u_intro!=null}">
+                <p th:text="${profiledetail.u_intro}"></p>
+            </th:block>
+        </div>
+
+    </div>
 </div>
 
 
-</form>
-</body>
+<div class="tab">
+    <ul class="tabnav">
+        <li><a href="#tab01">게시물</a></li>
+        <li><a href="#tab02">쇼츠</a></li>
+    </ul>
+    <!--게시글 관리-->
+    <div class="tabcontent">
+        <div id="tab01">
+            <div id="over">
+                <table>
+                    <tr class="row row-cols-3">
+                        <td class="postList" th:each="postVOList:${postVOList}">
+                            <a th:href="@{/detail(p_no=${postVOList.p_no}, p_id=${session.userid})}" class="detail">
+                                <th:block th:if="${postVOList.pp_pic!=null}">
+                                    <div class="box">
+                                        <img class="inpic" th:src="@{/download(filename=${postVOList.pp_pic})}">
+                                    </div>
+                                </th:block>
+                                <th:block th:if="${postVOList.pp_pic==null}">
+                                    <div class="box2">
+                                        <span class="intext" th:text="${postVOList.p_text}"></span>
+                                    </div>
+                                </th:block>
+                            </a>
+                        </td>
+                    </tr>
+                </table>
+
+            </div>
+        </div>
+        <div id="tab02">
+            <!--shortVOList-->
+            <div class="container">
+                <div class="short" th:each="shortList:${shortVOList}">
+                    <a class="short-Link" th:href="@{/short(s_no = ${shortList.s_no},slike_id = ${session.userid})}">
+                        <section class="thumbnail">
+                            <th:block th:if="${shortList.sv_thumbnail!=null}">
+                                <img alt="썸네일" th:src="@{/download(filename=${shortList.sv_thumbnail})}">
+                            </th:block>
+                        </section>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 
 
-</html>
 </body>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script type="text/javascript" src="/js/profile.js"></script>
+
+<script>
+    $('document').ready(function () {
+        followchk();// 화면 로딩될때 팔로우 상태인지 확인 여부 ajax로 화면 로딩 되자마자 판단 하기위한 함수
+        followrCount();// 팔로우 버튼을 클릭할시 상대 아이디 프로필에는 팔로워 수가 1 내프로필화면은 팔로우 수가 1
+        followchk();//팔로우수
+    })
+
+
+    $('#followlike').click(function () {//팔로우 버튼 클릭햇을시 함수 호출
+        let followid = $('#otherid').val();
+        let followerid = $('#currentid').val();
+        let followbtn = document.getElementById('followlike');
+        let message;// 알림 메세지 저장
+        console.log("팔로우당한사람 아이디" + followid);
+        console.log("팔로우 누른아이디 팔로워수 추가 " + followerid);
+        $.ajax({
+            url: "/follow",
+            type: "post",
+            data: {"follow_id": followid, "follower_id": followerid},
+            dataType: "json",
+            success: function (cnt) {
+                if (cnt == 0) {
+                    followrCount();// 팔로우 버튼 클릭되엇을시 ajax 통해서 불러온 팔로워 숫자 나타나도록
+                    followCount();// 팔로우 버튼 클릭되엇을시 ajax 통해서 불러온 팔로우 숫자 나타나도록
+                    followbtn.innerText = '팔로우';
+
+                } else {
+                    followrCount();
+                    followCount();
+                    followbtn.innerText = '언팔로우';
+
+                }
+            }
+        })
+        // 쪽지
+        if (followbtn.innerHTML=='언팔로우'){
+            message= followerid+"님이" +followid+"님을 언팔로우 했습니다"
+        }else{
+            message= followerid+"님이" +followid+"님을 팔로우 했습니다"
+        }
+        
+        $.ajax({
+            url:"alarmcontent",
+            type:"post",
+            data: {"message": message,"user_id":followid,"other_id":followerid}
+        })
+
+    });
+
+    function followchk() {// 화면 로딩될때 팔로우 상태인지 확인 여부
+        let followid = $('#otherid').val();
+        let followerid = $('#currentid').val();
+        let followbtn = document.getElementById('followlike');
+        $.ajax({
+            url: "/followchk",
+            type: "post",
+            data: {"follow_id": followid, "follower_id": followerid},
+            dataType: "json",
+            success: function (cnt) {
+                if (cnt == 0) {
+                    followrCount();// 화면 로딩시
+                    followCount();
+                    followbtn.innerText = '팔로우';
+                } else {
+                    followrCount();
+                    followCount();
+                    followbtn.innerText = '언팔로우';
+                }
+            }
+        });
+    };
+
+
+    function followrCount() {//팔로워수(로그인한 사람이 팔로우 버튼 클릭했을시 상대 프로필 팔로워수+)
+        let followid = $('#otherid').val();
+        let followerscount = document.getElementById("followercnts")
+        $.ajax({
+            url: "/followerCount",
+            type: "post",
+            data: {"follow_id": followid},
+            dataType: "json",
+            success: function (followercnt) {
+                followerscount.textContent = followercnt;
+            }
+        })
+    }
+
+    function followCount() {//팔로우수(로그인한 사람이 팔로우 버튼 클릭했을시 내 프로필 팔로워수 +)
+
+        let followerid = $('#otherid').val();
+        let followscount = document.getElementById("followcnts")
+        $.ajax({
+            url: "/followCount",
+            type: "post",
+            data: {"follower_id": followerid},
+            dataType: "json",
+            success: function (followcnt) {
+                followscount.textContent = followcnt;
+            }
+        })
+    }
+
+</script>
+
 </html>

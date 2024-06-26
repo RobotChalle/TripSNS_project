@@ -86,7 +86,7 @@ h3 {
 }
 
 .tex {
-    width: 230px;
+    width: 270px;
     height: 40px;
     font-size: 15px;
     border: 0.1px;
@@ -98,75 +98,94 @@ h3 {
     margin-left: 40px;
     margin-top: 10px;
     font-family: apple Black;
-    display: flex;
+    /*display: flex;*/
 }
 
 .tex:hover {
     border: 0.2px solid;
 }
+#fled{
+    margin-right: 10px;
+}
 
 
 .pro_pic {
     margin: 0 auto;
-    margin-left: 70px;
+    margin-left: 86px;
     border: 0.5px solid;
     border-radius: 50%;
+    width: 180px;
+    height: 180px;
+    object-fit:cover;
 }
 
 #pro_id {
-    margin-left: 120px;
+    margin-left: 150px;
 
     font-family: apple Black;
 
 }
-
-#picbtn {
-
-    border: 0.1px;
-    border-color: rgb(233, 233, 233, 0.1);
-    border-radius: 15px;
-    outline: none;
-    background-color: rgb(56, 100, 178, 0.5);
+#upload{
+    text-align: center;
     font-family: apple Black;
-    margin-left: 250px;
+    width: 45px;
+    height: 30px;
+    background: #fff;
+    border: 1px solid rgb(77, 77, 77);
+    border-radius: 10px;
+    cursor: pointer;
+}
+#upload:hover{
+    border: 1px solid cornflowerblue;
+}
+input[type=file]::file-selector-button {
+    font-family: apple Black;
+    width: 70px;
+    height: 30px;
+    background: #fff;
+    border: 1px solid rgb(77, 77, 77);
+    border-radius: 10px;
+    cursor: pointer;
+    margin-left: 220px;
+}
 
-
+input[type=file]::file-selector-button:hover {
+    border: 1px solid cornflowerblue;
 }
 
 #probtn {
-    width: 50px;
-    height: 45px;
-    font-size: 15px;
-    border: 0.1px;
-    border-color: rgb(233, 233, 233, 0.1);
-    border-radius: 15px;
-    outline: none;
-    background-color: rgb(56, 100, 178, 0.5);
-    margin-top: 10px;
-    margin-left: 5px;
     font-family: apple Black;
-
+    width: 280px;
+    height: 40px;
+    background: #fff;
+    border: 1px solid rgb(77, 77, 77);
+    border-radius: 10px;
+    cursor: pointer;
+    margin-top: 50px;
+    margin-left: 40px;
+}
+#probtn:hover{
+    border: 1px solid cornflowerblue;
 }
 
-#fled {
-    display: flex;
-}
+
+
 
 #userbtn {
-
+    font-family: apple Black;
     width: 70px;
-    height: 45px;
-    font-size: 15px;
-    border: 0.1px;
-    border-color: rgb(233, 233, 233, 0.1);
-    border-radius: 15px;
-    outline: none;
-    background-color: rgb(56, 100, 178, 0.5);
+    height: 40px;
+    background: #fff;
+    border: 1px solid rgb(77, 77, 77);
+    border-radius: 10px;
+    cursor: pointer;
     margin-top: 20px;
     margin-left: 45px;
-    font-family: apple Black;
-
 }
+#userbtn:hover{
+    border: 1px solid cornflowerblue;
+}
+
 
 #errmsg {
     margin-left: 15px;

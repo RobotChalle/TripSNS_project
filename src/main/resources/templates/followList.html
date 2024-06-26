@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="kor">
+
+<head>
+    <meta charset="UTF-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <title>여행여행</title>
+    <link href="/css/main_navTop.css" rel="stylesheet">
+    <link href="/css/main_navSide.css" rel="stylesheet">
+    <link href="/css/main_feed.css" rel="stylesheet">
+    <script src="/js/post_like.js"></script>
+</head>
+<style>
+    * {
+        padding: 0;
+        margin: 0;
+        font-family: apple black;
+        text-decoration-line: none;
+    }
+
+    @font-face {
+        font-family: apple;
+        src: url(/font/AppleSDGothicNeoL.ttf);
+    }
+
+    body {
+        background: linear-gradient(300deg, deepskyblue, #b8f4f9, #0060ff);
+        animation: gradient-animation 5s ease infinite;
+        background-position: center;
+        background-size: 180% 180%;
+        background-attachment: fixed;
+    }
+
+    @keyframes gradient-animation {
+        0% {
+            background-position: 0% 50%;
+        }
+        50% {
+            background-position: 100% 50%;
+        }
+        100% {
+            background-position: 0% 50%;
+        }
+    }
+
+    section {
+        padding-top: 6%;
+    }
+
+    div, ul, li {
+        margin: 0;
+        padding: 0;
+    }
+
+    ul, li {
+        list-style: none;
+    }
+
+    div.feedBoard {
+        flex: 6.5;
+        width: 80%;
+        float: right;
+        padding-top: 20px;
+        padding-right: 150px;
+        margin-bottom: -50px;
+    }
+
+    .tab {
+        background-color: rgba(255, 255, 255, 0.75);
+        border: 1px solid #e8e8e8;
+        border-radius: 1%;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+        transition: all 0.3s cubic-bezier(.25, .8, .25, 1);
+
+        float: left;
+        width: 1100px;
+    }
+
+    .tabnav {
+        font-size: 0;
+        width: 1100px;
+    }
+
+    .tabnav li {
+        display: inline-block;
+        height: 46px;
+        text-align: center;
+    }
+
+    .tabnav li a:before {
+        content: "";
+        position: absolute;
+        left: 0;
+        bottom: 0px;
+        width: 100%;
+        height: 3px;
+    }
+
+    .tabnav li a.active:before {
+        background: cornflowerblue;
+    }
+
+    .tabnav li a.active {
+        /*border-bottom: 1px solid #fff;*/
+    }
+
+    .tabnav li a {
+        position: relative;
+        display: block;
+        /*background: rgba(248, 248, 248, 0.75);*/
+        color: #000;
+        padding: 0 30px;
+        line-height: 46px;
+        text-decoration: none;
+        font-size: 16px;
+    }
+
+    .tabnav li a:hover, .tabnav li a.active {
+        /*background: rgba(255, 255, 255, 0.75);*/
+        color: cornflowerblue;
+    }
+
+    .tabcontent {
+        padding: 20px;
+        border-top: none;
+    }
+
+    .tab:hover {
+        box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
+    }
+
+    #tab01 {
+        height: 700px;
+        overflow-x: auto;
+    }
+
+    #tab01 .feed {
+        margin-top: 50px;
+    }
+
+    #tab02 {
+        height: 700px;
+        overflow-x: auto;
+    }
+
+    #tab02 .container {
+        flex: 6.5;
+        width: 60%;
+        float: right;
+        padding-right: 200px;
+        margin-top: 50px;
+        margin-bottom: -50px;
+    }
+
+    .short {
+        float: left;
+        display: flex;
+        width: 30%;
+        margin-left: 10px;
+        margin-top: 10px;
+        background: #fff;
+        border: 1px solid #e8e8e8;
+        border-radius: 10px;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+        transition: all 0.3s cubic-bezier(.25, .8, .25, 1);
+    }
+
+    .short:hover {
+        box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
+    }
+
+    .thumbnail img {
+        width: 100%;
+        object-fit: fill;
+        border-radius: 10px;
+    }
+
+
+    #tab03 {
+        height: 700px;
+        overflow-x: auto;
+    }
+
+    .profile {
+        width: 98%;
+        height: 200px;
+        background: #fff;
+        border: 1px solid #e8e8e8;
+        border-radius: 10px;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+        transition: all 0.3s cubic-bezier(.25, .8, .25, 1);
+        margin-top: 30px;
+    }
+
+    .profile:hover {
+        box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
+    }
+
+    .userte {
+        font-size: 80px;
+        margin-top: 30px;
+        font-family: apple Black;
+        color: inherit; /* 링크의 색상 제거 */
+    }
+
+    .userImage {
+        float: left;
+        width: calc(33.333% - 1rem);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-right: 3rem;
+    }
+
+    .userImage img {
+        border-radius: 50%;
+        margin-top: 10px;
+        width: 180px;
+        height: 180px;
+        object-fit: cover;
+    }
+
+    a {
+        color: black
+    }
+
+
+</style>
+
+<body>
+<!--좌측 네비-->
+<nav id="navSide">
+    <ul>
+        <li>
+            <a href="main">
+                <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor"
+                     class="bi bi-house-fill" viewBox="0 0 16 16">
+                    <path
+                            d="M8.707 1.5a1 1 0 0 0-1.414 0L.646 8.146a.5.5 0 0 0 .708.708L8 2.207l6.646 6.647a.5.5 0 0 0 .708-.708L13 5.793V2.5a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5v1.293z"/>
+                    <path d="m8 3.293 6 6V13.5a1.5 1.5 0 0 1-1.5 1.5h-9A1.5 1.5 0 0 1 2 13.5V9.293z"/>
+                </svg>
+            </a>
+        </li>
+        <li>
+            <a href="map?p_place=수원">
+                <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor"
+                     class="bi bi-map-fill" viewBox="0 0 16 16">
+                    <path fill-rule="evenodd"
+                          d="M16 .5a.5.5 0 0 0-.598-.49L10.5.99 5.598.01a.5.5 0 0 0-.196 0l-5 1A.5.5 0 0 0 0 1.5v14a.5.5 0 0 0 .598.49l4.902-.98 4.902.98a.5.5 0 0 0 .196 0l5-1A.5.5 0 0 0 16 14.5zM5 14.09V1.11l.5-.1.5.1v12.98l-.402-.08a.5.5 0 0 0-.196 0zm5 .8V1.91l.402.08a.5.5 0 0 0 .196 0L11 1.91v12.98l-.5.1z"/>
+                </svg>
+            </a>
+        </li>
+        <li>
+            <a href="shorts">
+                <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor"
+                     class="bi bi-file-play-fill" viewBox="0 0 16 16">
+                    <path
+                            d="M12 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2M6 5.883a.5.5 0 0 1 .757-.429l3.528 2.117a.5.5 0 0 1 0 .858l-3.528 2.117a.5.5 0 0 1-.757-.43V5.884z"/>
+                </svg>
+            </a>
+        </li>
+        <li>
+            <a href="alarm">
+                <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-bell" viewBox="0 0 16 16">
+                    <path d="M8 16a2 2 0 0 0 2-2H6a2 2 0 0 0 2 2M8 1.918l-.797.161A4 4 0 0 0 4 6c0 .628-.134 2.197-.459 3.742-.16.767-.376 1.566-.663 2.258h10.244c-.287-.692-.502-1.49-.663-2.258C12.134 8.197 12 6.628 12 6a4 4 0 0 0-3.203-3.92zM14.22 12c.223.447.481.801.78 1H1c.299-.199.557-.553.78-1C2.68 10.2 3 6.88 3 6c0-2.42 1.72-4.44 4.005-4.901a1 1 0 1 1 1.99 0A5 5 0 0 1 13 6c0 .88.32 4.2 1.22 6"/>
+                </svg>
+            </a>
+        </li>
+        <th:block th:if="${session.userid=='smartwave0377'}"> <!--관리자용 메뉴-->
+            <li>
+                <a href="manager">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor"
+                         class="bi bi-gear-fill" viewBox="0 0 16 16">
+                        <path d="M9.405 1.05c-.413-1.4-2.397-1.4-2.81 0l-.1.34a1.464 1.464 0 0 1-2.105.872l-.31-.17c-1.283-.698-2.686.705-1.987 1.987l.169.311c.446.82.023 1.841-.872 2.105l-.34.1c-1.4.413-1.4 2.397 0 2.81l.34.1a1.464 1.464 0 0 1 .872 2.105l-.17.31c-.698 1.283.705 2.686 1.987 1.987l.311-.169a1.464 1.464 0 0 1 2.105.872l.1.34c.413 1.4 2.397 1.4 2.81 0l.1-.34a1.464 1.464 0 0 1 2.105-.872l.31.17c1.283.698 2.686-.705 1.987-1.987l-.169-.311a1.464 1.464 0 0 1 .872-2.105l.34-.1c1.4-.413 1.4-2.397 0-2.81l-.34-.1a1.464 1.464 0 0 1-.872-2.105l.17-.31c.698-1.283-.705-2.686-1.987-1.987l-.311.169a1.464 1.464 0 0 1-2.105-.872zM8 10.93a2.929 2.929 0 1 1 0-5.86 2.929 2.929 0 0 1 0 5.858z"/>
+                    </svg>
+                </a>
+            </li>
+        </th:block>
+    </ul>
+</nav>
+<div class="mypic">
+    <div class="dropdown-content">
+        <th:block th:if="${session.userid!=null}">
+            <a th:href="@{/profile(u_id=${session.userid})}">프로필(<span th:text="${session.userid}"></span>)</a>
+        </th:block>
+        <a href="logout">로그아웃</a>
+    </div>
+    <a href="#">
+        <th:block th:if="${profiledetail.u_pic!=null}">
+            <img th:src="@{/download(filename=${profiledetail.u_pic})}">
+        </th:block>
+    </a>
+</div>
+<!--상단 네비-->
+<nav id="navTop">
+    <a href="main">
+        <svg xmlns="http://www.w3.org/2000/svg" width="35" height="35" fill="currentColor" class="bi bi-tsunami"
+             viewBox="0 0 16 16">
+            <path d="M.036 12.314a.5.5 0 0 1 .65-.278l1.757.703a1.5 1.5 0 0 0 1.114 0l1.014-.406a2.5 2.5 0 0 1 1.857 0l1.015.406a1.5 1.5 0 0 0 1.114 0l1.014-.406a2.5 2.5 0 0 1 1.857 0l1.015.406a1.5 1.5 0 0 0 1.114 0l1.757-.703a.5.5 0 1 1 .372.928l-1.758.703a2.5 2.5 0 0 1-1.857 0l-1.014-.406a1.5 1.5 0 0 0-1.114 0l-1.015.406a2.5 2.5 0 0 1-1.857 0l-1.014-.406a1.5 1.5 0 0 0-1.114 0l-1.015.406a2.5 2.5 0 0 1-1.857 0l-1.757-.703a.5.5 0 0 1-.278-.65m0 2a.5.5 0 0 1 .65-.278l1.757.703a1.5 1.5 0 0 0 1.114 0l1.014-.406a2.5 2.5 0 0 1 1.857 0l1.015.406a1.5 1.5 0 0 0 1.114 0l1.014-.406a2.5 2.5 0 0 1 1.857 0l1.015.406a1.5 1.5 0 0 0 1.114 0l1.757-.703a.5.5 0 1 1 .372.928l-1.758.703a2.5 2.5 0 0 1-1.857 0l-1.014-.406a1.5 1.5 0 0 0-1.114 0l-1.015.406a2.5 2.5 0 0 1-1.857 0l-1.014-.406a1.5 1.5 0 0 0-1.114 0l-1.015.406a2.5 2.5 0 0 1-1.857 0l-1.757-.703a.5.5 0 0 1-.278-.65M2.662 8.08c-.456 1.063-.994 2.098-1.842 2.804a.5.5 0 0 1-.64-.768c.652-.544 1.114-1.384 1.564-2.43.14-.328.281-.68.427-1.044.302-.754.624-1.559 1.01-2.308C3.763 3.2 4.528 2.105 5.7 1.299 6.877.49 8.418 0 10.5 0c1.463 0 2.511.4 3.179 1.058.67.66.893 1.518.819 2.302-.074.771-.441 1.516-1.02 1.965a1.88 1.88 0 0 1-1.904.27c-.65.642-.907 1.679-.71 2.614C11.076 9.215 11.784 10 13 10h2.5a.5.5 0 0 1 0 1H13c-1.784 0-2.826-1.215-3.114-2.585-.232-1.1.005-2.373.758-3.284L10.5 5.06l-.777.388a.5.5 0 0 1-.447 0l-1-.5a.5.5 0 0 1 .447-.894l.777.388.776-.388a.5.5 0 0 1 .447 0l1 .5.034.018c.44.264.81.195 1.108-.036.328-.255.586-.729.637-1.27.05-.529-.1-1.076-.525-1.495s-1.19-.77-2.477-.77c-1.918 0-3.252.448-4.232 1.123C5.283 2.8 4.61 3.738 4.07 4.79c-.365.71-.655 1.433-.945 2.16-.15.376-.301.753-.463 1.13"/>
+        </svg>
+    </a>
+    <ul>
+        <form action="postSearchById" method="get">
+            <li><input type="search" placeholder="검색" class="search" name="searchWord"></li>
+            <li><input type="submit" value="검색" class="submit"></li>
+        </form>
+    </ul>
+</nav>
+<!--메인 피드-->
+<section>
+    <main>
+        <div class="feedBoard">
+            <div class="tab">
+                <ul class="tabnav">
+                    <li><a href="#tab01">팔로우</a></li>
+                    <li><a href="#tab02">팔로워</a></li>
+                </ul>
+                <!--게시글 관리-->
+                <div class="tabcontent">
+                    <div id="tab01">
+                        <div class="profile" th:each="followList:${followList}">
+                            <div class="userImage">
+                                <img th:src="@{/download(filename=${followList.u_pic})}" class="roundImg">
+                            </div>
+                            <div class="userte">
+                                <a th:href="@{/otherprofile(p_id=${followList.follow_id})}"
+                                   th:text="${followList.follow_id}" class="postId" style="font-style:italic"></a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="tab02">
+                        <div class="profile" th:each="followerList:${followerList}">
+                            <div class="userImage">
+                                <img th:src="@{/download(filename=${followerList.u_pic})}" class="roundImg">
+                            </div>
+                            <div class="userte">
+                                <a th:href="@{/otherprofile(p_id=${followerList.follower_id})}"
+                                   th:text="${followerList.follower_id}" class="postId" style="font-style:italic"></a>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </main>
+</section>
+<div class="mypic">
+    <div class="dropdown-content">
+        <th:block th:if="${session.userid!=null}">
+            <a th:href="@{/profile(u_id=${session.userid})}">프로필(<span th:text="${session.userid}"></span>)</a>
+        </th:block>
+        <a href="logout">로그아웃</a>
+    </div>
+    <a href="#">
+        <th:block th:if="${profiledetail.u_pic!=null}">
+            <img th:src="@{/download(filename=${profiledetail.u_pic})}">
+        </th:block>
+    </a>
+</div>
+</body>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script>
+    //탭 기능
+    $(function () {
+        $('.tabcontent > div').hide();
+        $('.tabnav a').click(function () {
+            $('.tabcontent > div').hide().filter(this.hash).fadeIn();
+            $('.tabnav a').removeClass('active');
+            $(this).addClass('active');
+            return false;
+        }).filter(':eq(0)').click();
+    });
+</script>
+</html>

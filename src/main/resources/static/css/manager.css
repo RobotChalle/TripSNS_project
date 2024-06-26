@@ -1,0 +1,511 @@
+div, ul, li {
+    margin: 0;
+    padding: 0;
+}
+
+ul, li {
+    list-style: none;
+}
+
+div.feedBoard {
+    flex: 6.5;
+    width: 80%;
+    float: right;
+    padding-top: 20px;
+    padding-right: 150px;
+    margin-bottom: -50px;
+}
+
+.tab {
+    background-color: rgba(255, 255, 255, 0.75);
+    border: 1px solid #e8e8e8;
+    border-radius: 1%;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+    transition: all 0.3s cubic-bezier(.25, .8, .25, 1);
+
+    float: left;
+    width: 1100px;
+}
+
+.tabnav {
+    font-size: 0;
+    width: 1100px;
+}
+
+.tabnav li {
+    display: inline-block;
+    height: 46px;
+    text-align: center;
+}
+
+.tabnav li a:before {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: 0px;
+    width: 100%;
+    height: 3px;
+}
+
+.tabnav li a.active:before {
+    background: cornflowerblue;
+}
+
+.tabnav li a.active {
+    /*border-bottom: 1px solid #fff;*/
+}
+
+.tabnav li a {
+    position: relative;
+    display: block;
+    /*background: rgba(248, 248, 248, 0.75);*/
+    color: #000;
+    padding: 0 30px;
+    line-height: 46px;
+    text-decoration: none;
+    font-size: 16px;
+}
+
+.tabnav li a:hover, .tabnav li a.active {
+    /*background: rgba(255, 255, 255, 0.75);*/
+    color: cornflowerblue;
+}
+
+.tabcontent {
+    padding: 20px;
+    border-top: none;
+}
+
+.tab:hover {
+    box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
+}
+
+/*이 위는 전부 내껄로 머지하셈. 일단 하셈.*/
+/*게시글 관리 테이블*/
+#tab01 .detail {
+    color: #999;
+}
+
+#tab01 h1 {
+    font-size: 30px;
+    color: black;
+    text-transform: uppercase;
+    font-weight: 300;
+    text-align: center;
+    margin-bottom: 15px;
+}
+
+#tab01 table {
+    width: 100%;
+    table-layout: fixed;
+}
+
+#tab01 .tbl-header {
+    background-color: rgba(255, 255, 255, 0.5);
+}
+
+#tab01 .tbl-content {
+    height: 500px;
+    overflow-x: auto;
+    margin-top: 0px;
+    border: 1px solid rgba(255, 255, 255, 0.5);
+}
+
+#tab01 th {
+    padding: 20px 15px;
+    text-align: left;
+    font-weight: 500;
+    font-size: 12px;
+    color: black;
+    text-transform: uppercase;
+}
+
+#tab01 td {
+    padding: 15px;
+    text-align: left;
+    vertical-align: middle;
+    font-weight: 300;
+    font-size: 12px;
+    color: black;
+    border-bottom: solid 1px rgba(255, 255, 255, 0.5);
+}
+
+/*삭제 버튼*/
+#tab01 .postDelete1 {
+    border: none;
+    padding: 5px 25px;
+    border-radius: 10px;
+    /*box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);*/
+    text-decoration: none;
+    font-weight: 600;
+    transition: 0.50s;
+    background-color: white;
+}
+
+#tab01 .postDelete1:hover {
+    cursor: pointer;
+    box-shadow: 0 14px 28px rgba(255, 0, 0, 0.5), 0 10px 10px rgba(255, 0, 0, 0.5);
+}
+
+#tab01 .postDelete1 a {
+    text-decoration-line: none;
+    color: #000000;
+}
+
+/*게시글 관리 삭제 버튼 2*/
+#tab01 .postOption {
+    padding-top: 15px;
+}
+
+#tab01 .postDelete2 {
+    border: none;
+    padding: 5px 25px;
+    border-radius: 10px;
+    /*box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);*/
+    text-decoration: none;
+    font-weight: 600;
+    transition: 0.50s;
+    background-color: white;
+}
+
+#tab01 .postDelete2:hover {
+    cursor: pointer;
+    box-shadow: 0 14px 28px rgba(255, 0, 0, 0.5), 0 10px 10px rgba(255, 0, 0, 0.5);
+}
+
+#tab01 .postDelete2 a {
+    text-decoration-line: none;
+    color: #000000;
+}
+
+/*게시물 관리 엑셀 다운*/
+#tab01 .postExcel {
+    border: none;
+    padding: 5px 25px;
+    border-radius: 10px;
+    /*box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);*/
+    text-decoration: none;
+    font-weight: 600;
+    transition: 0.50s;
+    background-color: white;
+}
+
+#tab01 .postExcel:hover {
+    cursor: pointer;
+    box-shadow: 0 14px 28px rgba(85, 255, 0, 0.5), 0 10px 10px rgba(85, 255, 0, 0.5);
+}
+
+#tab01 .postExcel a {
+    text-decoration-line: none;
+    color: #000000;
+}
+
+/*게시물 정렬 버튼*/
+#tab01 .sortBtn {
+    border: none;
+    background-color: rgba(255, 255, 255, 0);
+    /*text-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);*/
+}
+
+#tab01 .sortBtn:hover {
+    cursor: pointer;
+    text-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
+    color: cornflowerblue;
+}
+
+/*게시물 검색창*/
+#tab01 .postSearchDiv {
+    float: right;
+    margin-top: -50px;
+    /*line-height: 30px;*/
+}
+
+#tab01 .postSearch {
+    border: none;
+    padding: 5px 25px;
+    border-radius: 10px;
+    /*box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);*/
+    text-decoration: none;
+    font-weight: 600;
+    transition: 0.50s;
+    background-color: white;
+}
+
+#tab01 .postSubmit {
+    border: none;
+    padding: 5px 25px;
+    border-radius: 10px;
+    /*box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);*/
+    text-decoration: none;
+    font-weight: 600;
+    transition: 0.50s;
+    background-color: white;
+    color: cornflowerblue;
+}
+
+#tab01 .postSubmit:hover {
+    cursor: pointer;
+    box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
+}
+
+/************************************/
+#tab02 table {
+    table-layout: fixed;
+    border: 1px #a39485 solid;
+    box-shadow: 0 2px 5px rgba(0,0,0,.25);
+    width: 100%;
+    border-collapse: collapse;
+    border-radius: 5px;
+    height: 500px;
+    overflow: auto;
+}
+#tab02 #tableDiv{
+    height: 500px;
+    overflow-x: auto;
+    margin-top: 0px;
+    border: 1px solid rgba(255, 255, 255, 0.5);
+}
+
+#tab02 h1 {
+    text-align: center;
+    padding: 20px 0;
+}
+
+#tab02 .shortSearch{
+    margin-top: -50px;
+    float: right;
+}
+
+#tab02 .shortSearchInput{
+    border: none;
+    padding: 5px 25px;
+    border-radius: 10px;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+    text-decoration: none;
+    font-weight: 600;
+    transition: 0.50s;
+    background-color: white;
+}
+
+#tab02 table caption {
+    padding: .5em 0;
+}
+
+#tab02 th{
+    position: sticky;
+    top: 0px;
+    padding: 20px 15px;
+    font-size: 14px;
+    text-align: left;
+    background-color: rgba(214, 252, 255, 0.85);
+    width: 80px;
+}
+
+#tab02 td{
+    font-size: 12px;
+    text-align: left;
+    background-color: white;
+    max-height: 50px;
+    overflow: auto;
+}
+#tab02 .deleteB{
+    font-family: apple Black;
+    width: 50px;
+    height: 40px;
+    border: #fa2d2d solid 1px;
+    background: #ffffff;
+    outline: none;
+    border-radius: 10px;
+    cursor: pointer;
+}
+#tab02 .detailB{
+    font-family: apple Black;
+    width: 50px;
+    height: 40px;
+    border: #1a6fff solid 1px;
+    background: #ffffff;
+    outline: none;
+    border-radius: 10px;
+    cursor: pointer;
+
+}
+
+#tab02 .deleteB:hover{
+    border: 1px solid red;
+    background: red;
+    color: white;
+}
+#tab02 .detailB:hover{
+    border: #1a6fff solid 1px;
+    background: #1a6fff;
+    color: white;
+}
+#tab02 .tableOptions{
+    margin-top: 10px;
+    margin-left: 5px;
+}
+#tab02 .delShortchk{
+    font-family: apple Black;
+    width: 75px;
+    height: 25px;
+    border: #fa2d2d solid 1px;
+    background: #ffffff;
+    outline: none;
+    border-radius: 10px;
+    cursor: pointer;
+}
+#tab02 .delShortchk:hover{
+    border: 1px solid red;
+    background: red;
+    color: white;
+}
+#tab02 .shortExel{
+    font-family: apple Black;
+    width: 100px;
+    height: 25px;
+    border: #00ff3b solid 1px;
+    background: #ffffff;
+    outline: none;
+    border-radius: 10px;
+    cursor: pointer;
+}
+#tab02 .shortExel:hover{
+    border: #00ff3b solid 1px;
+    background: #00ff3b ;
+    color: white;
+}
+#tab02 .hidden {
+    display:none;
+}
+/************************************/
+
+/*회원관리*/
+#userTable {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+#usertables {
+    height: 500px;
+    overflow-x: auto;
+}
+
+#userTable th, td {
+    padding: 10px;
+
+    border-bottom: 1px solid black;
+}
+
+#userTable th {
+    position: sticky;
+    top: 0px;
+    background-color: rgba(255, 255, 255, 0.8);
+}
+
+#userTable tr:hover {
+    background-color: rgba(100, 149, 237, 0.15);
+}
+
+.delbtn {
+    font-family: apple Black;
+    width: 50px;
+    height: 40px;
+    background: #fff;
+    border: 1px solid white;
+    outline: none;
+    border-radius: 10px;
+    cursor: pointer;
+
+    /*margin-top: 10px;*/
+}
+
+.probtn {
+    font-family: apple Black;
+    width: 50px;
+    height: 40px;
+    background: #fff;
+    border: 1px solid white;
+    border-radius: 10px;
+    cursor: pointer;
+
+    /*margin-top: 10px;*/
+}
+.bkbtn{
+    font-family: apple Black;
+    width: 70px;
+    height: 40px;
+    background: #fff;
+    border: 1px solid white;
+    border-radius: 10px;
+    cursor: pointer;
+    margin-left:80%;
+
+}
+
+#excelFileExport {
+    font-family: apple Black;
+    width: 70px;
+    height: 40px;
+    background: #fff;
+    border: 1px solid white;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+#excelFileExport:hover {
+    border: 1px solid forestgreen;
+    background: forestgreen;
+    color: white;
+}
+
+#tab03 th {
+    padding: 20px 9px;
+    text-align: left;
+    color: black;
+
+}
+
+.delbtn:hover {
+    border: 1px solid red;
+    background: red;
+    color: white;
+}
+
+.probtn:hover {
+    border: 1px solid cornflowerblue;
+    background: cornflowerblue;
+    color: white;
+}
+.bkbtn:hover{
+    border: 1px solid dimgrey;
+    background: dimgrey;
+    color: white;
+}
+
+#dels {
+    padding-left: 1px;
+}
+
+.usersearch {
+    border: none;
+    padding: 5px 25px;
+    border-radius: 10px;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+    text-decoration: none;
+    font-weight: 600;
+    transition: 0.50s;
+    background-color: white;
+
+}
+.usearch{
+    border: none;
+    padding: 5px 5px;
+    border-radius: 10px;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+    text-decoration: none;
+    font-weight: 600;
+    transition: 0.50s;
+    background-color: white;
+    margin-left:60%;
+}
+/*회원관리*/
