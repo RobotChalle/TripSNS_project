@@ -81,7 +81,7 @@
         width: 100%;
     }
 
-    img {
+    .main img {
         text-align: center;
         display: flex;
         justify-content: center;
@@ -183,11 +183,11 @@
         </div>
         <div class="shortFile">
             <form action="addShort" class="fileInsert" enctype="multipart/form-data" method="post">
-                <input type="file" accept="video/mp4" id="videoFile" name="file" >
+                <input type="file" accept="video/mp4" id="videoFile" name="file" required>
                 <br>
                 <br>
                 <label class="guideline">위 이미지를 클릭하면 썸네일을 다운받을 수 있습니다.</label>
-                <input type="file" name="file" id="thumbnail">
+                <input type="file" name="file" id="thumbnail" required>
                 <br>
                 <br>
                 <input type="submit" value="등록하기">
@@ -209,21 +209,21 @@
         $download.href = '';
         $thumbnail.value = '';
 
-        const [file] = $file.files;
-        const url = URL.createObjectURL(file);
-        const video = document.createElement('video');
-        video.muted = true;
-        video.preload = 'auto';
+        const [file] = $file.files;//목표 비디오 파일
+        const url = URL.createObjectURL(file);//비디오 url 저장
+        const video = document.createElement('video'); //빈 비디오 엘리먼트 생성
+        video.muted = true;//음소거
+        video.preload = 'auto';//페이지가 로딩될때 비디오 파일도 로드
 
-        video.addEventListener('loadeddata', function () {//캔버스로 그려서 썸네일 만들고 url 만드는 부분
-            const canvas = document.createElement('canvas');
-            canvas.width = video.videoWidth;
-            canvas.height = video.videoHeight;
+        video.addEventListener('loadeddata', function () {//캔버스로 그려서 썸네일 만들고 url 넘김 부분
+            const canvas = document.createElement('canvas'); //빈 캔버스 생성
+            canvas.width = video.videoWidth; //캔버스 가로 = 비디오 가로
+            canvas.height = video.videoHeight; // 캔버스 세로 = 비디오 세로
 
-            const ctx = canvas.getContext('2d');
-            ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
+            const ctx = canvas.getContext('2d');//그리기 함수 사용 위해 getContext 메서드 호출
+            ctx.drawImage(video, 0, 0, canvas.width, canvas.height); //비디오의 첫 프레임을 캔버스에 그린다.
 
-            const thumbnailURI = canvas.toDataURL();
+            const thumbnailURI = canvas.toDataURL();//썸네일 이미지 저장을 위한 URL 저장.
             $preview.src = thumbnailURI;
             $download.href = thumbnailURI;
             $thumbnail.value = thumbnailURI;
