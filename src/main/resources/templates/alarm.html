@@ -1,10 +1,13 @@
 <!DOCTYPE html>
 <html lang="kor">
+
 <head>
     <meta charset="UTF-8">
-    <title>쇼츠 수정</title>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <title>여행여행</title>
     <link href="/css/main_navTop.css" rel="stylesheet">
     <link href="/css/main_navSide.css" rel="stylesheet">
+    <link href="/css/main_feed.css" rel="stylesheet">
 </head>
 <style>
     * {
@@ -40,91 +43,161 @@
     }
 
     section {
-        margin-left: 5%;
         padding-top: 6%;
     }
 
-    .short {
-        border-radius: 25px;
-        padding: 2.5em;
-        box-shadow: 0 20px 70px -25px rgba(0, 0, 0, 2);
-        display: flex;
-        align-items: center;
+    div, ul, li {
+        margin: 0;
+        padding: 0;
+    }
+
+    ul, li {
+        list-style: none;
+    }
+
+    div.feedBoard {
+        flex: 6.5;
+        width: 80%;
+        float: right;
+        padding-top: 20px;
+        padding-right: 150px;
+        margin-bottom: -50px;
+    }
+
+    .tab {
+        background-color: rgba(255, 255, 255, 0.75);
+        border: 1px solid #e8e8e8;
+        border-radius: 1%;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+        transition: all 0.3s cubic-bezier(.25, .8, .25, 1);
+
+        float: left;
+        width: 1100px;
+    }
+
+    .tabnav {
+        font-size: 0;
+        width: 1100px;
+    }
+
+    .tabnav li {
+        display: inline-block;
+        height: 46px;
+        text-align: center;
+    }
+
+    .tabnav li a:before {
+        content: "";
+        position: absolute;
+        left: 0;
+        bottom: 0px;
+        width: 100%;
+        height: 3px;
+    }
+
+    .tabnav li a.active:before {
+        background: cornflowerblue;
+    }
+
+    .tabnav li a.active {
+        /*border-bottom: 1px solid #fff;*/
+    }
+
+    .tabnav li a {
+        position: relative;
+        display: block;
+        /*background: rgba(248, 248, 248, 0.75);*/
+        color: #000;
+        padding: 0 30px;
+        line-height: 46px;
+        text-decoration: none;
+        font-size: 16px;
+    }
+
+    .tabnav li a:hover, .tabnav li a.active {
+        /*background: rgba(255, 255, 255, 0.75);*/
+        color: cornflowerblue;
+    }
+
+    .tabcontent {
+        padding: 20px;
+        border-top: none;
+    }
+
+    .tab:hover {
+        box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
+    }
+
+
+    #tab01 .feed {
+        margin-top: 50px;
+    }
+
+
+
+
+    .thumbnail img {
+        width: 100%;
+        object-fit: fill;
+        border-radius: 10px;
+    }
+
+
+    #tab03 {
         height: 700px;
-        margin-left: 50px;
-        margin-right: 50px;
-        background-color: white;
+        overflow-x: auto;
     }
 
-    .thumbnail {
-        display: flex;
-        width: 50%;
-        height: 100%;
+    .profile {
+        width: 93%;
+        height: 100px;
+        background: #fff;
+        border: 1px solid #e8e8e8;
+        border-radius: 10px;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+        transition: all 0.3s cubic-bezier(.25, .8, .25, 1);
+        margin-top: 30px;
+        margin-left: 30px;
+    }
+    .profile:hover{
+        box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
+    }
+    .userte{
+        font-size: 30px;
+        margin-left: 10px;
+        margin-top: 16px;
+        padding: 10px;
+        font-family: apple Black;
+        color: inherit; /* 링크의 색상 제거 */
     }
 
-    .thumbnail img{
-    }
 
-    .InsertDetails {
-        display: flex;
-        width: 50%;
-        height: 100%;
-        background-color: white;
-    }
 
-    table {
-        margin: auto;
-        width: 290%;
-        height: 100%;
+    .userImage img {
+        border-radius: 50%;
+        margin-top: 10px;
+        width: 180px;
+        height: 180px;
+        object-fit: cover;
     }
-
-    input[type="text"] {
-        border: 1px rgb(26, 111, 255) solid;
-        width: 90%;
-        height: 50px;
-        border-radius: 5px;
-        padding-left: 10px;
-    }
-
-    textarea {
-        border: 1px rgb(26, 111, 255) solid;
-        width: 90%;
-        height: 200px;
-        border-radius: 5px;
-        padding-left: 10px;
-        padding-top: 10px;
-        resize: none;
-        font-size: 15px;
-    }
-
-    .header {
-        height: 30px;
-    }
-
-    table input[type="submit"] {
-        width: 100px;
+    .chkbtn{
+        font-family: apple Black;
+        width: 60px;
         height: 40px;
-        font-size: 15px;
-        border: 0;
-        outline: none;
-        border-radius: 5px;
-        background-color: rgb(13, 255, 0);
+        background: #fff;
+        border: 1px solid rgb(77, 77, 77);
+        border-radius: 10px;
+        cursor: pointer;
+        /*margin-top: 10px;*/
+        margin-left: 20px;
     }
-    table input[type="submit"]:hover{
-        background-color: rgb(18, 174, 0);
+    .chkbtn:hover{
+        border: 1px solid cornflowerblue;
     }
 
-    table input[type="submit"]:active {
-        width: 100px;
-        height: 40px;
-        font-size: 15px;
-        border: 0;
-        border-radius: 5px;
-        outline: 1.5px rgb(27, 76, 155) solid;
-        padding-left: 10px;
-        background-color: rgb(68, 136, 244);
-    }
+
 </style>
+
 <body>
 <!--좌측 네비-->
 <nav id="navSide">
@@ -203,45 +276,50 @@
         </form>
     </ul>
 </nav>
-<!--쇼츠 수정 폼-->
+<!--메인 피드-->
 <section>
-    <div class="d-flex justify-content-center short">
-        <div class="thumbnail">
-            <th:block th:if="${shortDetails.sv_thumbnail!=null}">
-                <img alt="썸네일" th:src="@{/download(filename=${shortDetails.sv_thumbnail})}">
-            </th:block>
+    <main>
+        <div class="feedBoard">
+            <div class="tab">
+                <ul class="tabnav">
+                    <li><a href="#tab03">알람</a></li>
+                </ul>
+                <!--게시글 관리-->
+                <div class="tabcontent">
+
+                    <!--알람 -->
+                    <div id="tab03">
+                        <div class="profile" th:each="message:${message}">
+                            <div class="userte">
+                                <span  class="postId" th:text="${message.message}">  </span>
+                                <span th:text="${message.in_date}"></span>
+                                <button class="chkbtn" th:onclick="|location.href='@{/otherprofile(p_id=${message.other_id},alarm_no =${message.alarm_no})}'|">확인</button>
+
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
         </div>
-        <div class="InsertDetails">
-            <form action="shortUpdateSubmit" method="post">
-                <table>
-                    <tr>
-                        <td><h3>글 수정</h3></td>
-                    </tr>
-                    <tr>
-                        <td class="header">여행지 이름</td>
-                    </tr>
-                    <tr>
-                        <td><input name="s_no" type="hidden" th:value="${shortDetails.s_no}"></td>
-                    </tr>
-                    <tr>
-                        <td><input name="s_id" type="hidden" th:value="${shortDetails.s_id}"></td>
-                    </tr>
-                    <tr>
-                        <td><input name="s_place" placeholder="여행지를 입력하세요" type="text" th:value="${shortDetails.s_place}"></td>
-                    </tr>
-                    <tr>
-                        <td class="header">내용</td>
-                    </tr>
-                    <tr>
-                        <td><textarea cols="10" maxlength="300" required name="s_description" placeholder="내용을 입력하세요" th:value="${shortDetails.s_description}"></textarea></td>
-                    </tr>
-                    <tr>
-                        <td><input onclick="alert('쇼츠 수정 완료')" type="submit" value="수정"></td>
-                    </tr>
-                </table>
-            </form>
-        </div>
-    </div>
+    </main>
 </section>
+<div class="mypic">
+    <div class="dropdown-content">
+        <th:block th:if="${session.userid!=null}">
+            <a th:href="@{/profile(u_id=${session.userid})}">프로필(<span th:text="${session.userid}"></span>)</a>
+        </th:block>
+        <a href="logout">로그아웃</a>
+    </div>
+    <a href="#">
+        <th:block th:if="${profiledetail.u_pic!=null}">
+            <img th:src="@{/download(filename=${profiledetail.u_pic})}">
+        </th:block>
+    </a>
+</div>
 </body>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script>
+
+</script>
 </html>

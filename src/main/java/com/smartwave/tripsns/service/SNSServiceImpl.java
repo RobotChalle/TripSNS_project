@@ -154,10 +154,10 @@ public class SNSServiceImpl implements IF_SNSService {
 
     @Override
     public int shortLikeUpDown(ShortLikeVO slikevo) throws Exception {
-        if(sdao.shortLikeSelectOne(slikevo)==null){
+        if (sdao.shortLikeSelectOne(slikevo) == null) {
             sdao.shortLikeInsert(slikevo);
             return 1;
-        }else {
+        } else {
             sdao.shortLikeDelete(slikevo);
             return 0;
         }

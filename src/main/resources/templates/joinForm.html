@@ -14,10 +14,10 @@
 
 </style>
 <body>
-<form action="joinsave" method="post" >
+<form action="joinsave" method="post">
     <div id="Joinbox">
 
-            <img src="/images/lolgo9.png" id="logo">
+        <img src="/images/lolgo9.png" id="logo">
 
         <div class="field">
             <label class="infor">아이디<span style="color:rgb(160, 49, 49);" class="star">*</span><span id="idmsg"></span></label>
@@ -26,12 +26,13 @@
         </div>
         <div class="field">
             <label class="infor">비밀번호<span style="color:rgb(160, 49, 49);" class="star">*</span></label><br>
-            <input type="password" id="newpw" class="te" name="pw" placeholder="비밀번호" minlength="4" maxlength="16" pattern="^[a-zA-Z\d]+$"
-                  required >
+            <input type="password" id="newpw" class="te" name="pw" placeholder="비밀번호" minlength="4" maxlength="16"
+                   pattern="^[a-zA-Z\d]+$"
+                   required>
         </div>
         <div class="field">
             <label class="infor">비밀번호 확인<span id="errmsg"></span></label> <br>
-            <input type="password" id="conpw" class="te" placeholder="비밀번호 확인" minlength="4" maxlength="16" >
+            <input type="password" id="conpw" class="te" placeholder="비밀번호 확인" minlength="4" maxlength="16">
         </div>
         <div class="field">
             <label class="infor">이름<span style="color:rgb(160, 49, 49);" class="star">*</span></label><br>
@@ -69,7 +70,7 @@
         </div>
 
         <div id="cernumber">
-            <input type="text" placeholder="인증번호입력 " class="emailbox3" name="number" id="number" >
+            <input type="text" placeholder="인증번호입력 " class="emailbox3" name="number" id="number">
             <input type="button" value="인증번호 전송" class="emailbox2" id="sendBtn" name="sendBtn" onclick="sendNumber()">
             <input type="button" value="인증번호 확인" class="emailbox2" id="confirmBtn" name="confirmBtn"
                    onclick="confirmNumber()">
@@ -89,5 +90,16 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <script type="text/javascript" src="/js/join.js"></script>
 
+<script>
 
+
+    $("#sendBtn").click(function () {
+        let click = $(this);// 이 버튼이 클릭 되면
+        click.css("display", "none");// 안보이게
+        setTimeout(function () {
+            click.css("display", "");// 4초 뒤에 보이게
+        }, 4000);
+    })
+
+</script>
 </html>

@@ -41,9 +41,10 @@
     }
 
 
+
 </style>
 
-<body >
+<body>
 <!--좌측 네비-->
 <nav id="navSide">
     <ul>
@@ -80,6 +81,13 @@
                 </svg>
             </a>
         </li>
+        <li>
+            <a href="alarm">
+            <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-bell" viewBox="0 0 16 16">
+                <path d="M8 16a2 2 0 0 0 2-2H6a2 2 0 0 0 2 2M8 1.918l-.797.161A4 4 0 0 0 4 6c0 .628-.134 2.197-.459 3.742-.16.767-.376 1.566-.663 2.258h10.244c-.287-.692-.502-1.49-.663-2.258C12.134 8.197 12 6.628 12 6a4 4 0 0 0-3.203-3.92zM14.22 12c.223.447.481.801.78 1H1c.299-.199.557-.553.78-1C2.68 10.2 3 6.88 3 6c0-2.42 1.72-4.44 4.005-4.901a1 1 0 1 1 1.99 0A5 5 0 0 1 13 6c0 .88.32 4.2 1.22 6"/>
+            </svg>
+            </a>
+        </li>
         <th:block th:if="${session.userid=='smartwave0377'}"> <!--관리자용 메뉴-->
             <li>
                 <a href="manager">
@@ -92,8 +100,8 @@
         </th:block>
     </ul>
 </nav>
-<div class="mypic"style="z-index: 2">
-    <div class="dropdown-content" >
+<div class="mypic" style="z-index: 2">
+    <div class="dropdown-content">
         <th:block th:if="${session.userid!=null}">
             <a th:href="@{/profile(u_id=${session.userid})}">프로필(<span th:text="${session.userid}"></span>)</a>
         </th:block>
@@ -156,12 +164,16 @@
                 <li class="stat"> 게시물 <span class="profile-stat-count" id="postcnts"></span></li>
                 <li class="stat"> 쇼츠 <span class="profile-stat-count" id="shortcnts"></span></li>
 
-                <li class="stat"><a th:href="@{/followList(id=${followuser})}">팔로워</a> <span class="profile-stat-count" id="followercnts"></span></li>
+                <li class="stat"><a th:href="@{/followList(id=${followuser})}">팔로워</a> <span class="profile-stat-count"
+                                                                                             id="followercnts"></span>
+                </li>
 
-                <li class="stat"> <a th:href="@{/followList(id=${followuser})}">팔로우</a>  <span class="profile-stat-count" id="followcnts"></span></li>
+                <li class="stat"><a th:href="@{/followList(id=${followuser})}">팔로우</a> <span class="profile-stat-count"
+                                                                                             id="followcnts"></span>
+                </li>
 
-                    <!--로그인 했을시 자기 팔로우 뜨도록 -->
-                    <!--                <li class="stat"><span class="profile-stat-count">숫자</span> 팔로우</li>-->
+                <!--로그인 했을시 자기 팔로우 뜨도록 -->
+                <!--                <li class="stat"><span class="profile-stat-count">숫자</span> 팔로우</li>-->
                 <!--                <li class="stat"><span class="profile-stat-count">숫자</span> 팔로워</li>-->
             </ul>
 
@@ -230,18 +242,18 @@
 <script type="text/javascript" src="/js/profile.js"></script>
 
 <script>
-    $('document').ready(function (){
+    $('document').ready(function () {
         followchk();// 화면 로딩될때 팔로우 상태인지 확인 여부 ajax로 화면 로딩 되자마자 판단 하기위한 함수
         followrCount();// 팔로우 버튼을 클릭할시 상대 아이디 프로필에는 팔로워 수가 1 내프로필화면은 팔로우 수가 1
         followchk();//팔로우수
     })
 
 
-
     $('#followlike').click(function () {//팔로우 버튼 클릭햇을시 함수 호출
         let followid = $('#otherid').val();
         let followerid = $('#currentid').val();
         let followbtn = document.getElementById('followlike');
+        let message;// 알림 메세지 저장
         console.log("팔로우당한사람 아이디" + followid);
         console.log("팔로우 누른아이디 팔로워수 추가 " + followerid);
         $.ajax({
@@ -254,13 +266,28 @@
                     followrCount();// 팔로우 버튼 클릭되엇을시 ajax 통해서 불러온 팔로워 숫자 나타나도록
                     followCount();// 팔로우 버튼 클릭되엇을시 ajax 통해서 불러온 팔로우 숫자 나타나도록
                     followbtn.innerText = '팔로우';
+
                 } else {
                     followrCount();
                     followCount();
                     followbtn.innerText = '언팔로우';
+
                 }
             }
         })
+        // 쪽지
+        if (followbtn.innerHTML=='언팔로우'){
+            message= followerid+"님이" +followid+"님을 언팔로우 했습니다"
+        }else{
+            message= followerid+"님이" +followid+"님을 팔로우 했습니다"
+        }
+        
+        $.ajax({
+            url:"alarmcontent",
+            type:"post",
+            data: {"message": message,"user_id":followid,"other_id":followerid}
+        })
+
     });
 
     function followchk() {// 화면 로딩될때 팔로우 상태인지 확인 여부
@@ -300,10 +327,10 @@
             }
         })
     }
+
     function followCount() {//팔로우수(로그인한 사람이 팔로우 버튼 클릭했을시 내 프로필 팔로워수 +)
 
         let followerid = $('#otherid').val();
-        console.log("followercount" +followerid);
         let followscount = document.getElementById("followcnts")
         $.ajax({
             url: "/followCount",

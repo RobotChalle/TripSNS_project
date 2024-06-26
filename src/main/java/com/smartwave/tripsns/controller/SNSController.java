@@ -35,9 +35,7 @@ public class SNSController {
         ProfileVO prodetail = userservice.getProfile(u_id);
         model.addAttribute("profiledetail", prodetail);
 
-        for (int i = 0; i < allList.size(); i++) {
-            System.out.println(allList.get(i).toString());
-        }
+      
         return "main";
     }
 
