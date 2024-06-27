@@ -328,4 +328,11 @@ public class UserController {
     public void alarmcontent(@ModelAttribute AlarmVO avo,Model model) throws Exception {
             userservice.alarmcontent(avo);// ajax 통한 메세지 db insert
     }
+    //메세지 알림 확인
+    @ResponseBody
+    @PostMapping(value = "messagechk")
+    public int messagechk(@SessionAttribute("userid") String user_id )throws Exception{
+        int chk = userservice.messagechk(user_id);
+        return chk;
+    }
 }
