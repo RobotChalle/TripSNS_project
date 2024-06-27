@@ -112,6 +112,7 @@ public class UserController {
     @PostMapping(value = "withdrawal")
     public String userdelete(@RequestParam("id") String id, HttpSession session) throws Exception {
         userservice.userdelete(id);
+
         return "redirect:login";
     }
 
