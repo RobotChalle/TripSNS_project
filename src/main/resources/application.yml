@@ -36,3 +36,5 @@ server:
   servlet:
     encoding:
       enabled: 'true'
+    session:
+      timeout: 3600
