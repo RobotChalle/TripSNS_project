@@ -176,4 +176,9 @@ public class UserServiceImpl implements IF_UserService {
     public void alarmchk(AlarmVO avo) throws Exception {
         sdao.alarmchk(avo);
     }
+
+    @Override
+    public int messagechk(String user_id) throws Exception {
+        return sdao.messagechk(user_id);
+    }
 }

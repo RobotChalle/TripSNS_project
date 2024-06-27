@@ -171,4 +171,7 @@
     <update id="alarmchk" parameterType="com.smartwave.tripsns.vo.AlarmVO">
         update alarm set flag = 1 where user_id =#{user_id} and alarm_no = #{alarm_no};
     </update>
+    <select id="messagechk" parameterType="String" resultType="int">
+        select count(*) from alarm where user_id =#{user_id} and flag= 0;
+    </select>
 </mapper>

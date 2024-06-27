@@ -159,20 +159,25 @@ public  class UserDAOImpl implements IF_UserDAO {
     public List<FollowVO> followerList(String userid) throws Exception {
         return sqlSession.selectList(mapperQuery + ".followerList", userid);
     }
-
+    // 알람 메세지 insert
     @Override
     public void alarmcontent(AlarmVO avo) throws Exception {
         sqlSession.insert(mapperQuery+".inmessage",avo);
     }
-
+    //알람 메세지 get
     @Override
     public List<AlarmVO> alarmlist(String id) throws Exception {
         return sqlSession.selectList(mapperQuery+".getmessage",id);
     }
-
+    // 알람 확인
     @Override
     public void alarmchk(AlarmVO avo) throws Exception {
         sqlSession.update(mapperQuery+".alarmchk",avo);
+    }
+    // 알람 메세지 확인
+    @Override
+    public int messagechk(String user_id) throws Exception {
+        return sqlSession.selectOne(mapperQuery+".messagechk",user_id);
     }
 
 

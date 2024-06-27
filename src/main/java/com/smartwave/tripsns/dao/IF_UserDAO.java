@@ -85,4 +85,6 @@ public interface IF_UserDAO {
     public List<AlarmVO> alarmlist(String id) throws Exception;
     // 알람 확인
     public void alarmchk(AlarmVO avo) throws Exception;
+    // 알람 메세지 확인
+    public int messagechk(String user_id) throws Exception;
 }
