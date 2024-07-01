@@ -268,7 +268,7 @@
                         </thead>
 
                         <tbody>
-                        <tr th:each="userList:${userList}">
+                        <tr th:each="userList:${userList}" id="jungtae">
                             <td><input class="uchk" name="userchk" th:value="${userList.id}" type="checkbox"></td>
                             <td th:text="${userList.id}"></td>
                             <td th:text="${userList.name}"></td>
@@ -510,6 +510,8 @@ document.addEventListener('DOMContentLoaded', function () {
 
 
 })
+
+
 
 
 </script>
