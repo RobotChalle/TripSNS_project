@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="kor">
 
 <head>
     <meta charset="UTF-8">
@@ -329,7 +329,7 @@
         let followerscount = document.getElementById("followercnts")
         $.ajax({
             url: "/followerCount",
-            type: "post",
+            type: "get",
             data: {"follow_id": followid},
             dataType: "json",
             success: function (followercnt) {
@@ -344,7 +344,7 @@
         let followscount = document.getElementById("followcnts")
         $.ajax({
             url: "/followCount",
-            type: "post",
+            type: "get",
             data: {"follower_id": followerid},
             dataType: "json",
             success: function (followcnt) {
