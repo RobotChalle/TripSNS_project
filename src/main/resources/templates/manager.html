@@ -268,7 +268,7 @@
                         </thead>
 
                         <tbody>
-                        <tr th:each="userList:${userList}" id="jungtae">
+                        <tr th:each="userList:${userList}" >
                             <td><input class="uchk" name="userchk" th:value="${userList.id}" type="checkbox"></td>
                             <td th:text="${userList.id}"></td>
                             <td th:text="${userList.name}"></td>
