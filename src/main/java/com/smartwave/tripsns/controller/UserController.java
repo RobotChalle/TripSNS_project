@@ -153,6 +153,9 @@ public class UserController {
             //게시글 목록
             List<PostVO> postVOList = sService.postSelectAll(u_id);
             model.addAttribute("postVOList", postVOList);
+            //쇼츠 목록
+            List<ShortVO> shortVOList = sService.userShortList(u_id);
+            model.addAttribute("shortVOList", shortVOList);
 
             // 알람삭제
             avo.setUser_id(myid);
@@ -283,7 +286,7 @@ public class UserController {
 
     //상대 화면 팔로워수 get 팔로우 당한사람 아이디의 팔로워개수
     @ResponseBody
-    @PostMapping(value = "followerCount")
+    @GetMapping(value = "followerCount")
     public int followerCount(@ModelAttribute FollowVO fvo) throws Exception {
         int followercnt = userservice.followercount(fvo);
 //        System.out.println(followercnt);
@@ -292,7 +295,7 @@ public class UserController {
 
     //로그인 한 나의 화면 팔로우 수 get 내가 팔로우 버튼을 클릭했을시 팔로우한 아이디의 팔로우개수
     @ResponseBody
-    @PostMapping(value = "followCount")
+    @GetMapping(value = "followCount")
     public int followCount(@ModelAttribute FollowVO fvo) throws Exception {
         int followcnt = userservice.followcount(fvo);
 //        System.out.println("팔로우랑꼐" + followcnt);
