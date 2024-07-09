@@ -26,8 +26,8 @@ function sum() {
 
 function chkid() {// 유효성 아이디 중복체크
     let sendid = $('#newid').val();// 입력한 id 값 저장
-    var iderrmsg = document.getElementById('idmsg');// 아이디 중복체크후 가능 여부 확인 메세지 출력용
-    console.log(sendid);
+    var iderrmsg = document.getElementById('idmsg');
+    // 아이디 중복체크후 가능 여부 확인 메세지 출력용
     $.ajax({
         url: "/idchk",//컨트롤러에서 요청받을 주소
         type: "post",//post 방식으로 전달
