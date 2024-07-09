@@ -13,6 +13,7 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import java.rmi.server.ExportException;
 import java.util.List;
 
 @Controller
@@ -25,6 +26,11 @@ public class SNSController {
     @Autowired
     FileDataUtil fileDataUtil;
 
+    @GetMapping("/")
+    public String nothing() throws Exception {
+        return "main";
+    }
+
     @GetMapping("/main")//메인화면 불러오기
     public String main(Model model,
                        @SessionAttribute("userid") String u_id) throws Exception {
@@ -35,7 +41,7 @@ public class SNSController {
         ProfileVO prodetail = userservice.getProfile(u_id);
         model.addAttribute("profiledetail", prodetail);
 
-      
+
         return "main";
     }
 
@@ -155,27 +161,28 @@ public class SNSController {
     }
 
     @GetMapping(value = "shortUpdate") //게시글 수정페이지
-    public String shortUpdate(Model model,@ModelAttribute ShortVO svo, @SessionAttribute("userid") String u_id) throws Exception {
-        if(svo.getS_id().equals(u_id)){
+    public String shortUpdate(Model model, @ModelAttribute ShortVO svo, @SessionAttribute("userid") String u_id) throws Exception {
+        if (svo.getS_id().equals(u_id)) {
             ShortVO shortDetails = sService.shortDetails(svo.getS_no());
             model.addAttribute("shortDetails", shortDetails);
             //프로필 사진 불러오기
             ProfileVO prodetail = userservice.getProfile(u_id);
             model.addAttribute("profiledetail", prodetail);
             return "shortUpdateForm";
-        }else {
+        } else {
             return "redirect:/main";
         }
     }
+
     @PostMapping(value = "shortUpdateSubmit") //게시글 수정페이지
     public String shortUpdateSubmit(Model model, @ModelAttribute ShortVO svo, @SessionAttribute("userid") String u_id, RedirectAttributes redirectA) throws Exception {
-        if(svo.getS_id().equals(u_id)){
+        if (svo.getS_id().equals(u_id)) {
             sService.shortUpdateSubmit(svo);
             //프로필 사진 불러오기
             ProfileVO prodetail = userservice.getProfile(u_id);
             model.addAttribute("profiledetail", prodetail);
             return "redirect:/shorts";
-        }else {
+        } else {
             return "redirect:/main";
         }
     }
@@ -250,7 +257,7 @@ public class SNSController {
         List<ShortVO> svo = sService.shortSearch(searchWord);
         List<ProfileVO> uvo = userservice.userSearch(searchWord);
         model.addAttribute("searchWord", searchWord);
-        model.addAttribute("svo",svo);
+        model.addAttribute("svo", svo);
         model.addAttribute("pvo", pvo);
         model.addAttribute("uvo", uvo);
         //프로필 사진 불러오기

@@ -62,6 +62,7 @@ public class SnsConfig implements WebMvcConfigurer {
                 .addPathPatterns("/userSearchList")
                 .addPathPatterns("/followList")// 팔로우,팔로워 리스트
                 .addPathPatterns("/manager")
+                .addPathPatterns("/")
 
 //                .addPathPatterns("/**")
 //                .excludePathPatterns("/css/**", "/images/**", "/js/**")
