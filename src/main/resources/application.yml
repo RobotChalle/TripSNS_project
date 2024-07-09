@@ -2,8 +2,9 @@ spring:
   servlet:
     multipart:
       enabled: true
-      location: d:/postImg
-      max-file-size:  100MB
+#      location: d:/postImg
+      location: /postImg
+      max-file-size: 100MB
       max-request-size: 100MB
   mail:
     # Google smtp server 사용
@@ -20,9 +21,9 @@ spring:
 
   datasource:
     driver-class-name: org.mariadb.jdbc.Driver
-    username: SWteam
-    url: jdbc:mariadb://192.168.0.57:3308/TripSNS?characterEncoding=UTF-8&serverTimezone=Asia/Seoul
-    password: '0987654321'
+    username: admin
+    url: jdbc:mariadb://10.178.0.2:3306/tripsns?characterEncoding=UTF-8&serverTimezone=Asia/Seoul
+    password: '1111'
   thymeleaf:
     enabled: 'true'
     prefix: classpath:/templates/
@@ -38,3 +39,5 @@ server:
       enabled: 'true'
     session:
       timeout: 3600
+  # JAR
+  port: '8080'
