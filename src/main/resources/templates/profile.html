@@ -253,9 +253,8 @@
 
 <script>
     $('document').ready(function () {
-        followchk();// 화면 로딩될때 팔로우 상태인지 확인 여부 ajax로 화면 로딩 되자마자 판단 하기위한 함수
-
-
+        followchk();// 화면 로딩될때 팔로우 상태인지 확인 여부(팔로우수,팔로워수 함께 체크)
+        // ajax 비동기 방식으로 화면 로딩 되자마자 판단 하기위한 함수
     })
     $('#followlike').click(function () {//팔로우 버튼 클릭햇을시 함수 호출
         let followid = $('#otherid').val();
@@ -283,13 +282,13 @@
                 }
             }
         })
-        // 쪽지
+        // 메세지　내용
         if (followbtn.innerHTML=='언팔로우'){
             message= followerid+"님이" +followid+"님을 언팔로우 했습니다"
         }else{
             message= followerid+"님이" +followid+"님을 팔로우 했습니다"
         }
-        //메세지
+        //Ajax 활용하여 메시지 내용 넘기기
         $.ajax({
             url:"alarmcontent",
             type:"post",

@@ -55,7 +55,7 @@ public interface IF_UserService {
     public List<UserVO> selectUserList(HashMap<String, String> userselect) throws Exception;
 
     // 팔로우 (팔로우 삽입 , 삭제)
-    public void follow(FollowVO fvo) throws Exception;
+    public int follow(FollowVO fvo) throws Exception;
 
     // 팔로우 조회 팔로우 했던 사람인지 여부판단
     public FollowVO selectFollow(FollowVO fvo) throws Exception;

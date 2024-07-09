@@ -150,7 +150,6 @@
                             <th>자세히</th>
                         </tr>
                         </thead>
-
                         <tbody>
                         <tr th:each="userList:${userList}">
                             <td><input type="checkbox" name="userchk" class="uchk" th:value="${userList.id}"></td>
@@ -163,7 +162,6 @@
                                         th:onclick="|location.href='@{/withdrawalManger(id=${userList.id})}'|">삭제
                                 </button>
                             </td>
-                            <!--                            <td><a th:href="@{/otherprofile(p_id=${userList.id})}">프로필</a></td>-->
                             <td>
                                 <button class="probtn"
                                         th:onclick="|location.href='@{/otherprofile(p_id=${userList.id})}'|">프로필

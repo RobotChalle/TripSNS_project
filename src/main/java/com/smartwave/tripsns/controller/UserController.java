@@ -59,13 +59,12 @@ public class UserController {
     }
 
     @PostMapping("loginsave")//로그인 버튼
-    public String loginsave(@RequestParam("id") String id, @RequestParam("pw") String pw, HttpSession session, RedirectAttributes rt) throws Exception {
-        //model 객체가 redirect 하는순간 사라지기 떄문에 값을 넘기기위해  RedirectAttributes 공부하여  리다이렉트 페이지로 데이터 넘기기위해 적용 ,
-        // 임시로 저장하는 방식인 flashattribute 적용 하여 세션에 저장되어 사용된 뒤에 자동으로 삭제되도록함 -> 임시로 사용되는 데이터 다루기위해 사용(리다이렉트 직전 플래시에 저장하는 메서드, Redirect 이후에는 소멸)
-        //addAttribute() 로 넘겼다면, URL 로 넘어온만큼 기존처럼 @RequestParam 어노테이션을 이용
-        //addFlashAttribute() 로 넘겼다면, @ModelAttribute 어노테이션을 이
-
-
+    public String loginsave(@RequestParam("id") String id, @RequestParam("pw") String pw
+            , HttpSession session, RedirectAttributes rt) throws Exception {
+        //model 객체가 redirect 하는순간 사라지기 떄문에 값을 넘기기위해  RedirectAttributes
+        // 공부하여  리다이렉트 페이지로 데이터 넘기기위해 적용 ,
+        // 임시로 저장하는 방식인 flashattribute 적용 하여 세션에 저장되어 사용된 뒤에 자동으로 삭제되도록함
+        // -> 임시로 사용되는 데이터 다루기위해 사용(리다이렉트 직전 플래시에 저장하는 메서드, Redirect 이후에는 소멸)
         UserVO uvo = userservice.login(id);
 //        System.out.println("아이디:"+uvo.getId()+"비번:"+uvo.getPw());
         // 리턴받아온 db 의 pw 와 login.html에서 post 방식으로 받아온 pw 일치확인
@@ -79,13 +78,11 @@ public class UserController {
                 session.setAttribute("userid", uvo.getId());
             } else {
                 //비밀번호 틀릴경우
-//                System.out.println("비밀번호가 일치x");
                 rt.addFlashAttribute("mesg", "비밀번호가 일치하지않습니다");
                 return "redirect:/login";
             }
         } else {
             // 아이디 없을경우
-//            System.out.println("아이디 존재x");
             rt.addFlashAttribute("mesg", "존재하지않는 아이디 입니다");
             return "redirect:/login";
         }
@@ -136,13 +133,13 @@ public class UserController {
 
     // 상대 프로필 기본정보 html 보내기 (한줄소개 코멘트, 프로필 기본사진)
     @GetMapping(value = "otherprofile")
-    public String otherprofile(@RequestParam("p_id") String u_id, Model model, @SessionAttribute("userid") String myid, @ModelAttribute AlarmVO avo) throws Exception {
+    public String otherprofile(@RequestParam("p_id") String u_id, Model model,
+                               @SessionAttribute("userid") String myid, @ModelAttribute AlarmVO avo) throws Exception {
         String otheruser = u_id;
         String mainsuser = myid;
-//        System.out.println("끌고온 상대방아이디" + otheruser);
-        if (mainsuser.equals(otheruser)) {
+        if (mainsuser.equals(otheruser)) {// 파라미터 값이 세션아이디(로그인아이디)와 동일할경우 내프로필로 리다이렉트
             return "redirect:profile";
-        } else {
+        } else {// 아닐경우 상대프로필 정보 포함후 프로필 화면으로 이동
             model.addAttribute("otheruser", otheruser);// 파라미터 로 받은 아이디를 팔로우 아이디
             model.addAttribute("followuser", otheruser);
             ProfileVO prodetail = userservice.getProfile(u_id);
@@ -157,13 +154,11 @@ public class UserController {
             List<ShortVO> shortVOList = sService.userShortList(u_id);
             model.addAttribute("shortVOList", shortVOList);
 
-            // 알람삭제
+            // 알람확인시 flag 변경 -> 안보이도록 처리 및 상대 프로필 화면으로 이동
             avo.setUser_id(myid);
-//            System.out.println(avo.getUser_id()+" "+avo.getAlarm_no());
-                userservice.alarmchk(avo);
+            userservice.alarmchk(avo);
             return "profile";
         }
-
 
     }
 
@@ -173,7 +168,6 @@ public class UserController {
     public String proupdate(Model model, @SessionAttribute("userid") String u_id) throws Exception {
         ProfileVO prodetail = userservice.getProfile(u_id);
         model.addAttribute("profiledetail", prodetail);
-
         model.addAttribute("id", u_id);
         return "profileMod";
     }
@@ -247,7 +241,9 @@ public class UserController {
 
     //관리자 회원검색  > 검색페이지로 이동
     @PostMapping(value = "userSearchList")
-    public String userSearchList(@SessionAttribute("userid") String u_id, @RequestParam("searchitem") String usercolumn, @RequestParam("usersearch") String usersearch, Model model) throws Exception {
+    public String userSearchList(@SessionAttribute("userid") String u_id,
+                                 @RequestParam("searchitem") String usercolumn,
+                                 @RequestParam("usersearch") String usersearch, Model model) throws Exception {
         HashMap<String, String> userselect = new HashMap<>();
         userselect.put("usercolumn", usercolumn);
         userselect.put("usersearch", usersearch);
@@ -263,13 +259,8 @@ public class UserController {
     @ResponseBody
     @PostMapping(value = "follow")
     public int follow(@ModelAttribute FollowVO fvo) throws Exception {
-        userservice.follow(fvo);// 팔로우 삽입 -> 서비스단에서 판단해서 팔로우 한상태면 db 에서 delete , 안한상태면 삽입
-        int cnt = 0;// 팔로우 했던사람인지 여부
-        if (userservice.selectFollow(fvo) == null) {// db에 값이 없다면 팔로우 가능함
-            return cnt;
-        } else {//db 에 값있으면 이미 팔로우 한 사람이여서 못하게
-            cnt = 1;
-        }
+        int cnt = userservice.follow(fvo);
+        // 서비스단에서 팔로우 판단여부에 따른 true,false 값을 0,1 로 리턴받아 ajax 로 리턴
         return cnt;
     }
 
@@ -289,7 +280,6 @@ public class UserController {
     @GetMapping(value = "followerCount")
     public int followerCount(@ModelAttribute FollowVO fvo) throws Exception {
         int followercnt = userservice.followercount(fvo);
-//        System.out.println(followercnt);
         return followercnt;
     }
 
@@ -298,12 +288,12 @@ public class UserController {
     @GetMapping(value = "followCount")
     public int followCount(@ModelAttribute FollowVO fvo) throws Exception {
         int followcnt = userservice.followcount(fvo);
-//        System.out.println("팔로우랑꼐" + followcnt);
         return followcnt;
     }
 
     @GetMapping(value = "followList")
-    public String followList(@RequestParam("id") String userid, Model model, @SessionAttribute("userid") String u_id) throws Exception {
+    public String followList(@RequestParam("id") String userid, Model model,
+                             @SessionAttribute("userid") String u_id) throws Exception {
         //팔로우,팔로워 목록 받아올 메서드 자리
 //        System.out.println("받은 아디" + userid);
         List<FollowVO> followList = userservice.followList(userid);
@@ -316,10 +306,16 @@ public class UserController {
         return "followList";
     }
 
-    // 알람
+    // 메세지 받기 위한 메서드
+    @ResponseBody
+    @PostMapping(value = "alarmcontent")
+    public void alarmcontent(@ModelAttribute AlarmVO avo, Model model) throws Exception {
+        userservice.alarmcontent(avo);// ajax 통한 메세지 db insert
+    }
+
+    // 알람 내용 select
     @GetMapping(value = "alarm")
-    public String alarm(Model model,@SessionAttribute("userid") String u_id)throws Exception{
-        //@RequestParam("message") String message,
+    public String alarm(Model model, @SessionAttribute("userid") String u_id) throws Exception {
         String id = u_id;// 세션아이디
         List<AlarmVO> message = userservice.alarmlist(id);
         model.addAttribute("message", message);
@@ -327,15 +323,11 @@ public class UserController {
         model.addAttribute("profiledetail", prodetail);
         return "alarm";
     }
-    @ResponseBody // 메세지 받기 위한
-    @PostMapping(value = "alarmcontent")
-    public void alarmcontent(@ModelAttribute AlarmVO avo,Model model) throws Exception {
-            userservice.alarmcontent(avo);// ajax 통한 메세지 db insert
-    }
-    //메세지 알림 확인
+
+    //페이지 로딩시 메세지 알림 체크
     @ResponseBody
     @PostMapping(value = "messagechk")
-    public int messagechk(@SessionAttribute("userid") String user_id )throws Exception{
+    public int messagechk(@SessionAttribute("userid") String user_id) throws Exception {
         int chk = userservice.messagechk(user_id);
         return chk;
     }

@@ -63,12 +63,7 @@ public class SnsConfig implements WebMvcConfigurer {
                 .addPathPatterns("/followList")// 팔로우,팔로워 리스트
                 .addPathPatterns("/manager")
                 .addPathPatterns("/")
-
-//                .addPathPatterns("/**")
-//                .excludePathPatterns("/css/**", "/images/**", "/js/**")
-//                .excludePathPatterns("/main")
-//                .excludePathPatterns("/idchk")
-                .excludePathPatterns("/login*") //로그인 요청은 예외처리 -> interceptorx
+                .excludePathPatterns("/login*") //로그인 요청은 예외처리 -
                 .excludePathPatterns("/join*");
 
 
