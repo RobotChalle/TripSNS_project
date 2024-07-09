@@ -117,13 +117,14 @@ public class UserServiceImpl implements IF_UserService {
 
     // 팔로우  (팔로우 삽입 , 삭제)
     @Override
-    public void follow(FollowVO fvo) throws Exception {
-        if (sdao.selectFollow(fvo) == null) {// 팔로우 했던 사람이 아니면 db에 값이 없다면
-            sdao.follow(fvo);// 팔로우
+    public int follow(FollowVO fvo) throws Exception {
+        if (sdao.selectFollow(fvo) == null) {// 팔로우 했던 사람이 아니면, db에 값이 없다면
+            sdao.follow(fvo);// 팔로우 insert
+            return 1;
         } else {
             sdao.followdel(fvo);// 값있으면 중복 x -> 삭제
+            return 0;
         }
-
     }
 
     // 팔로우 조회 팔로우 했던 사람인지 여부판단
@@ -161,6 +162,7 @@ public class UserServiceImpl implements IF_UserService {
     public List<FollowVO> followerList(String userid) throws Exception {
         return sdao.followerList(userid);
     }
+
     // 알람
     @Override
     public void alarmcontent(AlarmVO avo) throws Exception {
@@ -175,5 +177,10 @@ public class UserServiceImpl implements IF_UserService {
     @Override
     public void alarmchk(AlarmVO avo) throws Exception {
         sdao.alarmchk(avo);
+    }
+    // 화면로딩시 알람 온지 확인
+    @Override
+    public int messagechk(String user_id) throws Exception {
+        return sdao.messagechk(user_id);
     }
 }

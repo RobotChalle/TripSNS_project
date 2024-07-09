@@ -415,6 +415,9 @@ div.feedBoard {
     outline: none;
     border-radius: 10px;
     cursor: pointer;
+    /*border: 1px solid red;*/
+    /*background: red;*/
+    /*color: white;*/
 
     /*margin-top: 10px;*/
 }
@@ -427,6 +430,7 @@ div.feedBoard {
     border: 1px solid white;
     border-radius: 10px;
     cursor: pointer;
+
 
     /*margin-top: 10px;*/
 }
@@ -446,10 +450,13 @@ div.feedBoard {
     font-family: apple Black;
     width: 70px;
     height: 40px;
-    background: #fff;
-    border: 1px solid white;
+    /*background: #fff;*/
+    /*border: 1px solid white;*/
     border-radius: 10px;
     cursor: pointer;
+    border: 1px solid forestgreen;
+    background: forestgreen;
+    color: white;
 }
 
 #excelFileExport:hover {

@@ -8,7 +8,6 @@
     <link rel="stylesheet" href="/css/main_navTop.css">
     <link rel="stylesheet" href="/css/main_navSide.css">
     <link rel="stylesheet" href="/css/post_feed.css">
-    <script src="/js/post_place.js"></script>
 </head>
 <style>
     * {
@@ -83,9 +82,16 @@
         </li>
         <li>
             <a href="alarm">
-                <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-bell" viewBox="0 0 16 16">
-                    <path d="M8 16a2 2 0 0 0 2-2H6a2 2 0 0 0 2 2M8 1.918l-.797.161A4 4 0 0 0 4 6c0 .628-.134 2.197-.459 3.742-.16.767-.376 1.566-.663 2.258h10.244c-.287-.692-.502-1.49-.663-2.258C12.134 8.197 12 6.628 12 6a4 4 0 0 0-3.203-3.92zM14.22 12c.223.447.481.801.78 1H1c.299-.199.557-.553.78-1C2.68 10.2 3 6.88 3 6c0-2.42 1.72-4.44 4.005-4.901a1 1 0 1 1 1.99 0A5 5 0 0 1 13 6c0 .88.32 4.2 1.22 6"/>
-                </svg>
+                <div id="alarmwhite">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-bell" viewBox="0 0 16 16">
+                        <path d="M8 16a2 2 0 0 0 2-2H6a2 2 0 0 0 2 2M8 1.918l-.797.161A4 4 0 0 0 4 6c0 .628-.134 2.197-.459 3.742-.16.767-.376 1.566-.663 2.258h10.244c-.287-.692-.502-1.49-.663-2.258C12.134 8.197 12 6.628 12 6a4 4 0 0 0-3.203-3.92zM14.22 12c.223.447.481.801.78 1H1c.299-.199.557-.553.78-1C2.68 10.2 3 6.88 3 6c0-2.42 1.72-4.44 4.005-4.901a1 1 0 1 1 1.99 0A5 5 0 0 1 13 6c0 .88.32 4.2 1.22 6"/>
+                    </svg>
+                </div>
+                <div id="alarmblack" style="display: none">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-bell-fill" viewBox="0 0 16 16">
+                        <path d="M8 16a2 2 0 0 0 2-2H6a2 2 0 0 0 2 2m.995-14.901a1 1 0 1 0-1.99 0A5 5 0 0 0 3 6c0 1.098-.5 6-2 7h14c-1.5-1-2-5.902-2-7 0-2.42-1.72-4.44-4.005-4.901"/>
+                    </svg>
+                </div>
             </a>
         </li>
         <th:block th:if="${session.userid=='smartwave0377'}"> <!--관리자용 메뉴-->
@@ -131,30 +137,6 @@
                 <div class="option">
                     <label>지역</label>
                     <input type="text" name="p_place" placeholder="시는 빼고 입력바랍니다. ex)수원시 => 수원" required>
-                    <!--
-                    <select name="h_area1" onChange="cat1_change(this.value,h_area2)" class="h_area1" required>
-                        <option></option>
-                        <option value='1'>서울</option>
-                        <option value='2'>부산</option>
-                        <option value='3'>대구</option>
-                        <option value='4'>인천</option>
-                        <option value='5'>광주</option>
-                        <option value='6'>대전</option>
-                        <option value='7'>울산</option>
-                        <option value='8'>강원</option>
-                        <option value='9'>경기</option>
-                        <option value='10'>경남</option>
-                        <option value='11'>경북</option>
-                        <option value='12'>전남</option>
-                        <option value='13'>전북</option>
-                        <option value='14'>제주</option>
-                        <option value='15'>충남</option>
-                        <option value='16'>충북</option>
-                    </select>
-                    <select name="h_area2" onChange="cat2_change(this.value)" required>
-                        <option></option>
-                    </select>
-                    -->
                     <label>사진첨부</label>
                     <input type="file" accept="jpeg, jpg, png" name="file">
                 </div>
@@ -171,6 +153,7 @@
         </article>
     </div>
 </main>
+<script type="text/javascript" src="/js/alarmchk.js"></script>
 </body>
 
 </html>

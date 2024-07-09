@@ -12,10 +12,6 @@
         from user
         where id = #{id}
     </select>
-    <!--    &lt;!&ndash;이메일 중복체크&ndash;&gt;-->
-    <!--    <select id="emailchk" parameterType="String" resultType="int">-->
-    <!--        select count(email) from user where email = #{email}-->
-    <!--    </select>-->
 
     <!--로그인-->
     <select id="selectid" parameterType="String" resultType="com.smartwave.tripsns.vo.UserVO">
@@ -145,7 +141,6 @@
     </select>
     <!--팔로우 리스트-->
     <select id="followList" parameterType="String" resultType="com.smartwave.tripsns.vo.FollowVO">
-        --         select follow_id from follow where follower_id =#{userid}
         select p.u_pic, f.follow_id
         from follow f
                  inner join profile p on f.follow_id = p.id
@@ -153,7 +148,6 @@
     </select>
     <!--팔로워 리스트-->
     <select id="followerList" parameterType="String" resultType="com.smartwave.tripsns.vo.FollowVO">
-        --         select follower_id from follow where follow_id =#{userid}
         select p.u_pic, f.follower_id
         from follow f
                  inner join profile p on f.follower_id = p.id
@@ -171,4 +165,8 @@
     <update id="alarmchk" parameterType="com.smartwave.tripsns.vo.AlarmVO">
         update alarm set flag = 1 where user_id =#{user_id} and alarm_no = #{alarm_no};
     </update>
+    <!--화면 로딩시 알람 체크 -->
+    <select id="messagechk" parameterType="String" resultType="int">
+        select count(*) from alarm where user_id =#{user_id} and flag= 0;
+    </select>
 </mapper>
