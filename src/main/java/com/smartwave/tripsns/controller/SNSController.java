@@ -28,7 +28,7 @@ public class SNSController {
 
     @GetMapping("/")
     public String nothing() throws Exception {
-        return "main";
+        return "redirect:main";
     }
 
     @GetMapping("/main")//메인화면 불러오기

@@ -26,9 +26,7 @@
         </div>
         <div class="field">
             <label class="infor">비밀번호<span style="color:rgb(160, 49, 49);" class="star">*</span></label><br>
-            <input type="password" id="newpw" class="te" name="pw" placeholder="비밀번호" minlength="4" maxlength="16"
-                   pattern="^[a-zA-Z\d]+$"
-                   required>
+            <input type="password" id="newpw" class="te" name="pw" placeholder="비밀번호" pattern="^(?=.*[A-Za-z])(?=.*\d)(?=.*[$@$!%*#?&])[A-Za-z\d$@$!%*#?&]{4,16}$" title="영문, 숫자, 특수기호 1개 이상 포함 조합 ,4자 글자 이상 16글자 이하">
         </div>
         <div class="field">
             <label class="infor">비밀번호 확인<span id="errmsg"></span></label> <br>
