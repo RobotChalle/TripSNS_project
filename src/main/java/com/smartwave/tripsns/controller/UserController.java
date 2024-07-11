@@ -295,7 +295,6 @@ public class UserController {
     public String followList(@RequestParam("id") String userid, Model model,
                              @SessionAttribute("userid") String u_id) throws Exception {
         //팔로우,팔로워 목록 받아올 메서드 자리
-//        System.out.println("받은 아디" + userid);
         List<FollowVO> followList = userservice.followList(userid);
         List<FollowVO> followerList = userservice.followerList(userid);
         model.addAttribute("followList", followList);

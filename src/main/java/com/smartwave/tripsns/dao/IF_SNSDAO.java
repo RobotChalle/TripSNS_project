@@ -84,5 +84,7 @@ public interface IF_SNSDAO {
 
     public List<ShortVO> userShortList(String u_id) throws Exception;
 
+    public void deleteShortChk(int no)throws Exception;
+
     public void managerDel(int pno) throws  Exception;
 }

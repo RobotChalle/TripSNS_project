@@ -211,6 +211,11 @@ public class SNSDAOImpl implements IF_SNSDAO {
     }
 
     @Override
+    public void deleteShortChk(int no) throws Exception {
+        sqlSession.delete(mapperQuery + ".deleteShortChk", no);
+    }
+
+    @Override
     public List<ShortVO> shortSearch(String searchWord) throws Exception {
         return sqlSession.selectList(mapperQuery + ".shortSearch", searchWord);
     }
