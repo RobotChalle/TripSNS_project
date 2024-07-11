@@ -163,8 +163,7 @@
         </div>
         <div class="field">
             <label class="infor">새 비밀번호</label><br>
-            <input type="password" id="newpw" class="te" name="pw" placeholder="비밀번호"
-                   minlength="4" maxlength="16" pattern="^[a-zA-Z\d]+$" title="4~16자의 비밀번호를 입력해주세요(특수문자,한글x)" required>
+            <input type="password" id="newpw" class="te" name="pw" placeholder="비밀번호" pattern="^(?=.*[A-Za-z])(?=.*\d)(?=.*[$@$!%*#?&])[A-Za-z\d$@$!%*#?&]{4,16}$" title="영문, 숫자, 특수기호 1개 이상 포함 조합 ,4자 글자 이상 16글자 이하" required>
         </div>
         <div class="field">
             <label class="infor">새 비밀번호 확인<span id="errmsg"></span></label> <br>
