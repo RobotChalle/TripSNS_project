@@ -78,5 +78,7 @@ public interface IF_SNSService {
 
     public List<ShortVO> userShortList(String u_id) throws Exception;
 
+    public void deleteShortChk(int[] shortChkList)throws Exception;
+
     public void managerDel(int[] p_no) throws Exception;
 }

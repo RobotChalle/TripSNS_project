@@ -151,6 +151,11 @@
         from short_form
         where s_no = #{s_no}
     </delete>
+    <delete id="deleteShortChk" parameterType="int">
+        delete
+        from short_form
+        where s_no = #{no}
+    </delete>
     <select id="shortLikeTF" parameterType="com.smartwave.tripsns.vo.ShortLikeVO" resultType="int">
         select count(*) from short_like where s_no = #{s_no} AND slike_id = #{slike_id}
     </select>

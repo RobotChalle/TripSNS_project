@@ -187,9 +187,9 @@ public class SNSController {
         }
     }
 
-    @GetMapping(value = "deleteShortChk") //댓글 삭제
-    public String shortDeleteChecked(@ModelAttribute ShortVO svo) throws Exception {
-        sService.deleteShort(svo);
+    @GetMapping(value = "deleteShortChk") //체크박스 쇼츠 삭제
+    public String shortDeleteChecked(@RequestParam("no") int[] shortChkList) throws Exception {
+        sService.deleteShortChk(shortChkList);
         return "redirect:/manager";
     }
 

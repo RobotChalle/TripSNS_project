@@ -339,10 +339,8 @@
 
         let arr = new Array();
         let total = document.querySelectorAll('.uchk:checked');
-        console.log(total);
         for (let i = 0; i < total.length; i++) {
             arr[i] = total[i].value;
-            console.log(arr[i]);
         }
         location.href = "delchk?id=" + arr;
 
@@ -428,10 +426,12 @@ for (const checkbox of shortCheckboxes) {
 }
 
 function deleteShortChk() {
-    const shortcheckboxes = document.querySelectorAll('.shortCheck:checked');
-    for (const checkbox of shortcheckboxes) {
-        location.href = "/deleteShortChk?s_no=" + checkbox.value;
+    let chkarray = new Array();
+    let chkList = document.querySelectorAll('.shortCheck:checked');
+    for (let i = 0; i < chkList.length; i++) {
+        chkarray[i] = chkList[i].value;
     }
+    location.href = "/deleteShortChk?no=" + chkarray;
 }
 
 //엑셀 다운로드 기능.

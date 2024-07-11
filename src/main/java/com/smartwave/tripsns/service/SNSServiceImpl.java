@@ -208,6 +208,13 @@ public class SNSServiceImpl implements IF_SNSService {
     }
 
     @Override
+    public void deleteShortChk(int[] shortChkList) throws Exception {
+        for (int no : shortChkList) {
+            sdao.deleteShortChk(no);
+        }
+    }
+
+    @Override
     public void postViewUpdate(PostVO pvo) throws Exception {
         sdao.postViewUpdate(pvo);
     }
