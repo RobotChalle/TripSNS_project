@@ -52,6 +52,8 @@ public class SNSServiceImpl implements IF_SNSService {
         sdao.postDelete(pvo);
     }
 
+
+
     @Override
     public void postModify(PostVO pvo) throws Exception {
         sdao.postModify(pvo);
@@ -196,6 +198,13 @@ public class SNSServiceImpl implements IF_SNSService {
     @Override
     public List<ShortVO> userShortList(String u_id) throws Exception {
         return sdao.userShortList(u_id);
+    }
+
+    @Override
+    public void managerDel(int[] p_no) throws Exception {
+        for (int pno : p_no) {
+            sdao.managerDel(pno);
+        }
     }
 
     @Override
