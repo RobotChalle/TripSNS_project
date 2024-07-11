@@ -24,7 +24,7 @@ spring:
 #    url: jdbc:mariadb://192.168.0.57:3308/TripSNS?characterEncoding=UTF-8&serverTimezone=Asia/Seoul
 #    password: '0987654321'
     username: robot
-    url: jdbc:mariadb://34.47.98.63:3306/tripsns?characterEncoding=UTF-8&serverTimezone=Asia/Seoul
+    url: jdbc:mariadb://10.178.0.2:3306/tripsns?characterEncoding=UTF-8&serverTimezone=Asia/Seoul
     password: '1111'
   thymeleaf:
     enabled: 'true'
