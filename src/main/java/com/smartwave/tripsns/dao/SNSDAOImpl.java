@@ -197,17 +197,22 @@ public class SNSDAOImpl implements IF_SNSDAO {
 
     @Override
     public void shortUpdateSubmit(ShortVO svo) throws Exception {
-        sqlSession.update(mapperQuery+ ".shortUpdateSubmit", svo);
+        sqlSession.update(mapperQuery + ".shortUpdateSubmit", svo);
     }
 
     @Override
     public List<ShortVO> userShortList(String u_id) throws Exception {
-        return sqlSession.selectList(mapperQuery+".userShortList", u_id);
+        return sqlSession.selectList(mapperQuery + ".userShortList", u_id);
+    }
+
+    @Override
+    public void managerDel(int p_no) throws Exception {
+        sqlSession.delete(mapperQuery + ".postDelete", p_no);
     }
 
     @Override
     public List<ShortVO> shortSearch(String searchWord) throws Exception {
-        return sqlSession.selectList(mapperQuery+".shortSearch", searchWord);
+        return sqlSession.selectList(mapperQuery + ".shortSearch", searchWord);
     }
 
 

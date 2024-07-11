@@ -245,6 +245,12 @@ public class SNSController {
         return "redirect:manager";
     }
 
+    @GetMapping(value = "postDeleteManager2")
+    public String postDeleteManager2(@RequestParam("p_no") int[] p_no) throws Exception {
+        sService.managerDel(p_no);
+        return "redirect:manager";
+    }
+
     @GetMapping(value = "postCommentDelete") //댓글 삭제
     public String postCommentDelete(@ModelAttribute PostCommentVO pcvo, @ModelAttribute PostVO pvo) throws Exception {
         sService.postCommentDelete(pcvo);

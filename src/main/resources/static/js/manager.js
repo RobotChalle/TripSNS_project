@@ -283,10 +283,14 @@ document.addEventListener('DOMContentLoaded', function () {
 
 //게시물 관리 체크 삭제
 function postDeleteChk() {
-    const checkboxes = document.querySelectorAll('.chk:checked');
-    for (const checkbox of checkboxes) {
-        location.href = "/postDeleteManager?p_no=" + checkbox.value;
+    let arry = new Array();
+    let checkboxes = document.querySelectorAll('.chk:checked');
+    console.log(checkboxes);
+    for (let i = 0; i < checkboxes.length; i++) {
+        arry[i] = checkboxes[i].value;
+        console.log(arry[i]);
     }
+    location.href = "/postDeleteManager2?p_no=" + arry
 }
 
 ////////////////////////////////////////////////////////////
