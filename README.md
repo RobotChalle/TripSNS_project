@@ -16,6 +16,20 @@
 - 사용자는 자신의 여행 경험을 게시물이나 쇼츠 형태로 공유하고, 다른 사용자를 팔로우하며 소통할 수 있습니다. 
 - 관리자는 회원 정보와 게시글, 쇼츠의 정보가 정리된 Table에서 CRUD를 사용해 효율적으로 관리할 수 있습니다.
 
+## 팀원 구성
+
+<div align="center">
+
+| **이정우** | **이태형** | **김도영** |
+| :------: |  :------: | :------: |
+| ![thumb_150x150_sgsqc4_uqd9-ilz66_17194464619271](https://github.com/user-attachments/assets/229964de-031f-461d-b270-1efb73333195)|![thumb_150x150_sgsrl4_yodh-ilz66_](https://github.com/user-attachments/assets/c50c3825-55ef-4b82-991d-6e5fb7a52847) |![thumb_150x150_sgsrbt_5zx9-ilz66_2024071600024](https://github.com/user-attachments/assets/c19e442c-d703-40ba-aa91-129ad521e5d6) |
+
+</div>
+<br>
+
+## 1. 개발 환경
+
+
 <div align="center">
 <div style="display:flex; flex-direction:column; align-items:flex-start;">
 
