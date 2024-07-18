@@ -6,8 +6,8 @@
 - 배포 URL : http://wavetrip.site
   
 ### 회원가입하거나 test 계정으로 접속할 수 있습니다.
-- Test ID : test
-- Test PW : 1q2w!
+- Test ID : smartwave0377
+- Test PW : admin
 
 ## 프로젝트 소개
 
