@@ -9,6 +9,12 @@
 - Test ID : test
 - Test PW : 1q2w!
 
+## 프로젝트 소개
+
+- 사용자들이 자신의 여행 경험을 공유하는 여행 테마 SNS 프로젝트입니다. 
+- GCP 기반으로 실제 배포하여 웹기반 아키텍처에 대한 전체적인 개발을 진행했습니다.
+- 사용자는 자신의 여행 경험을 게시물이나 쇼츠 형태로 공유하고, 다른 사용자를 팔로우하며 소통할 수 있습니다. 
+- 관리자는 회원 정보와 게시글, 쇼츠의 정보가 정리된 Table에서 CRUD를 사용해 효율적으로 관리할 수 있습니다.
 
 <div align="center">
 <div style="display:flex; flex-direction:column; align-items:flex-start;">
