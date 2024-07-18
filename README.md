@@ -27,11 +27,7 @@
 </div>
 <br>
 
-## 1. 개발 환경
-
-
-<div align="center">
-<div style="display:flex; flex-direction:column; align-items:flex-start;">
+## 개발 환경
 
 ## Frontend
 ![js](https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=JavaScript&logoColor=white)
