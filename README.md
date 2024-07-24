@@ -52,3 +52,15 @@
 ![Google Cloud](https://img.shields.io/badge/Google_Cloud_Platform-%234285F4.svg?style=for-the-badge&logo=google-cloud-platform&logoColor=white)
 ![Linux](https://img.shields.io/badge/Linux-FCC624?style=for-the-badge&logo=linux&logoColor=black)
 ![Ubuntu](https://img.shields.io/badge/Ubuntu-E95420?style=for-the-badge&logo=ubuntu&logoColor=white)
+
+# 배운점
+   ## 좋아요 기능 구현
+   - 좋아요 기능을 위해 비동기 통신 Ajax를 처음으로 사용했다. 동기와 비동기 통신의 차이를 체감하며 비동기 방식을 이해했다.
+   - 적용사례 : 좋아요 기능 , 관리자 화면 글 삭제 기능
+   ## 동적 화면 구현
+   - HTML DOM 구조 파악 및 제어: 숏폼 화면,관리자 페이지를 구현 시 javascript와 jQuery를 사용해 선택자를 활용하여 동적 화면을 구현했다.
+   ### 프로젝트 경험
+   - 초기 프로젝트에서는 주로 spring legacy와 oracle 을 사용하였지만 파이널 프로젝트 에서는 spring Boot와 MariaDB 로 전환하여 개발했다. 초기 설정에 시간이 소요되었지만, 내장 웹서버와 간편한 의존성 설정 덕분에 효율적으로 작업을 진행 할 수 있었다.
+   - Gradle 빌드 툴 사용: Maven 대신 Gradle 사용, yml 파일로 의존성 설정, 프로젝트 설정의 가독성 향상.
+   - GCP를 활용한 배포: Google Cloud Platform(GCP)에서 Ubuntu 기반 e2 서버에 배포를 통해 배포과정을 경험하고 , 권한 설정 및 사용자 계정관리의 중요성을 인식하게되었다.
+
